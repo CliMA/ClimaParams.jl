@@ -12,7 +12,7 @@ include("Atmos.jl")
 # include("Land.jl")
 # include("Ice.jl")
 
-# Make function stubs accessible
+# Make function stubs accessible.
 # Cannot ignore warnings of method
 # redefinition, since parameter names
 # from different models could clash.
