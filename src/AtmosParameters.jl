@@ -8,6 +8,7 @@ Microphysics = CLIMAParameters.Atmos.Microphysics
 Microphysics.MP_n_0(::AbstractEarthParameterSet)          = 8e6 * 2
 Microphysics.C_drag(::AbstractEarthParameterSet)          = 0.55
 Microphysics.τ_cond_evap(::AbstractEarthParameterSet)     = 10
+Microphysics.τ_sub_resub(::AbstractEarthParameterSet)     = 10
 Microphysics.q_liq_threshold(::AbstractEarthParameterSet) = 5e-4
 Microphysics.τ_acnv(::AbstractEarthParameterSet)          = 1e3
 Microphysics.E_col(::AbstractEarthParameterSet)           = 0.8
