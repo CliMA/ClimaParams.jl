@@ -37,6 +37,9 @@ function C_drag end
 """condensation/evaporation timescale [s]"""
 function τ_cond_evap end
 
+"""sublimation/resublimation timescale [s]"""
+function τ_sub_resub end
+
 """autoconversion threshold [-]  ∈(0.5, 1) * 1e-3 """
 function q_liq_threshold end
 
