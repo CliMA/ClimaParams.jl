@@ -1,6 +1,6 @@
 # CLIMAParameters.jl
 
-Contains all universal constant and physical parameters in [CLIMA](https://github.com/climate-machine/CLIMA)
+Contains all universal constants and physical parameters in [CLIMA](https://github.com/climate-machine/CLIMA)
 
 |||
 |---------------------:|:----------------------------------------------|
