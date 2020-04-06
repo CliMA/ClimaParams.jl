@@ -1,7 +1,15 @@
-# Turbulence parameters
-Turbulence = CLIMAParameters.Atmos.Turbulence
-Turbulence.C_smag(::AbstractEarthParameterSet)            = 0.21
-Turbulence.C_drag(::AbstractEarthParameterSet)            = 0.0011
+# SubgridScale parameters
+SubgridScale = CLIMAParameters.Atmos.SubgridScale
+SubgridScale.C_smag(::AbstractEarthParameterSet)            = 0.21
+SubgridScale.C_drag(::AbstractEarthParameterSet)            = 0.0011
+SubgridScale.inv_Pr_turb(::AbstractEarthParameterSet)       = 3
+SubgridScale.Prandtl_air(::AbstractEarthParameterSet)       = 71//100
+SubgridScale.c_a_KASM(::AbstractEarthParameterSet)          = 0.10
+SubgridScale.c_e1_KASM(::AbstractEarthParameterSet)         = 0.19
+SubgridScale.c_e2_KASM(::AbstractEarthParameterSet)         = 0.51
+SubgridScale.c_1_KASM(ps::AbstractEarthParameterSet)        = SubgridScale.c_a_KASM(ps)*0.76^2
+SubgridScale.c_2_KASM(ps::AbstractEarthParameterSet)        = SubgridScale.c_e2_KASM(ps)+2*SubgridScale.c_1_KASM(ps)
+SubgridScale.c_3_KASM(ps::AbstractEarthParameterSet)        = SubgridScale.c_a_KASM(ps)^(3/2)
 
 # Microphysics parameters
 Microphysics = CLIMAParameters.Atmos.Microphysics

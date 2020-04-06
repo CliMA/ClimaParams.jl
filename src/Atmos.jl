@@ -1,9 +1,17 @@
 module Atmos
 
-module Turbulence
+module SubgridScale
 
 export C_smag,
-       C_drag
+       C_drag,
+       inv_Pr_turb,
+       Prandtl_air,
+       c_a_KASM,
+       c_e1_KASM,
+       c_e2_KASM,
+       c_1_KASM,
+       c_2_KASM,
+       c_3_KASM
 
 """ Smagorinsky Coefficient [dimensionless] """
 function C_smag end
@@ -11,7 +19,31 @@ function C_smag end
 """ Drag coefficient """
 function C_drag end
 
-end # module Turbulence
+"""Turbulent Prandtl Number"""
+function inv_Pr_turb end
+
+"""Molecular Prandtl Number, dry air"""
+function Prandtl_air end
+
+"""cₐ KASM (2006)"""
+function c_a_KASM end
+
+"""cₑ₁ KASM (2006)"""
+function c_e1_KASM end
+
+"""cₑ₂ KASM (2006)"""
+function c_e2_KASM end
+
+"""c₁  KASM (2006)"""
+function c_1_KASM end
+
+"""c₂ KASM (2006)"""
+function c_2_KASM end
+
+"""c₃ KASM (2006)"""
+function c_3_KASM end
+
+end # module SubgridScale
 
 module Microphysics
 
