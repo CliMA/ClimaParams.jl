@@ -2,6 +2,7 @@ using Test
 using CLIMAParameters
 using CLIMAParameters.Planet
 using CLIMAParameters.Atmos.SubgridScale
+using CLIMAParameters.SubgridScale
 using CLIMAParameters.Atmos.Microphysics
 
 struct EarthParameterSet <: AbstractEarthParameterSet end
@@ -10,7 +11,12 @@ earth = EarthParameterSet()
 @testset "Earth - callable and not NaNs" begin
 
   # Test that all methods are callable, and that nothing returns NaNs
-  for _module in [Planet, SubgridScale, Microphysics]
+  for _module in [
+                   CLIMAParameters.Planet,
+                   CLIMAParameters.SubgridScale,
+                   CLIMAParameters.Atmos.SubgridScale,
+                   CLIMAParameters.Atmos.Microphysics,
+                 ]
 
     exported_methods = names(_module)
     filter!(x->x≠Symbol(nameof(_module)), exported_methods)
@@ -39,10 +45,10 @@ end
   @test year_anom(earth)      ≈ 365.26 * day(earth)
   @test orbit_semimaj(earth)  ≈ 1 * astro_unit()
 
-  # Microphysics
+  # Atmos.Microphysics
   @test N_Sc(earth)           ≈ ν_air(earth)/D_vapor(earth)
 
-  # SubgridScale
+  # Atmos.SubgridScale
   @test c_1_KASM(earth)       ≈ c_a_KASM(earth)*0.76^2
   @test c_2_KASM(earth)       ≈ c_e2_KASM(earth)+2*c_1_KASM(earth)
   @test c_3_KASM(earth)       ≈ c_a_KASM(earth)^(3/2)

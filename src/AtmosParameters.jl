@@ -1,18 +1,19 @@
-# SubgridScale parameters
-SubgridScale = CLIMAParameters.Atmos.SubgridScale
-SubgridScale.C_smag(::AbstractEarthParameterSet)            = 0.21
-SubgridScale.C_drag(::AbstractEarthParameterSet)            = 0.0011
-SubgridScale.inv_Pr_turb(::AbstractEarthParameterSet)       = 3
-SubgridScale.Prandtl_air(::AbstractEarthParameterSet)       = 71//100
-SubgridScale.c_a_KASM(::AbstractEarthParameterSet)          = 0.10
-SubgridScale.c_e1_KASM(::AbstractEarthParameterSet)         = 0.19
-SubgridScale.c_e2_KASM(::AbstractEarthParameterSet)         = 0.51
-SubgridScale.c_1_KASM(ps::AbstractEarthParameterSet)        = SubgridScale.c_a_KASM(ps)*0.76^2
-SubgridScale.c_2_KASM(ps::AbstractEarthParameterSet)        = SubgridScale.c_e2_KASM(ps)+2*SubgridScale.c_1_KASM(ps)
-SubgridScale.c_3_KASM(ps::AbstractEarthParameterSet)        = SubgridScale.c_a_KASM(ps)^(3/2)
+AtmosSGS = CLIMAParameters.Atmos.SubgridScale
 
-# Microphysics parameters
+# SubgridScale parameters
+AtmosSGS.C_smag(::AbstractEarthParameterSet)            = 0.21
+AtmosSGS.C_drag(::AbstractEarthParameterSet)            = 0.0011
+AtmosSGS.inv_Pr_turb(::AbstractEarthParameterSet)       = 3
+AtmosSGS.Prandtl_air(::AbstractEarthParameterSet)       = 71//100
+AtmosSGS.c_a_KASM(::AbstractEarthParameterSet)          = 0.10
+AtmosSGS.c_e1_KASM(::AbstractEarthParameterSet)         = 0.19
+AtmosSGS.c_e2_KASM(::AbstractEarthParameterSet)         = 0.51
+AtmosSGS.c_1_KASM(ps::AbstractEarthParameterSet)        = AtmosSGS.c_a_KASM(ps)*0.76^2
+AtmosSGS.c_2_KASM(ps::AbstractEarthParameterSet)        = AtmosSGS.c_e2_KASM(ps)+2*AtmosSGS.c_1_KASM(ps)
+AtmosSGS.c_3_KASM(ps::AbstractEarthParameterSet)        = AtmosSGS.c_a_KASM(ps)^(3/2)
+
 Microphysics = CLIMAParameters.Atmos.Microphysics
+# Microphysics parameters
 Microphysics.MP_n_0(::AbstractEarthParameterSet)          = 8e6 * 2
 Microphysics.C_drag(::AbstractEarthParameterSet)          = 0.55
 Microphysics.τ_cond_evap(::AbstractEarthParameterSet)     = 10

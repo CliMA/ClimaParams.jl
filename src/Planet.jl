@@ -1,3 +1,8 @@
+"""
+    Planet
+
+Planetary parameters.
+"""
 module Planet
 
 export molmass_dryair,

@@ -10,9 +10,11 @@ include("UniversalConstants.jl")
 # Function stubs
 include("Planet.jl")
 include("Atmos.jl")
+include("SubgridScale.jl")
 
 # Define values
 include("PlanetParameters.jl")
 include("AtmosParameters.jl")
+include("SubgridScaleParameters.jl")
 
 end # module
