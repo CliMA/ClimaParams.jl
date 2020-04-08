@@ -1,3 +1,8 @@
+"""
+    Atmos
+
+Atmospheric parameters.
+"""
 module Atmos
 
 module SubgridScale
