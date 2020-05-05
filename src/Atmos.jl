@@ -52,12 +52,29 @@ end # module SubgridScale
 
 module Microphysics
 
-export MP_n_0,
+export n0,
+       μ_sno,
+       ν_sno,
+       r0,
+       m0,
+       me,
+       χm,
+       Δm,
+       a0,
+       ae,
+       χa,
+       Δa,
+       v0,
+       ve,
+       χv,
+       Δv,
        C_drag,
        τ_cond_evap,
+       τ_sub_dep,
        q_liq_threshold,
        τ_acnv,
-       E_col,
+       E,
+       r_ice_snow,
        a_vent,
        b_vent,
        K_therm,
@@ -65,8 +82,53 @@ export MP_n_0,
        ν_air,
        N_Sc
 
-"""Marshall-Palmer distribution n_0 coeff [1/m4]"""
-function MP_n_0 end
+"""Marshall-Palmer distribution n_0 coeff for rain or snow [1/m4]"""
+function n0 end
+
+"""coefficient to compute Marshall-Palmer distribution coefficient n_0(ρq_snow/ρ0) for snow [1/m4]"""
+function μ_sno end
+
+"""coefficient to compute Marshall-Palmer distribution coefficient n_0(ρq_snow/ρ0) for snow [-]"""
+function ν_sno end
+
+""" assumed length scale for water drop or ice crystal [m]"""
+function r0 end
+
+"""coefficient in mass(radius/r0) [kg]"""
+function m0 end
+
+"""coefficient in mass(radius/r0) [-]"""
+function χm end
+
+"""exponent in mass(radius/r0) [-]"""
+function me end
+
+"""exponent in mass(radius/r0) [-]"""
+function Δm end
+
+"""coefficient in area(radius/r0) relation [m2]"""
+function a0 end
+
+"""coefficient in area(radius/r0) [-]"""
+function χa end
+
+"""exponent in area(radius/r0) relation"""
+function ae end
+
+"""exponent in area(radius/r0) [-]"""
+function Δa end
+
+"""coefficient in velocity(radius/r0) [m/s]"""
+function v0 end
+
+"""coefficient in velocity(radius/r0) [-]"""
+function χv end
+
+"""exponent in velocity(radius/r0)"""
+function ve end
+
+"""exponent in velocity(radius/r0) [-]"""
+function Δv end
 
 """drag coefficient for rain drops [-]"""
 function C_drag end
@@ -74,8 +136,8 @@ function C_drag end
 """condensation/evaporation timescale [s]"""
 function τ_cond_evap end
 
-"""sublimation/resublimation timescale [s]"""
-function τ_sub_resub end
+"""sublimation/deposition timescale [s]"""
+function τ_sub_dep end
 
 """autoconversion threshold [-]  ∈(0.5, 1) * 1e-3 """
 function q_liq_threshold end
@@ -83,13 +145,16 @@ function q_liq_threshold end
 """autoconversion timescale [s]  ∈(1e3, 1e4) """
 function τ_acnv end
 
-"""collision efficiency [-]"""
-function E_col end
+"""threshold between ice and snow [m]"""
+function r_ice_snow end
 
-"""ventilation factor coefficient [-]"""
+"""collision efficiency [-]"""
+function E end
+
+"""ventilation factor coefficient for rain or snow [-]"""
 function a_vent end
 
-"""ventilation factor coefficient [-]"""
+"""ventilation factor coefficient for rain or snow [-]"""
 function b_vent end
 
 """thermal conductivity of air [J/m/s/K] """
