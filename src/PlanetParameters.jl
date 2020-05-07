@@ -45,4 +45,6 @@ Planet.year_anom(ps::AbstractEarthParameterSet)      = 365.26 * Planet.day(ps)
 Planet.orbit_semimaj(ps::AbstractEarthParameterSet)  = 1 * astro_unit()
 Planet.TSI(ps::AbstractEarthParameterSet)            = 1362
 Planet.MSLP(ps::AbstractEarthParameterSet)           = 1.01325e5
+Planet.T_surf_ref(ps::AbstractEarthParameterSet)     = 290.0
+Planet.ΔTv_ref(ps::AbstractEarthParameterSet)        = 60.0
 
