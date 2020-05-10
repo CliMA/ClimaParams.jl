@@ -127,5 +127,9 @@ function orbit_semimaj end
 function TSI end
 """ Mean sea level pressure (Pa) """
 function MSLP end
+""" Mean surface temperature (K) in reference state """
+function T_surf_ref end
+""" Mean vertical virtual temperature drop (K) in reference state """
+function ΔTv_ref end
 
 end
