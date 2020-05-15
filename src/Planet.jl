@@ -42,7 +42,9 @@ export molmass_dryair,
     year_anom,
     orbit_semimaj,
     TSI,
-    MSLP
+    MSLP,
+    T_surf_ref,
+    T_min_ref
 
 # Properties of dry air
 """ Molecular weight dry air (kg/mol) """
@@ -129,7 +131,7 @@ function TSI end
 function MSLP end
 """ Mean surface temperature (K) in reference state """
 function T_surf_ref end
-""" Mean vertical virtual temperature drop (K) in reference state """
-function ΔTv_ref end
+""" Minimum temperature (K) in reference state """
+function T_min_ref end
 
 end
