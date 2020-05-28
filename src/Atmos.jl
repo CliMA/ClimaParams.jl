@@ -18,34 +18,34 @@ export C_smag,
        c_2_KASM,
        c_3_KASM
 
-""" Smagorinsky Coefficient [dimensionless] """
+""" Smagorinsky Coefficient (dimensionless) """
 function C_smag end
 
-""" Drag coefficient """
+""" Drag coefficient (dimensionless) """
 function C_drag end
 
-"""Turbulent Prandtl Number"""
+""" Turbulent Prandtl Number (dimensionless) """
 function inv_Pr_turb end
 
-"""Molecular Prandtl Number, dry air"""
+""" Molecular Prandtl Number, dry air (dimensionless) """
 function Prandtl_air end
 
-"""cₐ KASM (2006)"""
+""" ``c_{a}`` KASM, 2006 (dimensionless) """
 function c_a_KASM end
 
-"""cₑ₁ KASM (2006)"""
+""" ``c_{e1}`` KASM, 2006 (dimensionless) """
 function c_e1_KASM end
 
-"""cₑ₂ KASM (2006)"""
+""" ``c_{e2}`` KASM, 2006 (dimensionless) """
 function c_e2_KASM end
 
-"""c₁  KASM (2006)"""
+""" ``c_{1}``  KASM, 2006 (dimensionless) """
 function c_1_KASM end
 
-"""c₂ KASM (2006)"""
+""" ``c_{2}`` KASM, 2006 (dimensionless) """
 function c_2_KASM end
 
-"""c₃ KASM (2006)"""
+""" ``c_{3}`` KASM, 2006 (dimensionless) """
 function c_3_KASM end
 
 end # module SubgridScale
@@ -82,91 +82,91 @@ export n0,
        ν_air,
        N_Sc
 
-"""Marshall-Palmer distribution n_0 coeff for rain or snow [1/m4]"""
+""" Marshall-Palmer distribution `n_0` coeff for rain or snow (1/m``^4``) """
 function n0 end
 
-"""coefficient to compute Marshall-Palmer distribution coefficient n_0(ρq_snow/ρ0) for snow [1/m4]"""
+""" coefficient to compute Marshall-Palmer distribution coefficient `n_0(ρq_snow/ρ0)` for snow (1/m``^4``) """
 function μ_sno end
 
-"""coefficient to compute Marshall-Palmer distribution coefficient n_0(ρq_snow/ρ0) for snow [-]"""
+""" coefficient to compute Marshall-Palmer distribution coefficient `n_0(ρq_snow/ρ0)` for snow (-) """
 function ν_sno end
 
-""" assumed length scale for water drop or ice crystal [m]"""
+""" assumed length scale for water drop or ice crystal (m) """
 function r0 end
 
-"""coefficient in mass(radius/r0) [kg]"""
+""" coefficient in mass, `radius/r0`, (kg) """
 function m0 end
 
-"""coefficient in mass(radius/r0) [-]"""
+""" coefficient in mass, `radius/r0`, (-) """
 function χm end
 
-"""exponent in mass(radius/r0) [-]"""
+""" exponent in mass, `radius/r0`, (-) """
 function me end
 
-"""exponent in mass(radius/r0) [-]"""
+""" exponent in mass, `radius/r0`, (-) """
 function Δm end
 
-"""coefficient in area(radius/r0) relation [m2]"""
+""" coefficient in area, `radius/r0`, relation (m``^2``) """
 function a0 end
 
-"""coefficient in area(radius/r0) [-]"""
+""" coefficient in area, `radius/r0`, (-) """
 function χa end
 
-"""exponent in area(radius/r0) relation"""
+""" exponent in area, `radius/r0`, relation """
 function ae end
 
-"""exponent in area(radius/r0) [-]"""
+""" exponent in area, `radius/r0`, (-) """
 function Δa end
 
-"""coefficient in velocity(radius/r0) [m/s]"""
+""" coefficient in velocity, `radius/r0`, (m/s) """
 function v0 end
 
-"""coefficient in velocity(radius/r0) [-]"""
+""" coefficient in velocity, `radius/r0`, (-) """
 function χv end
 
-"""exponent in velocity(radius/r0)"""
+""" exponent in velocity, `radius/r0`, """
 function ve end
 
-"""exponent in velocity(radius/r0) [-]"""
+""" exponent in velocity, `radius/r0`, (-) """
 function Δv end
 
-"""drag coefficient for rain drops [-]"""
+""" drag coefficient for rain drops (-) """
 function C_drag end
 
-"""condensation/evaporation timescale [s]"""
+""" condensation/evaporation timescale (s) """
 function τ_cond_evap end
 
-"""sublimation/deposition timescale [s]"""
+""" sublimation/deposition timescale (s) """
 function τ_sub_dep end
 
-"""autoconversion threshold [-]  ∈(0.5, 1) * 1e-3 """
+""" autoconversion threshold `∈(0.5, 1) * 1e-3` (-) """
 function q_liq_threshold end
 
-"""autoconversion timescale [s]  ∈(1e3, 1e4) """
+""" autoconversion timescale `∈(1e3, 1e4)` (s) """
 function τ_acnv end
 
-"""threshold between ice and snow [m]"""
+""" threshold between ice and snow (m) """
 function r_ice_snow end
 
-"""collision efficiency [-]"""
+""" collision efficiency (-) """
 function E end
 
-"""ventilation factor coefficient for rain or snow [-]"""
+""" ventilation factor coefficient for rain or snow (-) """
 function a_vent end
 
-"""ventilation factor coefficient for rain or snow [-]"""
+""" ventilation factor coefficient for rain or snow (-) """
 function b_vent end
 
-"""thermal conductivity of air [J/m/s/K] """
+""" thermal conductivity of air (J/m/s/K) """
 function K_therm end
 
-"""diffusivity of water vapor [m2/s]"""
+""" diffusivity of water vapor (m``^2``/s) """
 function D_vapor end
 
-"""kinematic viscosity of air [m2/s]"""
+""" kinematic viscosity of air (m``^2``/s) """
 function ν_air end
 
-"""Schmidt number [-]"""
+""" Schmidt number (-) """
 function N_Sc end
 
 end

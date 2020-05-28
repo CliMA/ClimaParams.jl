@@ -1,5 +1,6 @@
 status = [
-  "CliMA.CLIMAParameters.jl"
+  "CliMA.CLIMAParameters.jl",
+  "docs-build"
 ]
 delete_merged_branches = true
 timeout_sec = 86400

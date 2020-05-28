@@ -8,7 +8,7 @@ module SubgridScale
 
 export von_karman_const
 
-"""Von Karman constant (unit-less)"""
+""" Von Karman constant (dimensionless) """
 function von_karman_const end
 
 end # module SubgridScale

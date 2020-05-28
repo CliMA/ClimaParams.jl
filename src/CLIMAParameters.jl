@@ -12,18 +12,7 @@ export AbstractIceParameterSet
 export AbstractRainParameterSet
 export AbstractSnowParameterSet
 
-abstract type AbstractParameterSet end
-abstract type AbstractEarthParameterSet <: AbstractParameterSet end
-abstract type AbstractMicrophysicsParameterSet <: AbstractParameterSet end
-
-abstract type AbstractCloudParameterSet  <: AbstractMicrophysicsParameterSet end
-abstract type AbstractPrecipParameterSet <: AbstractMicrophysicsParameterSet end
-
-abstract type AbstractLiquidParameterSet <: AbstractCloudParameterSet end
-abstract type AbstractIceParameterSet    <: AbstractCloudParameterSet end
-abstract type AbstractRainParameterSet   <: AbstractPrecipParameterSet end
-abstract type AbstractSnowParameterSet   <: AbstractPrecipParameterSet end
-
+include("types.jl")
 include("UniversalConstants.jl")
 
 # Function stubs
