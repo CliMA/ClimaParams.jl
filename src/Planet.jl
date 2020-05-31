@@ -59,9 +59,9 @@ function cp_d end
 function cv_d end
 
 # Properties of water
-""" Density of liquid water (kg/m^3) """
+""" Density of liquid water (kg/m``^3``) """
 function ρ_cloud_liq end
-""" Density of ice water (kg/m^3) """
+""" Density of ice water (kg/m``^3``) """
 function ρ_cloud_ice end
 """ Molecular weight (kg/mol) """
 function molmass_water end
@@ -93,21 +93,21 @@ function T_icenuc end
 function T_triple end
 """ Reference temperature (K) """
 function T_0 end
-""" Latent heat vaporization at T_0 (J/kg) """
+""" Latent heat vaporization at ``T_0`` (J/kg) """
 function LH_v0 end
-""" Latent heat sublimation at T_0 (J/kg) """
+""" Latent heat sublimation at ``T_0`` (J/kg) """
 function LH_s0 end
-""" Latent heat of fusion at T_0 (J/kg) """
+""" Latent heat of fusion at ``T_0`` (J/kg) """
 function LH_f0 end
-""" Specific internal energy of vapor at T_0 (J/kg) """
+""" Specific internal energy of vapor at ``T_0`` (J/kg) """
 function e_int_v0 end
-""" Specific internal energy of ice at T_0 (J/kg) """
+""" Specific internal energy of ice at ``T_0`` (J/kg) """
 function e_int_i0 end
 """ Triple point vapor pressure (Pa) """
 function press_triple end
 
 # Properties of sea water
-""" Reference density sea water (kg/m^3) """
+""" Reference density sea water (kg/m``^3``) """
 function ρ_ocean end
 """ Specific heat sea water (J/kg/K) """
 function cp_ocean end
@@ -119,13 +119,13 @@ function planet_radius end
 function day end
 """ Ang. velocity planetary rotation (1/s) """
 function Omega end
-""" Gravitational acceleration (m/s^2) """
+""" Gravitational acceleration (m/s``^2``) """
 function grav end
 """ Length of anomalistic year (s) """
 function year_anom end
 """ ngth of semimajor orbital axis (m) """
 function orbit_semimaj end
-""" Total solar irradiance (W/m^2) """
+""" Total solar irradiance (W/m``^2``) """
 function TSI end
 """ Mean sea level pressure (Pa) """
 function MSLP end
