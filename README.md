@@ -4,13 +4,13 @@ Contains all universal constants and physical parameters in [ClimateMachine.jl](
 
 |||
 |---------------------:|:----------------------------------------------|
-| **Documentation**    | [![latest][docs-latest-img]][docs-latest-url] |
+| **Documentation**    | [![latest][docs-dev-img]][docs-dev-url]       |
 | **Azure Build**      | [![azure][azure-img]][azure-url]              |
 | **Code Coverage**    | [![codecov][codecov-img]][codecov-url]        |
 | **Bors**             | [![Bors enabled][bors-img]][bors-url]         |
 
-[docs-latest-img]: https://img.shields.io/badge/docs-latest-blue.svg
-[docs-latest-url]: https://CliMA.github.io/CLIMAParameters.jl/latest/
+[docs-dev-img]: https://img.shields.io/badge/docs-dev-blue.svg
+[docs-dev-url]: https://CliMA.github.io/CLIMAParameters.jl/dev/
 
 [azure-img]: https://dev.azure.com/climate-machine/CLIMAParameters.jl/_apis/build/status/climate-machine.CLIMAParameters.jl?branchName=master
 [azure-url]: https://dev.azure.com/climate-machine/CLIMAParameters.jl/_build/latest?definitionId=1&branchName=master
