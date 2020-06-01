@@ -1,6 +1,6 @@
 
 # Properties of dry air
-Planet = CLIMAParameters.Planet
+const Planet = CLIMAParameters.Planet
 Planet.molmass_dryair(ps::AbstractEarthParameterSet) = 28.97e-3
 Planet.R_d(ps::AbstractEarthParameterSet)            = gas_constant() / Planet.molmass_dryair(ps)
 Planet.kappa_d(ps::AbstractEarthParameterSet)        = 2 / 7
