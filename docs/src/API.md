@@ -27,6 +27,7 @@ h_Planck
 k_Boltzmann
 Stefan
 astro_unit
+avogad
 ```
 
 ## Planet
