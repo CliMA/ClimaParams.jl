@@ -1,4 +1,4 @@
-AtmosSGS = CLIMAParameters.Atmos.SubgridScale
+const AtmosSGS = CLIMAParameters.Atmos.SubgridScale
 
 # SubgridScale parameters
 AtmosSGS.C_smag(::AbstractEarthParameterSet)            = 0.21
@@ -13,7 +13,7 @@ AtmosSGS.c_2_KASM(ps::AbstractEarthParameterSet)        = AtmosSGS.c_e2_KASM(ps)
 AtmosSGS.c_3_KASM(ps::AbstractEarthParameterSet)        = AtmosSGS.c_a_KASM(ps)^(3/2)
 
 # Microphysics parameters
-Microphysics = CLIMAParameters.Atmos.Microphysics
+const Microphysics = CLIMAParameters.Atmos.Microphysics
 
 # general
 Microphysics.C_drag(::AbstractEarthParameterSet)  = 0.55

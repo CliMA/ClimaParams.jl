@@ -142,3 +142,11 @@ end
 
 end
 
+import CLIMAParameters
+CLIMAParameters.Planet.grav(::EarthParameterSet) = 2.0
+@testset "Overriding defaults" begin
+
+  @test grav(earth) ≈ 2.0
+
+end
+
