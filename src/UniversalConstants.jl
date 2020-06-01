@@ -9,7 +9,8 @@ export gas_constant,
        h_Planck,
        k_Boltzmann,
        Stefan,
-       astro_unit
+       astro_unit,
+       avogad
 
 """
     gas_constant
@@ -52,3 +53,10 @@ Stefan() =           5.670e-8
 Astronomical unit (m)
 """
 astro_unit() =       1.4959787e11
+
+"""
+    avogad(::Type{FT})
+
+Avogadro's number [molec/mol]
+"""
+avogad() = 6.02214076e23
