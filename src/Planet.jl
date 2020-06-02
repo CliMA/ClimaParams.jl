@@ -10,6 +10,7 @@ export molmass_dryair,
     kappa_d,
     cp_d,
     cv_d,
+    ρ_water_liq,
     ρ_cloud_liq,
     ρ_cloud_ice,
     molmass_water,
@@ -28,11 +29,19 @@ export molmass_dryair,
     T_triple,
     T_0,
     LH_v0,
+    LH_v_ice,
+    LH_v_liq,
     LH_s0,
     LH_f0,
     e_int_v0,
     e_int_i0,
     press_triple,
+    γ_water_air,
+    γ_water_air_relative,
+    p_sat_water,
+    p_sat_water_slope,
+    ν_water_liq,
+    ν_water_liq_relative,
     ρ_ocean,
     cp_ocean,
     planet_radius,
@@ -45,6 +54,13 @@ export molmass_dryair,
     MSLP,
     T_surf_ref,
     T_min_ref
+
+# include functions for physical properties of water
+include("Water/density.jl"        )
+include("Water/latent_heat.jl"    )
+include("Water/surface_tension.jl")
+include("Water/vapor_pressure.jl" )
+include("Water/viscosity.jl"      )
 
 # Properties of dry air
 """ Molecular weight dry air (kg/mol) """

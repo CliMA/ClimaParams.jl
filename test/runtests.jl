@@ -37,8 +37,13 @@ earth = EarthParameterSet(microphys_param_set)
 
     exported_methods = names(_module)
     filter!(x->x≠Symbol(nameof(_module)), exported_methods)
+    list_exemplt = [:LH_v_ice, :LH_v_liq, :ρ_water_liq, :γ_water_air,
+                    :γ_water_air_relative, :p_sat_water, :p_sat_water_slope,
+                    :ν_water_liq, :ν_water_liq_relative]
     for m in exported_methods
-      @test !isnan(_module.eval(m)(earth))
+        if !(m in list_exemplt)
+            @test !isnan(_module.eval(m)(earth))
+        end
     end
   end
 
@@ -150,3 +155,31 @@ CLIMAParameters.Planet.grav(::EarthParameterSet) = 2.0
 
 end
 
+@testset "FT and not NaNs tests for water's physical properties" begin
+    for FT in [Float32 Float64]
+        K_0  = FT(273.15)
+        K_25 = FT(298.15)
+        for funct in [ρ_water_liq,
+                      LH_v_liq,
+                      LH_v_ice,
+                      γ_water_air,
+                      γ_water_air_relative,
+                      ν_water_liq,
+                      ν_water_liq_relative,
+                      p_sat_water,
+                      p_sat_water_slope]
+            for tem in [K_0 K_25]
+                result = funct(tem)
+                if typeof(result) <: Number
+                    @test typeof(result) == FT
+                    @test !isnan(result)
+                else
+                    for val in result
+                        @test typeof(val) == FT
+                        @test !isnan(val)
+                    end
+                end
+            end
+        end
+    end
+end
