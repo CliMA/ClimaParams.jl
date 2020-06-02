@@ -6,6 +6,7 @@ using CLIMAParameters.SubgridScale
 
 using CLIMAParameters.Atmos.Microphysics
 struct LiquidParameterSet <: AbstractLiquidParameterSet end
+struct LiquidParameterSet <: AbstractLiquidParameterSet end
 struct IceParameterSet    <: AbstractIceParameterSet end
 struct RainParameterSet   <: AbstractRainParameterSet end
 struct SnowParameterSet   <: AbstractSnowParameterSet end
@@ -42,6 +43,21 @@ earth = EarthParameterSet(microphys_param_set)
     end
   end
 
+end
+
+@testset "Water - callable and not NaNs" begin
+  struct PS <: AbstractEmpiricalParameterSet end
+  ps = PS()
+  w = CLIMAParameters.Water
+  @test !isnan(w.ST_k(ps))
+  @test !isnan(w.ST_T_crit(ps))
+  @test !isnan(w.ST_exp(ps))
+  @test !isnan(w.ST_corr(ps))
+  @test !isnan(w.ST_ref(ps))
+  @test !isnan(w.VIS_0(ps))
+  @test !isnan(w.VIS_e1(ps))
+  @test !isnan(w.VIS_e2(ps))
+  @test !isnan(w.VIS_e3(ps))
 end
 
 @testset "Microphysics - callable and not NaNs" begin

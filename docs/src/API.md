@@ -143,7 +143,3 @@ Atmos.Microphysics.ν_air
 Atmos.Microphysics.N_Sc
 ```
 
-## Empirical parameter sets
-```@docs
-EmpiricalWaterProperties
-```
