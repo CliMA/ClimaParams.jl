@@ -31,15 +31,6 @@ Planet.LH_f0(ps::AbstractEarthParameterSet)          = Planet.LH_s0(ps) - Planet
 Planet.e_int_v0(ps::AbstractEarthParameterSet)       = Planet.LH_v0(ps) - Planet.R_v(ps) * Planet.T_0(ps)
 Planet.e_int_i0(ps::AbstractEarthParameterSet)       = Planet.LH_f0(ps)
 Planet.press_triple(ps::AbstractEarthParameterSet)   = 611.657
-Planet.ST_k(ps::AbstractEarthParameterSet)           = 0.2358
-Planet.ST_T_crit(ps::AbstractEarthParameterSet)      = 647.096
-Planet.ST_exp(ps::AbstractEarthParameterSet)         = 1.256
-Planet.ST_corr(ps::AbstractEarthParameterSet)        = 0.625
-Planet.ST_ref(ps::AbstractEarthParameterSet)         = 0.07197220523
-Planet.VIS_0(ps::AbstractEarthParameterSet)          = 1.856e-14
-Planet.VIS_e1(ps::AbstractEarthParameterSet)         = 4209.0
-Planet.VIS_e2(ps::AbstractEarthParameterSet)         = 0.04527
-Planet.VIS_e3(ps::AbstractEarthParameterSet)         = -3.376e-5
 
 # Properties of sea water
 Planet.ρ_ocean(ps::AbstractEarthParameterSet)        = 1.035e3

@@ -62,3 +62,10 @@ abstract type AbstractRainParameterSet   <: AbstractPrecipParameterSet end
 A set of parameters for snow microphysics parameterization.
 """
 abstract type AbstractSnowParameterSet   <: AbstractPrecipParameterSet end
+
+"""
+    AbstractEmpiricalParameterSet <: AbstractParameterSet
+
+A set of empirical parameters used for water viscosity and surface tension
+"""
+abstract type AbstractEmpiricalParameterSet <: AbstractParameterSet end

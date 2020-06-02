@@ -1,5 +1,7 @@
 module CLIMAParameters
 
+using DocStringExtensions
+
 export AbstractParameterSet
 export AbstractEarthParameterSet
 export AbstractMicrophysicsParameterSet
@@ -24,5 +26,8 @@ include("SubgridScale.jl")
 include("PlanetParameters.jl")
 include("AtmosParameters.jl")
 include("SubgridScaleParameters.jl")
+
+# Empirical water properties struct
+include("Water.jl")
 
 end # module

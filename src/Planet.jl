@@ -33,15 +33,6 @@ export molmass_dryair,
     e_int_v0,
     e_int_i0,
     press_triple,
-    ST_k,
-    ST_T_crit,
-    ST_exp,
-    ST_corr,
-    ST_ref,
-    VIS_0,
-    VIS_e1,
-    VIS_e2,
-    VIS_e3,
     ρ_ocean,
     cp_ocean,
     planet_radius,
@@ -114,24 +105,6 @@ function e_int_v0 end
 function e_int_i0 end
 """ Triple point vapor pressure (Pa) """
 function press_triple end
-""" Surface tension multiplier (N/m) """
-function ST_k end
-""" Surface tension critical temperature (K) """
-function ST_T_crit end
-""" Surface tension exponent """
-function ST_exp end
-""" Surface tension correction factor """
-function ST_corr end
-""" Surface tension at reference temperature 298.15 (K) """
-function ST_ref end
-""" Viscosity at ``T_0`` (Pa s) """
-function VIS_0 end
-""" Viscosity exponent correction parameters (K) """
-function VIS_e1 end
-""" Viscosity exponent correction parameters (K⁻¹) """
-function VIS_e2 end
-""" Viscosity exponent correction parameters (K⁻²) """
-function VIS_e3 end
 
 # Properties of sea water
 """ Reference density sea water (kg/m``^3``) """
