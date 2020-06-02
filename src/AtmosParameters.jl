@@ -4,7 +4,7 @@ const AtmosSGS = CLIMAParameters.Atmos.SubgridScale
 AtmosSGS.C_smag(::AbstractEarthParameterSet)            = 0.21
 AtmosSGS.C_drag(::AbstractEarthParameterSet)            = 0.0011
 AtmosSGS.inv_Pr_turb(::AbstractEarthParameterSet)       = 3
-AtmosSGS.Prandtl_air(::AbstractEarthParameterSet)       = 71//100
+AtmosSGS.Prandtl_air(::AbstractEarthParameterSet)       = 71/100
 AtmosSGS.c_a_KASM(::AbstractEarthParameterSet)          = 0.10
 AtmosSGS.c_e1_KASM(::AbstractEarthParameterSet)         = 0.19
 AtmosSGS.c_e2_KASM(::AbstractEarthParameterSet)         = 0.51
@@ -31,10 +31,10 @@ Microphysics.τ_sub_dep(::AbstractIceParameterSet)  = 10
 Microphysics.r_ice_snow(::AbstractIceParameterSet) = 62.5 * 1e-6
 Microphysics.n0(::AbstractIceParameterSet)         = 1e7 * 2
 Microphysics.r0(::AbstractIceParameterSet)         = 1e-5
-Microphysics.me(::AbstractIceParameterSet)         = 3.
+Microphysics.me(::AbstractIceParameterSet)         = 3
 Microphysics.m0(
     ps::AbstractEarthParameterSet, ps_ice::AbstractIceParameterSet
-) = 4/3. * π * CLIMAParameters.Planet.ρ_cloud_ice(ps) *
+) = 4/3 * π * CLIMAParameters.Planet.ρ_cloud_ice(ps) *
     Microphysics.r0(ps_ice)^Microphysics.me(ps_ice)
 Microphysics.χm(::AbstractIceParameterSet)         = 1
 Microphysics.Δm(::AbstractIceParameterSet)         = 0
@@ -46,12 +46,12 @@ Microphysics.a_vent(::AbstractRainParameterSet)          = 1.5
 Microphysics.b_vent(::AbstractRainParameterSet)          = 0.53
 Microphysics.n0(::AbstractRainParameterSet)              = 8e6 * 2
 Microphysics.r0(::AbstractRainParameterSet)              = 1e-3
-Microphysics.me(::AbstractRainParameterSet)              = 3.
-Microphysics.ae(::AbstractRainParameterSet)              = 2.
+Microphysics.me(::AbstractRainParameterSet)              = 3
+Microphysics.ae(::AbstractRainParameterSet)              = 2
 Microphysics.ve(::AbstractRainParameterSet)              = 0.5
 Microphysics.m0(
     ps::AbstractEarthParameterSet, ps_rain::AbstractRainParameterSet
-) = 4/3. * π * CLIMAParameters.Planet.ρ_cloud_liq(ps) *
+) = 4/3 * π * CLIMAParameters.Planet.ρ_cloud_liq(ps) *
     Microphysics.r0(ps_rain)^Microphysics.me(ps_rain)
 Microphysics.a0(ps_rain::AbstractRainParameterSet) =
     π * Microphysics.r0(ps_rain)^Microphysics.ae(ps_rain)
@@ -69,8 +69,8 @@ Microphysics.b_vent(::AbstractSnowParameterSet) = 0.44
 Microphysics.μ_sno(::AbstractSnowParameterSet)  = 4.36 * 1e9
 Microphysics.ν_sno(::AbstractSnowParameterSet)  = 0.63
 Microphysics.r0(::AbstractSnowParameterSet)     = 1e-3
-Microphysics.me(::AbstractSnowParameterSet)     = 2.
-Microphysics.ae(::AbstractSnowParameterSet)     = 2.
+Microphysics.me(::AbstractSnowParameterSet)     = 2
+Microphysics.ae(::AbstractSnowParameterSet)     = 2
 Microphysics.ve(::AbstractSnowParameterSet)     = 0.25
 Microphysics.m0(
     ps_snow::AbstractSnowParameterSet
@@ -91,9 +91,9 @@ Microphysics.Δv(::AbstractSnowParameterSet)     = 0
 # interactions
 Microphysics.E(::AbstractLiquidParameterSet, ::AbstractRainParameterSet) = 0.8
 Microphysics.E(::AbstractLiquidParameterSet, ::AbstractSnowParameterSet) = 0.1
-Microphysics.E(::AbstractIceParameterSet,   ::AbstractRainParameterSet)  = 1.0
+Microphysics.E(::AbstractIceParameterSet,   ::AbstractRainParameterSet)  = 1
 Microphysics.E(::AbstractIceParameterSet,   ::AbstractSnowParameterSet)  = 0.1
-Microphysics.E(::AbstractRainParameterSet,  ::AbstractSnowParameterSet)  = 1.0
+Microphysics.E(::AbstractRainParameterSet,  ::AbstractSnowParameterSet)  = 1
 Microphysics.E(
     ps_snow::AbstractSnowParameterSet,  ps_rain::AbstractRainParameterSet
 ) = Microphysics.E(ps_rain,  ps_snow)
