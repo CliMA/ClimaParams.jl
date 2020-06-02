@@ -143,3 +143,16 @@ Atmos.Microphysics.ν_air
 Atmos.Microphysics.N_Sc
 ```
 
+### Water
+
+```@docs
+Water.VIS_0
+Water.ST_exp
+Water.ST_T_crit
+Water.ST_ref
+Water.VIS_e1
+Water.VIS_e3
+Water.VIS_e2
+Water.ST_k
+Water.ST_corr
+```
