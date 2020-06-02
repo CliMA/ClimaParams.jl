@@ -63,6 +63,15 @@ Planet.e_int_v0
 Planet.e_int_i0
 Planet.press_triple
 Planet.ρ_ocean
+Planet.ST_k
+Planet.ST_T_crit
+Planet.ST_exp
+Planet.ST_corr
+Planet.ST_ref
+Planet.VIS_0
+Planet.VIS_e1
+Planet.VIS_e2
+Planet.VIS_e3
 Planet.cp_ocean
 Planet.planet_radius
 Planet.day
