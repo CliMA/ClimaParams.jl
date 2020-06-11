@@ -1,5 +1,16 @@
 #### Types
 
+export AbstractParameterSet,
+    AbstractEarthParameterSet,
+    AbstractMicrophysicsParameterSet,
+    AbstractCloudParameterSet,
+    AbstractPrecipParameterSet,
+    AbstractLiquidParameterSet,
+    AbstractIceParameterSet,
+    AbstractRainParameterSet,
+    AbstractSnowParameterSet,
+    AbstractLandParameterSet
+
 """
     AbstractParameterSet
 
@@ -62,3 +73,11 @@ abstract type AbstractRainParameterSet   <: AbstractPrecipParameterSet end
 A set of parameters for snow microphysics parameterization.
 """
 abstract type AbstractSnowParameterSet   <: AbstractPrecipParameterSet end
+
+"""
+    AbstractLandParameterSet   <: AbstractParameterSet
+
+A set of parameters for land parameterization.
+"""
+abstract type AbstractLandParameterSet   <: AbstractParameterSet end
+

@@ -1,17 +1,5 @@
 module CLIMAParameters
 
-export AbstractParameterSet
-export AbstractEarthParameterSet
-export AbstractMicrophysicsParameterSet
-
-export AbstractCloudParameterSet
-export AbstractPrecipParameterSet
-
-export AbstractLiquidParameterSet
-export AbstractIceParameterSet
-export AbstractRainParameterSet
-export AbstractSnowParameterSet
-
 include("types.jl")
 include("UniversalConstants.jl")
 
@@ -19,10 +7,12 @@ include("UniversalConstants.jl")
 include("Planet.jl")
 include("Atmos.jl")
 include("SubgridScale.jl")
+include(joinpath("Land", "Land.jl"))
 
 # Define values
 include("PlanetParameters.jl")
 include("AtmosParameters.jl")
 include("SubgridScaleParameters.jl")
+include(joinpath("Land", "land_parameters.jl"))
 
 end # module
