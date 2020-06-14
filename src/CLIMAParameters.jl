@@ -16,13 +16,13 @@ include("types.jl")
 include("UniversalConstants.jl")
 
 # Function stubs
-include("Planet.jl")
-include("Atmos.jl")
-include("SubgridScale.jl")
+include(joinpath("Planet", "Planet.jl"))
+include(joinpath("Atmos", "Atmos.jl"))
+include(joinpath("SubgridScale", "SubgridScale.jl"))
 
 # Define values
-include("PlanetParameters.jl")
-include("AtmosParameters.jl")
-include("SubgridScaleParameters.jl")
+include(joinpath("Planet", "planet_parameters.jl"))
+include(joinpath("Atmos", "atmos_parameters.jl"))
+include(joinpath("SubgridScale", "subgrid_scale_parameters.jl"))
 
 end # module
