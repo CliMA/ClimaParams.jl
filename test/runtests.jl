@@ -143,19 +143,12 @@ end
 end
 
 @testset "Land - callable and not NaNs" begin
-  using CLIMAParameters.Land.Soil.Water.VanGenuchten
-  using CLIMAParameters.Land.Soil.Water.BrooksCorey
-  using CLIMAParameters.Land.Soil.Water.Haverkamp
+  using CLIMAParameters.Land.Soil.Water
   struct LandParameterSet <: AbstractLandParameterSet end
   ps = LandParameterSet()
-  @test !isnan(n(ps))
-  @test !isnan(α(ps))
-  @test !isnan(m(ps))
-  @test !isnan(ψb(ps))
-  @test !isnan(m(ps))
-  @test !isnan(k(ps))
-  @test !isnan(A(ps))
-  @test !isnan(B(ps))
+  @test !isnan(Ω(ps))
+  @test !isnan(T1(ps))
+  @test !isnan(T2(ps))
 end
 
 
