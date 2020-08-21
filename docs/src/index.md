@@ -12,22 +12,25 @@ CLIMAParameters serve several functionalities and require certain attributes. A 
 
 In addition, CLIMAParameters have the flexibility of two important behaviors:
 
-### Behavior 1) Compile-time constants
+## Multiple behaviors
+
+### Compile-time constants
 
 This behavior is used for parameters that **will not** be tuned in the machine-learning layer. Therefore, these parameters can be constant-propagated[^1] and constant-folded[^2] at compile time. This is behavior is achieved by leveraging Julia's type system, and only relying on singleton types[^3]:
 
 ```@example
 using CLIMAParameters:AbstractEarthParameterSet
 using InteractiveUtils
-import CLIMAParameters.Planet: grav # imported for illustrative purposes
+import CLIMAParameters # imported for illustrative purposes
+using CLIMAParameters.Planet: grav
 
 struct EarthParameterSet <: AbstractEarthParameterSet end
 const param_set = EarthParameterSet()
-grav(::EarthParameterSet) = 5.0 # Defined for illustrative purposes
+CLIMAParameters.Planet.grav(::EarthParameterSet) = 5.0 # Defined for illustrative purposes
 @code_typed grav(param_set)
 ```
 
-### Behavior 2) Run-time constants
+### Run-time constants
 
 This behavior is used for parameters that **will** be tuned in the machine-learning layer. In this case, it makes sense to create a single binary image that can be reused for several different sets of CLIMAParameters as they are updated in the machine-learning layer. This is behavior is achieved by using composite types[^4] with fields to store/access data:
 
@@ -70,7 +73,8 @@ _grav = Float32(grav(param_set))
 
 ```@example
 using CLIMAParameters
-import CLIMAParameters.Planet: grav
+using CLIMAParameters.Planet: grav
+import CLIMAParameters
 
 struct EarthParameterSet <: AbstractEarthParameterSet end
 const param_set = EarthParameterSet()
