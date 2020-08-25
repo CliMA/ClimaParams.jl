@@ -106,6 +106,14 @@ Atmos.SubgridScale.c_2_KASM
 Atmos.SubgridScale.c_3_KASM
 ```
 
+### Microphysics_0M
+
+```@docs
+Atmos.Microphysics_0M.τ_precip
+Atmos.Microphysics_0M.qc_0
+Atmos.Microphysics_0M.S_0
+```
+
 ### Microphysics
 
 Please see the microphysics [documentation](https://clima.github.io/ClimateMachine.jl/latest/Theory/Atmos/Microphysics/) for an explanation of the default values.

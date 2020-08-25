@@ -2,7 +2,19 @@ using Test
 using CLIMAParameters
 using CLIMAParameters.Planet
 
+using CLIMAParameters.Atmos.Microphysics_0M
 using CLIMAParameters.Atmos.Microphysics
+
+@testset "Microphysics_0M" begin
+
+  struct EarthParameterSet <: AbstractEarthParameterSet end
+  ps = EarthParameterSet()
+
+  @test !isnan(Microphysics_0M.τ_precip(ps))
+  @test !isnan(Microphysics_0M.qc_0(ps))
+  @test !isnan(Microphysics_0M.S_0(ps))
+
+end
 
 @testset "Microphysics" begin
 

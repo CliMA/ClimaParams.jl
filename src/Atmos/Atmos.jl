@@ -50,6 +50,23 @@ function c_3_KASM end
 
 end # module SubgridScale
 
+module Microphysics_0M
+
+export τ_precip,
+       qc_0,
+       S_0
+
+""" precipitation removal timescale (s) """
+function τ_precip end
+
+""" precipitation removal threshold expressed in condensate specific humidity (kg/kg) """
+function qc_0 end
+
+""" precipitation removal threshold expressed in supersaturation (dimensionless) """
+function S_0 end
+
+end # module Microphysics_0M
+
 module Microphysics
 
 export n0,

@@ -12,7 +12,14 @@ AtmosSGS.c_1_KASM(ps::AbstractEarthParameterSet)        = AtmosSGS.c_a_KASM(ps)*
 AtmosSGS.c_2_KASM(ps::AbstractEarthParameterSet)        = AtmosSGS.c_e2_KASM(ps)+2*AtmosSGS.c_1_KASM(ps)
 AtmosSGS.c_3_KASM(ps::AbstractEarthParameterSet)        = AtmosSGS.c_a_KASM(ps)^(3/2)
 
-# Microphysics parameters
+# 0-moment microphysics parameters
+const Microphysics_0M = CLIMAParameters.Atmos.Microphysics_0M
+
+Microphysics_0M.τ_precip(::AbstractEarthParameterSet) = 1000
+Microphysics_0M.qc_0(::AbstractEarthParameterSet) = 5e-3
+Microphysics_0M.S_0(::AbstractEarthParameterSet) = 0.02
+
+# 1-moment microphysics parameters
 const Microphysics = CLIMAParameters.Atmos.Microphysics
 
 # general
