@@ -70,7 +70,13 @@ Planet.Omega
 Planet.grav
 Planet.year_anom
 Planet.orbit_semimaj
-Planet.TSI
+Planet.tot_solar_irrad
+Planet.epoch
+Planet.mean_anom_epoch
+Planet.obliq_epoch
+Planet.lon_perihelion_epoch
+Planet.eccentricity_epoch
+Planet.lon_perihelion
 Planet.MSLP
 Planet.T_surf_ref
 Planet.T_min_ref
