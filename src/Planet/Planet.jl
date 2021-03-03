@@ -41,7 +41,13 @@ export molmass_dryair,
     grav,
     year_anom,
     orbit_semimaj,
-    TSI,
+    tot_solar_irrad,
+    epoch,
+    mean_anom_epoch,
+    obliq_epoch,
+    lon_perihelion_epoch,
+    eccentricity_epoch,
+    lon_perihelion,
     MSLP,
     T_surf_ref,
     T_min_ref
@@ -126,7 +132,24 @@ function year_anom end
 """ ngth of semimajor orbital axis (m) """
 function orbit_semimaj end
 """ Total solar irradiance (W/m``^2``) """
-function TSI end
+function tot_solar_irrad end
+""" Time of  epoch (J2000) (s) """
+function epoch end
+""" Mean anomaly at the epoch (radians) """
+function mean_anom_epoch end
+""" Orbital obliquity at the epoch (radians) """
+function obliq_epoch end
+""" Longitude of perihelion at the epoch (radians), 
+measured relative to vernal equinox (i.e., the longitude of perihelion is the angle 
+subtended at the Sun by the orbital arc from vernal equinox to perihelion). """
+function lon_perihelion_epoch end
+""" Orbital eccentricity at the epoch """
+function eccentricity_epoch end
+""" Longitude of perihelion (radians), measured relative to vernal equinox.
+The calculation of the mean anomaly is formulated such that the vernal equinox
+is fixed in the calendar. However, this requires tracking both the current longitude of perihelion
+as well as the reference longitude of perihelion at the reference time (epoch). """
+function lon_perihelion end
 """ Mean sea level pressure (Pa) """
 function MSLP end
 """ Mean surface temperature (K) in reference state """
