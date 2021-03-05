@@ -1,6 +1,6 @@
+# SubgridScale parameters
 const AtmosSGS = CLIMAParameters.Atmos.SubgridScale
 
-# SubgridScale parameters
 AtmosSGS.C_smag(::AbstractEarthParameterSet)            = 0.21
 AtmosSGS.C_drag(::AbstractEarthParameterSet)            = 0.0011
 AtmosSGS.inv_Pr_turb(::AbstractEarthParameterSet)       = 3
@@ -12,12 +12,53 @@ AtmosSGS.c_1_KASM(ps::AbstractEarthParameterSet)        = AtmosSGS.c_a_KASM(ps)*
 AtmosSGS.c_2_KASM(ps::AbstractEarthParameterSet)        = AtmosSGS.c_e2_KASM(ps)+2*AtmosSGS.c_1_KASM(ps)
 AtmosSGS.c_3_KASM(ps::AbstractEarthParameterSet)        = AtmosSGS.c_a_KASM(ps)^(3/2)
 
+# EDMF parameters
+const EDMF = CLIMAParameters.Atmos.EDMF
+
+# Entrainment - detrainment model
+EDMF.c_λ(::AbstractEarthParameterSet)            = 0.3
+EDMF.c_ε(::AbstractEarthParameterSet)            = 0.13
+EDMF.c_δ(::AbstractEarthParameterSet)            = 0.52
+EDMF.c_t(::AbstractEarthParameterSet)            = 0.1
+EDMF.β(::AbstractEarthParameterSet)              = 2
+EDMF.μ_0(::AbstractEarthParameterSet)            = 4e-4
+EDMF.χ(::AbstractEarthParameterSet)              = 0.25
+EDMF.w_min(::AbstractEarthParameterSet)          = 0.1
+EDMF.lim_ϵ(::AbstractEarthParameterSet)          = 1e-4
+EDMF.lim_amp(::AbstractEarthParameterSet)        = 10
+
+# Subdomain model
+EDMF.a_min(::AbstractEarthParameterSet)          = 0.001
+
+# Surface model
+EDMF.a_surf(::AbstractEarthParameterSet)         = 0.1
+EDMF.κ_star²(::AbstractEarthParameterSet)        = 3.75
+EDMF.ψϕ_stab(::AbstractEarthParameterSet)        = 8.3
+
+# Pressure model
+EDMF.α_d(::AbstractEarthParameterSet)            = 10.0
+EDMF.α_a(::AbstractEarthParameterSet)            = 0.1
+EDMF.α_b(::AbstractEarthParameterSet)            = 0.12
+EDMF.H_up_min(::AbstractEarthParameterSet)       = 500
+
+# Mixing length model
+EDMF.c_d(::AbstractEarthParameterSet)            = 0.22
+EDMF.c_m(::AbstractEarthParameterSet)            = 0.14
+EDMF.c_b(::AbstractEarthParameterSet)            = 0.63
+EDMF.a1(::AbstractEarthParameterSet)             = 0.2
+EDMF.a2(::AbstractEarthParameterSet)             = 100
+EDMF.ω_pr(::AbstractEarthParameterSet)           = 53.0 / 13.0
+EDMF.Pr_n(::AbstractEarthParameterSet)           = 0.74
+EDMF.Ri_c(::AbstractEarthParameterSet)           = 0.25
+EDMF.smin_ub(::AbstractEarthParameterSet)           = 0.1
+EDMF.smin_rm(::AbstractEarthParameterSet)           = 1.5
+
 # 0-moment microphysics parameters
 const Microphysics_0M = CLIMAParameters.Atmos.Microphysics_0M
 
 Microphysics_0M.τ_precip(::AbstractEarthParameterSet) = 1000
-Microphysics_0M.qc_0(::AbstractEarthParameterSet) = 5e-3
-Microphysics_0M.S_0(::AbstractEarthParameterSet) = 0.02
+Microphysics_0M.qc_0(::AbstractEarthParameterSet)     = 5e-3
+Microphysics_0M.S_0(::AbstractEarthParameterSet)      = 0.02
 
 # 1-moment microphysics parameters
 const Microphysics = CLIMAParameters.Atmos.Microphysics

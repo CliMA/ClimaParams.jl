@@ -50,6 +50,123 @@ function c_3_KASM end
 
 end # module SubgridScale
 
+module EDMF
+
+export c_λ,
+       c_ε,
+       c_δ,
+       c_t,
+       β,
+       μ_0,
+       χ,
+       w_min,
+       lim_ϵ,
+       lim_amp,
+       a_min,
+       a_surf,
+       κ_star²,
+       ψϕ_stab,
+       α_d,
+       α_a,
+       α_b,
+       H_up_min,
+       c_d,
+       c_m,
+       c_b,
+       a1,
+       a2,
+       ω_pr,
+       Pr_n,
+       Ri_c,
+       smin_ub,
+       smin_rm
+
+""" Entrainment TKE scale (dimensionless) """
+function c_λ end
+
+""" Entrainment factor (dimensionless) """
+function c_ε end
+
+""" Detrainment factor (dimensionless) """
+function c_δ end
+
+""" Turbulent Entrainment factor (dimensionless) """
+function c_t end
+
+""" Detrainment RH power (dimensionless) """
+function β end
+
+""" Logistic function scale (s``^{-1}``) """
+function μ_0 end
+
+""" Updraft mixing fraction (dimensionless) """
+function χ end
+
+""" Minimum updraft velocity (m/s) """
+function w_min end
+
+""" Exponential area limiter scale (dimensionless) """
+function lim_ϵ end
+
+""" Exponential area limiter amplitude(dimensionless) """
+function lim_amp end
+
+""" Minimum area fraction for any subdomain (dimensionless) """
+function a_min end
+
+""" Updraft surface area fraction (dimensionless) """
+function a_surf end
+
+""" Square ratio of rms turbulent velocity to friction velocity (dimensionless) """
+function κ_star² end
+
+""" Surface covariance stability coefficient (dimensionless) """
+function ψϕ_stab end
+
+""" Pressure drag factor (dimensionless) """
+function α_d end
+
+""" Advective pressure factor (dimensionless """
+function α_a end
+
+""" Buoyancy pressure factor (dimensionless) """
+function α_b end
+
+""" Minimum updraft height for closures (m) """
+function H_up_min end
+
+""" Environmental dissipation factor (dimensionless) """
+function c_d end
+
+""" Eddy viscosity factor (dimensionless) """
+function c_m end
+
+""" Static stability factor (dimensionless) """
+function c_b end
+
+""" Empirical stability function coefficient (dimensionless) """
+function a1 end
+
+""" Empirical stability function coefficient (dimensionless) """
+function a2 end
+
+""" Prandtl number empirical coefficient (dimensionless) """
+function ω_pr end
+
+""" Neutral Prandtl number (dimensionless) """
+function Pr_n end
+
+""" Critical Richardson number (dimensionless) """
+function Ri_c end
+
+""" Smooth minimum's fractional upper bound (dimensionless) """
+function smin_ub end
+
+""" Smooth minimum's regularization length minimum (m) """
+function smin_rm end
+
+end # module EDMF
+
 module Microphysics_0M
 
 export τ_precip,

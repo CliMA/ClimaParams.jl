@@ -133,6 +133,39 @@ Atmos.SubgridScale.c_2_KASM
 Atmos.SubgridScale.c_3_KASM
 ```
 
+### EDMF
+
+```@docs
+Atmos.EDMF.c_λ
+Atmos.EDMF.c_ε
+Atmos.EDMF.c_δ
+Atmos.EDMF.c_t
+Atmos.EDMF.β
+Atmos.EDMF.μ_0
+Atmos.EDMF.χ
+Atmos.EDMF.w_min
+Atmos.EDMF.lim_ϵ
+Atmos.EDMF.lim_amp
+Atmos.EDMF.a_min
+Atmos.EDMF.a_surf
+Atmos.EDMF.κ_star²
+Atmos.EDMF.ψϕ_stab
+Atmos.EDMF.α_d
+Atmos.EDMF.α_a
+Atmos.EDMF.α_b
+Atmos.EDMF.H_up_min
+Atmos.EDMF.c_d
+Atmos.EDMF.c_m
+Atmos.EDMF.c_b
+Atmos.EDMF.a1
+Atmos.EDMF.a2
+Atmos.EDMF.ω_pr
+Atmos.EDMF.Pr_n
+Atmos.EDMF.Ri_c
+Atmos.EDMF.smin_ub
+Atmos.EDMF.smin_rm
+```
+
 ### Microphysics_0M
 
 ```@docs
