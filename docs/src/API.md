@@ -62,6 +62,7 @@ Planet.LH_f0
 Planet.e_int_v0
 Planet.e_int_i0
 Planet.press_triple
+Planet.surface_tension_coeff
 Planet.ρ_ocean
 Planet.cp_ocean
 Planet.planet_radius

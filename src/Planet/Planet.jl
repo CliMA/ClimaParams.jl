@@ -33,6 +33,7 @@ export molmass_dryair,
     e_int_v0,
     e_int_i0,
     press_triple,
+    surface_tension_coeff,
     ρ_ocean,
     cp_ocean,
     planet_radius,
@@ -111,6 +112,8 @@ function e_int_v0 end
 function e_int_i0 end
 """ Triple point vapor pressure (Pa) """
 function press_triple end
+""" Surface tension coefficient of water (J/m2) """
+function surface_tension_coeff end
 
 # Properties of sea water
 """ Reference density sea water (kg/m``^3``) """
@@ -139,8 +142,8 @@ function epoch end
 function mean_anom_epoch end
 """ Orbital obliquity at the epoch (radians) """
 function obliq_epoch end
-""" Longitude of perihelion at the epoch (radians), 
-measured relative to vernal equinox (i.e., the longitude of perihelion is the angle 
+""" Longitude of perihelion at the epoch (radians),
+measured relative to vernal equinox (i.e., the longitude of perihelion is the angle
 subtended at the Sun by the orbital arc from vernal equinox to perihelion). """
 function lon_perihelion_epoch end
 """ Orbital eccentricity at the epoch """
