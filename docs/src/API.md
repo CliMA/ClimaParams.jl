@@ -63,6 +63,9 @@ Planet.e_int_v0
 Planet.e_int_i0
 Planet.press_triple
 Planet.surface_tension_coeff
+Planet.entropy_water_vapor
+Planet.entropy_dry_air
+Planet.entropy_reference_temperature
 Planet.ρ_ocean
 Planet.cp_ocean
 Planet.planet_radius

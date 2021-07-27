@@ -33,6 +33,10 @@ Planet.e_int_i0(ps::AbstractEarthParameterSet)              = Planet.LH_f0(ps)
 Planet.press_triple(ps::AbstractEarthParameterSet)          = 611.657
 Planet.surface_tension_coeff(ps::AbstractEarthParameterSet) = 0.072
 
+Planet.entropy_dry_air(ps::AbstractEarthParameterSet)       = 6864.8
+Planet.entropy_water_vapor(ps::AbstractEarthParameterSet)   = 10513.6
+Planet.entropy_reference_temperature(ps::AbstractEarthParameterSet)  = 298.15
+
 # Properties of sea water
 Planet.ρ_ocean(ps::AbstractEarthParameterSet)        = 1.035e3
 Planet.cp_ocean(ps::AbstractEarthParameterSet)       = 3989.25
