@@ -34,6 +34,9 @@ export molmass_dryair,
     e_int_i0,
     press_triple,
     surface_tension_coeff,
+    entropy_dry_air,
+    entropy_water_vapor,
+    entropy_reference_temperature,
     ρ_ocean,
     cp_ocean,
     planet_radius,
@@ -114,6 +117,23 @@ function e_int_i0 end
 function press_triple end
 """ Surface tension coefficient of water (J/m2) """
 function surface_tension_coeff end
+""" Surface tension coefficient of water (J/m2) """
+function surface_tension_coeff end
+
+#=
+The standard entropy value for dry air is computed based
+on the reference data given in Lemmon et al. [2000], and
+the standard entropy value for water vapor is based on the
+reference data given in Chase [1998].
+=#
+
+""" Entropy of dry air J / (kg K)"""
+function entropy_dry_air end
+""" Entropy of water vapor J / (kg K)"""
+function entropy_water_vapor end
+""" Entropy reference temperature (K)"""
+function entropy_reference_temperature end
+
 
 # Properties of sea water
 """ Reference density sea water (kg/m``^3``) """
