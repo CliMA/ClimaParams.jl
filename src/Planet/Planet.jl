@@ -117,8 +117,6 @@ function e_int_i0 end
 function press_triple end
 """ Surface tension coefficient of water (J/m2) """
 function surface_tension_coeff end
-""" Surface tension coefficient of water (J/m2) """
-function surface_tension_coeff end
 
 #=
 The standard entropy value for dry air is computed based
