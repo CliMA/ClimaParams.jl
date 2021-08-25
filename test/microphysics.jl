@@ -18,30 +18,9 @@ end
 
 @testset "Microphysics" begin
 
-  struct LiquidParameterSet <: AbstractLiquidParameterSet end
-  struct IceParameterSet    <: AbstractIceParameterSet end
-  struct RainParameterSet   <: AbstractRainParameterSet end
-  struct SnowParameterSet   <: AbstractSnowParameterSet end
+  struct EarthParamSet <: AbstractEarthParameterSet end
 
-  struct MicropysicsParameterSet{L,I,R,S} <: AbstractMicrophysicsParameterSet
-    liquid ::L
-    ice ::I
-    rain ::R
-    snow ::S
-  end
-
-  struct EarthParamSet{M} <: AbstractEarthParameterSet
-    microphysics::M
-  end
-
-  microphys_param_set = MicropysicsParameterSet(
-      LiquidParameterSet(),
-      IceParameterSet(),
-      RainParameterSet(),
-      SnowParameterSet()
-  )
-
-  earth = EarthParamSet(microphys_param_set)
+  earth = EarthParamSet()
 
   # Test that all methods are callable, and that nothing returns NaNs
   @test !isnan(Microphysics.C_drag(earth))
@@ -50,70 +29,88 @@ end
   @test !isnan(ν_air(earth))
   @test !isnan(N_Sc(earth))
 
-  @test !isnan(τ_cond_evap(earth.microphysics.liquid))
+  @test !isnan(τ_cond_evap(earth))
 
-  @test !isnan(τ_sub_dep(earth.microphysics.ice))
-  @test !isnan(r_ice_snow(earth.microphysics.ice))
-  @test !isnan(n0(earth.microphysics.ice))
-  @test !isnan(r0(earth.microphysics.ice))
-  @test !isnan(me(earth.microphysics.ice))
-  @test !isnan(m0(earth, earth.microphysics.ice))
+  @test !isnan(τ_sub_dep(earth))
+  @test !isnan(r_ice_snow(earth))
+  @test !isnan(n0_ice(earth))
+  @test !isnan(r0_ice(earth))
+  @test !isnan(me_ice(earth))
+  @test !isnan(m0_ice(earth))
 
-  @test !isnan(q_liq_threshold(earth.microphysics.rain))
-  @test !isnan(τ_acnv(earth.microphysics.rain))
-  @test !isnan(a_vent(earth.microphysics.rain))
-  @test !isnan(b_vent(earth.microphysics.rain))
-  @test !isnan(n0(earth.microphysics.rain))
-  @test !isnan(r0(earth.microphysics.ice))
-  @test !isnan(me(earth.microphysics.rain))
-  @test !isnan(ae(earth.microphysics.rain))
-  @test !isnan(ve(earth.microphysics.rain))
-  @test !isnan(m0(earth, earth.microphysics.rain))
-  @test !isnan(a0(earth.microphysics.rain))
+  @test !isnan(q_liq_threshold(earth))
+  @test !isnan(τ_acnv(earth))
+  @test !isnan(a_vent_rai(earth))
+  @test !isnan(b_vent_rai(earth))
+  @test !isnan(n0_rai(earth))
+  @test !isnan(r0_ice(earth))
+  @test !isnan(me_rai(earth))
+  @test !isnan(ae_rai(earth))
+  @test !isnan(ve_rai(earth))
+  @test !isnan(m0_rai(earth))
+  @test !isnan(a0_rai(earth))
 
-  @test !isnan(a_vent(earth.microphysics.snow))
-  @test !isnan(b_vent(earth.microphysics.snow))
-  @test !isnan(μ_sno(earth.microphysics.snow))
-  @test !isnan(ν_sno(earth.microphysics.snow))
-  @test !isnan(r0(earth.microphysics.snow))
-  @test !isnan(me(earth.microphysics.snow))
-  @test !isnan(ae(earth.microphysics.snow))
-  @test !isnan(ve(earth.microphysics.snow))
-  @test !isnan(m0(earth.microphysics.snow))
-  @test !isnan(a0(earth.microphysics.snow))
-  @test !isnan(v0(earth.microphysics.snow))
+  @test !isnan(a_vent_sno(earth))
+  @test !isnan(b_vent_sno(earth))
+  @test !isnan(μ_sno(earth))
+  @test !isnan(ν_sno(earth))
+  @test !isnan(r0_sno(earth))
+  @test !isnan(me_sno(earth))
+  @test !isnan(ae_sno(earth))
+  @test !isnan(ve_sno(earth))
+  @test !isnan(m0_sno(earth))
+  @test !isnan(a0_sno(earth))
+  @test !isnan(v0_sno(earth))
 
-  @test !isnan(E(earth.microphysics.liquid, earth.microphysics.rain))
-  @test !isnan(E(earth.microphysics.liquid, earth.microphysics.snow))
-  @test !isnan(E(earth.microphysics.ice,   earth.microphysics.rain))
-  @test !isnan(E(earth.microphysics.ice,   earth.microphysics.snow))
-  @test !isnan(E(earth.microphysics.rain,  earth.microphysics.snow))
+  @test !isnan(E_liq_rai(earth))
+  @test !isnan(E_liq_sno(earth))
+  @test !isnan(E_ice_rai(earth))
+  @test !isnan(E_ice_sno(earth))
+  @test !isnan(E_rai_sno(earth))
 
   # Correctness / relations
 
   # Atmos.Microphysics
   @test N_Sc(earth)           ≈ ν_air(earth)/D_vapor(earth)
-  @test m0(earth, earth.microphysics.rain) ≈ 4/3. * π * ρ_cloud_liq(earth) * r0(earth.microphysics.rain)^me(earth.microphysics.rain)
-  @test m0(earth, earth.microphysics.ice)  ≈ 4/3. * π * ρ_cloud_ice(earth) * r0(earth.microphysics.ice)^me(earth.microphysics.ice)
-  @test E(earth.microphysics.rain, earth.microphysics.snow) ≈
-        E(earth.microphysics.snow, earth.microphysics.rain)
+  @test m0_rai(earth) ≈ 4/3. * π * ρ_cloud_liq(earth) * r0_rai(earth)^me_rai(earth)
+  @test m0_ice(earth) ≈ 4/3. * π * ρ_cloud_ice(earth) * r0_ice(earth)^me_ice(earth)
 
-  @test χm(earth.microphysics.ice) ≈ 1
-  @test Δm(earth.microphysics.ice) ≈ 0
+  @test χm_ice(earth) ≈ 1
+  @test Δm_ice(earth) ≈ 0
 
-  @test χm(earth.microphysics.rain) ≈ 1
-  @test Δm(earth.microphysics.rain) ≈ 0
-  @test χa(earth.microphysics.rain) ≈ 1
-  @test Δa(earth.microphysics.rain) ≈ 0
-  @test χv(earth.microphysics.rain) ≈ 1
-  @test Δv(earth.microphysics.rain) ≈ 0
+  @test χm_rai(earth) ≈ 1
+  @test Δm_rai(earth) ≈ 0
+  @test χa_rai(earth) ≈ 1
+  @test Δa_rai(earth) ≈ 0
+  @test χv_rai(earth) ≈ 1
+  @test Δv_rai(earth) ≈ 0
 
-  @test χm(earth.microphysics.snow) ≈ 1
-  @test Δm(earth.microphysics.snow) ≈ 0
-  @test χa(earth.microphysics.snow) ≈ 1
-  @test Δa(earth.microphysics.snow) ≈ 0
-  @test χv(earth.microphysics.snow) ≈ 1
-  @test Δv(earth.microphysics.snow) ≈ 0
+  @test χm_sno(earth) ≈ 1
+  @test Δm_sno(earth) ≈ 0
+  @test χa_sno(earth) ≈ 1
+  @test Δa_sno(earth) ≈ 0
+  @test χv_sno(earth) ≈ 1
+  @test Δv_sno(earth) ≈ 0
+
+end
+
+# Adding convenience methods:
+abstract type Phase end
+struct Liquid <: Phase end
+struct Rain   <: Phase end
+struct Snow   <: Phase end
+
+E(earth::AbstractEarthParameterSet, ::Liquid, ::Rain) = E_liq_rai(earth)
+E(earth::AbstractEarthParameterSet, ::Liquid, ::Snow) = E_liq_sno(earth)
+
+@testset "Microphysics" begin
+
+  struct EarthParamSet <: AbstractEarthParameterSet end
+
+  earth = EarthParamSet()
+
+  @test !isnan(E(earth, Liquid(), Rain()))
+  @test !isnan(E(earth, Liquid(), Snow()))
 
 end
 

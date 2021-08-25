@@ -2,15 +2,6 @@ module CLIMAParameters
 
 export AbstractParameterSet
 export AbstractEarthParameterSet
-export AbstractMicrophysicsParameterSet
-
-export AbstractCloudParameterSet
-export AbstractPrecipParameterSet
-
-export AbstractLiquidParameterSet
-export AbstractIceParameterSet
-export AbstractRainParameterSet
-export AbstractSnowParameterSet
 
 include("types.jl")
 include("UniversalConstants.jl")

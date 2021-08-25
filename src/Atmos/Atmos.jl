@@ -186,38 +186,64 @@ end # module Microphysics_0M
 
 module Microphysics
 
-export n0,
-       μ_sno,
-       ν_sno,
-       r0,
-       m0,
-       me,
-       χm,
-       Δm,
-       a0,
-       ae,
-       χa,
-       Δa,
-       v0,
-       ve,
-       χv,
-       Δv,
-       C_drag,
-       τ_cond_evap,
-       τ_sub_dep,
-       q_liq_threshold,
-       τ_acnv,
-       E,
-       r_ice_snow,
-       a_vent,
-       b_vent,
+export C_drag,
        K_therm,
        D_vapor,
        ν_air,
-       N_Sc
+       N_Sc,
+       τ_cond_evap,
+       τ_sub_dep,
+       r_ice_snow,
+       n0_ice,
+       r0_ice,
+       me_ice,
+       m0_ice,
+       χm_ice,
+       Δm_ice,
+       q_liq_threshold,
+       τ_acnv,
+       a_vent_rai,
+       b_vent_rai,
+       n0_rai,
+       r0_rai,
+       me_rai,
+       ae_rai,
+       ve_rai,
+       m0_rai,
+       a0_rai,
+       χm_rai,
+       Δm_rai,
+       χa_rai,
+       Δa_rai,
+       χv_rai,
+       Δv_rai,
+       a_vent_sno,
+       b_vent_sno,
+       μ_sno,
+       ν_sno,
+       r0_sno,
+       me_sno,
+       ae_sno,
+       ve_sno,
+       m0_sno,
+       a0_sno,
+       v0_sno,
+       χm_sno,
+       Δm_sno,
+       χa_sno,
+       Δa_sno,
+       χv_sno,
+       Δv_sno,
+       E_liq_rai,
+       E_liq_sno,
+       E_ice_rai,
+       E_ice_sno,
+       E_rai_sno
 
 """ Marshall-Palmer distribution `n_0` coeff for rain or snow (1/m``^4``) """
-function n0 end
+function n0_ice end
+""" Marshall-Palmer distribution `n_0` coeff for rain or snow (1/m``^4``) """
+function n0_rai end
 
 """ coefficient to compute Marshall-Palmer distribution coefficient `n_0(ρq_snow/ρ0)` for snow (1/m``^4``) """
 function μ_sno end
@@ -226,43 +252,77 @@ function μ_sno end
 function ν_sno end
 
 """ assumed length scale for water drop or ice crystal (m) """
-function r0 end
+function r0_rai end
+""" assumed length scale for water drop or ice crystal (m) """
+function r0_ice end
+""" assumed length scale for water drop or ice crystal (m) """
+function r0_sno end
 
 """ coefficient in mass, `radius/r0`, (kg) """
-function m0 end
+function m0_ice end
+""" coefficient in mass, `radius/r0`, (kg) """
+function m0_rai end
+""" coefficient in mass, `radius/r0`, (kg) """
+function m0_sno end
 
 """ coefficient in mass, `radius/r0`, (-) """
-function χm end
+function χm_ice end
+""" coefficient in mass, `radius/r0`, (-) """
+function χm_rai end
+""" coefficient in mass, `radius/r0`, (-) """
+function χm_sno end
 
 """ exponent in mass, `radius/r0`, (-) """
-function me end
+function me_sno end
+""" exponent in mass, `radius/r0`, (-) """
+function me_ice end
+""" exponent in mass, `radius/r0`, (-) """
+function me_rai end
 
 """ exponent in mass, `radius/r0`, (-) """
-function Δm end
+function Δm_ice end
+""" exponent in mass, `radius/r0`, (-) """
+function Δm_rai end
+""" exponent in mass, `radius/r0`, (-) """
+function Δm_sno end
 
 """ coefficient in area, `radius/r0`, relation (m``^2``) """
-function a0 end
+function a0_rai end
+""" coefficient in area, `radius/r0`, relation (m``^2``) """
+function a0_sno end
 
 """ coefficient in area, `radius/r0`, (-) """
-function χa end
+function χa_rai end
+""" coefficient in area, `radius/r0`, (-) """
+function χa_sno end
 
 """ exponent in area, `radius/r0`, relation """
-function ae end
+function ae_rai end
+""" exponent in area, `radius/r0`, relation """
+function ae_sno end
 
 """ exponent in area, `radius/r0`, (-) """
-function Δa end
+function Δa_rai end
+""" exponent in area, `radius/r0`, (-) """
+function Δa_sno end
 
 """ coefficient in velocity, `radius/r0`, (m/s) """
-function v0 end
+function v0_sno end
 
 """ coefficient in velocity, `radius/r0`, (-) """
-function χv end
+function χv_rai end
+""" coefficient in velocity, `radius/r0`, (-) """
+function χv_sno end
 
 """ exponent in velocity, `radius/r0`, """
-function ve end
+function ve_rai end
+""" exponent in velocity, `radius/r0`, """
+function ve_sno end
 
 """ exponent in velocity, `radius/r0`, (-) """
-function Δv end
+function Δv_rai end
+""" exponent in velocity, `radius/r0`, (-) """
+function Δv_sno end
 
 """ drag coefficient for rain drops (-) """
 function C_drag end
@@ -283,13 +343,25 @@ function τ_acnv end
 function r_ice_snow end
 
 """ collision efficiency (-) """
-function E end
+function E_liq_rai end
+""" collision efficiency (-) """
+function E_liq_sno end
+""" collision efficiency (-) """
+function E_ice_rai end
+""" collision efficiency (-) """
+function E_ice_sno end
+""" collision efficiency (-) """
+function E_rai_sno end
 
 """ ventilation factor coefficient for rain or snow (-) """
-function a_vent end
+function a_vent_rai end
+""" ventilation factor coefficient for rain or snow (-) """
+function a_vent_sno end
 
 """ ventilation factor coefficient for rain or snow (-) """
-function b_vent end
+function b_vent_rai end
+""" ventilation factor coefficient for rain or snow (-) """
+function b_vent_sno end
 
 """ thermal conductivity of air (J/m/s/K) """
 function K_therm end
