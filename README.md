@@ -1,21 +1,25 @@
 # CLIMAParameters.jl
 
-Contains all universal constants and physical parameters in [ClimateMachine.jl](https://github.com/CliMA/ClimateMachine.jl)
+Contains all universal constants and physical parameters in the [CliMA ecosystem](https://github.com/CliMA).
 
 |||
 |---------------------:|:----------------------------------------------|
-| **Documentation**    | [![latest][docs-dev-img]][docs-dev-url]       |
-| **Azure Build**      | [![azure][azure-img]][azure-url]              |
+| **Docs Build**       | [![docs build][docs-bld-img]][docs-bld-url]   |
+| **Documentation**    | [![dev][docs-dev-img]][docs-dev-url]          |
+| **GHA CI**           | [![gha ci][gha-ci-img]][gha-ci-url]           |
 | **Code Coverage**    | [![codecov][codecov-img]][codecov-url]        |
-| **Bors**             | [![Bors enabled][bors-img]][bors-url]         |
+| **Bors enabled**     | [![bors][bors-img]][bors-url]                 |
+
+[docs-bld-img]: https://github.com/CliMA/CLIMAParameters.jl/actions/workflows/Docs.yml/badge.svg
+[docs-bld-url]: https://github.com/CliMA/CLIMAParameters.jl/actions/workflows/Docs.yml
 
 [docs-dev-img]: https://img.shields.io/badge/docs-dev-blue.svg
 [docs-dev-url]: https://CliMA.github.io/CLIMAParameters.jl/dev/
 
-[azure-img]: https://dev.azure.com/climate-machine/CLIMAParameters.jl/_apis/build/status/climate-machine.CLIMAParameters.jl?branchName=master
-[azure-url]: https://dev.azure.com/climate-machine/CLIMAParameters.jl/_build/latest?definitionId=1&branchName=master
+[gha-ci-img]: https://github.com/CliMA/CLIMAParameters.jl/actions/workflows/ci.yml/badge.svg
+[gha-ci-url]: https://github.com/CliMA/CLIMAParameters.jl/actions/workflows/ci.yml
 
-[codecov-img]: https://codecov.io/gh/CliMA/CLIMAParameters.jl/branch/master/graph/badge.svg
+[codecov-img]: https://codecov.io/gh/CliMA/CLIMAParameters.jl/branch/main/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/CliMA/CLIMAParameters.jl
 
 [bors-img]: https://bors.tech/images/badge_small.svg

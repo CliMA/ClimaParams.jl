@@ -31,5 +31,7 @@ deploydocs(
     repo = "github.com/CliMA/CLIMAParameters.jl.git",
     target = "build",
     push_preview = true,
+    devbranch = "main",
+    forcepush = true,
 )
 
