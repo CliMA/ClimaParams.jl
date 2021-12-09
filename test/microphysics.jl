@@ -39,7 +39,7 @@ end
   @test !isnan(m0_ice(earth))
 
   @test !isnan(q_liq_threshold(earth))
-  @test !isnan(τ_acnv(earth))
+  @test !isnan(τ_acnv_rai(earth))
   @test !isnan(a_vent_rai(earth))
   @test !isnan(b_vent_rai(earth))
   @test !isnan(n0_rai(earth))
@@ -50,6 +50,8 @@ end
   @test !isnan(m0_rai(earth))
   @test !isnan(a0_rai(earth))
 
+  @test !isnan(q_ice_threshold(earth))
+  @test !isnan(τ_acnv_sno(earth))
   @test !isnan(a_vent_sno(earth))
   @test !isnan(b_vent_sno(earth))
   @test !isnan(μ_sno(earth))

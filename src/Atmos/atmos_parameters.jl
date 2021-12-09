@@ -87,7 +87,7 @@ Microphysics.Δm_ice(::AEPS)         = 0
 
 # rain
 Microphysics.q_liq_threshold(::AEPS) = 5e-4
-Microphysics.τ_acnv(::AEPS)          = 1e3
+Microphysics.τ_acnv_rai(::AEPS)      = 1e3
 Microphysics.a_vent_rai(::AEPS)          = 1.5
 Microphysics.b_vent_rai(::AEPS)          = 0.53
 Microphysics.n0_rai(::AEPS)              = 8e6 * 2
@@ -107,6 +107,8 @@ Microphysics.χv_rai(::AEPS)              = 1
 Microphysics.Δv_rai(::AEPS)              = 0
 
 # snow
+Microphysics.q_ice_threshold(::AEPS) = 1e-6
+Microphysics.τ_acnv_sno(::AEPS)      = 1e2
 Microphysics.a_vent_sno(::AEPS) = 0.65
 Microphysics.b_vent_sno(::AEPS) = 0.44
 # n0_sno = μ_sno (ρ q_sno / ρ_0)^ν_sno;  ρ_0 = 1kg/m3
