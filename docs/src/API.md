@@ -191,7 +191,7 @@ Atmos.Microphysics.m0_ice
 Atmos.Microphysics.χm_ice
 Atmos.Microphysics.Δm_ice
 Atmos.Microphysics.q_liq_threshold
-Atmos.Microphysics.τ_acnv
+Atmos.Microphysics.τ_acnv_rai
 Atmos.Microphysics.a_vent_rai
 Atmos.Microphysics.b_vent_rai
 Atmos.Microphysics.n0_rai
@@ -207,6 +207,8 @@ Atmos.Microphysics.χa_rai
 Atmos.Microphysics.Δa_rai
 Atmos.Microphysics.χv_rai
 Atmos.Microphysics.Δv_rai
+Atmos.Microphysics.q_ice_threshold
+Atmos.Microphysics.τ_acnv_sno
 Atmos.Microphysics.a_vent_sno
 Atmos.Microphysics.b_vent_sno
 Atmos.Microphysics.μ_sno

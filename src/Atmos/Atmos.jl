@@ -201,7 +201,7 @@ export C_drag,
        χm_ice,
        Δm_ice,
        q_liq_threshold,
-       τ_acnv,
+       τ_acnv_rai,
        a_vent_rai,
        b_vent_rai,
        n0_rai,
@@ -217,6 +217,8 @@ export C_drag,
        Δa_rai,
        χv_rai,
        Δv_rai,
+       q_ice_threshold,
+       τ_acnv_sno,
        a_vent_sno,
        b_vent_sno,
        μ_sno,
@@ -333,11 +335,17 @@ function τ_cond_evap end
 """ sublimation/deposition timescale (s) """
 function τ_sub_dep end
 
-""" autoconversion threshold `∈(0.5, 1) * 1e-3` (-) """
+""" rain autoconversion threshold `∈(0.5, 1) * 1e-3` (-) """
 function q_liq_threshold end
 
-""" autoconversion timescale `∈(1e3, 1e4)` (s) """
-function τ_acnv end
+""" rain autoconversion timescale `∈(1e3, 1e4)` (s) """
+function τ_acnv_rai end
+
+""" snow autoconversion threshold (-) """
+function q_ice_threshold end
+
+""" snow autoconversion timescale (s) """
+function τ_acnv_sno end
 
 """ threshold between ice and snow (m) """
 function r_ice_snow end
