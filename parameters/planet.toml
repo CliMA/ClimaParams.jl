@@ -1,0 +1,5 @@
+[MolecularMassDryAir]
+description = "Molecular weight of dry air"
+symbol = "M_d"
+units = "kg mol^−1"
+value = 28.97e-3

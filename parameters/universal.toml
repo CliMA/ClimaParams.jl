@@ -1,0 +1,5 @@
+[MolarMassConstant]
+description = "universal gas constant"
+symbol = "R"
+units = "J K^−1 mol^−1"
+value = 8.3144598
