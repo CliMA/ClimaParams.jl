@@ -1,5 +1,4 @@
 module CLIMAParameters
-
 export value, DefaultParameterSet
 
 include("ParameterSets/ParameterSets.jl")
