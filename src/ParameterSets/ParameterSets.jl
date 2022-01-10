@@ -44,7 +44,7 @@ macro parameterset(fileexpr)
         end
         @inline function $(@__MODULE__)._getproperty(pparamset::AbstractParameterSet, paramset::$(esc(Symbol(paramsetname))), name::Symbol)
             $ex_getproperty
-            _getproperty(pparamset, paramset, name)
+            _getproperty(pparamset, inherits_from(paramset), name)
         end
         function Base.propertynames(paramset::$(esc(Symbol(paramsetname))), private::Bool=false)
             append!($symbols, propertynames(inherits_from(paramset)))
