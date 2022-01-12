@@ -10,7 +10,7 @@ using CLIMAParameters.Atmos.EDMF
   @test !isnan(EDMF.c_λ(ps))
   @test !isnan(EDMF.c_ε(ps))
   @test !isnan(EDMF.c_δ(ps))
-  @test !isnan(EDMF.c_t(ps))
+  @test !isnan(EDMF.c_γ(ps))
   @test !isnan(EDMF.β(ps))
   @test !isnan(EDMF.μ_0(ps))
   @test !isnan(EDMF.χ(ps))

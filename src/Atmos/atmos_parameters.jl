@@ -19,7 +19,7 @@ const EDMF = CLIMAParameters.Atmos.EDMF
 EDMF.c_λ(::AEPS)            = 0.3
 EDMF.c_ε(::AEPS)            = 0.13
 EDMF.c_δ(::AEPS)            = 0.52
-EDMF.c_t(::AEPS)            = 0.1
+EDMF.c_γ(::AEPS)            = 0.075
 EDMF.β(::AEPS)              = 2
 EDMF.μ_0(::AEPS)            = 4e-4
 EDMF.χ(::AEPS)              = 0.25
@@ -44,7 +44,7 @@ EDMF.H_up_min(::AEPS)       = 500
 # Mixing length model
 EDMF.c_d(::AEPS)            = 0.22
 EDMF.c_m(::AEPS)            = 0.14
-EDMF.c_b(::AEPS)            = 0.63
+EDMF.c_b(::AEPS)            = 0.4
 EDMF.a1(::AEPS)             = 0.2
 EDMF.a2(::AEPS)             = 100
 EDMF.ω_pr(::AEPS)           = 53.0 / 13.0
