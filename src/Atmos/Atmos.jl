@@ -55,7 +55,7 @@ module EDMF
 export c_λ,
        c_ε,
        c_δ,
-       c_t,
+       c_γ,
        β,
        μ_0,
        χ,
@@ -91,7 +91,7 @@ function c_ε end
 function c_δ end
 
 """ Turbulent Entrainment factor (dimensionless) """
-function c_t end
+function c_γ end
 
 """ Detrainment RH power (dimensionless) """
 function β end

@@ -136,7 +136,7 @@ Atmos.SubgridScale.c_3_KASM
 Atmos.EDMF.c_λ
 Atmos.EDMF.c_ε
 Atmos.EDMF.c_δ
-Atmos.EDMF.c_t
+Atmos.EDMF.c_γ
 Atmos.EDMF.β
 Atmos.EDMF.μ_0
 Atmos.EDMF.χ
