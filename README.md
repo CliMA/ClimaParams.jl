@@ -28,28 +28,30 @@ Contains all universal constants and physical parameters in the [CliMA ecosystem
 
 # Style Guide for CliMAParameters
 
+
+# Style Guide for Clima Parameters
+
 ## Recipe of a parameter 
 
 A parameter contains several pieces of information
 1. Name. 
 2. Value
 3. Type
-4. Tags
-5. Prior
-6. Transformation
-7. Description
+4. Prior
+5. Transformation
+6. Description
 
 The information is split in 3 ways
 
-- CliMA reads 1. 2. 3. 4.
-- Calibration tools read 1. 2. 5. 6. and overwrite 1.
-- Users are interested in 1. 2. 4. 7.
+- Clima reads 1. 2. 3.
+- Calibration tools read 1. 2. 4. 5. and overwrite 1.
+- Users are interested in 1. 2. 4. 6.
 
 ### Parameter name
 
 We distinguish between
 - a local parameter symbol. This is used within the source code of a specific model component or repository, when the parameter value is used, it's context is the function scope at definition. Very flexible, usually a letter, or shorthand, perhaps coincident with notation in a referenced work. 
-- a high-level desciptive parameter name. Used at the top level in parameter files, user facing, the context is external to any climate model component. Requires a rigid definition. It should be unique, descriptive, understandable (aided by accompanying `description` and `tags`) to any climate model user.
+- a high-level desciptive parameter name. Used at the top level in parameter files, user facing, the context is external to any climate model component. Requires a rigid definition. It should be unique, descriptive, understandable (aided by accompanying `description` ) to any climate model user.
 
 Examples of local parameter symbols:
 ```
@@ -72,10 +74,6 @@ dry_air_thermal_conductivity
 ### Parameter value & type
 The value of the parameter, the type should be loose but interpretable by code. (Exact list of allowable types are to be defined) but use e.g. `float,integer,string` for now. Type should be unspecific regarding precision of single/double.
 
-
-### Parameter tags
-Parameter tags are an array of strings that define the all model components that the parameter is used in. A model component is the name of the repository. If the Tag is empty, the parameter will not be used, while if it is marked `Planet` it will be used in every component.
-
 ### Parameter description
 A high-level user readable description of the parameter written in a string. This should include the units of the parameter.
 
@@ -88,14 +86,13 @@ We use the TOML interface. Here parameters are listed by name i.e  `[name]`, fol
 Conceptually we have (essentially) two file types `default` and `override`. When we run the code, these are merged, with the `override` fields replacing `defaults` fields where there is a match in `[name]`.
 
 ### Defaults file example
-Exists in `CliMAParameters.jl`.
+Exists in `ClimaParameters.jl`.
 
 An example of a complete parameter default
 ```
 [zero_point_seven]
 value = 0.7
 type = float
-tags = "planet"
 description = "The constant value 0.7, [dimensionless]"
 ```
 
@@ -115,12 +112,10 @@ For defining a new parameter (not yet in defaults) we require the same fields as
 [zero_point_six_nine]
 value = 0.69
 type = float
-tags = "planet"
 description = "The constant value 0.69, [dimensionless]"
 ```
 
 For calibration one requires the `prior`, `transform` fields. 
-
 
 
 
