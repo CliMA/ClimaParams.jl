@@ -3,6 +3,7 @@ module CLIMAParameters
 export AbstractParameterSet
 export AbstractEarthParameterSet
 
+include("file_parsing.jl")
 include("types.jl")
 include("UniversalConstants.jl")
 
