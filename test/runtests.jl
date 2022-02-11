@@ -1,9 +1,4 @@
 
-
-# read parameters needed for tests
-import CLIMAParameters
-src_parameter_dict = CLIMAParameters.create_parameter_dict(dict_type = "alias")
-
 include("toml_consistency.jl")
 include("planet.jl")
 include("subgrid_scale.jl")
