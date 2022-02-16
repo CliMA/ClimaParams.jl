@@ -138,20 +138,20 @@ function merge_override_default_values(override_param_struct::ParamDict{FT},defa
 end
 
 
-function create_parameter_struct(path_to_override, path_to_default; dict_type="alias")
+function create_parameter_struct(path_to_override, path_to_default; dict_type="alias", value_type=Float64)
     #if there isn't  an override file take defaults
     if isnothing(path_to_override)
-        return ParamDict{Float64}(parse_toml_file(path_to_default), dict_type)
+        return ParamDict{value_type}(parse_toml_file(path_to_default), dict_type)
     else
         try 
-            override_param_struct = ParamDict{Float64}(parse_toml_file(path_to_override), dict_type)
-            default_param_struct = ParamDict{Float64}(parse_toml_file(path_to_default), dict_type)
+            override_param_struct = ParamDict{value_type}(parse_toml_file(path_to_override), dict_type)
+            default_param_struct = ParamDict{value_type}(parse_toml_file(path_to_default), dict_type)
         
             #overrides the defaults where they clash
             return merge_override_default_values(override_param_struct, default_param_struct)
         catch
             @warn("Error in building from parameter file: ", path_to_override,"instead, created using defaults from CLIMAParameters...")
-            return ParamDict{Float64}(parse_toml_file(path_to_default), dict_type)
+            return ParamDict{value_type}(parse_toml_file(path_to_default), dict_type)
         end
     end
         
@@ -159,20 +159,22 @@ end
 
 
 
-function create_parameter_struct(path_to_override; dict_type="alias")
+function create_parameter_struct(path_to_override; dict_type="alias", value_type=Float64)
     #pathof finds the CLIMAParameters.jl/src/ClimaParameters.jl location
     path_to_default = joinpath(splitpath(pathof(CLIMAParameters))[1:end-1]...,"parameters.toml")
     return create_parameter_struct(
         path_to_override,
         path_to_default,
-        dict_type=dict_type
+        dict_type=dict_type,
+        value_type=value_type,
     )
 end
 
-function create_parameter_struct(; dict_type="alias")
+function create_parameter_struct(; dict_type="alias", value_type=Float64)
     return create_parameter_struct(
         nothing,
-        dict_type=dict_type
+        dict_type=dict_type,
+        value_type=value_type,
     )
 end
 

@@ -34,7 +34,8 @@ universal_constant_aliases = [
     # CLIMAParameters.Atmos.SubgridScale,
     CLIMAParameters.Atmos.Microphysics_0M,
     CLIMAParameters.Atmos.Microphysics,
-    CLIMAParameters.SurfaceFluxes.UniversalFunctions,
+    #CLIMAParameters.SurfaceFluxes.UniversalFunctions,
+    # NB: Cannot do universal functions - as I have changed the aliases (removing _Businger etc. suffixes)
     ]
     CP_parameters = Dict(mod => String.(names(mod)) for mod in module_names)
     
@@ -55,9 +56,10 @@ universal_constant_aliases = [
             end
         end
         if k_found[1] == 0
-            println("on trying alias", k)
-            throw("did not find in any modules")
+            println("on trying alias: ", k)
+            @warn("did not find in any modules")
         end
+        
         k_found[1] = 0
     end
 
@@ -82,8 +84,8 @@ universal_constant_aliases = [
             end
         end
         if k_found[1] == 0
-            println("on trying alias", k)
-            throw("did not find in any modules")
+            println("on trying alias: ", k)
+            @warn("did not find in any modules")
         end
         k_found[1] = 0
     end
