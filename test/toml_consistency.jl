@@ -29,12 +29,12 @@ universal_constant_aliases = [
     module_names = [
     CLIMAParameters,
     CLIMAParameters.Planet,
-    #CLIMAParameters.SubgridScale,
-    #CLIMAParameters.Atmos.EDMF,
+    CLIMAParameters.SubgridScale,
+    # CLIMAParameters.Atmos.EDMF,
+    # CLIMAParameters.Atmos.SubgridScale,
     CLIMAParameters.Atmos.Microphysics_0M,
     CLIMAParameters.Atmos.Microphysics,
-    #CLIMAParameters.Atmos.SubgridScale,
-    #CLIMAParameters.SurfaceFluxes.UniversalFunctions,
+    CLIMAParameters.SurfaceFluxes.UniversalFunctions,
     ]
     CP_parameters = Dict(mod => String.(names(mod)) for mod in module_names)
     

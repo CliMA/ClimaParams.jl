@@ -1,3 +1,84 @@
+[prandtl_number_0_businger]
+alias = "Pr_0_Businger"
+value = 0.74
+type = "float"
+
+[coefficient_a_m_businger]
+alias = "a_m_Businger"
+value = 4.7
+type = "float"
+
+[coefficient_a_h_businger]
+alias = "a_h_Businger"
+value = 4.7
+type = "float"
+
+[prandtl_number_0_gryanik]
+alias = "Pr_0_Gryanik"
+value = 0.98
+type = "float"
+
+[coefficient_a_m_gryanik]
+alias = "a_m_Gryanik"
+value = 5.0
+type = "float"
+
+[coefficient_a_h_gryanik]
+alias = "a_h_Gryanik"
+value = 5.0
+type = "float"
+
+[coefficient_b_m_gryanik]
+alias = "b_m_Gryanik"
+value = 0.3
+type = "float"
+
+[coefficient_b_h_gryanik]
+alias = "b_h_Gryanik"
+value = 0.4
+type = "float"
+
+[prandtl_number_0_grachev]
+alias = "Pr_0_Grachev"
+value = 0.98
+type = "float"
+
+[coefficient_a_m_grachev]
+alias = "a_m_Grachev"
+value = 5.0
+type = "float"
+
+[coefficient_a_h_grachev]
+alias = "a_h_Grachev"
+value = 5.0
+type = "float"
+
+[coefficient_b_m_grachev]
+alias = "b_m_Grachev"
+value = 0.7692307692307693
+type = "float"
+description = "derived [coefficient_a_m_grachev] / 6.5"
+
+[coefficient_b_h_grachev]
+alias = "b_h_Grachev"
+value = 5.0
+type = "float"
+
+[coefficient_c_h_grachev]
+alias = "c_h_Grachev"
+value = 3.0
+type = "float"
+
+[von_karman_constant]
+alias = "von_karman_const"
+value = 0.4
+type = "float"
+
+
+
+# microphysics
+
+
 [precipitation_timescale]
 alias = "τ_precip"
 value = 1000
@@ -255,15 +336,7 @@ type = "float"
 
 
 
-
-
-
-
 # Initial planet_parameters toml file
-
-
-
-
 
 
 
