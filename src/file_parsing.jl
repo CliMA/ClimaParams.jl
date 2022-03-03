@@ -80,22 +80,22 @@ function log_component!(data::Dict,names,component,dict_type)
     end
 end
 
-get_values(param_set::ParamDict{FT}, names) where {FT} = get_values(param_set.data, names, param_set.dict_type, get_parametric_type(param_set))
+get_values(param_set::ParamDict{FT}, names) where {FT} = get_values(param_set.data, names, param_set.dict_type)
 
-function get_values(data::Dict, names, dict_type, ret_values_type)
+function get_values(data::Dict, names, dict_type)
     
-    ret_values = ret_values_type[]
+    ret_values = []
     if dict_type == "alias"
         for name in names
             for (key,val) in data
                 if name == val["alias"]
-                    append!(ret_values,val["value"])
+                    push!(ret_values,val["value"])
                 end
             end
         end
     elseif dict_type == "name"
         for name in names
-            append!(ret_values,val["value"])
+            push!(ret_values,data[name]["value"])
         end
     end
     return ret_values
@@ -113,7 +113,6 @@ end
 
 #as log_component is false, the get_parameter_values! does not change param_set
 get_parameter_values(param_set::ParamDict{FT}, names) where {FT} = get_parameter_values!(param_set, names, nothing, log_component=false)
-
 
 # write a parameter log file to given file. Unfortunately it is unordered thanks to TOML.jl
 # can't read in an ordered dict
