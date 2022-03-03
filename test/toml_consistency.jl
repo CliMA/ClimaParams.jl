@@ -91,42 +91,65 @@ universal_constant_aliases = [
         k_found[1] = 0
     end
     
-@testset "vector_valued_parameters" begin
 
     # Tests to check if file parsing, extracting and logging of parameter
     # values also works with array-valued parameters
 
-	  # Create parameter struct consisting of the parameters contained in the
+    # Create parameter structs consisting of the parameters contained in the
     # default parameter file ("parameters.toml") and additional (array valued)
-    # parameters ("array_parameters.toml")
-    path_to_array_params = joinpath(splitpath(pathof(CP))[1:end-1]...,"array_parameters.toml")
+    # parameters ("array_parameters.toml"). 
+    path_to_array_params = joinpath(splitpath(pathof(CP))[1:end-2]...,"test/array_parameters.toml")
+    # parameter struct of type Float64 (default)
     param_set = CP.create_parameter_struct(path_to_array_params,
                                            dict_type="name")
+    # parameter struct of type Float32
+    param_set_f32 = CP.create_parameter_struct(path_to_array_params,
+                                               dict_type="name",
+                                               value_type=Float32)
+
+    # true parameter values (used to check if values are correctly read from
+    # the toml file)
     true_param_1 = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]
     true_param_2 = [0.0, 1.0, 1.0, 2.0, 3.0, 5.0, 8.0, 13.0, 21.0, 34.0]
     true_param_3 = [9.81, 10.0]
-    true_params = [true_param_1, true_param_2, true_param_3]
+    true_param_4 = 299792458 
+    true_params = [true_param_1, true_param_2, true_param_3, true_param_4]
     param_names = ["array_parameter_1", "array_parameter_2",
-                   "gravitational_acceleration"]
+                   "gravitational_acceleration", "light_speed"]
 
     # Let's assume that parameter_vector_1 and parameter_vector_2 are used
     # in a module called "Test"
     mod = "Test"
 
     # Get parameter values and add information on the module where the
-    # parameters are used
+    # parameters are used. 
     for i in range(1, stop=length(true_params))
+
         param = CP.get_parameter_values!(param_set, param_names[i], mod)
         @test param == true_params[i]
+        # Check if the parameter is of the correct type. It should have
+        # the same type as the ParamDict, which is specified by the
+        # `value_type`` argument to `create_parameter_struct`.
+        @test eltype(param) == Float64
+
+        param_f32 = CP.get_parameter_values!(param_set_f32, param_names[i], mod)
+        @test eltype(param_f32) == Float32
+
     end
 
+    # Get several parameter values (scalar and arrays) at once
+    params = CP.get_parameter_values(param_set, param_names)
+    for j in 1:length(param_names)
+        @test params[j] == true_params[j]
+    end
+    
     # Write parameters to log file
     logfilepath = joinpath(@__DIR__, "log_file_test_2.toml")
     CP.write_log_file(param_set, logfilepath)
 
-    # param_set and full_param_set contain different values for the
-    # gravitational_acceleration parameter. The merged parameter set should
-    # contain the value from param_set.
+    # `param_set` and `full_param_set` contain different values for the
+    # `gravitational_acceleration` parameter. The merged parameter set should
+    # contain the value from `param_set`.
     full_param_set = CP.create_parameter_struct(dict_type="name")
     merged_param_set = CP.merge_override_default_values(param_set,
                                                         full_param_set,
@@ -134,7 +157,5 @@ universal_constant_aliases = [
     grav = CP.get_parameter_values(merged_param_set,
                                    "gravitational_acceleration")
     @test grav == true_param_3
-
-end
     
 end

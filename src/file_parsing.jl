@@ -80,22 +80,33 @@ function log_component!(data::Dict,names,component,dict_type)
     end
 end
 
-get_values(param_set::ParamDict{FT}, names) where {FT} = get_values(param_set.data, names, param_set.dict_type)
+get_values(param_set::ParamDict{FT}, names) where {FT} =
+    get_values(param_set.data, names, param_set.dict_type, get_parametric_type(param_set))
 
-function get_values(data::Dict, names, dict_type)
+function get_values(data::Dict, names, dict_type, ret_values_type)
     
     ret_values = []
     if dict_type == "alias"
         for name in names
             for (key,val) in data
                 if name == val["alias"]
-                    push!(ret_values,val["value"])
+                    param_value = val["value"]
+                    if eltype(param_value) != ret_values_type
+                        push!(ret_values, map(ret_values_type, param_value))
+                    else
+                        push!(ret_values, param_value)
+                    end
                 end
             end
         end
     elseif dict_type == "name"
         for name in names
-            push!(ret_values,data[name]["value"])
+            param_value = data[name]["value"]
+            if eltype(param_value) != ret_values_type
+                push!(ret_values, map(ret_values_type, param_value))
+            else
+                push!(ret_values, param_value)
+            end
         end
     end
     return ret_values
