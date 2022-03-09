@@ -2,3 +2,8 @@
 value = 10.0
 type = "float"
 alias = "light_spede"
+
+[light_speed]
+value = 10000.0
+type = "float"
+alias = "light_speed"

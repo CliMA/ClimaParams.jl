@@ -174,6 +174,8 @@ logfilepath3 = joinpath(@__DIR__, "log_file_test_3.toml")
 
     @testset "checks for overrides" begin
         full_param_set = CP.create_parameter_struct(joinpath(@__DIR__,"override_typos.toml"), dict_type="name")
+        mod = "test_module_name"
+        CP.get_parameter_values!(full_param_set, "light_speed", mod) 
         @test_logs (:warn,) CP.log_parameter_information(full_param_set, logfilepath3)
         @test_throws ErrorException CP.log_parameter_information(full_param_set, logfilepath3, warn_else_error="error")
     end
