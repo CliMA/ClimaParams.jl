@@ -28,6 +28,7 @@ using CLIMAParameters.Planet
   @test !isnan(T_min(ps))
   @test !isnan(T_max(ps))
   @test !isnan(T_icenuc(ps))
+  @test !isnan(pow_icenuc(ps))
   @test !isnan(press_triple(ps))
   @test !isnan(surface_tension_coeff(ps))
 

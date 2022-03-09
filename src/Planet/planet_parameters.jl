@@ -23,6 +23,7 @@ Planet.T_freeze(ps::AbstractEarthParameterSet)              = 273.15
 Planet.T_min(ps::AbstractEarthParameterSet)                 = 150.0
 Planet.T_max(ps::AbstractEarthParameterSet)                 = 1000.0
 Planet.T_icenuc(ps::AbstractEarthParameterSet)              = 233.00
+Planet.pow_icenuc(ps::AbstractEarthParameterSet)            = 1
 Planet.T_triple(ps::AbstractEarthParameterSet)              = 273.16
 Planet.T_0(ps::AbstractEarthParameterSet)                   = Planet.T_triple(ps)
 Planet.LH_v0(ps::AbstractEarthParameterSet)                 = 2.5008e6
