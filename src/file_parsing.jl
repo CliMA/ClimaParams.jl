@@ -149,8 +149,15 @@ end
 # write a parameter log file to given file. Unfortunately it is unordered thanks to TOML.jl
 # can't read in an ordered dict
 function write_log_file(param_set::ParamDict{FT}, filepath) where {FT}
+    component_key = "used_in"
+    used_parameters = Dict()
+    for (key,val) in param_set.data
+        if ~(component_key in keys(val))
+            used_parameters[key] = val
+        end
+    end
     open(filepath, "w") do io
-        TOML.print(io, param_set.data)
+        TOML.print(io, used_parameters)
     end
 end
 
