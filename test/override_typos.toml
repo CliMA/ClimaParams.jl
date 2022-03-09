@@ -1,0 +1,4 @@
+[light_spede]
+value = 10.0
+type = "float"
+alias = "light_spede"

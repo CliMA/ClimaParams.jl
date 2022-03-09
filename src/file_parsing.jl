@@ -7,6 +7,7 @@ end
 struct ParamDict{FT}
     data::Dict
     dict_type::String
+    override_dict::Union{Nothing,Dict}
 end
 
 # to get the "float" or whatever back
@@ -125,6 +126,26 @@ end
 #as log_component is false, the get_parameter_values! does not change param_set
 get_parameter_values(param_set::ParamDict{FT}, names) where {FT} = get_parameter_values!(param_set, names, nothing, log_component=false)
 
+
+function check_override_parameter_usage(param_set::ParamDict{FT},warn_else_error) where {FT}
+    if !(isnothing(param_set.override_dict))
+        flag_error = !(warn_else_error == "warn")
+        component_key = "used_in" # must agree with key above
+        for (key,val) in param_set.override_dict
+            logged_val = param_set.data[key]
+            if ~(component_key in keys(logged_val)) #as val is a Dict
+                    @warn("key " * key * " is present in parameter file, but not used in the simulation. \n Typically this is due to a mismatch in parameter name in toml and in source.")
+            end
+        end
+        if flag_error
+            @error("At least one override parameter set and not used in simulation")
+            throw(ErrorException("Halting simulation due to unused parameters."
+                                 * "\n Typically this is due to a typo in the parameter name."
+                                 * "\n change warn_else_error flag to \"warn\" to prevent this causing an exception"))
+        end
+    end
+end
+
 # write a parameter log file to given file. Unfortunately it is unordered thanks to TOML.jl
 # can't read in an ordered dict
 function write_log_file(param_set::ParamDict{FT}, filepath) where {FT}
@@ -133,35 +154,45 @@ function write_log_file(param_set::ParamDict{FT}, filepath) where {FT}
     end
 end
 
+function log_parameter_information(param_set::ParamDict{FT}, filepath; warn_else_error = "warn") where {FT}
+    #[1.] write the parameters to log file
+    write_log_file(param_set,filepath)
+    #[2.] send warnings or errors if parameters were not used
+    check_override_parameter_usage(param_set,warn_else_error)
+end
+
+#combines the default data, and dict_type, with the overrides and the retains the override_dict.
 function merge_override_default_values(override_param_struct::ParamDict{FT},default_param_struct::ParamDict{FT}) where {FT}
-    merged_struct = deepcopy(default_param_struct)
+    data = default_param_struct.data
+    dict_type = default_param_struct.dict_type
+    override_dict = override_param_struct.override_dict
     for (key, val) in override_param_struct.data
-        if ~(key in keys(merged_struct.data))
-            merged_struct.data[key] = val
+        if ~(key in keys(data))
+            data[key] = val
         else
             for (kkey,vval) in val # as val is a Dict too
-                merged_struct.data[key][kkey] = vval
+                data[key][kkey] = vval
             end
         end
     end
-    return merged_struct
+    return ParamDict{FT}(data, dict_type, override_dict)
 end
 
 
 function create_parameter_struct(path_to_override, path_to_default; dict_type="alias", value_type=Float64)
     #if there isn't  an override file take defaults
     if isnothing(path_to_override)
-        return ParamDict{value_type}(parse_toml_file(path_to_default), dict_type)
+        return ParamDict{value_type}(parse_toml_file(path_to_default), dict_type, nothing)
     else
         try 
-            override_param_struct = ParamDict{value_type}(parse_toml_file(path_to_override), dict_type)
-            default_param_struct = ParamDict{value_type}(parse_toml_file(path_to_default), dict_type)
+            override_param_struct = ParamDict{value_type}(parse_toml_file(path_to_override), dict_type, parse_toml_file(path_to_override))
+            default_param_struct = ParamDict{value_type}(parse_toml_file(path_to_default), dict_type, nothing)
         
             #overrides the defaults where they clash
             return merge_override_default_values(override_param_struct, default_param_struct)
         catch
-            @warn("Error in building from parameter file: ", path_to_override,"instead, created using defaults from CLIMAParameters...")
-            return ParamDict{value_type}(parse_toml_file(path_to_default), dict_type)
+            @warn("Error in building from parameter file: "*"\n " * path_to_override * " \n instead, created using defaults from CLIMAParameters...")
+            return ParamDict{value_type}(parse_toml_file(path_to_default), dict_type, nothing)
         end
     end
         
