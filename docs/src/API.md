@@ -47,6 +47,7 @@ Planet.T_freeze
 Planet.T_min
 Planet.T_max
 Planet.T_icenuc
+Planet.pow_icenuc
 Planet.T_triple
 Planet.T_0
 Planet.LH_v0

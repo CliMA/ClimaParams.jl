@@ -25,6 +25,7 @@ export molmass_dryair,
     T_min,
     T_max,
     T_icenuc,
+    pow_icenuc,
     T_triple,
     T_0,
     LH_v0,
@@ -99,6 +100,8 @@ function T_min end
 function T_max end
 """ Homogeneous nucleation temperature (K) """
 function T_icenuc end
+""" The assumed phase partition function power (-) """
+function pow_icenuc end
 """ Triple point temperature (K) """
 function T_triple end
 """ Reference temperature (K) """
