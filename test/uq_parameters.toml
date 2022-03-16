@@ -1,29 +1,35 @@
 [uq_param_1]
+name = "uq_param_1"
 prior = "Parameterized(Normal(2.0, 1.0))"
 constraint = "no_constraint()"
 type = "float"
 
 [uq_param_2]
+name = "uq_param_2"
 prior = "Parameterized(Gamma(5.0, 2.0))"
 constraint = "bounded_below(3.0)"
 type = "float"
 
 [uq_param_3]
+name = "uq_param_3"
 prior = "Parameterized(MvNormal(4, 0.1))"
 constraint = "[no_constraint(), bounded_below(-1.0), bounded_above(0.4), bounded(-0.1,0.2)]"
 type = "float"
-   
+  
 [uq_param_4]
+name = "uq_param_4"
 prior = "Samples([1.0 3.0 5.0 7.0; 9.0 11.0 13.0 15.0])"
-constraint = "[bounded(10.0, 15.0), no_constraint()]"
+constraint = "[bounded(10.0, 15.0), bounded_below(-1.0)]"
 type = "float"
 
 [uq_param_5]
+name = "uq_param_5"
 prior = "Samples([1.0 3.0; 5.0 7.0; 9.0 11.0; 13.0 15.0])"
-constraint = "[no_constraint(), no_constraint(), bounded_above(100.0), no_constraint()]"
+constraint = "[no_constraint(), no_constraint(), bounded_below(-2.0), bounded_above(100.0)]"
 type = "float"
 
 [uq_param_6]
+name = ["uq_param_6a", "uq_param_6b", "uq_param_6c"]
 prior = "[Parameterized(Normal(0.0, 1.0)), Parameterized(Normal(5.0, 2.0)), Samples([1.0 3.0; 5.0 7.0; 9.0 11.0; 13.0 15.0])]"
-constraint = "[bounded_below(-1.0), no_constraint(), bounded(5.0, 15.0), no_constraint()]"
+constraint = "[bounded_below(-1.0), no_constraint(), [bounded(5.0, 15.0), no_constraint(), bounded_above(100.0), bounded_above(100.0)]]"
 type = "float"

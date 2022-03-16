@@ -1,5 +1,5 @@
 using Distributions
-using EnsembleKalmanProcesses.ParameterDistributionStorage
+using EnsembleKalmanProcesses.ParameterDistributions
 
 
 get_parameter_distribution(param_set::ParamDict{FT}, names) where {FT} =
@@ -27,11 +27,26 @@ function get_parameter_distribution(data::Dict, names)
         # and constraint(s)
         constraint = construct_constraint(data[name])
         prior = construct_prior(data[name])
-        push!(param_distr, ParameterDistribution(prior, constraint, name))
+        if !haskey(data[name], "name")
+            # Try using the name of the TOML table describing the parameter
+            push!(
+                param_distr,
+                ParameterDistribution(prior, constraint, name)
+            )
+        else
+            # Use the given "name" entry
+            push!(
+                param_distr,
+                ParameterDistribution(prior, constraint, data[name]["name"])
+            )
+        end
+
     end
 
     return (typeof(names) <: AbstractVector) ? param_distr : param_distr[1]
+
 end
+
 
 function construct_constraint(param_info::Dict)
     """
@@ -51,19 +66,43 @@ function construct_constraint(param_info::Dict)
     @assert(haskey(param_info, "constraint"))
     c = Meta.parse(param_info["constraint"])
     if c.head == Symbol("vect")
-        # Multiple constraints
-        n_constraints = length(c.args)
-        constraints = Array{Constraint}(undef, n_constraints)
-        for i in range(1, stop=n_constraints)
-            constraints[i] = 
-                getfield(Main, c.args[i].args[1])(c.args[i].args[2:end]...)
+        # There are multiple parameters, hence multiple constraints
+        constraints = []
+        constraint_groups = c.args 
+        n_constraint_groups = length(c.args)
+
+        for i in 1:n_constraint_groups
+            # The dimensionality of the parameter equals the number of
+            # constraints
+            if constraint_groups[i].head == Symbol("vect")
+                # This is a multidimensional parameter
+                n_param_constraints = length(constraint_groups[i].args)
+                param_constraints = []
+                for j in 1:n_param_constraints
+                    push!(
+                        param_constraints,
+                        getfield(Main, constraint_groups[i].args[j].args[1])(
+                            constraint_groups[i].args[j].args[2:end]...)
+                    )
+                end
+                push!(constraints, param_constraints)
+            else
+                # This is a single parameter
+                push!(constraints,
+                      getfield(Main, constraint_groups[i].args[1])(
+                          constraint_groups[i].args[2:end]...)
+                )
+            end
         end
-        return constraints
+
+        return [constraints[i] for i in 1:length(constraints)]
+
     else
-        # Single constraint
+        # There is only a single 1-dim parameter, hence a single constraint
         return getfield(Main, c.args[1])(c.args[2:end]...)
     end
 end
+
 
 function construct_prior(param_info::Dict)
     """
@@ -143,8 +182,7 @@ function construct_2d_array(expr)
     return Float64.(vcat(arr_of_rows'...))
 end
 
-function save_parameter_ensemble(param_array::Array{FT, 2}, param_name,
-    save_path::String, iteration::Union{Int, Nothing}=nothing) where {FT}
+function save_parameter_ensemble(param_array::Array{FT, 2}, param_name, save_path::String, iteration::Union{Int, Nothing}=nothing) where {FT}
     """
     save_parameter_ensemble(param_array, param_name, save_path, iteration=nothing)
 
@@ -173,7 +211,10 @@ function save_parameter_ensemble(param_array::Array{FT, 2}, param_name,
     for i in 1:N_ens
         open(joinpath(save_dir, file_names[i]), "w") do io
         for j in 1:N_par
-            param_info = Dict("value" => param_array[j, i])
+            param_info = Dict(
+                "value" => param_array[j, i],
+                "name" => param_name[j]
+            )
             param_dict = Dict(param_name[j] => param_info)
             TOML.print(io, param_dict)
             print(io, "\n")
