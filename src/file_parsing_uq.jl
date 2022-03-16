@@ -5,20 +5,20 @@ using EnsembleKalmanProcesses.ParameterDistributions
 get_parameter_distribution(param_set::ParamDict{FT}, names) where {FT} =
     get_parameter_distribution(param_set.data, names)
 
+"""
+get_parameter_distribution(data, names)
+
+Construct a `ParameterDistribution` from the prior distribution and
+constraint given in `data`
+
+Args:
+`data` - nested dictionary that has parameter names as keys and the
+          corresponding dictionary of parameter information as values
+`names` - list of parameter names or single parameter name
+
+Returns a `ParameterDistribution`
+"""
 function get_parameter_distribution(data::Dict, names)
-    """
-    get_parameter_distribution(data, names)
-
-    Construct a `ParameterDistribution` from the prior distribution and
-    constraint given in `data`
-
-    Args:
-    `data` - nested dictionary that has parameter names as keys and the
-             corresponding dictionary of parameter information as values
-    `names` - list of parameter names or single parameter name
-
-    Returns a `ParameterDistribution`
-    """
     names_vec = (typeof(names) <: AbstractVector) ? names : [names]
     param_distr = []
 
@@ -48,21 +48,21 @@ function get_parameter_distribution(data::Dict, names)
 end
 
 
+"""
+construct_constraint(param_info)
+
+Extracts information on type and arguments of each constraint and uses that
+information to construct an actual `Constraint`.
+
+Args:
+`param_info` - a dictionary with (at least) a key "constraint", whose
+                value is the parameter's constraint(s) (as parsed from
+                TOML file)
+
+Returns a single `Constraint` if `param_info` only contains one constraint,
+otherwise it returns an array of `Constraint`s
+"""
 function construct_constraint(param_info::Dict)
-    """
-    construct_constraint(param_info)
-
-    Extracts information on type and arguments of each constraint and uses that
-    information to construct an actual `Constraint`.
-
-    Args:
-    `param_info` - a dictionary with (at least) a key "constraint", whose
-                   value is the parameter's constraint(s) (as parsed from
-                   TOML file)
-
-    Returns a single `Constraint` if `param_info` only contains one constraint,
-    otherwise it returns an array of `Constraint`s
-    """
     @assert(haskey(param_info, "constraint"))
     c = Meta.parse(param_info["constraint"])
     if c.head == Symbol("vect")
@@ -104,20 +104,20 @@ function construct_constraint(param_info::Dict)
 end
 
 
+"""
+construct_prior(param_info)
+
+Extracts information on type and arguments of the prior distribution and use
+that information to construct an actual `Distribution`
+
+Args:
+`param_info` - a dictionary with (at least) a key "prior", whose
+                value is the parameter's distribution(s) (as parsed from
+                TOML file)
+
+Returns a single or array of ParameterDistributionType derived objects
+"""
 function construct_prior(param_info::Dict)
-    """
-    construct_prior(param_info)
-
-    Extracts information on type and arguments of the prior distribution and use
-    that information to construct an actual `Distribution`
-
-    Args:
-    `param_info` - a dictionary with (at least) a key "prior", whose
-                   value is the parameter's distribution(s) (as parsed from
-                   TOML file)
-
-    Returns a single or array of ParameterDistributionType derived objects
-    """
     @assert(haskey(param_info, "prior"))
     d = Meta.parse(param_info["prior"])
     if d.head == Symbol("vect")
@@ -164,17 +164,17 @@ function construct_prior(param_info::Dict)
 end
 
 
+"""
+construct_2d_array(expr)
+
+Reconstructs 2d array of samples
+
+Args:
+`expr`  - expression (has type `Expr`) with head `vcat`.
+
+Returns a 2d array of samples constructed from the arguments of `expr`
+"""
 function construct_2d_array(expr)
-    """
-    construct_2d_array(expr)
-
-    Reconstructs 2d array of samples
-
-    Args:
-    `expr`  - expression (has type `Expr`) with head `vcat`.
-
-    Returns a 2d array of samples constructed from the arguments of `expr`
-    """
     @assert(expr.head == Symbol("vcat"))
     n_rows = length(expr.args)
     arr_of_rows = [expr.args[i].args for i in 1:n_rows]
@@ -182,25 +182,26 @@ function construct_2d_array(expr)
     return Float64.(vcat(arr_of_rows'...))
 end
 
-function save_parameter_ensemble(param_array::Array{FT, 2}, param_name, save_path::String, iteration::Union{Int, Nothing}=nothing) where {FT}
-    """
-    save_parameter_ensemble(param_array, param_name, save_path, iteration=nothing)
 
-    Saves the parameters in the given `param_array` to TOML files. The intended
-    use is for saving the ensemble of parameters after each update of an
-    ensemble Kalman process.
-    Each ensemble member (column of `param_array`) is saved to a separate file
-    named "member_<i>.toml" (i=1, ..., N_ens). If an `iteration` number is
-    given, a directory "iteration_<j>" is created in `save_path`, and all
-    member files are saved there.
-
-    Args:
-    `param_array` - array of size N_param x N_ens
-    `param_name` - array of parameter names or single parameter name
-    `save_path` - path to where the parameters will be saved
-    `iteration` - which iteration of the ensemble Kalman process the given
-                  `param_array` represents.
 """
+save_parameter_ensemble(param_array, param_name, save_path, iteration=nothing)
+
+Saves the parameters in the given `param_array` to TOML files. The intended
+use is for saving the ensemble of parameters after each update of an
+ensemble Kalman process.
+Each ensemble member (column of `param_array`) is saved to a separate file
+named "member_<i>.toml" (i=1, ..., N_ens). If an `iteration` number is
+given, a directory "iteration_<j>" is created in `save_path`, and all
+member files are saved there.
+
+Args:
+`param_array` - array of size N_param x N_ens
+`param_name` - array of parameter names or single parameter name
+`save_path` - path to where the parameters will be saved
+`iteration` - which iteration of the ensemble Kalman process the given
+              `param_array` represents.
+"""
+function save_parameter_ensemble(param_array::Array{FT, 2}, param_name, save_path::String, iteration::Union{Int, Nothing}=nothing) where {FT}
     N_par, N_ens = size(param_array)
     file_names = generate_file_names(N_ens)
 
