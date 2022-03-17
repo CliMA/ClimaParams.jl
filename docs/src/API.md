@@ -2,32 +2,36 @@
 
 ```@meta
 CurrentModule = CLIMAParameters
-using CLIMAParameters
 ```
 
 ## Parameter struct
 
 ```@docs
-CLIMAParameters.ParamDict
+ParamDict
 ```
 
-## file parsing and parameter logging
+## File parsing and parameter logging
 
+### User facing functions:
 ```@docs
-CLIMAParameters.parse_toml_file
-CLIMAParameters.get_parametric_type
-CLIMAParameters.iterate_alias
-CLIMAParameters.log_component!(param_set::ParamDict,names,component) 
-CLIMAParameters.get_values(param_set::ParamDict, names) 
-CLIMAParameters.get_parameter_values!
-CLIMAParameters.get_parameter_values
-CLIMAParameters.check_override_parameter_usage
-CLIMAParameters.write_log_file
-CLIMAParameters.log_parameter_information
-CLIMAParameters.merge_override_default_values
-CLIMAParameters.create_parameter_struct(path_to_override, path_to_default)
-CLIMAParameters.create_parameter_struct(path_to_override)
-CLIMAParameters.create_parameter_struct()
+create_parameter_struct(path_to_override, path_to_default)
+create_parameter_struct(path_to_override)
+create_parameter_struct()
+get_parameter_values!
+get_parameter_values
+get_parametric_type
+log_parameter_information
+```
+
+### Internal functions:
+```@docs
+parse_toml_file
+iterate_alias
+log_component!(param_set::ParamDict,names,component) 
+get_values(param_set::ParamDict, names) 
+check_override_parameter_usage
+write_log_file
+merge_override_default_values
 ```
 
 ## Types

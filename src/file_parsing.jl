@@ -297,6 +297,8 @@ end
 
 
 """
+    create_parameter_struct(path_to_override; dict_type="alias", value_type=Float64)
+
 a single filepath is assumed to be the override file, defaults are obtained from the CLIMAParameters defaults list.
 """
 function create_parameter_struct(path_to_override; dict_type="alias", value_type=Float64)
@@ -311,6 +313,8 @@ function create_parameter_struct(path_to_override; dict_type="alias", value_type
 end
 
 """
+    create_parameter_struct(; dict_type="alias", value_type=Float64)
+
 when no filepath is provided, all parameters are created from CLIMAParameters defaults list.
 """
 function create_parameter_struct(; dict_type="alias", value_type=Float64)
