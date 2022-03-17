@@ -1,6 +1,21 @@
 using TOML
 using DocStringExtensions
 
+export ParamDict
+export parse_toml_file,
+    get_parametric_type,
+    iterate_alias,
+    log_component!,
+    get_values,
+    get_parameter_values!,
+    get_parameter_values,
+    check_override_parameter_usage,
+    write_log_file,
+    log_parameter_information,
+    merge_override_default_values,
+    create_parameter_struct
+        
+    
 """
     ParamDict{FT}
 
@@ -176,7 +191,6 @@ end
 
 Gets the parameter values only.
 """
-#as log_component is false, the get_parameter_values! does not change param_set
 get_parameter_values(param_set::ParamDict{FT}, names) where {FT} = get_parameter_values!(param_set, names, nothing, log_component=false)
 
 """

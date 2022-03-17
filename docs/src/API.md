@@ -2,6 +2,32 @@
 
 ```@meta
 CurrentModule = CLIMAParameters
+using CLIMAParameters
+```
+
+## Parameter struct
+
+```@docs
+CLIMAParameters.ParamDict
+```
+
+## file parsing and parameter logging
+
+```@docs
+CLIMAParameters.parse_toml_file
+CLIMAParameters.get_parametric_type
+CLIMAParameters.iterate_alias
+CLIMAParameters.log_component!(param_set::ParamDict,names,component) 
+CLIMAParameters.get_values(param_set::ParamDict, names) 
+CLIMAParameters.get_parameter_values!
+CLIMAParameters.get_parameter_values
+CLIMAParameters.check_override_parameter_usage
+CLIMAParameters.write_log_file
+CLIMAParameters.log_parameter_information
+CLIMAParameters.merge_override_default_values
+CLIMAParameters.create_parameter_struct(path_to_override, path_to_default)
+CLIMAParameters.create_parameter_struct(path_to_override)
+CLIMAParameters.create_parameter_struct()
 ```
 
 ## Types
