@@ -8,8 +8,8 @@ get_parameter_distribution(param_set::ParamDict{FT}, names) where {FT} =
 """
 get_parameter_distribution(data, names)
 
-Construct a `ParameterDistribution` from the prior distribution and
-constraint given in `data`
+Construct a `ParameterDistribution` from the prior distribution(s) and
+constraint(s) given in `data`
 
 Args:
 `data` - nested dictionary that has parameter names as keys and the
@@ -19,32 +19,28 @@ Args:
 Returns a `ParameterDistribution`
 """
 function get_parameter_distribution(data::Dict, names)
+
     names_vec = (typeof(names) <: AbstractVector) ? names : [names]
-    param_distr = []
+    constraint = []
+    prior = []
 
     for name in names_vec
         # Constructing a parameter distribution requires prior distribution(s)
         # and constraint(s)
-        constraint = construct_constraint(data[name])
-        prior = construct_prior(data[name])
-        if !haskey(data[name], "name")
-            # Try using the name of the TOML table describing the parameter
-            push!(
-                param_distr,
-                ParameterDistribution(prior, constraint, name)
-            )
-        else
-            # Use the given "name" entry
-            push!(
-                param_distr,
-                ParameterDistribution(prior, constraint, data[name]["name"])
-            )
-        end
-
+        push!(constraint, construct_constraint(data[name]))
+        push!(prior, construct_prior(data[name]))
     end
-
-    return (typeof(names) <: AbstractVector) ? param_distr : param_distr[1]
-
+        # Use the name of the TOML table describing the parameter
+    if typeof(names) <: AbstractVector
+        return ParameterDistribution(
+            identity.(prior),
+            identity.(constraint),
+            names)
+    else
+        return ParameterDistribution(prior[1],
+                                     constraint[1],
+                                     names)
+    end
 end
 
 
@@ -183,8 +179,15 @@ function construct_2d_array(expr)
 end
 
 
+save_parameter_ensemble(param_array::Array{FT, 2}, param_distribution::ParameterDistribution, default_param_set::ParamDict{FT}, save_path::String, save_file::String, iteration::Union{Int, Nothing}=nothing) where {FT} = save_parameter_ensemble(param_array, param_distribution, default_param_set.data, save_path, save_file, iteration)
 """
-save_parameter_ensemble(param_array, param_name, save_path, iteration=nothing)
+save_parameter_ensemble(
+    param_array,
+    param_distribution,
+    default_param_data,
+    save_path,
+    save_file,
+    iteration=nothing)
 
 Saves the parameters in the given `param_array` to TOML files. The intended
 use is for saving the ensemble of parameters after each update of an
@@ -196,37 +199,83 @@ member files are saved there.
 
 Args:
 `param_array` - array of size N_param x N_ens
-`param_name` - array of parameter names or single parameter name
+`names` - array of parameter names or single parameter name
 `save_path` - path to where the parameters will be saved
 `iteration` - which iteration of the ensemble Kalman process the given
               `param_array` represents.
 """
-function save_parameter_ensemble(param_array::Array{FT, 2}, param_name, save_path::String, iteration::Union{Int, Nothing}=nothing) where {FT}
-    N_par, N_ens = size(param_array)
-    file_names = generate_file_names(N_ens)
+function save_parameter_ensemble(
+    param_array::Array{FT, 2},
+    param_distribution::ParameterDistribution,
+    default_param_data::Dict,
+    save_path::String,
+    save_file::String,
+    iteration::Union{Int, Nothing}=nothing) where {FT}
+
+    # The number of rows in param_array represent the sum of all parameter
+    # dimensions. We need to determine the slices of rows that belong to
+    # each parameter. E.g., an array with 6 rows could be sliced into
+    # one 1-dim parameter (first row), one 3-dim parameter (rows 2 to 4),
+    # and a 2-dim parameter (rows 5 to 6)
+    param_slices = batch(param_distribution)
+    param_names = get_name(param_distribution)
+
+    N_ens = size(param_array)[2]
 
     # If needed, create directory where files will be stored
     save_dir = isnothing(iteration) ? save_path : joinpath(save_path, join(["iteration", lpad(iteration, 2, "0")], "_"))
     mkpath(save_dir)
 
+    # Each ensemble member gets its own subdirectory
+    subdir_names = generate_subdir_names(N_ens)
+
+    # All parameter toml files (one for each ensemble member) have the same name
+    toml_file = endswith(save_file, ".toml") ? save_file : save_file * ".toml"
+
     for i in 1:N_ens
-        open(joinpath(save_dir, file_names[i]), "w") do io
-        for j in 1:N_par
-            param_info = Dict(
-                "value" => param_array[j, i],
-                "name" => param_name[j]
-            )
-            param_dict = Dict(param_name[j] => param_info)
-            TOML.print(io, param_dict)
-            print(io, "\n")
+        mkpath(joinpath(save_dir, subdir_names[i]))
+        # Override the value (or add a value, if no value exists yet)
+        # of the parameter in the original parameter dict with the
+        # corresponding value in param_array
+        param_dict = deepcopy(default_param_data)
+        for (j, slice) in enumerate(param_slices)
+            value = length(slice) > 1 ? param_array[slice, i] : param_array[slice, i][1]
+            param_dict[param_names[j]]["value"] = value
         end
+        open(joinpath(save_dir, subdir_names[i], toml_file), "w") do io
+            TOML.print(io, param_dict)
         end
     end
 end
 
-function generate_file_names(N_ens::Int, prefix::String="member", suffix="toml")
+
+function generate_subdir_names(N_ens::Int, prefix::String="member")
     max_n_digits = Int(ceil(log10(N_ens)))
     member(j) = join([prefix, lpad(j, max_n_digits, "0")], "_")
-    return [join([member(j), suffix], ".") for j in 1:N_ens]
+    return [member(j) for j in 1:N_ens]
 end
-           
+
+"""
+get_UQ_parameters(data)
+
+Finds all parameters in data that have a key "prior" that isn't set to "fixed".
+These are the parameters that will enter the uncertainty quantification
+pipeline.
+
+Args:
+`data` - nested dictionary that has parameter names as keys and the
+         corresponding dictionary of parameter information as values
+
+Returns an array of the names of all UQ parameters in data
+"""
+get_UQ_parameters(param_set::ParamDict{FT}) where {FT} = get_UQ_parameters(param_set.data)
+
+function get_UQ_parameters(data::Dict)
+    uq_param = String[]
+    for (key, val) in data
+        if haskey(val, "prior") && val["prior"] != "fixed"
+            push!(uq_param, string(key))
+        end
+    end
+    return uq_param
+end

@@ -12,10 +12,10 @@ using EnsembleKalmanProcesses.Observations
 using EnsembleKalmanProcesses.ParameterDistributions
 const EKP = EnsembleKalmanProcesses
 
-@testset "parsing and writing parameter distributions" begin
+@testset "Parse and write parameter distributions" begin
 
     # Load UQ parameters
-    uq_param_path = joinpath(@__DIR__,"uq_parameters.toml")
+    uq_param_path = joinpath(@__DIR__,"uq_test_parameters.toml")
     param_dict = CP.parse_toml_file(uq_param_path)
 
 
@@ -47,15 +47,9 @@ const EKP = EnsembleKalmanProcesses
             Samples([1.0 3.0; 5.0 7.0; 9.0 11.0; 13.0 15.0]),
             [no_constraint(), no_constraint(),
              bounded_below(-2.0), bounded_above(100.0)],
-            "uq_param_5"),
-
-        "uq_param_6" => ParameterDistribution(
-            [Parameterized(Normal(0.0, 1.0)), Parameterized(Normal(5.0, 2.0)),
-            Samples([1.0 3.0; 5.0 7.0; 9.0 11.0; 13.0 15.0])],
-            [bounded_below(-1.0), no_constraint(), [bounded(5.0, 15.0),
-             no_constraint(), bounded_above(100.0), bounded_above(100.0)]],
-            ["uq_param_6a", "uq_param_6b", "uq_param_6c"])
+            "uq_param_5")
     )
+
     # Get all `ParameterDistribution`s. We also add dummy (key, value) pairs
     # to check if that information gets added correctly when saving the
     # parameters back to file and re-loading them
@@ -76,10 +70,10 @@ const EKP = EnsembleKalmanProcesses
 
     end
 
-    # We can also extract multiple `ParameterDistribution`s at once 
-    param_names = ["uq_param_2", "uq_param_5", "uq_param_6"]
-    pds = CP.get_parameter_distribution(param_dict, param_names)
-    #@test pds == [target_map[param_name] for param_name in param_names]
+    # We can also get a `ParameterDistribution` representing
+    # multiple parameters
+    param_names = ["uq_param_2", "uq_param_4", "uq_param_5"]
+    pd = CP.get_parameter_distribution(param_dict, param_names)
 
     # Save the parameter dictionary and re-load it. 
     logfile_path = joinpath(@__DIR__,"log_file_test_uq.toml")
@@ -96,80 +90,120 @@ const EKP = EnsembleKalmanProcesses
 
 end
 
-@testset "save parameter ensemble" begin
+# This test set creates a directory "test_output" in "CLIMAParameters.jl/test"
+# where the new parameteter files resulting from updating an ensemble Kalman
+# ensemble are saved
+@testset "Save parameter ensemble" begin
 
-    # Set up an ensemble Kalman process to test writing of parameter ensembles
+    # Combine a parameter struct from the parameters defined in
+    # "uq_test_parameters.toml" (the override file) and those defined in
+    # "test_parameters.toml" (the default file)
+    param_path = joinpath(@__DIR__, "test_parameters.toml")
+    uq_param_path = joinpath(@__DIR__,"uq_test_parameters.toml")
+    param_set = CP.create_parameter_struct(
+        uq_param_path,
+        param_path,
+        dict_type="name"
+    )
+
+    # Extract the UQ parameters from the joint set of the parameters from
+    # param_path and those from uq_param_path
+    uq_param_names = CP.get_UQ_parameters(param_set)
 
     # Seed for pseudo-random number generator
     rng_seed = 42
     rng = Random.MersenneTwister(rng_seed)
     
-    # Generate data from a linear model:
-    # a regression problem with N_par parameters and 1 observation of
-    # G(u) = A \times u, where A : R^N_par -> R^N_obs
-    N_obs = 10                  # dimension of synthetic observation from G(u)
-    N_par = 2                   # Number of parameteres
-    u_star = [-1.0, 2.0]        # True parameters
-    noise_level = 0.05          # Defining the observation noise level (std) 
-    Γy = noise_level^2 * I
-    noise = MvNormal(zeros(N_obs), Γy)
-    C = [1 -.9; -.9 1]          # Correlation structure for linear operator
-    # Linear operator in R^{N_par x N_obs}
-    A = rand(rng, MvNormal(zeros(2,), C), N_obs)'
+    # Construct the parameter distribution
+    pd = CP.get_parameter_distribution(param_set, uq_param_names)
 
-    # Define linear model
-    function G(u)
-        A * u
+    # ------
+    # Set up an ensemble Kalman process to test writing of parameter ensembles
+    # ------
+
+    # Generate symthetic observations y_obs by evaluating a (completely
+    # contrived) forward map G(u) (where u are the parameters) with the 
+    # the true parameter values u* (which we pretend to know for the
+    # purpose of this example) and adding random observational noise η
+
+    # Define forward map (this is a completely contrived example)
+    A3 = rand([0, 1], 4, 4)
+    A5 = rand([0, 1], 4, 4)
+    function G(u1, u2, u3, u4, u5)  # map from R^5 to R^4
+        A4 = reshape([1, 1, u1, u2], 4, 1)
+        y = A3 * u3 + A5 * u5 + norm(u4) * A4
+        return dropdims(y, dims=2) 
     end
 
-    y_star = G(u_star)
-    y_obs = y_star .+ rand(rng, noise)
-
-    # Define prior information on parameters
-    prior_dist = [Parameterized(Normal(0.0, 0.5)),
-                  Parameterized(Normal(3.0, 0.5))]
-    constraints = [[no_constraint()], [no_constraint()]]
-    param_names = ["u1", "u2"]
-    prior = ParameterDistribution(prior_dist, constraints, param_names)
-
-    prior_mean = mean(prior)
-
-    # Assuming independence of u1 and u2
-    prior_cov = cov(prior)
+    # True parameter values
+    u1_star = 2.5
+    u2_star = 3.0
+    u3_star = [0.12, -0.05, -0.13, 0.05]
+    u4_star = [4.0, 14.0]
+    u5_star = [2.5, 5.5, 10.0, 14.2]
+    
+    # Synthetic observation
+    y_star = G(u1_star, u2_star, u3_star, u4_star, u5_star)
+    Γy = 0.05 * I
+    pdf_η = MvNormal(zeros(4), Γy)
+    y_obs = y_star .+ rand(pdf_η)
 
     N_ens = 50 # number of ensemble members
     N_iter = 1 # number of iterations
 
-    initial_ensemble = EKP.construct_initial_ensemble(rng, prior, N_ens)
+    # Generate and save initial paramter ensemble 
+    initial_ensemble = EKP.construct_initial_ensemble(rng, pd, N_ens)
+    save_path = joinpath(@__DIR__, "test_output")
+    save_file = "test_parameters.toml"
+    CP.save_parameter_ensemble(
+        initial_ensemble,
+        pd,
+        param_set,
+        save_path,
+        save_file,
+        0 # We consider the initial ensemble to be the 0th iteration
+    )
+
+    # Instantiate an ensemble Kalman process
     eksobj = EKP.EnsembleKalmanProcess(
         initial_ensemble,
         y_obs,
         Γy,
-        Sampler(prior_mean, prior_cov);
-        rng = rng)
+        Inversion(),
+        rng=rng)
 
-    g_ens = G(get_u_final(eksobj))
-
-    save_path = joinpath(@__DIR__, "test_output")
     # EKS iterations
     for i in 1:N_iter
         params_i = get_u_final(eksobj)
-        g_ens = G(params_i)
-        EKP.update_ensemble!(eksobj, g_ens)
-        # Save parameter ensemble
+        G_n = [G(params_i[1,i],
+                 params_i[2,i],
+                 params_i[3:6,i],
+                 params_i[7:8,i],
+                 params_i[9:12,i]) for i in 1:N_ens]
+        G_ens = hcat(G_n...) 
+        EKP.update_ensemble!(eksobj, G_ens)
+        # Save updated parameter ensemble
         CP.save_parameter_ensemble(
             EKP.get_u_final(eksobj),
-            param_names,
+            pd,
+            param_set,
             save_path,
+            save_file,
             i
         )
     end
 
+    # Check if all parameter files have been created (we expect there to be
+    # one for each iteration and ensemble member)
+    @test isdir(joinpath(save_path, "iteration_00"))
     @test isdir(joinpath(save_path, "iteration_01"))
-    file_names = CP.generate_file_names(N_ens)
+    subdir_names = CP.generate_subdir_names(N_ens)
     for i in 1:N_ens
-        @test isfile(joinpath(save_path, "iteration_01", file_names[i]))
+        subdir_0 = joinpath(save_path, "iteration_00", subdir_names[i])
+        subdir_1 = joinpath(save_path, "iteration_01", subdir_names[i])
+        @test isdir(subdir_0)
+        @test isfile(joinpath(subdir_0, save_file))
+        @test isdir(subdir_1)
+        @test isfile(joinpath(subdir_1, save_file))
     end
-
-
 end
