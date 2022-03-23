@@ -12,7 +12,7 @@ type = "float"
 prior = "Parameterized(MvNormal(4, 0.1))"
 constraint = "[no_constraint(), bounded_below(-1.0), bounded_above(0.4), bounded(-0.1,0.2)]"
 type = "float"
-  
+
 [uq_param_4]
 prior = "Samples([1.0 3.0 5.0 7.0; 9.0 11.0 13.0 15.0])"
 constraint = "[bounded(10.0, 15.0), bounded_below(-1.0)]"
@@ -22,3 +22,23 @@ type = "float"
 prior = "Samples([1.0 3.0; 5.0 7.0; 9.0 11.0; 13.0 15.0])"
 constraint = "[no_constraint(), no_constraint(), bounded_below(-2.0), bounded_above(100.0)]"
 type = "float"
+
+# Convenience notation for arrays of parameters that all have the same
+# prior distribution and constraints. 
+# `repeat([prior], n_dims)` will construct `n_dims` prior distribution. 
+# Similarly,  `repeat([constraint], n_dims)` will construct `n_dims`
+# constraints. 
+# The resulting `n_dims` parameters will automatically be attaching
+# numbers, e.g., "uq_param_6_(1)", "uq_param_6_(2)", etc.
+[uq_param_6]
+prior = "repeat([Parameterized(Gamma(2.0, 1.0))], 3)"
+constraint = "repeat([bounded_above(9.0)], 3)"
+type = "float"
+
+# A repeated constraint can also be combined with a multivariate 
+# distribution
+[uq_param_7]
+prior = "Parameterized(MvNormal(3, 2.0))"
+constraint = "repeat([no_constraint()], 3)"
+type = "float"
+

@@ -47,7 +47,18 @@ const EKP = EnsembleKalmanProcesses
             Samples([1.0 3.0; 5.0 7.0; 9.0 11.0; 13.0 15.0]),
             [no_constraint(), no_constraint(),
              bounded_below(-2.0), bounded_above(100.0)],
-            "uq_param_5")
+            "uq_param_5"),
+
+        "uq_param_6" => ParameterDistribution(
+            [Parameterized(Gamma(2.0, 1.0)), Parameterized(Gamma(2.0, 1.0)),
+             Parameterized(Gamma(2.0, 1.0))],
+            [[bounded_above(9.0)], [bounded_above(9.0)], [bounded_above(9.0)]],
+            ["uq_param_6_(1)", "uq_param_6_(2)", "uq_param_6_(3)"]),
+
+        "uq_param_7" => ParameterDistribution(
+            Parameterized(MvNormal(3, 2.0)),
+            [no_constraint(), no_constraint(), no_constraint()],
+            "uq_param_7")
     )
 
     # Get all `ParameterDistribution`s. We also add dummy (key, value) pairs
@@ -115,6 +126,7 @@ end
     rng = Random.MersenneTwister(rng_seed)
     
     # Construct the parameter distribution
+    println("big pd")
     pd = CP.get_parameter_distribution(param_set, uq_param_names)
 
     # ------
@@ -129,9 +141,9 @@ end
     # Define forward map (this is a completely contrived example)
     A3 = rand([0, 1], 4, 4)
     A5 = rand([0, 1], 4, 4)
-    function G(u1, u2, u3, u4, u5)  # map from R^5 to R^4
-        A4 = reshape([1, 1, u1, u2], 4, 1)
-        y = A3 * u3 + A5 * u5 + norm(u4) * A4
+    function G(u1, u2, u3, u4, u5, u6, u7)  # map from R^5 to R^4
+        A4 = reshape([norm(u7), norm(u6), u1, u2], 4, 1)
+        y = A3 * u3 + A5 * u5 + norm(u4) * A4 
         return dropdims(y, dims=2) 
     end
 
@@ -141,9 +153,11 @@ end
     u3_star = [0.12, -0.05, -0.13, 0.05]
     u4_star = [4.0, 14.0]
     u5_star = [2.5, 5.5, 10.0, 14.2]
+    u6_star = ones(10)
+    u7_star = zeros(10)
     
     # Synthetic observation
-    y_star = G(u1_star, u2_star, u3_star, u4_star, u5_star)
+    y_star = G(u1_star, u2_star, u3_star, u4_star, u5_star, u6_star, u7_star)
     Γy = 0.05 * I
     pdf_η = MvNormal(zeros(4), Γy)
     y_obs = y_star .+ rand(pdf_η)
@@ -175,11 +189,13 @@ end
     # EKS iterations
     for i in 1:N_iter
         params_i = get_u_final(eksobj)
-        G_n = [G(params_i[1,i],
-                 params_i[2,i],
-                 params_i[3:6,i],
-                 params_i[7:8,i],
-                 params_i[9:12,i]) for i in 1:N_ens]
+        G_n = [G(params_i[1, i],
+                 params_i[2, i],
+                 params_i[3:6, i],
+                 params_i[7:8, i],
+                 params_i[9:12, i],
+                 params_i[13:15, i],
+                 params_i[16:18, i]) for i in 1:N_ens]
         G_ens = hcat(G_n...) 
         EKP.update_ensemble!(eksobj, G_ens)
         # Save updated parameter ensemble
