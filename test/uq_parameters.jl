@@ -126,7 +126,6 @@ end
     rng = Random.MersenneTwister(rng_seed)
     
     # Construct the parameter distribution
-    println("big pd")
     pd = CP.get_parameter_distribution(param_set, uq_param_names)
 
     # ------

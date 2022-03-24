@@ -135,6 +135,7 @@ end
 
 function write_log_file(param_dict::Dict, filepath) where {FT}
     open(filepath, "w") do io
+
         TOML.print(io, param_dict)
     end
 end

@@ -40,7 +40,7 @@ function get_parameter_distribution(data::Dict, names)
         # involves broadcasting of priors / constraints.
         if is_array
             # A broadcast parameter
-            push!(param_names, construct_name(name, length(d))...)
+            push!(param_names, broadcast_name(name, length(d))...)
         else
             # Not a broadcast parameter
             push!(param_names, name)
@@ -48,10 +48,11 @@ function get_parameter_distribution(data::Dict, names)
     end
 
     if length(vcat(param_names...)) != length(names_vec)
-        # This parameter was broadcast
+        # The ParameterDistribution contains at least one broadcast parameter 
+        # parameters
         if typeof(names) <: AbstractString
             # The broadcast parameter is the only building block of the
-            # requested parameter distribution
+            # parameter distribution
             return ParameterDistribution(
                 prior[1],
                 constraint[1],
@@ -66,11 +67,14 @@ function get_parameter_distribution(data::Dict, names)
         end
 
     elseif length(param_names) > 1
+        # The ParameterDistribution consists of multiple parameters
         return ParameterDistribution(
             identity.(prior),
             identity.(constraint),
             identity.(param_names))
     else
+        # The ParameterDistribution consists of a single (non-broadcast)
+        # parameter
         return ParameterDistribution(
             prior[1],
             constraint[1],
@@ -89,6 +93,13 @@ Args:
 `param_info` - a dictionary with (at least) a key "constraint", whose
                 value is the parameter's constraint(s) (as parsed from
                 TOML file)
+
+`is_array` - true if this constraint is associated with an array of
+             distributions (which typically results from parsing expressions
+             of type "repeat([distribution], n_repetitions)"), false otherwise.
+             Matters for the `ParameterDistribution` constructor, which
+             requires constraints to be given as a list of 1-element lists if
+             `is_array` is true (e.g., [[no_constraint()], [no_constraint()]])
 
 Returns a single `Constraint` if `param_info` only contains one constraint,
 otherwise it returns an array of `Constraint`s
@@ -147,12 +158,28 @@ function construct_prior(param_info::Dict)
     end
 end
 
-function construct_name(base_name::String, n_repetitions::Int)
+
+"""
+broadcast_name(base_name, n_repetitions)
+
+Generates numbered parameter names <base_name>_(<i>); i in 1, ..., n_repetitions
+Example:
+    broadcast_name("my_param", 3)
+    returns ["my_param_(1)", "my_param_(2)", "my_param_(3)"]
+
+Args:
+`base_name` - base name to which numbers will be added
+`n_repetitions` - number of derived parameter names to generate from `base_name`
+
+Returns an array of length n_repetitions
+"""
+function broadcast_name(base_name::String, n_repetitions::Int)
 
     param_name(j) = base_name * "_(" * lpad(j,ndigits(n_repetitions), "0") * ")"
 
     return [param_name(j) for j in 1:n_repetitions]
 end
+
 
 """
 broadcast_constraint(expr, is_array)
@@ -164,7 +191,9 @@ Constructs an array of constraints from an expression of the sort
 
 Args:
 `expr`  - expression with expr.args[1] == Symbol("repeat")
-
+`is_array` - true if this constraint is associated with an array of
+             distributions (which typically results from parsing expressions
+             of type "repeat([distribution], n_repetitions)"), false otherwise.
 
 Returns an array of constraints
 """
@@ -181,6 +210,16 @@ function broadcast_constraint(c, is_array)
 end
 
 
+"""
+get_multidim_constraints(c)
+
+Parses multidimensional constraints
+
+Args:
+`c`  - expression containing the constraint information
+
+Returns an array of `Constraint`s
+"""
 function get_multidim_constraint(c)
 
     constraints = []
@@ -216,6 +255,16 @@ function get_multidim_constraint(c)
 end
 
 
+"""
+get_onedim_constraints(c)
+
+Parses a one-dimensional constraint
+
+Args:
+`c`  - expression containing the constraint information
+
+Returns a `Constraint`
+"""
 function get_onedim_constraint(c)
 
     return getfield(Main, c.args[1])(c.args[2:end]...)
@@ -223,7 +272,7 @@ end
 
 
 """
-broadcast_prior(expr)
+broadcast_prior(d)
 
 Constructs an array of constraints or distributions from an expression of
 the sort
@@ -232,7 +281,7 @@ the sort
     etc.
 
 Args:
-`expr`  - expression with expr.args[1] == Symbol("repeat")
+`d`  - expression with expr.args[1] == Symbol("repeat")
 
 Returns an array of prior distributions
 """
@@ -246,6 +295,16 @@ function broadcast_prior(d)
 end
 
 
+"""
+get_multidim_prior(d)
+
+Parses multidimensional prior distributions
+
+Args:
+`d`  - expression containing the distribution information
+
+Returns an array of prior distributions (`Parameterized` or `Samples`)
+"""
 function get_multidim_prior(d)
 
     n_distributions = length(d.args)
@@ -273,6 +332,16 @@ function get_multidim_prior(d)
 end
 
 
+"""
+get_onedim_prior(d)
+
+Parses a one-dimensional prior distributions
+
+Args:
+`d`  - expression containing the distribution information
+
+Returns a single prior distributions (`Parameterized` or `Samples`)
+"""
 function get_onedim_prior(d)
 
     dist_type_symb = d.args[1]
@@ -315,7 +384,7 @@ function construct_2d_array(expr)
 end
 
 
-save_parameter_ensemble(param_array::Array{FT, 2}, param_distribution::ParameterDistribution, default_param_set::ParamDict{FT}, save_path::String, save_file::String, iteration::Union{Int, Nothing}=nothing) where {FT} = save_parameter_ensemble(param_array, param_distribution, default_param_set.data, save_path, save_file, iteration)
+save_parameter_ensemble(param_array::Array{FT, 2}, param_distribution::ParameterDistribution, default_param_set::ParamDict{FT}, save_path::String, save_file::String, iter::Union{Int, Nothing}=nothing) where {FT} = save_parameter_ensemble(param_array, param_distribution, default_param_set.data, save_path, save_file, iter)
 """
 save_parameter_ensemble(
     param_array,
@@ -323,22 +392,27 @@ save_parameter_ensemble(
     default_param_data,
     save_path,
     save_file,
-    iteration=nothing)
+    iter=nothing)
 
 Saves the parameters in the given `param_array` to TOML files. The intended
 use is for saving the ensemble of parameters after each update of an
 ensemble Kalman process.
-Each ensemble member (column of `param_array`) is saved to a separate file
-named "member_<i>.toml" (i=1, ..., N_ens). If an `iteration` number is
-given, a directory "iteration_<j>" is created in `save_path`, and all
-member files are saved there.
+Each ensemble member (column of `param_array`) is saved in a separate
+directory "member_<j>" (j=1, ..., N_ens). The name of the saved toml file is
+given by `save_file`; it is the same for all members.
+If an iteration `iter` is given, a directory "iteration_<iter>" is created in
+`save_path`, which contains all the "member_<j>" subdirectories.
 
 Args:
 `param_array` - array of size N_param x N_ens
-`names` - array of parameter names or single parameter name
+`param_distribution` - the parameter distribution that gave rise to
+                       `param_array`
+`default_param_data` - dict of default parameters to be combined and saved with
+                       the parameters in `param_array` into a toml file
 `save_path` - path to where the parameters will be saved
-`iteration` - which iteration of the ensemble Kalman process the given
-              `param_array` represents.
+`save_file` - name of the toml files to be generated
+`iter` - the iteration of the ensemble Kalman process represented by the given
+         `param_array`
 """
 function save_parameter_ensemble(
     param_array::Array{FT, 2},
@@ -346,7 +420,7 @@ function save_parameter_ensemble(
     default_param_data::Dict,
     save_path::String,
     save_file::String,
-    iteration::Union{Int, Nothing}=nothing) where {FT}
+    iter::Union{Int, Nothing}=nothing) where {FT}
 
     # The number of rows in param_array represent the sum of all parameter
     # dimensions. We need to determine the slices of rows that belong to
@@ -359,7 +433,7 @@ function save_parameter_ensemble(
     N_ens = size(param_array)[2]
 
     # If needed, create directory where files will be stored
-    save_dir = isnothing(iteration) ? save_path : joinpath(save_path, join(["iteration", lpad(iteration, 2, "0")], "_"))
+    save_dir = isnothing(iter) ? save_path : joinpath(save_path, join(["iteration", lpad(iter, 2, "0")], "_"))
     mkpath(save_dir)
 
     # Each ensemble member gets its own subdirectory
@@ -375,7 +449,7 @@ function save_parameter_ensemble(
         # corresponding value in param_array
         param_dict = deepcopy(default_param_data)
 
-        param_dict_updated = assign_values(
+        param_dict_updated = assign_values!(
             i,
             param_array,
             param_slices,
@@ -388,11 +462,28 @@ function save_parameter_ensemble(
     end
 end
 
-function assign_values(member::Int,
-                       param_array::Array{FT,2},
-                       param_slices::Array{Array{Int64,1},1},
-                       param_dict::Dict,
-                       param_names::Array{String,1}) where {FT}
+
+"""
+assign_values!(member, param_array, param_slices, param_dict, param_names)
+
+Updates `param_dict` with the values of the given `member` of the `param_array`
+
+Args:
+`member`  - ensemble member (corresponds to column of `param_array`)
+`param_array` - N_par x N_ens array of parameter values
+`param_slices` - list of contiguous `[collect(1:i), collect(i+1:j),... ]` used
+                 to s plit parameter arrays by distribution dimensions
+`param_dict` - the dict of parameters to be updated with new parameter values
+`param_names` - names of the parameters
+
+Returns the updated `param_dict`
+"""
+function assign_values!(
+    member::Int,
+    param_array::Array{FT,2},
+    param_slices::Array{Array{Int64,1},1},
+    param_dict::Dict,
+    param_names::Array{String,1}) where {FT}
 
     broadcast_mask = repeat([false], length(param_names))
     param_names_vec = typeof(param_names) <: AbstractVector ? param_names : [param_names]
@@ -415,6 +506,7 @@ function assign_values(member::Int,
     return param_dict
 end
 
+
 function is_broadcast(param_name)
 
     if endswith(param_name, ")") && occursin("_(", param_name)
@@ -424,12 +516,14 @@ function is_broadcast(param_name)
     end
 end
 
+
 function merge_names(param_names)
 
     base_names = first.(split.(param_names, "_("))
 
     return unique!(base_names)
 end
+
 
 function get_base_name(name)
 
@@ -442,17 +536,27 @@ end
 """
 merge_slices(param_slices, broadcast_mask)
 
-Merges the slices that belong to broadcast parameters. When writing
-parameters to file, we want to write e.g.
+Merges the slices that belong to broadcast parameters. When writing parameters
+to file, we want to write e.g.
     [param_i]
     value = [1.0, 1.5, 0.5, 0.8]
     prior = "repeat([Parameterized(Normal(1.0, 0.5)], 4)"
     constraint = "repeat([no_constraint()], 4)"
 
-rather than to write `param_i` as the four individual "subparameters"
-it gets broadcast to internally (`param_i_(1)`, `param_i_(2)`, `param_i_(3)`,
-`param_i_(4)`. This requires merging of the single-dimension parameter slices
+rather than to write each of the four individual "subparameters" `param_i` gets
+broadcast to internally (`param_i_(1)`, `param_i_(2)`, `param_i_(3)`,
+`param_i_(4)`). This requires merging of the single-dimension parameter slices
 corresponding to these subparameters back into one 4-element slice
+
+Args:
+`param_slices` - array of contiguous `[collect(1:i), collect(i+1:j),... ]` used
+                 to s plit parameter arrays by distribution dimensions
+`broadcast_mask` - boolean array whose jth element is true if the jth parameter
+                   is broadcast, false otherwise
+
+Returns an array of contiguous `[collect(1:i), collect(i+1:j),... ]` used to
+split parameter arrays by distribution dimensions, where the dimensions of 
+broadcast parameters have been merged into a single slice
 """
 function merge_slices(param_slices, broadcast_mask)
 
@@ -489,6 +593,17 @@ function merge_slices(param_slices, broadcast_mask)
 end
 
 
+"""
+generate_subdir_names(N_ens, prefix="member")
+
+Generates `N_ens` directory names "<prefix>_<i>"; i=1, ..., N_ens
+
+Args:
+`N_ens`  - number of ensemble members (= number of subdirectories)
+`prefix` - prefix used for generation of subdirectory names
+
+Returns a list of directory names
+"""
 function generate_subdir_names(N_ens::Int, prefix::String="member")
 
     member(j) = join([prefix, lpad(j, ndigits(N_ens), "0")], "_")
