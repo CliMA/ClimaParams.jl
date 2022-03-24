@@ -1,9 +1,13 @@
 using Distributions
 using EnsembleKalmanProcesses.ParameterDistributions
 
+# "Public" functions (i.e., functions intended to be called by user):
+#    - get_parameter_distribution
+#    - save_parameter_ensemble
+#    - get_UQ_parameters
 
-get_parameter_distribution(param_set::ParamDict{FT}, names) where {FT} =
-    get_parameter_distribution(param_set.data, names)
+
+get_parameter_distribution(param_set::ParamDict{FT}, names) where {FT} = get_parameter_distribution(param_set.data, names)
 
 """
 get_parameter_distribution(data, names)
@@ -18,7 +22,7 @@ Args:
 
 Returns a `ParameterDistribution`
 """
-function get_parameter_distribution(data::Dict, names)
+function get_parameter_distribution(data::Dict, names::Union{String, Array{String, 1}})
 
     names_vec = (typeof(names) <: AbstractVector) ? names : [names]
     n_names = length(names_vec)
@@ -197,7 +201,7 @@ Args:
 
 Returns an array of constraints
 """
-function broadcast_constraint(c, is_array)
+function broadcast_constraint(c::Expr, is_array::Bool)
 
     @assert(c.args[1] == Symbol("repeat"))
     constraint = get_onedim_constraint(c.args[2].args[1])
@@ -220,7 +224,7 @@ Args:
 
 Returns an array of `Constraint`s
 """
-function get_multidim_constraint(c)
+function get_multidim_constraint(c::Expr)
 
     constraints = []
     constraint_groups = c.args
@@ -265,7 +269,7 @@ Args:
 
 Returns a `Constraint`
 """
-function get_onedim_constraint(c)
+function get_onedim_constraint(c::Expr)
 
     return getfield(Main, c.args[1])(c.args[2:end]...)
 end
@@ -285,7 +289,7 @@ Args:
 
 Returns an array of prior distributions
 """
-function broadcast_prior(d)
+function broadcast_prior(d::Expr)
 
     @assert(d.args[1] == Symbol("repeat"))
     prior = get_onedim_prior(d.args[2].args[1])
@@ -305,7 +309,7 @@ Args:
 
 Returns an array of prior distributions (`Parameterized` or `Samples`)
 """
-function get_multidim_prior(d)
+function get_multidim_prior(d::Expr)
 
     n_distributions = length(d.args)
     distributions = Array{ParameterDistributionType}(undef, n_distributions)
@@ -342,7 +346,7 @@ Args:
 
 Returns a single prior distributions (`Parameterized` or `Samples`)
 """
-function get_onedim_prior(d)
+function get_onedim_prior(d::Expr)
 
     dist_type_symb = d.args[1]
     dist_type = getfield(Main, dist_type_symb)
@@ -365,20 +369,20 @@ end
 
 
 """
-construct_2d_array(expr)
+construct_2d_array(arr)
 
 Reconstructs 2d array of samples
 
 Args:
-`expr`  - expression (has type `Expr`) with head `vcat`.
+`arr`  - expression (has type `Expr`) with head `vcat`.
 
 Returns a 2d array of samples constructed from the arguments of `expr`
 """
-function construct_2d_array(expr)
+function construct_2d_array(arr::Expr)
 
-    @assert(expr.head == Symbol("vcat"))
-    n_rows = length(expr.args)
-    arr_of_rows = [expr.args[i].args for i in 1:n_rows]
+    @assert(arr.head == Symbol("vcat"))
+    n_rows = length(arr.args)
+    arr_of_rows = [arr.args[i].args for i in 1:n_rows]
 
     return Float64.(vcat(arr_of_rows'...))
 end
@@ -507,7 +511,7 @@ function assign_values!(
 end
 
 
-function is_broadcast(param_name)
+function is_broadcast(param_name::String)
 
     if endswith(param_name, ")") && occursin("_(", param_name)
         return true
@@ -517,7 +521,7 @@ function is_broadcast(param_name)
 end
 
 
-function merge_names(param_names)
+function merge_names(param_names::Union{String, Array{String, 1}})
 
     base_names = first.(split.(param_names, "_("))
 
@@ -525,11 +529,11 @@ function merge_names(param_names)
 end
 
 
-function get_base_name(name)
+function get_base_name(param_name::Union{String, Array{String, 1}})
 
-    base_name = first.(split.(name, "_("))
+    base_param_name = first.(split.(param_name, "_("))
 
-    return unique!(base_name)
+    return unique!(base_param_name)
 end
 
 
@@ -558,7 +562,7 @@ Returns an array of contiguous `[collect(1:i), collect(i+1:j),... ]` used to
 split parameter arrays by distribution dimensions, where the dimensions of 
 broadcast parameters have been merged into a single slice
 """
-function merge_slices(param_slices, broadcast_mask)
+function merge_slices(param_slices::Union{Array{Int, 1}, Array{Array{Int, 1}, 1}}, broadcast_mask::Array{Bool, 1})
 
     @assert(length(param_slices) == length(broadcast_mask))
 
