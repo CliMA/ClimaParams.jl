@@ -128,6 +128,8 @@ Microphysics.Δa_sno(::AEPS)     = 0
 Microphysics.χv_sno(::AEPS)     = 1
 Microphysics.Δv_sno(::AEPS)     = 0
 
+Microphysics.microph_scaling(::AEPS) = 1.0
+
 # interactions
 Microphysics.E_liq_rai(ps::AEPS) = 0.8
 Microphysics.E_liq_sno(ps::AEPS) = 0.1
