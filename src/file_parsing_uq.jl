@@ -569,7 +569,7 @@ function merge_slices(param_slices::Union{Array{Int, 1}, Array{Array{Int, 1}, 1}
     merge_slices = [] # slices to be merged
     for j in 1:length(broadcast_mask)
         if broadcast_mask[j]
-            if j == 0 || !broadcast_mask[j-1]
+            if j == 1 || !broadcast_mask[j-1]
                 push!(merge_slices, deepcopy(param_slices[j]))
             else
                 push!(merge_slices[end], deepcopy(param_slices[j][1]))
