@@ -64,6 +64,8 @@ end
   @test !isnan(a0_sno(earth))
   @test !isnan(v0_sno(earth))
 
+  @test !isnan(microph_scaling(earth))
+
   @test !isnan(E_liq_rai(earth))
   @test !isnan(E_liq_sno(earth))
   @test !isnan(E_ice_rai(earth))

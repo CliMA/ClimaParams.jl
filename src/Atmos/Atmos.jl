@@ -236,6 +236,7 @@ export C_drag,
        Δa_sno,
        χv_sno,
        Δv_sno,
+       microph_scaling,
        E_liq_rai,
        E_liq_sno,
        E_ice_rai,
@@ -361,15 +362,18 @@ function E_ice_sno end
 """ collision efficiency (-) """
 function E_rai_sno end
 
-""" ventilation factor coefficient for rain or snow (-) """
+""" ventilation factor coefficient for rain (-) """
 function a_vent_rai end
-""" ventilation factor coefficient for rain or snow (-) """
+""" ventilation factor coefficient for snow (-) """
 function a_vent_sno end
 
-""" ventilation factor coefficient for rain or snow (-) """
+""" ventilation factor coefficient for rain (-) """
 function b_vent_rai end
-""" ventilation factor coefficient for rain or snow (-) """
+""" ventilation factor coefficient for snow (-) """
 function b_vent_sno end
+
+""" rain evaporation, snow deposition sublimation and melting scaling factor for coupling with EDMF (-) """
+function microph_scaling end
 
 """ thermal conductivity of air (J/m/s/K) """
 function K_therm end
