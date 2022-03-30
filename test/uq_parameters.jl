@@ -14,9 +14,9 @@ const EKP = EnsembleKalmanProcesses
 
 @testset "Parse and write parameter distributions" begin
 
-    # Load UQ parameters
-    uq_param_path = joinpath(@__DIR__,"uq_test_parameters.toml")
-    param_dict = CP.parse_toml_file(uq_param_path)
+    # Load parameters
+    toml_path = joinpath(@__DIR__,"uq_test_parameters.toml")
+    param_dict = CP.read_parameters(toml_path)
 
 
     # True `ParameterDistribution`s. This is what `get_parameter_distribution`
@@ -64,8 +64,10 @@ const EKP = EnsembleKalmanProcesses
     # Get all `ParameterDistribution`s. We also add dummy (key, value) pairs
     # to check if that information gets added correctly when saving the
     # parameters back to file and re-loading them
+    uq_param_names = CP.get_UQ_parameters(param_dict)
     descr = " will be learned using CES"
-    for param_name in keys(param_dict)
+
+    for param_name in uq_param_names
         param_dict[param_name]["description"] = param_name * descr
         pd = CP.get_parameter_distribution(param_dict, param_name)
         target_pd = target_map[param_name]
@@ -83,17 +85,16 @@ const EKP = EnsembleKalmanProcesses
 
     # We can also get a `ParameterDistribution` representing
     # multiple parameters
-    param_names = ["uq_param_2", "uq_param_4", "uq_param_5"]
-    pd = CP.get_parameter_distribution(param_dict, param_names)
+    param_list = ["uq_param_2", "uq_param_4", "uq_param_5"]
+    pd = CP.get_parameter_distribution(param_dict, param_list)
 
     # Save the parameter dictionary and re-load it. 
     logfile_path = joinpath(@__DIR__,"log_file_test_uq.toml")
     CP.write_log_file(param_dict, logfile_path)
 
     # Read in log file as new parameter file and rerun test.
-    param_dict_from_log = CP.parse_toml_file(logfile_path)
-    rm(logfile_path) # clean up
-    for param_name in keys(param_dict_from_log)
+    param_dict_from_log = CP.read_parameters(logfile_path)
+    for param_name in uq_param_names
         pd = CP.get_parameter_distribution(param_dict_from_log, param_name)
         @test get_distribution(pd) == get_distribution(target_map[param_name])
         @test param_dict_from_log[param_name]["description"] == param_name*descr
@@ -109,24 +110,20 @@ end
     # Combine a parameter struct from the parameters defined in
     # "uq_test_parameters.toml" (the override file) and those defined in
     # "test_parameters.toml" (the default file)
-    param_path = joinpath(@__DIR__, "test_parameters.toml")
-    uq_param_path = joinpath(@__DIR__,"uq_test_parameters.toml")
-    param_set = CP.create_parameter_struct(
-        uq_param_path,
-        param_path,
-        dict_type="name"
-    )
+    toml_path = joinpath(@__DIR__,"uq_test_parameters.toml")
+    param_dict = CP.read_parameters(toml_path)
 
     # Extract the UQ parameters from the joint set of the parameters from
     # param_path and those from uq_param_path
-    uq_param_names = CP.get_UQ_parameters(param_set)
+    uq_param_names = CP.get_UQ_parameters(param_dict)
 
     # Seed for pseudo-random number generator
     rng_seed = 42
     rng = Random.MersenneTwister(rng_seed)
     
     # Construct the parameter distribution
-    pd = CP.get_parameter_distribution(param_set, uq_param_names)
+    pd = CP.get_parameter_distribution(param_dict, uq_param_names)
+    slices = batch(pd) # Will need this later to extract parameters
 
     # ------
     # Set up an ensemble Kalman process to test writing of parameter ensembles
@@ -140,26 +137,50 @@ end
     # Define forward map (this is a completely contrived example)
     A3 = rand([0, 1], 4, 4)
     A5 = rand([0, 1], 4, 4)
-    function G(u1, u2, u3, u4, u5, u6, u7)  # map from R^5 to R^4
-        A4 = reshape([norm(u7), norm(u6), u1, u2], 4, 1)
-        y = A3 * u3 + A5 * u5 + norm(u4) * A4 
+
+    function G(u) # map from R^18 to R^4
+        u_constr = transform_unconstrained_to_constrained(pd, u)
+        value_of = Dict()
+        for (i, param) in enumerate(get_name(pd))
+            value_of[param] = u_constr[slices[i]]
+        end
+        A4 = reshape(
+            [norm(value_of["uq_param_4"]) + value_of["uq_param_6_(1)"][1],
+             norm(value_of["uq_param_6_(2)"]) * value_of["uq_param_6_(3)"][1],
+             value_of["uq_param_2"][1],
+             value_of["uq_param_1"][1]], 4, 1)
+        y = (A3 * value_of["uq_param_3"] + A5 * value_of["uq_param_5"]
+             + norm(value_of["uq_param_4"]) * A4)
         return dropdims(y, dims=2) 
     end
 
-    # True parameter values
-    u1_star = 2.5
-    u2_star = 3.0
+    # True parameter values (in constrained space)
+    u1_star = 14.6
+    u2_star = 19.0
     u3_star = [0.12, -0.05, -0.13, 0.05]
-    u4_star = [4.0, 14.0]
-    u5_star = [2.5, 5.5, 10.0, 14.2]
-    u6_star = ones(10)
-    u7_star = zeros(10)
+    u4_star = [12.0, 14.0]
+    u5_star = [10.0, -1.0, 1.5, 10.0]
+    u6_1_star = 1.0
+    u6_2_star = 1.0
+    u6_3_star = 1.0
+    u7_star = 3.0 * ones(3)
+    u_star = vcat(u1_star, u2_star, u3_star, u4_star, u5_star,
+                  u6_1_star, u6_2_star, u6_3_star, u7_star)
+
+    # True parameter values in constrained space
+    u_star_constr = transform_unconstrained_to_constrained(pd, u_star)
     
     # Synthetic observation
-    y_star = G(u1_star, u2_star, u3_star, u4_star, u5_star, u6_star, u7_star)
+    A4_star = reshape(
+        [norm(u4_star) + u6_1_star,
+         norm(u6_2_star) * u6_3_star,
+         u2_star,
+         u1_star], 4, 1)
+
+    y_star = A3 * u3_star + A5 * u5_star + norm(u4_star) * A4_star # G(u_star)
     Γy = 0.05 * I
     pdf_η = MvNormal(zeros(4), Γy)
-    y_obs = y_star .+ rand(pdf_η)
+    y_obs = dropdims(y_star, dims=2) .+ rand(pdf_η)
 
     N_ens = 50 # number of ensemble members
     N_iter = 1 # number of iterations
@@ -171,7 +192,7 @@ end
     CP.save_parameter_ensemble(
         initial_ensemble,
         pd,
-        param_set,
+        param_dict,
         save_path,
         save_file,
         0 # We consider the initial ensemble to be the 0th iteration
@@ -188,20 +209,21 @@ end
     # EKS iterations
     for i in 1:N_iter
         params_i = get_u_final(eksobj)
-        G_n = [G(params_i[1, i],
-                 params_i[2, i],
-                 params_i[3:6, i],
-                 params_i[7:8, i],
-                 params_i[9:12, i],
-                 params_i[13:15, i],
-                 params_i[16:18, i]) for i in 1:N_ens]
-        G_ens = hcat(G_n...) 
+        G_n = [G(params_i[:, member_idx]) for member_idx in 1:N_ens]
+#?g        G_n = [G(params_i[1, i],
+#?g                 params_i[2, i],
+#?g                 params_i[3:6, i],
+#?g                 params_i[7:8, i],
+#?g                 params_i[9:12, i],
+#?g                 params_i[13:15, i],
+#?g                 params_i[16:18, i]) for i in 1:N_ens]
+        G_ens = hcat(G_n...)
         EKP.update_ensemble!(eksobj, G_ens)
         # Save updated parameter ensemble
         CP.save_parameter_ensemble(
             EKP.get_u_final(eksobj),
             pd,
-            param_set,
+            param_dict,
             save_path,
             save_file,
             i
