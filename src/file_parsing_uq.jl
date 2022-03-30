@@ -415,8 +415,7 @@ save_parameter_ensemble(
     default_param_data,
     save_path,
     save_file,
-    iter=nothing,
-    save_as="constrained")
+    iter=nothing)
 
 Saves the parameters in the given `param_array` to TOML files. The intended
 use is for saving the ensemble of parameters after each update of an
@@ -436,11 +435,6 @@ Args:
 `save_file` - name of the toml files to be generated
 `iter` - the iteration of the ensemble Kalman process represented by the given
          `param_array`
-`save_as` - whether parameters are saved as values in the "constrained" space
-            where the model input lives or in the "unconstrained" space where
-            the prior lives (see `ParameterDistributions` docs for more
-            information on the two spaces and transformations between them).
-            Defaults to "constrained" but can also be set to "unconstrained"
 """
 function save_parameter_ensemble(
     param_array::Array{FT, 2},
@@ -448,22 +442,13 @@ function save_parameter_ensemble(
     default_param_data::Dict,
     save_path::AbstractString,
     save_file::AbstractString,
-    iter::Union{Int, Nothing}=nothing,
-    save_as::AbstractString="constrained") where {FT}
+    iter::Union{Int, Nothing}=nothing) where {FT}
 
-    if !(save_as in ["constrained", "unconstrained"])
-        throw(ValueError("save_as must be 'constrained' or 'unconstrained'"))
-    end
-
-    if save_as == "constrained"
-        # The parameter values are currently in the unconstrained space
-        # where the ensemble Kalman algorithm takes place
-        save_array = transform_unconstrained_to_constrained(
-            param_distribution,
-            param_array)
-    else
-        save_array = param_array
-    end
+    # The parameter values are currently in the unconstrained space
+    # where the ensemble Kalman algorithm takes place
+    save_array = transform_unconstrained_to_constrained(
+        param_distribution,
+        param_array)
 
     # The number of rows in param_array represent the sum of all parameter
     # dimensions. We need to determine the slices of rows that belong to

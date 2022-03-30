@@ -134,7 +134,6 @@ end
     # the true parameter values u* (which we pretend to know for the
     # purpose of this example) and adding random observational noise η
 
-    # Define forward map (this is a completely contrived example)
     A3 = rand([0, 1], 4, 4)
     A5 = rand([0, 1], 4, 4)
 
@@ -164,12 +163,7 @@ end
     u6_2_star = 1.0
     u6_3_star = 1.0
     u7_star = 3.0 * ones(3)
-    u_star = vcat(u1_star, u2_star, u3_star, u4_star, u5_star,
-                  u6_1_star, u6_2_star, u6_3_star, u7_star)
 
-    # True parameter values in constrained space
-    u_star_constr = transform_unconstrained_to_constrained(pd, u_star)
-    
     # Synthetic observation
     A4_star = reshape(
         [norm(u4_star) + u6_1_star,
@@ -210,15 +204,9 @@ end
     for i in 1:N_iter
         params_i = get_u_final(eksobj)
         G_n = [G(params_i[:, member_idx]) for member_idx in 1:N_ens]
-#?g        G_n = [G(params_i[1, i],
-#?g                 params_i[2, i],
-#?g                 params_i[3:6, i],
-#?g                 params_i[7:8, i],
-#?g                 params_i[9:12, i],
-#?g                 params_i[13:15, i],
-#?g                 params_i[16:18, i]) for i in 1:N_ens]
         G_ens = hcat(G_n...)
         EKP.update_ensemble!(eksobj, G_ens)
+
         # Save updated parameter ensemble
         CP.save_parameter_ensemble(
             EKP.get_u_final(eksobj),
