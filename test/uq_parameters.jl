@@ -134,8 +134,8 @@ end
     # the true parameter values u* (which we pretend to know for the
     # purpose of this example) and adding random observational noise η
 
-    A3 = rand([0, 1], 4, 4)
-    A5 = rand([0, 1], 4, 4)
+    A3 = Array(reshape(range(1, stop=16), 4, 4))
+    A5 = Array(reshape(range(0, stop=1.0, length=16), 4, 4))
 
     function G(u) # map from R^18 to R^4
         u_constr = transform_unconstrained_to_constrained(pd, u)

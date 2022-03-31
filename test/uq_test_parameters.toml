@@ -1,29 +1,24 @@
-# The six parameters below are to be used for calibration / uncertainty 
+# The seven parameters below are to be used for calibration / uncertainty 
 # quantification
 [uq_param_1]
 prior = "Parameterized(Normal(2.0, 1.0))"
 constraint = "no_constraint()"
-type = "float"
 
 [uq_param_2]
 prior = "Parameterized(Gamma(5.0, 2.0))"
 constraint = "bounded_below(3.0)"
-type = "float"
 
 [uq_param_3]
 prior = "Parameterized(MvNormal(4, 0.1))"
 constraint = "[no_constraint(), bounded_below(-1.0), bounded_above(0.4), bounded(-0.1,0.2)]"
-type = "float"
 
 [uq_param_4]
 prior = "Samples([1.0 3.0 5.0 7.0; 9.0 11.0 13.0 15.0])"
 constraint = "[bounded(10.0, 15.0), bounded_below(-1.0)]"
-type = "float"
 
 [uq_param_5]
 prior = "Samples([1.0 3.0; 5.0 7.0; 9.0 11.0; 13.0 15.0])"
 constraint = "[no_constraint(), no_constraint(), bounded_below(-2.0), bounded_above(100.0)]"
-type = "float"
 
 # Convenience notation for arrays of parameters that all have the same prior 
 # distribution and constraints. 
@@ -34,14 +29,12 @@ type = "float"
 # e.g., "uq_param_6_(1)", "uq_param_6_(2)", etc.
 [uq_param_6]
 prior = "repeat([Parameterized(Gamma(2.0, 1.0))], 3)"
-constraint = "repeat([bounded_above(9.0)], 3)"
-type = "float"
+constraint = "repeat([[bounded_above(9.0)]], 3)"
 
 # A repeated constraint can also be combined with a multivariate distribution.
 [uq_param_7]
 prior = "Parameterized(MvNormal(3, 2.0))"
 constraint = "repeat([no_constraint()], 3)"
-type = "float"
 
 
 # The six parameters below are "regular" parameters, as indicated  by the 
@@ -49,34 +42,27 @@ type = "float"
 [mean_sea_level_pressure]
 alias = "MSLP"
 value = 101325
-type = "float"
 
 [gas_constant]
 alias = "gas_constant"
 value = 8.3144598
-type = "float"
 
 [light_speed]
 alias = "light_speed"
 value = 299792458
-prior = "fixed"
-type = "float"
 
 [planck_constant]
 alias = "h_Planck"
 value = 6.626e-34
-type = "float"
 
 [avogadro_constant]
 alias = "avogad"
 value = 6.02214076e23
-type = "float"
 
 # This parameter is not interpreted as a UQ parameter because its prior is set 
 # to "fixed"
 [already_calibrated_param]
 prior = "fixed"
-constrained = "bounded_above(5.0)"
-type = "float"
+constraint = "bounded_above(5.0)"
 value = "0.64"
 

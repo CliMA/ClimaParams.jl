@@ -60,7 +60,7 @@ function get_parameter_distribution(param_dict::Dict, names::Union{AbstractStrin
         ((is_array) && (n_names > 1)) ? push!(prior, d...) : push!(prior, d)
         c = construct_constraint(param_dict[name], is_array)
         ((is_array) && (n_names > 1)) ? push!(constraint, c...) : push!(constraint, c)
-        # Names can usually be taken directly from the title of the
+        # Names can usually be taken directly from the header of the
         # corresponding parameter table in the toml file. However, names
         # have to be generated when the construction of a prameter distribution
         # involves broadcasting of priors / constraints.
@@ -75,7 +75,6 @@ function get_parameter_distribution(param_dict::Dict, names::Union{AbstractStrin
 
     if length(vcat(param_names...)) != length(names_vec)
         # The ParameterDistribution contains at least one broadcast parameter 
-        # parameters
         if typeof(names) <: AbstractString
             # The broadcast parameter is the only building block of the
             # parameter distribution
@@ -84,7 +83,7 @@ function get_parameter_distribution(param_dict::Dict, names::Union{AbstractStrin
                 constraint[1],
                 identity.(param_names))
         else
-            # The ParaeterDistribution consists of a broadcast parameter and at
+            # The ParameterDistribution consists of a broadcast parameter and at
             # least one additional parameter
             return ParameterDistribution(
                 identity.(prior),
@@ -210,7 +209,7 @@ broadcast_constraint(expr, is_array)
 
 Constructs an array of constraints from an expression of the sort
     "repeat([no_constraint], 10)",
-    "repeat([bounded_below(0.3)], 100),
+    "repeat([[bounded_below(0.3)]], 100),
     etc.
 
 Args:
@@ -224,11 +223,12 @@ Returns an array of constraints
 function broadcast_constraint(c::Expr, is_array::Bool)
 
     @assert(c.args[1] == Symbol("repeat"))
-    constraint = get_onedim_constraint(c.args[2].args[1])
     n_repetitions  = c.args[3]
     if is_array
+        constraint = get_onedim_constraint(c.args[2].args[1].args[1])
         return repeat([[constraint]], n_repetitions)
     else
+        constraint = get_onedim_constraint(c.args[2].args[1])
         return repeat([constraint], n_repetitions)
     end
 end
@@ -280,7 +280,7 @@ end
 
 
 """
-get_onedim_constraints(c)
+get_onedim_constraint(c)
 
 Parses a one-dimensional constraint
 
@@ -313,7 +313,7 @@ function broadcast_prior(d::Expr)
 
     @assert(d.args[1] == Symbol("repeat"))
     prior = get_onedim_prior(d.args[2].args[1])
-    n_repetitions  = d.args[3]
+    n_repetitions = d.args[3]
 
     return repeat([prior], n_repetitions)
 end
