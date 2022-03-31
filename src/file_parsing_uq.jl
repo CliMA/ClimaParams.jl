@@ -669,3 +669,21 @@ function get_UQ_parameters(param_dict::Dict)
 
     return uq_param
 end
+
+
+"""
+write_log_file(param_dict, file_path)
+
+Writes the parameters in `param_dict` into a .toml file
+
+Args:
+`param_dict` - nested dictionary that has parameter names as keys and the
+               corresponding dictionaries of parameter information as values
+`file_path` - path of the file where parameters are saved
+"""
+function write_log_file(param_dict::Dict, file_path::AbstractString) where {FT}
+    open(filepath, "w") do io
+        TOML.print(io, param_dict)
+    end
+end
+

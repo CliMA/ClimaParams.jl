@@ -133,13 +133,6 @@ function write_log_file(param_set::ParamDict{FT}, filepath) where {FT}
     end
 end
 
-function write_log_file(param_dict::Dict, filepath) where {FT}
-    open(filepath, "w") do io
-
-        TOML.print(io, param_dict)
-    end
-end
-
 function merge_override_default_values(override_param_struct::ParamDict{FT},default_param_struct::ParamDict{FT}) where {FT}
     merged_struct = deepcopy(default_param_struct)
     for (key, val) in override_param_struct.data
