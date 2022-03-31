@@ -1,17 +1,64 @@
 using TOML
+using DocStringExtensions
 
+export ParamDict
+export parse_toml_file,
+    get_parametric_type,
+    iterate_alias,
+    log_component!,
+    get_values,
+    get_parameter_values!,
+    get_parameter_values,
+    check_override_parameter_usage,
+    write_log_file,
+    log_parameter_information,
+    merge_override_default_values,
+    create_parameter_struct
+        
+    
+"""
+    ParamDict{FT}
+
+structure to hold information read-in from TOML file, as well as a parametrization type `FT`
+# Constructors
+
+    ParamDict(data::Dict, dict_type::String, override_dict::Union{Nothing,Dict})
+
+# Fields
+
+$(DocStringExtensions.FIELDS)
+
+"""
+struct ParamDict{FT}
+    "dictionary representing a default/merged parameter TOML file"
+    data::Dict
+    "string to determine how dictionary look-up is performed"
+    dict_type::String
+    "either a nothing, or a dictionary representing an override parameter TOML file"
+    override_dict::Union{Nothing,Dict}
+end
+
+"""
+    parse_toml_file(filepath)
+
+use a TOML parser to read TOML file at `filepath`.
+"""
 function parse_toml_file(filepath)
     return TOML.parsefile(filepath)
 end
 
-struct ParamDict{FT}
-    data::Dict
-    dict_type::String
-end
+"""
+    get_parametric_type(::ParamDict{FT}) where {FT}
 
-# to get the "float" or whatever back
+obtains the type `FT` from `ParamDict{FT}`.
+"""
 get_parametric_type(::ParamDict{FT}) where {FT} = FT
 
+"""
+    iterate_alias(d::Dict)
+
+An iteration utility to iterate dictionary by alias key.
+"""
 function iterate_alias(d::Dict)
     it = iterate(d)
     if it !== nothing
@@ -30,6 +77,7 @@ function iterate_alias(d::Dict, state)
     end
 end
 
+
 function Base.iterate(pd::ParamDict{FT}) where {FT}
     if pd.dict_type == "name"
         return Base.iterate(pd.data)
@@ -47,7 +95,12 @@ function Base.iterate(pd::ParamDict{FT},state) where {FT}
 end
 
 
+"""
+    log_component!(param_set::ParamDict{FT},names,component) where {FT}
 
+Adds a new key,val pair: `("used_in",component)` to each named parameter in `param_set`.
+Appends a new val: `component` if "used_in" key exists.
+"""
 log_component!(param_set::ParamDict{FT},names,component) where {FT} = log_component!(param_set.data,names,component,param_set.dict_type)
 
 function log_component!(data::Dict,names,component,dict_type)
@@ -80,6 +133,12 @@ function log_component!(data::Dict,names,component,dict_type)
     end
 end
 
+
+"""
+    get_values(param_set::ParamDict{FT}, names) where {FT}
+
+gets the `value` of the named parameters.
+"""
 get_values(param_set::ParamDict{FT}, names) where {FT} =
     get_values(param_set.data, names, param_set.dict_type, get_parametric_type(param_set))
 
@@ -112,6 +171,11 @@ function get_values(data::Dict, names, dict_type, ret_values_type)
     return ret_values
 end
 
+"""
+    get_parameter_values!(param_set::ParamDict{FT}, names, component; log_component=true) where {FT}
+
+(Note the `!`) Gets the parameter values, and logs the component (if `log_component=true`) where parameters are used.
+"""
 function get_parameter_values!(param_set::ParamDict{FT}, names, component; log_component=true) where {FT}
     names_vec = (typeof(names) <: AbstractVector) ? names : [names]
     
@@ -122,53 +186,121 @@ function get_parameter_values!(param_set::ParamDict{FT}, names, component; log_c
     return (typeof(names) <: AbstractVector) ? get_values(param_set,names_vec) : get_values(param_set,names_vec)[1]
 end
 
-#as log_component is false, the get_parameter_values! does not change param_set
+"""
+    get_parameter_values(param_set::ParamDict{FT}, names) where {FT}
+
+Gets the parameter values only.
+"""
 get_parameter_values(param_set::ParamDict{FT}, names) where {FT} = get_parameter_values!(param_set, names, nothing, log_component=false)
 
-# write a parameter log file to given file. Unfortunately it is unordered thanks to TOML.jl
-# can't read in an ordered dict
-function write_log_file(param_set::ParamDict{FT}, filepath) where {FT}
-    open(filepath, "w") do io
-        TOML.print(io, param_set.data)
+"""
+    check_override_parameter_usage(param_set::ParamDict{FT},warn_else_error) where {FT}
+
+Checks if parameters in the ParamDict.override_dict have the key "used_in" (i.e. were these parameters used within the model run).
+Throws warnings in each where parameters are not used. Also throws an error if `warn_else_error` is not "warn"`. 
+"""
+function check_override_parameter_usage(param_set::ParamDict{FT},warn_else_error) where {FT}
+    if !(isnothing(param_set.override_dict))
+        flag_error = !(warn_else_error == "warn")
+        component_key = "used_in" # must agree with key above
+        for (key,val) in param_set.override_dict
+            logged_val = param_set.data[key]
+            if ~(component_key in keys(logged_val)) #as val is a Dict
+                    @warn("key " * key * " is present in parameter file, but not used in the simulation. \n Typically this is due to a mismatch in parameter name in toml and in source.")
+            end
+        end
+        if flag_error
+            @error("At least one override parameter set and not used in simulation")
+            throw(ErrorException("Halting simulation due to unused parameters."
+                                 * "\n Typically this is due to a typo in the parameter name."
+                                 * "\n change warn_else_error flag to \"warn\" to prevent this causing an exception"))
+        end
     end
 end
 
+"""
+    write_log_file(param_set::ParamDict{FT}, filepath) where {FT}
+
+Writes a log file of all used parameters of `param_set` at the `filepath`. This file can be used to rerun the experiment.
+"""
+function write_log_file(param_set::ParamDict{FT}, filepath) where {FT}
+    component_key = "used_in"
+    used_parameters = Dict()
+    for (key,val) in param_set.data
+        if ~(component_key in keys(val))
+            used_parameters[key] = val
+        end
+    end
+    open(filepath, "w") do io
+        TOML.print(io, used_parameters)
+    end
+end
+
+
+"""
+    log_parameter_information(param_set::ParamDict{FT}, filepath; warn_else_error = "warn") where {FT}
+
+Writes the parameter log file at `filepath`; checks that override parameters are all used.
+"""
+function log_parameter_information(param_set::ParamDict{FT}, filepath; warn_else_error = "warn") where {FT}
+    #[1.] write the parameters to log file
+    write_log_file(param_set,filepath)
+    #[2.] send warnings or errors if parameters were not used
+    check_override_parameter_usage(param_set,warn_else_error)
+end
+
+
+"""
+    merge_override_default_values(override_param_struct::ParamDict{FT},default_param_struct::ParamDict{FT}) where {FT}
+
+Combines the `default_param_struct` with the `override_param_struct`, precedence is given to override information.
+"""
 function merge_override_default_values(override_param_struct::ParamDict{FT},default_param_struct::ParamDict{FT}) where {FT}
-    merged_struct = deepcopy(default_param_struct)
+    data = default_param_struct.data
+    dict_type = default_param_struct.dict_type
+    override_dict = override_param_struct.override_dict
     for (key, val) in override_param_struct.data
-        if ~(key in keys(merged_struct.data))
-            merged_struct.data[key] = val
+        if ~(key in keys(data))
+            data[key] = val
         else
             for (kkey,vval) in val # as val is a Dict too
-                merged_struct.data[key][kkey] = vval
+                data[key][kkey] = vval
             end
         end
     end
-    return merged_struct
+    return ParamDict{FT}(data, dict_type, override_dict)
 end
 
+"""
+    create_parameter_struct(path_to_override, path_to_default; dict_type="alias", value_type=Float64)
 
+Creates a `ParamDict{value_type}` struct, by reading and merging upto two TOML files with override information taking precedence over default information.
+"""
 function create_parameter_struct(path_to_override, path_to_default; dict_type="alias", value_type=Float64)
     #if there isn't  an override file take defaults
     if isnothing(path_to_override)
-        return ParamDict{value_type}(parse_toml_file(path_to_default), dict_type)
+        return ParamDict{value_type}(parse_toml_file(path_to_default), dict_type, nothing)
     else
         try 
-            override_param_struct = ParamDict{value_type}(parse_toml_file(path_to_override), dict_type)
-            default_param_struct = ParamDict{value_type}(parse_toml_file(path_to_default), dict_type)
+            override_param_struct = ParamDict{value_type}(parse_toml_file(path_to_override), dict_type, parse_toml_file(path_to_override))
+            default_param_struct = ParamDict{value_type}(parse_toml_file(path_to_default), dict_type, nothing)
         
             #overrides the defaults where they clash
             return merge_override_default_values(override_param_struct, default_param_struct)
         catch
-            @warn("Error in building from parameter file: ", path_to_override,"instead, created using defaults from CLIMAParameters...")
-            return ParamDict{value_type}(parse_toml_file(path_to_default), dict_type)
+            @warn("Error in building from parameter file: "*"\n " * path_to_override * " \n instead, created using defaults from CLIMAParameters...")
+            return ParamDict{value_type}(parse_toml_file(path_to_default), dict_type, nothing)
         end
     end
         
 end
 
 
+"""
+    create_parameter_struct(path_to_override; dict_type="alias", value_type=Float64)
 
+a single filepath is assumed to be the override file, defaults are obtained from the CLIMAParameters defaults list.
+"""
 function create_parameter_struct(path_to_override; dict_type="alias", value_type=Float64)
     #pathof finds the CLIMAParameters.jl/src/ClimaParameters.jl location
     path_to_default = joinpath(splitpath(pathof(CLIMAParameters))[1:end-1]...,"parameters.toml")
@@ -180,6 +312,11 @@ function create_parameter_struct(path_to_override; dict_type="alias", value_type
     )
 end
 
+"""
+    create_parameter_struct(; dict_type="alias", value_type=Float64)
+
+when no filepath is provided, all parameters are created from CLIMAParameters defaults list.
+"""
 function create_parameter_struct(; dict_type="alias", value_type=Float64)
     return create_parameter_struct(
         nothing,

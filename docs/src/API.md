@@ -4,6 +4,36 @@
 CurrentModule = CLIMAParameters
 ```
 
+## Parameter struct
+
+```@docs
+ParamDict
+```
+
+## File parsing and parameter logging
+
+### User facing functions:
+```@docs
+create_parameter_struct(path_to_override, path_to_default)
+create_parameter_struct(path_to_override)
+create_parameter_struct()
+get_parameter_values!
+get_parameter_values
+get_parametric_type
+log_parameter_information
+```
+
+### Internal functions:
+```@docs
+parse_toml_file
+iterate_alias
+log_component!(param_set::ParamDict,names,component) 
+get_values(param_set::ParamDict, names) 
+check_override_parameter_usage
+write_log_file
+merge_override_default_values
+```
+
 ## Types
 
 ```@docs
