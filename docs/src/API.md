@@ -228,6 +228,8 @@ Atmos.Microphysics.Δa_sno
 Atmos.Microphysics.χv_sno
 Atmos.Microphysics.Δv_sno
 Atmos.Microphysics.microph_scaling
+Atmos.Microphysics.microph_scaling_dep_sub
+Atmos.Microphysics.microph_scaling_melt
 Atmos.Microphysics.E_liq_rai
 Atmos.Microphysics.E_liq_sno
 Atmos.Microphysics.E_ice_rai

@@ -237,6 +237,8 @@ export C_drag,
        χv_sno,
        Δv_sno,
        microph_scaling,
+       microph_scaling_dep_sub,
+       microph_scaling_melt,
        E_liq_rai,
        E_liq_sno,
        E_ice_rai,
@@ -372,8 +374,12 @@ function b_vent_rai end
 """ ventilation factor coefficient for snow (-) """
 function b_vent_sno end
 
-""" rain evaporation, snow deposition sublimation and melting scaling factor for coupling with EDMF (-) """
+""" rain evaporation scaling factor for coupling with EDMF (-) """
 function microph_scaling end
+""" snow deposition and sublimation scaling factor for coupling with EDMF (-) """
+function microph_scaling_dep_sub end
+""" snow melting scaling factor for coupling with EDMF (-) """
+function microph_scaling_melt end
 
 """ thermal conductivity of air (J/m/s/K) """
 function K_therm end
