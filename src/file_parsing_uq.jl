@@ -31,120 +31,69 @@ function read_parameters(path_to_toml_file::AbstractString)
 end
 
 
-"""
-get_parameter_distribution(param_dict, names)
+function get_parameter_distribution(param_dict::Dict, names::Array{String, 1})
 
-Construct a `ParameterDistribution` from the prior distribution(s) and
-constraint(s) given in `param_dict`
+    param_dist_arr = Array{ParameterDistribution}(undef, length(names))
+
+    for (i, name) in enumerate(names)
+        param_dist_arr[i] = get_parameter_distribution(param_dict, name)
+    end
+
+    return combine_distributions(param_dist_arr)
+
+end
+
+"""
+get_parameter_distribution(param_dict, name)
+
+Construct a `ParameterDistribution` from the prior distribution and
+constraint given in `param_dict`
 
 Args:
 `param_dict` - nested dictionary that has parameter names as keys and the
                corresponding dictionary of parameter information as values
-`names` - list of parameter names or single parameter name
+`name` - parameter name
 
 Returns a `ParameterDistribution`
 """
-function get_parameter_distribution(param_dict::Dict, names::Union{AbstractString, Array{String, 1}})
+function get_parameter_distribution(param_dict::Dict, name::AbstractString)
 
-    names_vec = (typeof(names) <: AbstractVector) ? names : [names]
-    n_names = length(names_vec)
-    constraint = []
-    prior = []
-    param_names = []
+    # Constructing a parameter distribution requires a prior distribution,
+    # a constraint, and a name.
+    prior = construct_prior(param_dict[name])
+    constraint = construct_constraint(param_dict[name])
 
-    for name in names_vec
-        # Constructing a parameter distribution requires prior distribution(s),
-        # constraint(s), and name(s).
-        d = construct_prior(param_dict[name])
-        is_array = typeof(d) <: AbstractArray ? true : false
-        ((is_array) && (n_names > 1)) ? push!(prior, d...) : push!(prior, d)
-        c = construct_constraint(param_dict[name], is_array)
-        ((is_array) && (n_names > 1)) ? push!(constraint, c...) : push!(constraint, c)
-        # Names can usually be taken directly from the header of the
-        # corresponding parameter table in the toml file. However, names
-        # have to be generated when the construction of a prameter distribution
-        # involves broadcasting of priors / constraints.
-        if is_array
-            # A broadcast parameter
-            push!(param_names, broadcast_name(name, length(d))...)
-        else
-            # Not a broadcast parameter
-            push!(param_names, name)
-        end
-    end
-
-    if length(vcat(param_names...)) != length(names_vec)
-        # The ParameterDistribution contains at least one broadcast parameter 
-        if typeof(names) <: AbstractString
-            # The broadcast parameter is the only building block of the
-            # parameter distribution
-            return ParameterDistribution(
-                prior[1],
-                constraint[1],
-                identity.(param_names))
-        else
-            # The ParameterDistribution consists of a broadcast parameter and at
-            # least one additional parameter
-            return ParameterDistribution(
-                identity.(prior),
-                identity.(constraint),
-                identity.(param_names))
-        end
-
-    elseif length(param_names) > 1
-        # The ParameterDistribution consists of multiple parameters
-        return ParameterDistribution(
-            identity.(prior),
-            identity.(constraint),
-            identity.(param_names))
-    else
-        # The ParameterDistribution consists of a single (non-broadcast)
-        # parameter
-        return ParameterDistribution(
-            prior[1],
-            constraint[1],
-            param_names[1])
-    end
+    return ParameterDistribution(prior, constraint, name)
 end
 
 
 """
-construct_constraint(param_info, is_array)
+construct_constraint(param_info)
 
 Extracts information on type and arguments of each constraint and uses that
-information to construct an actual `Constraint`.
+information to construct a `Constraint`.
 
 Args:
 `param_info` - dictionary with (at least) a key "constraint", whose value is
                the parameter's constraint(s) (as parsed from TOML file)
 
-`is_array` - true if this constraint is associated with an array of
-             distributions (which typically results from parsing expressions
-             of type "repeat([distribution], n_repetitions)"), false otherwise.
-             Matters for the `ParameterDistribution` constructor, which
-             requires constraints to be given as a list of 1-element lists if
-             `is_array` is true (e.g., [[no_constraint()], [no_constraint()]])
-
 Returns a single `Constraint` if `param_info` only contains one constraint,
 otherwise it returns an array of `Constraint`s
 """
-function construct_constraint(param_info::Dict, is_array::Bool)
+function construct_constraint(param_info::Dict)
 
     @assert(haskey(param_info, "constraint"))
     c = Meta.parse(param_info["constraint"])
 
     if c.args[1] == Symbol("repeat")
-        # There are multiple constraints described by an expression of the
-        # form "repeat([constraint], n_repetitions)"
-        return broadcast_constraint(c, is_array)
+        # Constraints are given as a `repeat` expression defining a vector of
+        # constraints of the same kind
+        constr = collect(c.args[2], "c", repeat=true)
+        n_constr = c.args[3] # number of repeated constraints
+        return repeat([constr], n_constr)
 
-    elseif c.head == Symbol("vect")
-        # There are multiple parameters, hence multiple constraints
-        return get_multidim_constraint(c)
-
-    else
-        # There is only a single 1-dim parameter, hence a single constraint
-        return get_onedim_constraint(c)
+    else 
+        return collect(c, "c")
     end
 end
 
@@ -166,207 +115,95 @@ function construct_prior(param_info::Dict)
     @assert(haskey(param_info, "prior"))
     d = Meta.parse(param_info["prior"])
 
-    if d.args[1] == Symbol("repeat")
-        # There are multiple distributions described by an expression of the
-        # form "repeat([distribution], n_repetitions)"
-        return broadcast_prior(d)
-
-    elseif d.head == Symbol("vect")
-        # Multiple distributions
-        return get_multidim_prior(d)
+    if d.args[1] == Symbol("VectorOfParameterized")
+        # There are multiple distributions described by a
+        # `VectorOfParameterized`
+        return get_vector_of_parameterized(d)
 
     else
         # Single distribution
-        return get_onedim_prior(d)
+        return get_distribution(d)
     end
 end
 
 
 """
-broadcast_name(base_name, n_repetitions)
+get_vector_of_parameterized(d)
 
-Generates numbered parameter names <base_name>_(<i>); i in 1, ..., n_repetitions
-Example:
-    broadcast_name("my_param", 3)
-    returns ["my_param_(1)", "my_param_(2)", "my_param_(3)"]
+Parses a distribution of type `VectorOfParameterized`
 
 Args:
-`base_name` - base name to which numbers will be added
-`n_repetitions` - number of derived parameter names to generate from `base_name`
+`d`  - expression containing the distribution information
 
-Returns an array of length n_repetitions
+Returns a `VectorOfParameterized`
 """
-function broadcast_name(base_name::AbstractString, n_repetitions::Int)
+function get_vector_of_parameterized(d::Expr)
 
-    param_name(j) = base_name * "_(" * lpad(j,ndigits(n_repetitions), "0") * ")"
+    @assert(d.args[1] == Symbol("VectorOfParameterized"))
 
-    return [param_name(j) for j in 1:n_repetitions]
-end
+    if d.args[2].args[1] == Symbol("repeat")
+        # Distributions are given as a `repeat` expression defining a vector of
+        # distributions of the same kind
+        dist = collect(d.args[2].args[2], "d", repeat=true)
+        n_dist = d.args[2].args[3] # number of repeated distributions
+        return VectorOfParameterized(repeat([dist], n_dist))
 
-
-"""
-broadcast_constraint(expr, is_array)
-
-Constructs an array of constraints from an expression of the sort
-    "repeat([no_constraint], 10)",
-    "repeat([[bounded_below(0.3)]], 100),
-    etc.
-
-Args:
-`expr`  - expression with expr.args[1] == Symbol("repeat")
-`is_array` - true if this constraint is associated with an array of
-             distributions (which typically results from parsing expressions
-             of type "repeat([distribution], n_repetitions)"), false otherwise.
-
-Returns an array of constraints
-"""
-function broadcast_constraint(c::Expr, is_array::Bool)
-
-    @assert(c.args[1] == Symbol("repeat"))
-    n_repetitions  = c.args[3]
-    if is_array
-        constraint = get_onedim_constraint(c.args[2].args[1].args[1])
-        return repeat([[constraint]], n_repetitions)
     else
-        constraint = get_onedim_constraint(c.args[2].args[1])
-        return repeat([constraint], n_repetitions)
+        # Distributions are given as an array of distributions listing each
+        # individual distribution explicitly
+        dist_arr = collect(d.args[2], "d")
+        return VectorOfParameterized(dist_arr)
     end
+
 end
 
 
 """
-get_multidim_constraints(c)
+collect(e, eltype; repeat=false)
 
-Parses multidimensional constraints
+Collects distributions or constraints
 
 Args:
-`c`  - expression containing the constraint information
+`e`  - expression containing the distribution or constraint information
+`eltype` - string denoting the type of elements that are collected, "d" for
+           distributions, "c" for constraints
 
-Returns an array of `Constraint`s
+Returns an array of distributions / constraints, or a single distribution /
+constraint if only one is present
 """
-function get_multidim_constraint(c::Expr)
+function collect(e::Expr, eltype::AbstractString; repeat::Bool=false)
 
-    constraints = []
-    constraint_groups = c.args
-    n_constraint_groups = length(c.args)
+    if e.head == Symbol("vect")
+        # There are multiple distributions / constraints 
+        n_elem = length(e.args) # number of elements
+        arr = (eltype == "d") ? Array{Distribution}(undef, n_elem) : Array{ConstraintType}(undef, n_elem)
 
-    for i in 1:n_constraint_groups
-
-        if constraint_groups[i].head == Symbol("vect")
-            # This is a multidimensional parameter
-            n_param_constraints = length(constraint_groups[i].args)
-            param_constraints = []
-
-            for j in 1:n_param_constraints
-                push!(
-                    param_constraints,
-                    getfield(Main, constraint_groups[i].args[j].args[1])(
-                        constraint_groups[i].args[j].args[2:end]...)
-                )
-            end
-
-            push!(constraints, param_constraints)
-
-        else
-            # This is a single parameter
-            push!(constraints,
-                  getfield(Main, constraint_groups[i].args[1])(
-                      constraint_groups[i].args[2:end]...))
+        for i in 1:n_elem
+            elem = e.args[i]
+            arr[i] = getfield(Main, elem.args[1])(elem.args[2:end]...)
         end
+
+        return repeat ? arr[1] : arr
+
+    else
+        # There is a single distribution / constraint
+        return getfield(Main, e.args[1])(e.args[2:end]...)
     end
 
-    return [constraints[i] for i in 1:length(constraints)]
 end
 
 
 """
-get_onedim_constraint(c)
+get_distribution(d)
 
-Parses a one-dimensional constraint
-
-Args:
-`c`  - expression containing the constraint information
-
-Returns a `Constraint`
-"""
-function get_onedim_constraint(c::Expr)
-
-    return getfield(Main, c.args[1])(c.args[2:end]...)
-end
-
-
-"""
-broadcast_prior(d)
-
-Constructs an array of constraints or distributions from an expression of
-the sort
-    "repeat([Parameterized(Gamma(2.0, 3.0))], 50)",
-    "repeat([Samples([1.0 1.5 2.0; 0.7 1.2 1.8])], 100)",
-    etc.
-
-Args:
-`d`  - expression with expr.args[1] == Symbol("repeat")
-
-Returns an array of prior distributions
-"""
-function broadcast_prior(d::Expr)
-
-    @assert(d.args[1] == Symbol("repeat"))
-    prior = get_onedim_prior(d.args[2].args[1])
-    n_repetitions = d.args[3]
-
-    return repeat([prior], n_repetitions)
-end
-
-
-"""
-get_multidim_prior(d)
-
-Parses multidimensional prior distributions
+Parses a prior distribution
 
 Args:
 `d`  - expression containing the distribution information
 
-Returns an array of prior distributions (`Parameterized` or `Samples`)
+Returns a single prior distribution (`Parameterized` or `Samples`)
 """
-function get_multidim_prior(d::Expr)
-
-    n_distributions = length(d.args)
-    distributions = Array{ParameterDistributionType}(undef, n_distributions)
-
-    for i in range(1, stop=n_distributions)
-        dist_type_symb = d.args[i].args[1]
-        dist_type = getfield(Main, dist_type_symb)
-
-        if dist_type_symb == Symbol("Parameterized")
-            dist = getfield(Main, d.args[i].args[2].args[1])
-            dist_args = d.args[i].args[2].args[2:end]
-            distributions[i] = dist_type(dist(dist_args...))
-
-        elseif dist_type_symb == Symbol("Samples")
-            dist_args = construct_2d_array(d.args[i].args[2])
-            distributions[i] = dist_type(dist_args)
-
-        else
-            throw(error("Unknown distribution type ", dist_type))
-        end
-    end
-
-    return distributions
-end
-
-
-"""
-get_onedim_prior(d)
-
-Parses a one-dimensional prior distributions
-
-Args:
-`d`  - expression containing the distribution information
-
-Returns a single prior distributions (`Parameterized` or `Samples`)
-"""
-function get_onedim_prior(d::Expr)
+function get_distribution(d::Expr)
 
     dist_type_symb = d.args[1]
     dist_type = getfield(Main, dist_type_symb)
@@ -517,111 +354,14 @@ function assign_values!(
     param_dict::Dict,
     param_names::Array{String}) where {FT}
     
-    broadcast_mask = repeat([false], length(param_names))
     param_names_vec = typeof(param_names) <: AbstractVector ? param_names : [param_names]
 
-    for j in 1:length(param_names_vec)
-
-        if is_broadcast(param_names_vec[j])
-            broadcast_mask[j] = true
-        end
-    end
-
-    merged_param_slices = merge_slices(param_slices, broadcast_mask)
-    merged_param_names = merge_names(param_names_vec)
-
-    for (j, slice) in enumerate(merged_param_slices)
+    for (j, slice) in enumerate(param_slices)
         value = length(slice) > 1 ? param_array[slice, member] : param_array[slice, member][1]
-        param_dict[merged_param_names[j]]["value"] = value
+        param_dict[param_names_vec[j]]["value"] = value
     end
 
     return param_dict
-end
-
-
-function is_broadcast(param_name::AbstractString)
-
-    if endswith(param_name, ")") && occursin("_(", param_name)
-        return true
-    else
-        return false
-    end
-end
-
-
-function merge_names(param_names::Union{AbstractString, Array{String, 1}})
-
-    base_names = first.(split.(param_names, "_("))
-
-    return unique!(base_names)
-end
-
-
-function get_base_name(param_name::Union{AbstractString, Array{String, 1}})
-
-    base_param_name = first.(split.(param_name, "_("))
-
-    return unique!(base_param_name)
-end
-
-
-"""
-merge_slices(param_slices, broadcast_mask)
-
-Merges the slices that belong to broadcast parameters. When writing parameters
-to file, we want to write e.g.
-    [param_i]
-    value = [1.0, 1.5, 0.5, 0.8]
-    prior = "repeat([Parameterized(Normal(1.0, 0.5)], 4)"
-    constraint = "repeat([no_constraint()], 4)"
-
-rather than to write each of the four individual "subparameters" `param_i` gets
-broadcast to internally (`param_i_(1)`, `param_i_(2)`, `param_i_(3)`,
-`param_i_(4)`). This requires merging of the single-dimension parameter slices
-corresponding to these subparameters back into one 4-element slice
-
-Args:
-`param_slices` - array of contiguous `[collect(1:i), collect(i+1:j),... ]` used
-                 to split parameter arrays by distribution dimensions
-`broadcast_mask` - boolean array whose jth element is true if the jth parameter
-                   is broadcast, false otherwise
-
-Returns an array of contiguous `[collect(1:i), collect(i+1:j),... ]` used to
-split parameter arrays by distribution dimensions, where the dimensions of 
-broadcast parameters have been merged into a single slice.
-"""
-function merge_slices(param_slices::Union{Array{Int, 1}, Array{Array{Int, 1}, 1}}, broadcast_mask::Array{Bool, 1})
-
-    @assert(length(param_slices) == length(broadcast_mask))
-
-    merge_slices = [] # slices to be merged
-    for j in 1:length(broadcast_mask)
-        if broadcast_mask[j]
-            if j == 1 || !broadcast_mask[j-1]
-                push!(merge_slices, deepcopy(param_slices[j]))
-            else
-                push!(merge_slices[end], deepcopy(param_slices[j][1]))
-            end
-        end
-    end
-
-    if isempty(merge_slices)
-        # No broadcasting involved
-        return param_slices
-    else
-        combined_slices = sort(vcat(param_slices, merge_slices))
-        delete_indices = []
-        all_merged_indices = vcat(merge_slices...)
-
-        for (i, slice) in enumerate(combined_slices)
-            if (length(slice) == 1) && (slice[1] in all_merged_indices)
-                push!(delete_indices, i)
-            end
-        end
-
-
-        return deleteat!(combined_slices, delete_indices)
-    end
 end
 
 

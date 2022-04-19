@@ -1,3 +1,5 @@
+#TODO: Add regularization flags following the discussion with Ignacio
+
 # The seven parameters below are to be used for calibration / uncertainty 
 # quantification
 [uq_param_1]
@@ -22,17 +24,20 @@ constraint = "[no_constraint(), no_constraint(), bounded_below(-2.0), bounded_ab
 
 # Convenience notation for arrays of parameters that all have the same prior 
 # distribution and constraints. 
-# `repeat([prior], n_dims)` will construct `n_dims` prior distribution. 
-# Similarly,  `repeat([constraint], n_dims)` will construct `n_dims` 
-# constraints. 
-# The resulting `n_dims` parameters will automatically be attaching numbers, 
-# e.g., "uq_param_6_(1)", "uq_param_6_(2)", etc.
+# `VectorOfParameterized(repeat([<prior>], n)` will construct `n` prior distribution. 
+# Similarly,  `repeat([<constraint>], n)` will construct `n` constraints. 
 [uq_param_6]
-prior = "repeat([Parameterized(Gamma(2.0, 1.0))], 3)"
-constraint = "repeat([[bounded_above(9.0)]], 3)"
+prior = "VectorOfParameterized(repeat([Gamma(2.0, 3.0)], 3))"
+constraint = "repeat([bounded_above(9.0)], 3)"
+
+# Instead of a `repeat` expression, priors and constraints can also be defined by an 
+# array that lists each element explicitly
+[uq_param_7]
+prior = "VectorOfParameterized([Gamma(2.0, 3.0), Uniform(0.0, 1.0), Normal(0.0, 10.0)])"
+constraint = "[no_constraint(), bounded_below(0.5), no_constraint()]"
 
 # A repeated constraint can also be combined with a multivariate distribution.
-[uq_param_7]
+[uq_param_8]
 prior = "Parameterized(MvNormal(3, 2.0))"
 constraint = "repeat([no_constraint()], 3)"
 
