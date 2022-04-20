@@ -32,27 +32,15 @@ function read_parameters(path_to_toml_file::AbstractString)
 end
 
 
-function get_parameter_distribution(param_dict::Dict, names::Array{String, 1})
-
-    param_dist_arr = Array{ParameterDistribution}(undef, length(names))
-
-    for (i, name) in enumerate(names)
-        param_dist_arr[i] = get_parameter_distribution(param_dict, name)
-    end
-
-    return combine_distributions(param_dist_arr)
-
-end
-
 """
 get_parameter_distribution(param_dict, name)
 
-Construct a `ParameterDistribution` from the prior distribution and
-constraint given in `param_dict`
+Constructs a `ParameterDistribution` for a single parameter
 
 Args:
 `param_dict` - nested dictionary that has parameter names as keys and the
-               corresponding dictionary of parameter information as values
+               corresponding dictionary of parameter information (in particular,
+               the parameters' prior distributions and constraints) as values
 `name` - parameter name
 
 Returns a `ParameterDistribution`
@@ -67,6 +55,31 @@ function get_parameter_distribution(param_dict::Dict, name::AbstractString)
     return ParameterDistribution(prior, constraint, name)
 end
 
+"""
+get_parameter_distribution(param_dict, names)
+
+Constructs a `ParameterDistribution` for an array of parameters
+
+Args:
+`param_dict` - nested dictionary that has parameter names as keys and the
+               corresponding dictionary of parameter information (in particular,
+               the parameters' prior distributions and constraints) as values
+`names` - array of parameter names
+
+Returns a `ParameterDistribution` 
+"""
+function get_parameter_distribution(param_dict::Dict, names::Array{String, 1})
+
+    param_dist_arr = Array{ParameterDistribution}(undef, length(names))
+
+    for (i, name) in enumerate(names)
+        param_dist_arr[i] = get_parameter_distribution(param_dict, name)
+    end
+
+    return combine_distributions(param_dist_arr)
+
+end
+
 
 """
 construct_constraint(param_info)
@@ -78,8 +91,7 @@ Args:
 `param_info` - dictionary with (at least) a key "constraint", whose value is
                the parameter's constraint(s) (as parsed from TOML file)
 
-Returns a single `Constraint` if `param_info` only contains one constraint,
-otherwise it returns an array of `Constraint`s
+Returns a `Constraint`
 """
 function construct_constraint(param_info::Dict)
 
@@ -109,7 +121,8 @@ Args:
 `param_info` - dictionary with (at least) a key "prior", whose value is the
                parameter's distribution(s) (as parsed from TOML file)
 
-Returns a single or array of ParameterDistributionType derived objects
+Returns a distribution of type `Parameterized`, `Samples`, or
+`VectorOfParameterized`
 """
 function construct_prior(param_info::Dict)
 
@@ -204,7 +217,7 @@ Parses a distribution
 Args:
 `d`  - expression containing the distribution information
 
-Returns a distribution (`Parameterized` or `Samples`)
+Returns a distribution of type `Parameterized` or `Samples`
 """
 function get_distribution(d::Expr)
 
@@ -300,7 +313,7 @@ function save_parameter_ensemble(
 
     N_ens = size(save_array)[2]
 
-    # If needed, create directory where files will be stored
+    # Create directory where files will be stored if it doesn't exist yet
     save_dir = isnothing(iter) ? save_path : joinpath(save_path, join(["iteration", lpad(iter, 2, "0")], "_"))
     mkpath(save_dir)
 
@@ -433,7 +446,7 @@ end
 """
 get_regularization(param_dict, name)
 
-Returns the regularization information for the given parameter name
+Returns the regularization information for a single parameter
 
 Args:
 `param_dict` - nested dictionary that has parameter names as keys and the
@@ -441,9 +454,9 @@ Args:
 `name` - parameter name
 
 Returns a tuple (<regularization_type>, <regularization_value>), where the
-regularization type is one of "L1", "L2", and the regularization value is
+regularization type is either "L1" or "L2", and the regularization value is
 a float. Returns (nothing, nothing) if parameter has no regularization
-information)
+information.
 """
 function get_regularization(param_dict::Dict, name::AbstractString)
     
@@ -464,6 +477,22 @@ function get_regularization(param_dict::Dict, name::AbstractString)
 end
 
 
+"""
+get_regularization(param_dict, names)
+
+Returns the regularization information for an array of parameters
+
+Args:
+`param_dict` - nested dictionary that has parameter names as keys and the
+               corresponding dictionary of parameter information as values
+`name` - parameter name
+
+Returns an arary of tuples (<regularization_type>, <regularization_value>), with
+the ith tuple corresponding to the parameter `names[i]`. The regularization
+type is either "L1" or "L2", and the regularization value is a float.
+Returns (nothing, nothing) for parameters that have no regularization
+information.
+"""
 function get_regularization(param_dict::Dict, names::Array{String, 1})
 
     regularr = []
