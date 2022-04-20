@@ -5,9 +5,10 @@ using EnsembleKalmanProcesses.ParameterDistributions
 
 # "Public" functions (i.e., functions intended to be called by user):
 #    - read_parameters
-#    - get_UQ_parameters
 #    - get_parameter_distribution
 #    - save_parameter_ensemble
+#    - get_UQ_parameters
+#    - get_regularization
 
 """
 read_parameters(path_to_toml_file)
@@ -167,6 +168,8 @@ Args:
 `e`  - expression containing the distribution or constraint information
 `eltype` - string denoting the type of elements that are collected, "d" for
            distributions, "c" for constraints
+`repeat` - true if this distribution or constraint is given as a `repeat(...)`
+           expression, false otherwise
 
 Returns an array of distributions / constraints, or a single distribution /
 constraint if only one is present
@@ -196,12 +199,12 @@ end
 """
 get_distribution(d)
 
-Parses a prior distribution
+Parses a distribution
 
 Args:
 `d`  - expression containing the distribution information
 
-Returns a single prior distribution (`Parameterized` or `Samples`)
+Returns a distribution (`Parameterized` or `Samples`)
 """
 function get_distribution(d::Expr)
 
@@ -425,5 +428,50 @@ function write_log_file(param_dict::Dict, file_path::AbstractString) where {FT}
     open(file_path, "w") do io
         TOML.print(io, param_dict)
     end
+end
+
+"""
+get_regularization(param_dict, name)
+
+Returns the regularization information for the given parameter name
+
+Args:
+`param_dict` - nested dictionary that has parameter names as keys and the
+               corresponding dictionary of parameter information as values
+`name` - parameter name
+
+Returns a tuple (<regularization_type>, <regularization_value>), where the
+regularization type is one of "L1", "L2", and the regularization value is
+a float. Returns (nothing, nothing) if parameter has no regularization
+information)
+"""
+function get_regularization(param_dict::Dict, name::AbstractString)
+    
+    if haskey(param_dict[name], "L1") && haskey(param_dict[name], "L2")
+        # There can't be more than one regularization flag
+        throw(ErrorException("Only one regularization flag (either 'L1' or " *
+            "'L2') is allowed"))
+    elseif haskey(param_dict[name], "L1")
+        # L1 regularization
+        return ("L1", param_dict[name]["L1"])
+    elseif haskey(param_dict[name], "L2")
+        # L1 regularization
+        return ("L2", param_dict[name]["L2"])
+    else
+        # No regularization
+        return (nothing, nothing)
+    end
+end
+
+
+function get_regularization(param_dict::Dict, names::Array{String, 1})
+
+    regularr = []
+
+    for name in names
+        push!(regularr, get_regularization(param_dict, name))
+    end
+
+    return regularr
 end
 

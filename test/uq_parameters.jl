@@ -18,7 +18,6 @@ const EKP = EnsembleKalmanProcesses
     toml_path = joinpath(@__DIR__,"uq_test_parameters.toml")
     param_dict = CP.read_parameters(toml_path)
 
-
     # True `ParameterDistribution`s. This is what `get_parameter_distribution`
     # should return
     target_map = Dict(
@@ -55,16 +54,17 @@ const EKP = EnsembleKalmanProcesses
             "uq_param_6"),
 
         "uq_param_7" => ParameterDistribution(
-            VectorOfParameterized([Gamma(2.0, 3.0),
-                                   Uniform(0.0, 1.0),
-                                   Normal(0.0, 10.0)]),
-            [no_constraint(), bounded_below(0.5), no_constraint()],
+            Parameterized(MvNormal(3, 2.0)),
+            [no_constraint(), no_constraint(), no_constraint()],
             "uq_param_7"),
 
         "uq_param_8" => ParameterDistribution(
-            Parameterized(MvNormal(3, 2.0)),
-            [no_constraint(), no_constraint(), no_constraint()],
-            "uq_param_8")
+            VectorOfParameterized([Gamma(2.0, 3.0),
+                                   LogNormal(0.1, 0.1),
+                                   Normal(0.0, 10.0)]),
+            [no_constraint(), no_constraint(), bounded_below(-5.0)],
+            "uq_param_8"),
+
     )
 
     # Get all `ParameterDistribution`s. We also add dummy (key, value) pairs
@@ -87,6 +87,12 @@ const EKP = EnsembleKalmanProcesses
         target_constraints = get_all_constraints(target_pd)
         @test constraints == target_constraints
 
+        # Check regularization flags
+        @test CP.get_regularization(param_dict, "uq_param_1") == ("L1", 1.5)
+        @test CP.get_regularization(param_dict, "uq_param_3") == ("L2", 1.1)
+        @test CP.get_regularization(param_dict, "uq_param_4") == (nothing, nothing)
+        @test CP.get_regularization(param_dict, ["uq_param_3", "uq_param_4"]) ==
+            [("L2", 1.1), (nothing, nothing)]
     end
 
     # We can also get a `ParameterDistribution` representing
@@ -201,7 +207,7 @@ end
         Γy,
         Inversion(),
         rng=rng,
-        Δt=0.01)
+        Δt=1e-6)
 
     # EKS iterations
     for i in 1:N_iter
