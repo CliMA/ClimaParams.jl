@@ -422,7 +422,7 @@ Args:
 `file_path` - path of the file where parameters are saved
 """
 function write_log_file(param_dict::Dict, file_path::AbstractString) where {FT}
-    open(filepath, "w") do io
+    open(file_path, "w") do io
         TOML.print(io, param_dict)
     end
 end

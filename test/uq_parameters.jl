@@ -50,15 +50,21 @@ const EKP = EnsembleKalmanProcesses
             "uq_param_5"),
 
         "uq_param_6" => ParameterDistribution(
-            [Parameterized(Gamma(2.0, 1.0)), Parameterized(Gamma(2.0, 1.0)),
-             Parameterized(Gamma(2.0, 1.0))],
-            [[bounded_above(9.0)], [bounded_above(9.0)], [bounded_above(9.0)]],
-            ["uq_param_6_(1)", "uq_param_6_(2)", "uq_param_6_(3)"]),
+            VectorOfParameterized(repeat([Gamma(2.0, 3.0)], 3)),
+            repeat([bounded_above(9.0)], 3),
+            "uq_param_6"),
 
         "uq_param_7" => ParameterDistribution(
+            VectorOfParameterized([Gamma(2.0, 3.0),
+                                   Uniform(0.0, 1.0),
+                                   Normal(0.0, 10.0)]),
+            [no_constraint(), bounded_below(0.5), no_constraint()],
+            "uq_param_7"),
+
+        "uq_param_8" => ParameterDistribution(
             Parameterized(MvNormal(3, 2.0)),
             [no_constraint(), no_constraint(), no_constraint()],
-            "uq_param_7")
+            "uq_param_8")
     )
 
     # Get all `ParameterDistribution`s. We also add dummy (key, value) pairs
@@ -103,18 +109,15 @@ const EKP = EnsembleKalmanProcesses
 end
 
 # This test set creates a directory "test_output" in "CLIMAParameters.jl/test"
-# where the new parameteter files resulting from updating an ensemble Kalman
-# ensemble are saved
+# where the new parameter files after updating an ensemble Kalman ensemble are
+# saved (one new parameter file is saved for each ensemble member)
 @testset "Save parameter ensemble" begin
 
-    # Combine a parameter struct from the parameters defined in
-    # "uq_test_parameters.toml" (the override file) and those defined in
-    # "test_parameters.toml" (the default file)
+    # Read parameters
     toml_path = joinpath(@__DIR__,"uq_test_parameters.toml")
     param_dict = CP.read_parameters(toml_path)
 
-    # Extract the UQ parameters from the joint set of the parameters from
-    # param_path and those from uq_param_path
+    # Extract the UQ parameters
     uq_param_names = CP.get_UQ_parameters(param_dict)
 
     # Seed for pseudo-random number generator
@@ -144,8 +147,8 @@ end
             value_of[param] = u_constr[slices[i]]
         end
         A4 = reshape(
-            [norm(value_of["uq_param_4"]) + value_of["uq_param_6_(1)"][1],
-             norm(value_of["uq_param_6_(2)"]) * value_of["uq_param_6_(3)"][1],
+            [norm(value_of["uq_param_4"]) + norm(value_of["uq_param_6"]),
+             norm(value_of["uq_param_7"]) + norm(value_of["uq_param_8"]),
              value_of["uq_param_2"][1],
              value_of["uq_param_1"][1]], 4, 1)
         y = (A3 * value_of["uq_param_3"] + A5 * value_of["uq_param_5"]
@@ -155,19 +158,18 @@ end
 
     # True parameter values (in constrained space)
     u1_star = 14.6
-    u2_star = 19.0
+    u2_star = 8.3
     u3_star = [0.12, -0.05, -0.13, 0.05]
     u4_star = [12.0, 14.0]
     u5_star = [10.0, -1.0, 1.5, 10.0]
-    u6_1_star = 1.0
-    u6_2_star = 1.0
-    u6_3_star = 1.0
-    u7_star = 3.0 * ones(3)
+    u6_star = [3.0, 2.0, 8.0]
+    u7_star = [5.0, 5.0, 10.0]
+    u8_star = [-1.5, 2.3, 0.8]
 
     # Synthetic observation
     A4_star = reshape(
-        [norm(u4_star) + u6_1_star,
-         norm(u6_2_star) * u6_3_star,
+        [norm(u4_star) + norm(u6_star),
+         norm(u7_star) + norm(u8_star),
          u2_star,
          u1_star], 4, 1)
 
@@ -198,7 +200,8 @@ end
         y_obs,
         Γy,
         Inversion(),
-        rng=rng)
+        rng=rng,
+        Δt=0.01)
 
     # EKS iterations
     for i in 1:N_iter
