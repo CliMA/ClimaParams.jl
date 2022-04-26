@@ -18,47 +18,53 @@ const EKP = EnsembleKalmanProcesses
     toml_path = joinpath(@__DIR__,"uq_test_parameters.toml")
     param_dict = CP.read_parameters(toml_path)
 
-
     # True `ParameterDistribution`s. This is what `get_parameter_distribution`
     # should return
     target_map = Dict(
         "uq_param_1" => ParameterDistribution(
-            Parameterized(Normal(2.0, 1.0)),
+            Parameterized(Normal(-100.0, 20.0)),
             no_constraint(),
             "uq_param_1"),
 
         "uq_param_2" => ParameterDistribution(
             Parameterized(Gamma(5.0, 2.0)),
-            bounded_below(3.0),
+            bounded_below(6.0),
             "uq_param_2"),
 
         "uq_param_3" => ParameterDistribution(
-            Parameterized(MvNormal(4, 0.1)),
-            [no_constraint(), bounded_below(-1.0),
-            bounded_above(0.4), bounded(-0.1, 0.2)],
+            Parameterized(MvNormal(4, -10.0)),
+            [no_constraint(), bounded_below(-100.0),
+            bounded_above(10.0), bounded(-42.0, 42.0)],
             "uq_param_3"),
 
         "uq_param_4" => ParameterDistribution(
-            Samples([1.0 3.0 5.0 7.0; 9.0 11.0 13.0 15.0]),
-            [bounded(10.0, 15.0), bounded_below(-1.0)],
+            Samples([5.0 3.2 4.8 3.6; -5.4 -4.7 -3.9 -4.5]),
+            [bounded(0.0, 15.0), bounded_below(-10.0)],
             "uq_param_4"),
 
         "uq_param_5" => ParameterDistribution(
             Samples([1.0 3.0; 5.0 7.0; 9.0 11.0; 13.0 15.0]),
             [no_constraint(), no_constraint(),
-             bounded_below(-2.0), bounded_above(100.0)],
+             bounded_below(-2.0), bounded_above(20.0)],
             "uq_param_5"),
 
         "uq_param_6" => ParameterDistribution(
-            [Parameterized(Gamma(2.0, 1.0)), Parameterized(Gamma(2.0, 1.0)),
-             Parameterized(Gamma(2.0, 1.0))],
-            [[bounded_above(9.0)], [bounded_above(9.0)], [bounded_above(9.0)]],
-            ["uq_param_6_(1)", "uq_param_6_(2)", "uq_param_6_(3)"]),
+            VectorOfParameterized(repeat([Gamma(2.0, 3.0)], 3)),
+            repeat([bounded_above(9.0)], 3),
+            "uq_param_6"),
 
         "uq_param_7" => ParameterDistribution(
             Parameterized(MvNormal(3, 2.0)),
-            [no_constraint(), no_constraint(), no_constraint()],
-            "uq_param_7")
+            repeat([no_constraint()], 3),
+            "uq_param_7"),
+
+        "uq_param_8" => ParameterDistribution(
+            VectorOfParameterized([Gamma(2.0, 3.0),
+                                   LogNormal(0.1, 0.1),
+                                   Normal(0.0, 10.0)]),
+            [no_constraint(), no_constraint(), bounded_below(-5.0)],
+            "uq_param_8"),
+
     )
 
     # Get all `ParameterDistribution`s. We also add dummy (key, value) pairs
@@ -81,6 +87,12 @@ const EKP = EnsembleKalmanProcesses
         target_constraints = get_all_constraints(target_pd)
         @test constraints == target_constraints
 
+        # Check regularization flags
+        @test CP.get_regularization(param_dict, "uq_param_1") == ("L1", 1.5)
+        @test CP.get_regularization(param_dict, "uq_param_3") == ("L2", 1.1)
+        @test CP.get_regularization(param_dict, "uq_param_4") == (nothing, nothing)
+        @test CP.get_regularization(param_dict, ["uq_param_3", "uq_param_4"]) ==
+            [("L2", 1.1), (nothing, nothing)]
     end
 
     # We can also get a `ParameterDistribution` representing
@@ -103,18 +115,15 @@ const EKP = EnsembleKalmanProcesses
 end
 
 # This test set creates a directory "test_output" in "CLIMAParameters.jl/test"
-# where the new parameteter files resulting from updating an ensemble Kalman
-# ensemble are saved
+# where the new parameter files after updating an ensemble Kalman ensemble are
+# saved (one new parameter file is saved for each ensemble member)
 @testset "Save parameter ensemble" begin
 
-    # Combine a parameter struct from the parameters defined in
-    # "uq_test_parameters.toml" (the override file) and those defined in
-    # "test_parameters.toml" (the default file)
+    # Read parameters
     toml_path = joinpath(@__DIR__,"uq_test_parameters.toml")
     param_dict = CP.read_parameters(toml_path)
 
-    # Extract the UQ parameters from the joint set of the parameters from
-    # param_path and those from uq_param_path
+    # Extract the UQ parameters
     uq_param_names = CP.get_UQ_parameters(param_dict)
 
     # Seed for pseudo-random number generator
@@ -134,18 +143,18 @@ end
     # the true parameter values u* (which we pretend to know for the
     # purpose of this example) and adding random observational noise η
 
-    A3 = Array(reshape(range(1, stop=16), 4, 4))
-    A5 = Array(reshape(range(0, stop=1.0, length=16), 4, 4))
+    A3 = Array(reshape(rand!(rng, zeros(16)), 4, 4))
+    A5 = Array(reshape(randn!(rng, zeros(16)), 4, 4))
 
-    function G(u) # map from R^18 to R^4
+    function G(u) # map from R^21 to R^4
         u_constr = transform_unconstrained_to_constrained(pd, u)
         value_of = Dict()
         for (i, param) in enumerate(get_name(pd))
             value_of[param] = u_constr[slices[i]]
         end
         A4 = reshape(
-            [norm(value_of["uq_param_4"]) + value_of["uq_param_6_(1)"][1],
-             norm(value_of["uq_param_6_(2)"]) * value_of["uq_param_6_(3)"][1],
+            [norm(value_of["uq_param_4"]) + norm(value_of["uq_param_6"]),
+             norm(value_of["uq_param_7"]) + norm(value_of["uq_param_8"]),
              value_of["uq_param_2"][1],
              value_of["uq_param_1"][1]], 4, 1)
         y = (A3 * value_of["uq_param_3"] + A5 * value_of["uq_param_5"]
@@ -154,20 +163,19 @@ end
     end
 
     # True parameter values (in constrained space)
-    u1_star = 14.6
-    u2_star = 19.0
+    u1_star = 143.2
+    u2_star = 8.3
     u3_star = [0.12, -0.05, -0.13, 0.05]
     u4_star = [12.0, 14.0]
     u5_star = [10.0, -1.0, 1.5, 10.0]
-    u6_1_star = 1.0
-    u6_2_star = 1.0
-    u6_3_star = 1.0
-    u7_star = 3.0 * ones(3)
+    u6_star = [3.0, 2.0, 8.0]
+    u7_star = [5.0, 5.0, 10.0]
+    u8_star = [-1.5, 2.3, 0.8]
 
     # Synthetic observation
     A4_star = reshape(
-        [norm(u4_star) + u6_1_star,
-         norm(u6_2_star) * u6_3_star,
+        [norm(u4_star) + norm(u6_star),
+         norm(u7_star) + norm(u8_star),
          u2_star,
          u1_star], 4, 1)
 
@@ -176,13 +184,14 @@ end
     pdf_η = MvNormal(zeros(4), Γy)
     y_obs = dropdims(y_star, dims=2) .+ rand(pdf_η)
 
-    N_ens = 50 # number of ensemble members
+    N_ens = 40 # number of ensemble members
     N_iter = 1 # number of iterations
 
     # Generate and save initial paramter ensemble 
     initial_ensemble = EKP.construct_initial_ensemble(rng, pd, N_ens)
     save_path = joinpath(@__DIR__, "test_output")
     save_file = "test_parameters.toml"
+    cov_init = cov(initial_ensemble, dims=2)
     CP.save_parameter_ensemble(
         initial_ensemble,
         pd,
@@ -193,7 +202,7 @@ end
     )
 
     # Instantiate an ensemble Kalman process
-    eksobj = EKP.EnsembleKalmanProcess(
+    eki = EKP.EnsembleKalmanProcess(
         initial_ensemble,
         y_obs,
         Γy,
@@ -202,14 +211,14 @@ end
 
     # EKS iterations
     for i in 1:N_iter
-        params_i = get_u_final(eksobj)
+        params_i = get_u_final(eki)
         G_n = [G(params_i[:, member_idx]) for member_idx in 1:N_ens]
         G_ens = hcat(G_n...)
-        EKP.update_ensemble!(eksobj, G_ens)
+        EKP.update_ensemble!(eki, G_ens)
 
         # Save updated parameter ensemble
         CP.save_parameter_ensemble(
-            EKP.get_u_final(eksobj),
+            EKP.get_u_final(eki),
             pd,
             param_dict,
             save_path,
