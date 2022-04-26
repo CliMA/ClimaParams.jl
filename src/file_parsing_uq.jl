@@ -68,7 +68,7 @@ Args:
 
 Returns a `ParameterDistribution` 
 """
-function get_parameter_distribution(param_dict::Dict, names::Array{String, 1})
+function get_parameter_distribution(param_dict::Dict, names::AbstractVector{String})
 
     param_dist_arr = Array{ParameterDistribution}(undef, length(names))
 
@@ -347,7 +347,7 @@ end
 
 """
 assign_values!(member, param_array, param_distribution, param_slices,
-param_dict, param_names)
+param_dict, names)
 
 Updates `param_dict` with the values of the given `member` of the `param_array`
 
@@ -358,7 +358,7 @@ Args:
 `param_slices` - list of contiguous `[collect(1:i), collect(i+1:j),... ]` used
                  to split parameter arrays by distribution dimensions
 `param_dict` - the dict of parameters to be updated with new parameter values
-`param_names` - names of the parameters
+`names` - array of parameter names
 
 Returns the updated `param_dict`
 """
@@ -368,9 +368,9 @@ function assign_values!(
     param_distribution::ParameterDistribution,
     param_slices::Array{Array{Int64,1},1},
     param_dict::Dict,
-    param_names::Array{String}) where {FT}
+    names::AbstractVector{String}) where {FT}
     
-    param_names_vec = typeof(param_names) <: AbstractVector ? param_names : [param_names]
+    param_names_vec = typeof(names) <: AbstractVector ? names : [names]
 
     for (j, slice) in enumerate(param_slices)
         value = length(slice) > 1 ? param_array[slice, member] : param_array[slice, member][1]
@@ -443,6 +443,7 @@ function write_log_file(param_dict::Dict, file_path::AbstractString) where {FT}
     end
 end
 
+
 """
 get_regularization(param_dict, name)
 
@@ -485,7 +486,7 @@ Returns the regularization information for an array of parameters
 Args:
 `param_dict` - nested dictionary that has parameter names as keys and the
                corresponding dictionary of parameter information as values
-`name` - parameter name
+`names` - array of parameter names
 
 Returns an arary of tuples (<regularization_type>, <regularization_value>), with
 the ith tuple corresponding to the parameter `names[i]`. The regularization
@@ -493,7 +494,7 @@ type is either "L1" or "L2", and the regularization value is a float.
 Returns (nothing, nothing) for parameters that have no regularization
 information.
 """
-function get_regularization(param_dict::Dict, names::Array{String, 1})
+function get_regularization(param_dict::Dict, names::AbstractVector{String})
 
     regularr = []
 

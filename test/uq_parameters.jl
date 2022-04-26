@@ -163,7 +163,7 @@ end
     end
 
     # True parameter values (in constrained space)
-    u1_star = 343.2
+    u1_star = 143.2
     u2_star = 8.3
     u3_star = [0.12, -0.05, -0.13, 0.05]
     u4_star = [12.0, 14.0]
@@ -226,11 +226,7 @@ end
             i
         )
     end
-    cov_new = cov(get_u_final(eki), dims = 2)
-    println("initial cov: ", det(cov_init))
-    println("new cov: ", det(cov_new))
-    cov_ratio = det(cov_new) / det(cov_init)
-    println("cov ratio: ", cov_ratio)
+
     # Check if all parameter files have been created (we expect there to be
     # one for each iteration and ensemble member)
     @test isdir(joinpath(save_path, "iteration_00"))
