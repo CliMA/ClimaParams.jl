@@ -167,6 +167,19 @@ function smin_rm end
 
 end # module EDMF
 
+module Microphysics_ne
+
+export τ_cond_evap,
+       τ_sub_dep
+
+""" condensation/evaporation timescale (s) """
+function τ_cond_evap end
+
+""" sublimation/deposition timescale (s) """
+function τ_sub_dep end
+
+end # module Microphysics_ne
+
 module Microphysics_0M
 
 export τ_precip,
@@ -184,15 +197,13 @@ function S_0 end
 
 end # module Microphysics_0M
 
-module Microphysics
+module Microphysics_1M
 
 export C_drag,
        K_therm,
        D_vapor,
        ν_air,
        N_Sc,
-       τ_cond_evap,
-       τ_sub_dep,
        r_ice_snow,
        n0_ice,
        r0_ice,
@@ -332,12 +343,6 @@ function Δv_sno end
 """ drag coefficient for rain drops (-) """
 function C_drag end
 
-""" condensation/evaporation timescale (s) """
-function τ_cond_evap end
-
-""" sublimation/deposition timescale (s) """
-function τ_sub_dep end
-
 """ rain autoconversion threshold `∈(0.5, 1) * 1e-3` (-) """
 function q_liq_threshold end
 
@@ -393,6 +398,6 @@ function ν_air end
 """ Schmidt number (-) """
 function N_Sc end
 
-end
+end # module Microphysics_1M
 
 end # module Atmos

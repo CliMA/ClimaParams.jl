@@ -53,6 +53,13 @@ EDMF.Ri_c(::AEPS)           = 0.25
 EDMF.smin_ub(::AEPS)           = 0.1
 EDMF.smin_rm(::AEPS)           = 1.5
 
+# non-equilibrium cloud condensate microphysics parameters
+const Microphysics_ne = CLIMAParameters.Atmos.Microphysics_ne
+
+# cloud water
+Microphysics_ne.τ_cond_evap(::AEPS) = 10
+Microphysics_ne.τ_sub_dep(::AEPS)  = 10
+
 # 0-moment microphysics parameters
 const Microphysics_0M = CLIMAParameters.Atmos.Microphysics_0M
 
@@ -61,80 +68,76 @@ Microphysics_0M.qc_0(::AEPS)     = 5e-3
 Microphysics_0M.S_0(::AEPS)      = 0.02
 
 # 1-moment microphysics parameters
-const Microphysics = CLIMAParameters.Atmos.Microphysics
+const Microphysics_1M = CLIMAParameters.Atmos.Microphysics_1M
 
 # general
-Microphysics.C_drag(::AEPS)  = 0.55
-Microphysics.K_therm(::AEPS) = 2.4e-2
-Microphysics.D_vapor(::AEPS) = 2.26e-5
-Microphysics.ν_air(::AEPS)   = 1.6e-5
-Microphysics.N_Sc(ps::AEPS)  = Microphysics.ν_air(ps)/Microphysics.D_vapor(ps)
-
-# cloud water
-Microphysics.τ_cond_evap(::AEPS) = 10
+Microphysics_1M.C_drag(::AEPS)  = 0.55
+Microphysics_1M.K_therm(::AEPS) = 2.4e-2
+Microphysics_1M.D_vapor(::AEPS) = 2.26e-5
+Microphysics_1M.ν_air(::AEPS)   = 1.6e-5
+Microphysics_1M.N_Sc(ps::AEPS)  = Microphysics_1M.ν_air(ps)/Microphysics_1M.D_vapor(ps)
 
 # cloud ice
-Microphysics.τ_sub_dep(::AEPS)  = 10
-Microphysics.r_ice_snow(::AEPS) = 62.5 * 1e-6
-Microphysics.n0_ice(::AEPS)         = 1e7 * 2
-Microphysics.r0_ice(::AEPS)         = 1e-5
-Microphysics.me_ice(::AEPS)         = 3
-Microphysics.m0_ice(ps::AEPS) = 4/3 * π *
+Microphysics_1M.r_ice_snow(::AEPS) = 62.5 * 1e-6
+Microphysics_1M.n0_ice(::AEPS)         = 1e7 * 2
+Microphysics_1M.r0_ice(::AEPS)         = 1e-5
+Microphysics_1M.me_ice(::AEPS)         = 3
+Microphysics_1M.m0_ice(ps::AEPS) = 4/3 * π *
     CLIMAParameters.Planet.ρ_cloud_ice(ps) *
-    Microphysics.r0_ice(ps)^Microphysics.me_ice(ps)
-Microphysics.χm_ice(::AEPS)         = 1
-Microphysics.Δm_ice(::AEPS)         = 0
+    Microphysics_1M.r0_ice(ps)^Microphysics_1M.me_ice(ps)
+Microphysics_1M.χm_ice(::AEPS)         = 1
+Microphysics_1M.Δm_ice(::AEPS)         = 0
 
 # rain
-Microphysics.q_liq_threshold(::AEPS) = 5e-4
-Microphysics.τ_acnv_rai(::AEPS)      = 1e3
-Microphysics.a_vent_rai(::AEPS)          = 1.5
-Microphysics.b_vent_rai(::AEPS)          = 0.53
-Microphysics.n0_rai(::AEPS)              = 8e6 * 2
-Microphysics.r0_rai(::AEPS)              = 1e-3
-Microphysics.me_rai(::AEPS)              = 3
-Microphysics.ae_rai(::AEPS)              = 2
-Microphysics.ve_rai(::AEPS)              = 0.5
-Microphysics.m0_rai(ps::AEPS) = 4/3 * π *
+Microphysics_1M.q_liq_threshold(::AEPS) = 5e-4
+Microphysics_1M.τ_acnv_rai(::AEPS)      = 1e3
+Microphysics_1M.a_vent_rai(::AEPS)          = 1.5
+Microphysics_1M.b_vent_rai(::AEPS)          = 0.53
+Microphysics_1M.n0_rai(::AEPS)              = 8e6 * 2
+Microphysics_1M.r0_rai(::AEPS)              = 1e-3
+Microphysics_1M.me_rai(::AEPS)              = 3
+Microphysics_1M.ae_rai(::AEPS)              = 2
+Microphysics_1M.ve_rai(::AEPS)              = 0.5
+Microphysics_1M.m0_rai(ps::AEPS) = 4/3 * π *
     CLIMAParameters.Planet.ρ_cloud_liq(ps) *
-    Microphysics.r0_rai(ps)^Microphysics.me_rai(ps)
-Microphysics.a0_rai(ps::AEPS) = π * Microphysics.r0_rai(ps)^Microphysics.ae_rai(ps)
-Microphysics.χm_rai(::AEPS)              = 1
-Microphysics.Δm_rai(::AEPS)              = 0
-Microphysics.χa_rai(::AEPS)              = 1
-Microphysics.Δa_rai(::AEPS)              = 0
-Microphysics.χv_rai(::AEPS)              = 1
-Microphysics.Δv_rai(::AEPS)              = 0
+    Microphysics_1M.r0_rai(ps)^Microphysics_1M.me_rai(ps)
+Microphysics_1M.a0_rai(ps::AEPS) = π * Microphysics_1M.r0_rai(ps)^Microphysics_1M.ae_rai(ps)
+Microphysics_1M.χm_rai(::AEPS)              = 1
+Microphysics_1M.Δm_rai(::AEPS)              = 0
+Microphysics_1M.χa_rai(::AEPS)              = 1
+Microphysics_1M.Δa_rai(::AEPS)              = 0
+Microphysics_1M.χv_rai(::AEPS)              = 1
+Microphysics_1M.Δv_rai(::AEPS)              = 0
 
 # snow
-Microphysics.q_ice_threshold(::AEPS) = 1e-6
-Microphysics.τ_acnv_sno(::AEPS)      = 1e2
-Microphysics.a_vent_sno(::AEPS) = 0.65
-Microphysics.b_vent_sno(::AEPS) = 0.44
+Microphysics_1M.q_ice_threshold(::AEPS) = 1e-6
+Microphysics_1M.τ_acnv_sno(::AEPS)      = 1e2
+Microphysics_1M.a_vent_sno(::AEPS) = 0.65
+Microphysics_1M.b_vent_sno(::AEPS) = 0.44
 # n0_sno = μ_sno (ρ q_sno / ρ_0)^ν_sno;  ρ_0 = 1kg/m3
-Microphysics.μ_sno(::AEPS)  = 4.36 * 1e9
-Microphysics.ν_sno(::AEPS)  = 0.63
-Microphysics.r0_sno(::AEPS)     = 1e-3
-Microphysics.me_sno(::AEPS)     = 2
-Microphysics.ae_sno(::AEPS)     = 2
-Microphysics.ve_sno(::AEPS)     = 0.25
-Microphysics.m0_sno(ps::AEPS)   = 1e-1 * Microphysics.r0_sno(ps)^Microphysics.me_sno(ps)
-Microphysics.a0_sno(ps::AEPS)   = 0.3 * π * Microphysics.r0_sno(ps)^Microphysics.ae_sno(ps)
-Microphysics.v0_sno(ps::AEPS)   = 2^(9/4) * Microphysics.r0_sno(ps)^Microphysics.ve_sno(ps)
-Microphysics.χm_sno(::AEPS)     = 1
-Microphysics.Δm_sno(::AEPS)     = 0
-Microphysics.χa_sno(::AEPS)     = 1
-Microphysics.Δa_sno(::AEPS)     = 0
-Microphysics.χv_sno(::AEPS)     = 1
-Microphysics.Δv_sno(::AEPS)     = 0
+Microphysics_1M.μ_sno(::AEPS)  = 4.36 * 1e9
+Microphysics_1M.ν_sno(::AEPS)  = 0.63
+Microphysics_1M.r0_sno(::AEPS)     = 1e-3
+Microphysics_1M.me_sno(::AEPS)     = 2
+Microphysics_1M.ae_sno(::AEPS)     = 2
+Microphysics_1M.ve_sno(::AEPS)     = 0.25
+Microphysics_1M.m0_sno(ps::AEPS)   = 1e-1 * Microphysics_1M.r0_sno(ps)^Microphysics_1M.me_sno(ps)
+Microphysics_1M.a0_sno(ps::AEPS)   = 0.3 * π * Microphysics_1M.r0_sno(ps)^Microphysics_1M.ae_sno(ps)
+Microphysics_1M.v0_sno(ps::AEPS)   = 2^(9/4) * Microphysics_1M.r0_sno(ps)^Microphysics_1M.ve_sno(ps)
+Microphysics_1M.χm_sno(::AEPS)     = 1
+Microphysics_1M.Δm_sno(::AEPS)     = 0
+Microphysics_1M.χa_sno(::AEPS)     = 1
+Microphysics_1M.Δa_sno(::AEPS)     = 0
+Microphysics_1M.χv_sno(::AEPS)     = 1
+Microphysics_1M.Δv_sno(::AEPS)     = 0
 
-Microphysics.microph_scaling(::AEPS) = 1.0
-Microphysics.microph_scaling_dep_sub(::AEPS) = 1.0
-Microphysics.microph_scaling_melt(::AEPS) = 1.0
+Microphysics_1M.microph_scaling(::AEPS) = 1.0
+Microphysics_1M.microph_scaling_dep_sub(::AEPS) = 1.0
+Microphysics_1M.microph_scaling_melt(::AEPS) = 1.0
 
 # interactions
-Microphysics.E_liq_rai(ps::AEPS) = 0.8
-Microphysics.E_liq_sno(ps::AEPS) = 0.1
-Microphysics.E_ice_rai(ps::AEPS) = 1
-Microphysics.E_ice_sno(ps::AEPS) = 0.1
-Microphysics.E_rai_sno(ps::AEPS) = 1
+Microphysics_1M.E_liq_rai(ps::AEPS) = 0.8
+Microphysics_1M.E_liq_sno(ps::AEPS) = 0.1
+Microphysics_1M.E_ice_rai(ps::AEPS) = 1
+Microphysics_1M.E_ice_sno(ps::AEPS) = 0.1
+Microphysics_1M.E_rai_sno(ps::AEPS) = 1

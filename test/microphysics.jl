@@ -2,36 +2,43 @@ using Test
 using CLIMAParameters
 using CLIMAParameters.Planet
 
+using CLIMAParameters.Atmos.Microphysics_ne
 using CLIMAParameters.Atmos.Microphysics_0M
-using CLIMAParameters.Atmos.Microphysics
+using CLIMAParameters.Atmos.Microphysics_1M
+
+@testset "Microphysics_ne" begin
+
+  struct EarthParamSet <: AbstractEarthParameterSet end
+  earth = EarthParamSet()
+
+  @test !isnan(τ_cond_evap(earth))
+  @test !isnan(τ_sub_dep(earth))
+
+end
 
 @testset "Microphysics_0M" begin
 
   struct EarthParameterSet <: AbstractEarthParameterSet end
   ps = EarthParameterSet()
 
-  @test !isnan(Microphysics_0M.τ_precip(ps))
-  @test !isnan(Microphysics_0M.qc_0(ps))
-  @test !isnan(Microphysics_0M.S_0(ps))
+  @test !isnan(τ_precip(ps))
+  @test !isnan(qc_0(ps))
+  @test !isnan(S_0(ps))
 
 end
 
-@testset "Microphysics" begin
+@testset "Microphysics_1M" begin
 
   struct EarthParamSet <: AbstractEarthParameterSet end
-
   earth = EarthParamSet()
 
   # Test that all methods are callable, and that nothing returns NaNs
-  @test !isnan(Microphysics.C_drag(earth))
+  @test !isnan(C_drag(earth))
   @test !isnan(K_therm(earth))
   @test !isnan(D_vapor(earth))
   @test !isnan(ν_air(earth))
   @test !isnan(N_Sc(earth))
 
-  @test !isnan(τ_cond_evap(earth))
-
-  @test !isnan(τ_sub_dep(earth))
   @test !isnan(r_ice_snow(earth))
   @test !isnan(n0_ice(earth))
   @test !isnan(r0_ice(earth))
