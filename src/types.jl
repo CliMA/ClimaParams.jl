@@ -15,4 +15,3 @@ An earth parameter set, specific to planet Earth.
 """
 abstract type AbstractEarthParameterSet <: AbstractParameterSet end
 const AEPS = AbstractEarthParameterSet
-
