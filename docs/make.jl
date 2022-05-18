@@ -1,16 +1,15 @@
 using CLIMAParameters, Documenter
 
-pages = Any[
-    "Home" => "index.md",
-    "API" => "API.md",
-]
+pages = Any["Home" => "index.md", "API" => "API.md"]
 
-mathengine = MathJax(Dict(
-    :TeX => Dict(
-        :equationNumbers => Dict(:autoNumber => "AMS"),
-        :Macros => Dict(),
+mathengine = MathJax(
+    Dict(
+        :TeX => Dict(
+            :equationNumbers => Dict(:autoNumber => "AMS"),
+            :Macros => Dict(),
+        ),
     ),
-))
+)
 
 format = Documenter.HTML(
     prettyurls = get(ENV, "CI", nothing) == "true",
@@ -34,4 +33,3 @@ deploydocs(
     devbranch = "main",
     forcepush = true,
 )
-
