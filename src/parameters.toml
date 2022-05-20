@@ -401,6 +401,21 @@ alias = "T_icenuc"
 value = 233
 type = "float"
 
+[pow_icenuc]
+alias = "pow_icenuc"
+value = 1
+type = "float"
+
+[microph_scaling_dep_sub]
+alias = "microph_scaling_dep_sub"
+value = 1.0
+type = "float"
+
+[microph_scaling_melt]
+alias = "microph_scaling_melt"
+value = 1.0
+type = "float"
+
 [temperature_triple_point]
 alias = "T_triple"
 value = 273.16
