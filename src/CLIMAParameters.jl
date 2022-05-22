@@ -4,6 +4,7 @@ export AbstractParameterSet
 export AbstractEarthParameterSet
 
 include("file_parsing.jl")
+include("utils.jl")
 include("types.jl")
 include("UniversalConstants.jl")
 

@@ -16,6 +16,7 @@ AliasParamDict
 
 ### User facing functions:
 ```@docs
+required_kw_fieldnames
 create_parameter_struct
 get_parameter_values!
 get_parameter_values
