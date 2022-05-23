@@ -1,6 +1,6 @@
 # CLIMAParameters.jl
 
-This package contains all of the parameters use across the [CliMA](https://github.com/CliMA) organization. Some parameters are simply global constants (e.g., speed of light), while others are parameters that may be tuned in a machine-learning layer that sits on-top of [ClimateMachine.jl](https://github.com/CliMa/ClimateMachine.jl).
+This package contains all of the parameters used across the [CliMA](https://github.com/CliMA) organization. Some parameters are simply global constants (e.g., speed of light), while others are parameters that may be tuned in a machine-learning layer that sits on-top of [ClimateMachine.jl](https://github.com/CliMa/ClimateMachine.jl).
 
 ## What parameters are good candidates for CLIMAParameters?
 
@@ -16,7 +16,7 @@ In addition, CLIMAParameters have the flexibility of two important behaviors:
 
 ### Compile-time constants
 
-This behavior is used for parameters that **will not** be tuned in the machine-learning layer. Therefore, these parameters can be constant-propagated[^1] and constant-folded[^2] at compile time. This is behavior is achieved by leveraging Julia's type system, and only relying on singleton types[^3]:
+This behavior is used for parameters that **will not** be tuned in the machine-learning layer. Therefore, these parameters can be constant-propagated[^1] and constant-folded[^2] at compile time. This behavior is achieved by leveraging Julia's type system, and only relying on singleton types[^3]:
 
 ```@example
 using CLIMAParameters:AbstractEarthParameterSet
@@ -32,7 +32,7 @@ CLIMAParameters.Planet.grav(::EarthParameterSet) = 5.0 # Defined for illustrativ
 
 ### Run-time constants
 
-This behavior is used for parameters that **will** be tuned in the machine-learning layer. In this case, it makes sense to create a single binary image that can be reused for several different sets of CLIMAParameters as they are updated in the machine-learning layer. This is behavior is achieved by using composite types[^4] with fields to store/access data:
+This behavior is used for parameters that **will** be tuned in the machine-learning layer. In this case, it makes sense to create a single binary image that can be reused for several different sets of CLIMAParameters as they are updated in the machine-learning layer. This behavior is achieved by using composite types[^4] with fields to store/access data:
 
 ```@example
 using CLIMAParameters:AbstractEarthParameterSet

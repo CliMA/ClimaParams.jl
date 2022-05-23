@@ -2,7 +2,7 @@
 
 The complete user interface consists of two files in `TOML` format
 1. A user-defined experiment file - in the local experiment directory
-2. A defaults file - in `src/` directory of `ClimaParameters.jl`
+2. A defaults file - in `src/` directory of `CLIMAParameters.jl`
 
 ## Parameter style-guide
 
@@ -57,11 +57,11 @@ value = 0.03
 type = "float"
 description = "Molecular weight dry air (kg/mol)"
 ```
-Here, the `value` field has been overwritten by the experiment value
+Here, the `value` field has been overwritten by the experiment value.
 
 ## File and parameter interaction on with CliMA
 
-`ClimaParameters.jl` provides several methods to parse, merge, and log parameter information.
+`CLIMAParameters.jl` provides several methods to parse, merge, and log parameter information.
 
 
 ### Loading from file
@@ -80,12 +80,12 @@ import CLIMAParameters
 local_exp_file = joinpath(@__DIR__,"local_exp_parameters.toml")
 parameter_struct = CLIMAParameters.create_parameter_struct(;local_exp_file)
 ```
-If no file is passed it will use only the defaults from `ClimaParameters.jl` (causing errors if required parameters are not within this list).
+If no file is passed it will use only the defaults from `CLIMAParameters.jl` (causing errors if required parameters are not within this list).
 
 !!! note
-    Currently we search by the `alias` field (`dict_type="alias"` by default), so all parameters need an `alias` field, if in doubt, set alias and name to match the current code name convention
+    Currently we search by the `alias` field (`dict_type="alias"` by default), so all parameters need an `alias` field, if in doubt, set alias and name to match the current code name convention.
 
-The parameter struct is then used to build the codebase (see relevant Docs page)
+The parameter struct is then used to build the codebase (see relevant Docs page).
 
 ### Logging parameters
 
@@ -122,7 +122,7 @@ used_in = ["Thermodynamics"]
 The additional attribute `used_in` displays every CliMA component that used this parameter.
 
 !!! note
-    Log files are written in TOML format, and can be read back into the model
+    Log files are written in TOML format, and can be read back into the model.
 
 !!! warn
-    It is assumed that all parameters in the local experiment file should be used, if not a warning is displayed when calling `log_parameter_information`. this is upgraded to an error exception by changing `strict`
+    It is assumed that all parameters in the local experiment file should be used, if not a warning is displayed when calling `log_parameter_information`. This is upgraded to an error exception by changing `strict`.

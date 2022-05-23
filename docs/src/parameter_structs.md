@@ -1,6 +1,6 @@
 # Parameter Structures
 
-Parameters are stored in objects that reflect the model component construction. Definitions should be inserted into the model component source code
+Parameters are stored in objects that reflect the model component construction. Definitions should be inserted into the model component source code.
 
 ## An example from `Thermodynamics.jl` 
 
@@ -23,9 +23,9 @@ Base.@kwdef struct ThermodynamicsParameters{FT}
     R_d::FT
 end
 ```
-- The struct is parameterized by `{FT}` which is a user-determined float precision
+- The struct is parameterized by `{FT}` which is a user-determined float precision.
 - Only relevant parameters used in `Thermodynamics` are stored here.
-- A keyword based `struct` so we do not rely on parameter order
+- A keyword based `struct` so we do not rely on parameter order.
 
 The constructor is as follows
 ```julia
@@ -49,12 +49,12 @@ function ThermodynamicsParameters(parameter_struct)
 end
 ```
 
-- The constructor takes in a `parameter_struct` produced from reading the TOML file
-- We list the aliases of parameters required by `Thermodynamics.jl`
+- The constructor takes in a `parameter_struct` produced from reading the TOML file.
+- We list the aliases of parameters required by `Thermodynamics.jl`.
 - We obtain parameters (in the form of a list of (alias,value) Pairs) from `get_parameter_values!(parameter_struct,aliases,component_name)` The `component_name` is a string used for the parameter log.
-- We convert to namedtuple for ease of extraction
-- We create any `derived parameters` i.e. commonly used simple functions of parameters that are treated as parameters. here we create the dry air gas constant `R_d`
-- We return the `ThermodynamicsParameters{FT}`, where FT is an enforced float type (e.g. single or double precision)
+- We convert to namedtuple for ease of extraction.
+- We create any `derived parameters` i.e. commonly used simple functions of parameters that are treated as parameters. Here we create the dry air gas constant `R_d`.
+- We return the `ThermodynamicsParameters{FT}`, where FT is an enforced float type (e.g. single or double precision).
 
 
 ## An example with modular components from `CloudMicrophysics.jl`
@@ -83,7 +83,7 @@ parameter_set = CloudMicrophysics.CloudMicrophysicsParameters(
 )
 ```
 !!! note
-    The exact APIs here are subject to change
+    The exact APIs here are subject to change.
 
 ### In the source code for `CloudMicrophysics.jl`
 
@@ -142,7 +142,7 @@ end
 ## Calling parameters from `src`
 
 !!! note
-    The exact APIs here are subject to change
+    The exact APIs here are subject to change.
 
 When building the model components, parameters are extracted by calling `param_set.name` or `param_set.alias` (currently)
 ```julia
