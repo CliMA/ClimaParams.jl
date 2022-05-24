@@ -3,7 +3,7 @@ using CLIMAParameters, Documenter
 pages = Any[
     "Home" => "index.md",
     "TOML file interface" => "toml.md",
-    "Parameter structures" => "parameter_structs.md",
+    "TOML dicts" => "toml_dicts.md",
     "API" => "API.md",
 ]
 

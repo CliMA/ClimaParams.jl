@@ -10,14 +10,14 @@ Base.@kwdef struct ParameterBox{FT}
     R_d::FT = gas_constant / molmass_dryair
 end
 
-function ParameterBox(param_struct::CP.AbstractParamDict)
+function ParameterBox(toml_dict::CP.AbstractTOMLDict)
 
     aliases = ["molmass_dryair", "gas_constant", "new_parameter"]
 
-    params = CP.get_parameter_values!(param_struct, aliases, "ParameterBox")
+    params = CP.get_parameter_values!(toml_dict, aliases, "ParameterBox")
     # Returns an array of `Pair`s for all given `aliases`
 
-    FT = CP.float_type(param_struct)
+    FT = CP.float_type(toml_dict)
     return ParameterBox{FT}(; params...)
 end
 
@@ -26,22 +26,19 @@ end
 
     # [1.] read from file
     toml_file = joinpath(@__DIR__, "toml", "parambox.toml")
-    param_struct = CP.create_parameter_struct(
+    toml_dict = CP.create_toml_dict(
         Float64;
         override_file = toml_file,
         dict_type = "alias",
     )
 
     # [2.] build
-    param_set = ParameterBox(param_struct)
+    param_set = ParameterBox(toml_dict)
 
     # [3.] log & checks(with warning)
     mktempdir(@__DIR__) do path
         logfilepath = joinpath(path, "logfilepath.toml")
-        @test_logs (:warn,) CP.log_parameter_information(
-            param_struct,
-            logfilepath,
-        )
+        @test_logs (:warn,) CP.log_parameter_information(toml_dict, logfilepath)
     end
 
     # [4.] use

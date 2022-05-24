@@ -2,7 +2,7 @@ using TOML
 using DocStringExtensions
 
 
-export AbstractParamDict
+export AbstractTOMLDict
 export ParamDict, AliasParamDict
 
 export float_type,
@@ -10,16 +10,16 @@ export float_type,
     get_parameter_values,
     write_log_file,
     log_parameter_information,
-    create_parameter_struct
+    create_toml_dict
 
 """
-    AbstractParamDict{FT <: AbstractFloat}
+    AbstractTOMLDict{FT <: AbstractFloat}
 
 Abstract parameter dict. Two subtypes:
  - [`ParamDict`](@ref)
  - [`AliasParamDict`](@ref)
 """
-abstract type AbstractParamDict{FT <: AbstractFloat} end
+abstract type AbstractTOMLDict{FT <: AbstractFloat} end
 
 const NAMESTYPE =
     Union{AbstractVector{S}, NTuple{N, S} where {N}} where {S <: AbstractString}
@@ -36,7 +36,7 @@ Uses the name to search
 
 $(DocStringExtensions.FIELDS)
 """
-struct ParamDict{FT} <: AbstractParamDict{FT}
+struct ParamDict{FT} <: AbstractTOMLDict{FT}
     "dictionary representing a default/merged parameter TOML file"
     data::Dict
     "either a nothing, or a dictionary representing an override parameter TOML file"
@@ -55,7 +55,7 @@ Uses the alias to search
 
 $(DocStringExtensions.FIELDS)
 """
-struct AliasParamDict{FT} <: AbstractParamDict{FT}
+struct AliasParamDict{FT} <: AbstractTOMLDict{FT}
     "dictionary representing a default/merged parameter TOML file"
     data::Dict
     "either a nothing, or a dictionary representing an override parameter TOML file"
@@ -63,11 +63,11 @@ struct AliasParamDict{FT} <: AbstractParamDict{FT}
 end
 
 """
-    float_type(::AbstractParamDict)
+    float_type(::AbstractTOMLDict)
 
 The float type from the parameter dict.
 """
-float_type(::AbstractParamDict{FT}) where {FT} = FT
+float_type(::AbstractTOMLDict{FT}) where {FT} = FT
 
 function Base.iterate(pd::AliasParamDict)
     it = iterate(pd.data)
@@ -92,7 +92,7 @@ Base.iterate(pd::ParamDict) = Base.iterate(pd.data)
 
 
 """
-    log_component!(pd::AbstractParamDict, names, component)
+    log_component!(pd::AbstractTOMLDict, names, component)
 
 Adds a new key,val pair: `("used_in",component)` to each
 named parameter in `pd`.
@@ -137,7 +137,7 @@ function log_component!(
 end
 
 """
-    get_values(pd::AbstractParamDict, names)
+    get_values(pd::AbstractTOMLDict, names)
 
 gets the `value` of the named parameters.
 """
@@ -172,7 +172,7 @@ end
 
 """
     get_parameter_values!(
-        pd::AbstractParamDict,
+        pd::AbstractTOMLDict,
         names::Union{String,Vector{String}},
         component::String
     )
@@ -181,7 +181,7 @@ end
 the component (if given) where parameters are used.
 """
 function get_parameter_values!(
-    pd::AbstractParamDict,
+    pd::AbstractTOMLDict,
     names::NAMESTYPE,
     component::Union{AbstractString, Nothing} = nothing,
 )
@@ -192,19 +192,19 @@ function get_parameter_values!(
 end
 
 get_parameter_values!(
-    pd::AbstractParamDict,
+    pd::AbstractTOMLDict,
     names::AbstractString,
     args...;
     kwargs...,
 ) = first(get_parameter_values!(pd, [names], args..., kwargs...))
 
 """
-    get_parameter_values(pd::AbstractParamDict, names)
+    get_parameter_values(pd::AbstractTOMLDict, names)
 
 Gets the parameter values only.
 """
 get_parameter_values(
-    pd::AbstractParamDict,
+    pd::AbstractTOMLDict,
     names::Union{NAMESTYPE, AbstractString},
 ) = get_parameter_values!(pd, names, nothing)
 
@@ -216,14 +216,14 @@ key "used_in" (i.e. were these parameters used within the model run).
 Throws warnings in each where parameters are not used. Also throws
 an error if `strict == true` .
 """
-check_override_parameter_usage(pd::AbstractParamDict, strict::Bool) =
+check_override_parameter_usage(pd::AbstractTOMLDict, strict::Bool) =
     check_override_parameter_usage(pd, strict, pd.override_dict)
 
-check_override_parameter_usage(pd::AbstractParamDict, strict::Bool, ::Nothing) =
+check_override_parameter_usage(pd::AbstractTOMLDict, strict::Bool, ::Nothing) =
     nothing
 
 function check_override_parameter_usage(
-    pd::AbstractParamDict,
+    pd::AbstractTOMLDict,
     strict::Bool,
     override_dict,
 )
@@ -258,12 +258,12 @@ function check_override_parameter_usage(
 end
 
 """
-    write_log_file(pd::AbstractParamDict, filepath)
+    write_log_file(pd::AbstractTOMLDict, filepath)
 
 Writes a log file of all used parameters of `pd` at
 the `filepath`. This file can be used to rerun the experiment.
 """
-function write_log_file(pd::AbstractParamDict, filepath::AbstractString)
+function write_log_file(pd::AbstractTOMLDict, filepath::AbstractString)
     used_parameters = Dict()
     for (key, val) in pd.data
         if "used_in" in keys(val)
@@ -278,7 +278,7 @@ end
 
 """
     log_parameter_information(
-        pd::AbstractParamDict,
+        pd::AbstractTOMLDict,
         filepath;
         strict::Bool = false
     )
@@ -289,7 +289,7 @@ override parameters are all used.
 If `strict = true`, errors if override parameters are unused.
 """
 function log_parameter_information(
-    pd::AbstractParamDict,
+    pd::AbstractTOMLDict,
     filepath::AbstractString;
     strict::Bool = false,
 )
@@ -302,20 +302,20 @@ end
 
 """
     merge_override_default_values(
-        override_param_struct::AbstractParamDict{FT},
-        default_param_struct::AbstractParamDict{FT}
+        override_toml_dict::AbstractTOMLDict{FT},
+        default_toml_dict::AbstractTOMLDict{FT}
     ) where {FT}
 
-Combines the `default_param_struct` with the `override_param_struct`,
+Combines the `default_toml_dict` with the `override_toml_dict`,
 precedence is given to override information.
 """
 function merge_override_default_values(
-    override_param_struct::PDT,
-    default_param_struct::PDT,
-) where {FT, PDT <: AbstractParamDict{FT}}
-    data = default_param_struct.data
-    override_dict = override_param_struct.override_dict
-    for (key, val) in override_param_struct.data
+    override_toml_dict::PDT,
+    default_toml_dict::PDT,
+) where {FT, PDT <: AbstractTOMLDict{FT}}
+    data = default_toml_dict.data
+    override_dict = override_toml_dict.override_dict
+    for (key, val) in override_toml_dict.data
         if !(key in keys(data))
             data[key] = val
         else
@@ -328,7 +328,7 @@ function merge_override_default_values(
 end
 
 """
-    create_parameter_struct(FT;
+    create_toml_dict(FT;
         override_file,
         default_file,
         dict_type="alias"
@@ -338,29 +338,26 @@ Creates a `ParamDict{FT}` struct, by reading and merging upto
 two TOML files with override information taking precedence over
 default information.
 """
-function create_parameter_struct(
+function create_toml_dict(
     ::Type{FT};
     override_file::Union{Nothing, String} = nothing,
     default_file::String = joinpath(@__DIR__, "parameters.toml"),
     dict_type = "alias",
 ) where {FT <: AbstractFloat}
     @assert dict_type in ("alias", "name")
-    PDT = _param_dict(dict_type, FT)
+    PDT = _toml_dict(dict_type, FT)
     if isnothing(override_file)
         return PDT(TOML.parsefile(default_file), nothing)
     end
-    override_param_struct =
+    override_toml_dict =
         PDT(TOML.parsefile(override_file), TOML.parsefile(override_file))
-    default_param_struct = PDT(TOML.parsefile(default_file), nothing)
+    default_toml_dict = PDT(TOML.parsefile(default_file), nothing)
 
     #overrides the defaults where they clash
-    return merge_override_default_values(
-        override_param_struct,
-        default_param_struct,
-    )
+    return merge_override_default_values(override_toml_dict, default_toml_dict)
 end
 
-function _param_dict(s::String, ::Type{FT}) where {FT}
+function _toml_dict(s::String, ::Type{FT}) where {FT}
     if s == "alias"
         return AliasParamDict{FT}
     elseif s == "name"
