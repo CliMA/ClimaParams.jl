@@ -7,6 +7,8 @@ include("file_parsing.jl")
 include("types.jl")
 include("UniversalConstants.jl")
 
+Base.broadcastable(aps::AbstractParameterSet) = Ref(aps)
+
 # Function stubs
 include(joinpath("Planet", "Planet.jl"))
 include(joinpath("Atmos", "Atmos.jl"))
