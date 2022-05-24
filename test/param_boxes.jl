@@ -5,8 +5,9 @@ const CP = CLIMAParameters
 Base.@kwdef struct ParameterBox{FT}
     molmass_dryair::FT
     gas_constant::FT
-    R_d::FT
     new_parameter::FT
+    # Derived parameters
+    R_d::FT = gas_constant / molmass_dryair
 end
 
 function ParameterBox(param_struct::CP.AbstractParamDict)
@@ -14,13 +15,10 @@ function ParameterBox(param_struct::CP.AbstractParamDict)
     aliases = ["molmass_dryair", "gas_constant", "new_parameter"]
 
     params = CP.get_parameter_values!(param_struct, aliases, "ParameterBox")
-    nt = (; params...) # NamedTuple
-
-    #derived parameters
-    R_d = nt.gas_constant / nt.molmass_dryair
+    # Returns an array of `Pair`s for all given `aliases`
 
     FT = CP.float_type(param_struct)
-    return ParameterBox{FT}(; nt..., R_d)
+    return ParameterBox{FT}(; params...)
 end
 
 
