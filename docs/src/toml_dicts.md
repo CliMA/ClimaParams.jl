@@ -20,7 +20,8 @@ Base.@kwdef struct ThermodynamicsParameters{FT}
     gas_constant::FT
     molmass_dryair::FT
     ...
-    R_d::FT
+    # derived parameters
+    R_d::FT = gas_constant / molmass_dryair
 end
 ```
 - The struct is parameterized by `{FT}` which is a user-determined float precision.
@@ -41,11 +42,8 @@ function ThermodynamicsParameters(toml_dict)
     )
     nt = (; param_pairs...)
 
-    # derived parameters from parameter file
-    R_d = nt.gas_constant / nt.molmass_dryair
-
     FT = CP.float_type(toml_dict)
-    return ThermodynamicsParameters{FT}(; nt..., R_d)
+    return ThermodynamicsParameters{FT}(; nt...)
 end
 ```
 
