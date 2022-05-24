@@ -67,9 +67,9 @@ Here, the `value` field has been overwritten by the experiment value.
 ### Loading from file
 We provide the following methods to load parameters from file
 ```julia
-create_parameter_struct(Float64;override_filepath, default_filepath, dict_type="alias")
-create_parameter_struct(Float64;override_filepath ; dict_type="alias")
-create_parameter_struct(Float64; dict_type="name")
+create_toml_dict(Float64;override_filepath, default_filepath, dict_type="alias")
+create_toml_dict(Float64;override_filepath ; dict_type="alias")
+create_toml_dict(Float64; dict_type="name")
 ```
 - The `dict_type = "name"` or `"alias"` determines the method of lookup of parameters (by `name` or by `alias` attributes).
 - The `Float64` (or `Float32`) defines the requested precision of the returned parameters.
@@ -78,30 +78,30 @@ Typical usage involves passing the local parameter file
 ```julia
 import CLIMAParameters
 local_exp_file = joinpath(@__DIR__,"local_exp_parameters.toml")
-parameter_struct = CLIMAParameters.create_parameter_struct(;local_exp_file)
+toml_dict = CLIMAParameters.create_toml_dict(;local_exp_file)
 ```
 If no file is passed it will use only the defaults from `CLIMAParameters.jl` (causing errors if required parameters are not within this list).
 
 !!! note
     Currently we search by the `alias` field (`dict_type="alias"` by default), so all parameters need an `alias` field, if in doubt, set alias and name to match the current code name convention.
 
-The parameter struct is then used to build the codebase (see relevant Docs page).
+The parameter dict is then used to build the codebase (see relevant Docs page).
 
 ### Logging parameters
 
 Once the CliMA components are built, it is important to log the parameters. We provide the following methodd
 ```julia
-log_parameter_information(parameter_struct, filepath; strict=false)
+log_parameter_information(toml_dict, filepath; strict=false)
 ```
 
 Typical usage will be after building components and before running
 ```julia
 import Thermodynamics
-therm_params = Thermodynamics.ThermodynamicsParameters(parameter_struct)
+therm_params = Thermodynamics.ThermodynamicsParameters(toml_dict)
 #... build(thermodynamics model,therm_params)
 
 log_file = joinpath(@__DIR__,"parameter_log.toml")
-CLIMAParameters.log_parameter_information(parameter_struct,log_file)
+CLIMAParameters.log_parameter_information(toml_dict,log_file)
 
 # ... run(thermodynamics_model)
 ```

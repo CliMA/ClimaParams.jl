@@ -5,7 +5,7 @@ import CLIMAParameters
 const CP = CLIMAParameters
 
 # read parameters needed for tests
-full_parameter_set = CP.create_parameter_struct(Float64; dict_type = "alias")
+full_parameter_set = CP.create_toml_dict(Float64; dict_type = "alias")
 
 const CPP = CP.Planet
 struct EarthParameterSet <: CP.AbstractEarthParameterSet end
@@ -40,7 +40,7 @@ logfilepath1 = joinpath(@__DIR__, "toml", "log_file_test_1.toml")
 @testset "parameter file interface tests" begin
 
     @testset "load with name or alias" begin
-        @test_throws AssertionError CP.create_parameter_struct(
+        @test_throws AssertionError CP.create_toml_dict(
             Float64;
             dict_type = "not name or alias",
         )
@@ -92,7 +92,7 @@ logfilepath1 = joinpath(@__DIR__, "toml", "log_file_test_1.toml")
 
 
         #read in log file as new parameter file and rerun test.
-        full_parameter_set_from_log = CP.create_parameter_struct(
+        full_parameter_set_from_log = CP.create_toml_dict(
             Float64;
             override_file = logfilepath1,
             dict_type = "alias",
@@ -124,19 +124,19 @@ logfilepath1 = joinpath(@__DIR__, "toml", "log_file_test_1.toml")
         # Tests to check if file parsing, extracting and logging of parameter
         # values also works with array-valued parameters
 
-        # Create parameter structs consisting of the parameters contained in the
+        # Create parameter dict consisting of the parameters contained in the
         # default parameter file ("parameters.toml") and additional (array valued)
         # parameters ("array_parameters.toml").
         path_to_array_params =
             joinpath(@__DIR__, "toml", "array_parameters.toml")
         # parameter struct of type Float64 (default)
-        param_set = CP.create_parameter_struct(
+        toml_dict = CP.create_toml_dict(
             Float64;
             override_file = path_to_array_params,
             dict_type = "name",
         )
         # parameter struct of type Float32
-        param_set_f32 = CP.create_parameter_struct(
+        toml_dict_f32 = CP.create_toml_dict(
             Float32;
             override_file = path_to_array_params,
             dict_type = "name",
@@ -165,23 +165,23 @@ logfilepath1 = joinpath(@__DIR__, "toml", "log_file_test_1.toml")
         for i in range(1, stop = length(true_params))
 
             param_pair =
-                CP.get_parameter_values!(param_set, param_names[i], mod)
+                CP.get_parameter_values!(toml_dict, param_names[i], mod)
             param = last(param_pair)
             @test param == true_params[i]
             # Check if the parameter is of the correct type. It should have
             # the same type as the ParamDict, which is specified by the
-            # `float_type` argument to `create_parameter_struct`.
+            # `float_type` argument to `create_toml_dict`.
             @test eltype(param) == Float64
 
             param_f32_pair =
-                CP.get_parameter_values!(param_set_f32, param_names[i], mod)
+                CP.get_parameter_values!(toml_dict_f32, param_names[i], mod)
             param_f32 = last(param_f32_pair)
             @test eltype(param_f32) == Float32
 
         end
 
         # Get several parameter values (scalar and arrays) at once
-        params = CP.get_parameter_values(param_set, param_names)
+        params = CP.get_parameter_values(toml_dict, param_names)
         for j in 1:length(param_names)
             param_val = last(params[j])
             @test param_val == true_params[j]
@@ -190,15 +190,15 @@ logfilepath1 = joinpath(@__DIR__, "toml", "log_file_test_1.toml")
         # Write parameters to log file
         mktempdir(@__DIR__) do path
             logfilepath2 = joinpath(path, "log_file_test_2.toml")
-            CP.write_log_file(param_set, logfilepath2)
+            CP.write_log_file(toml_dict, logfilepath2)
         end
 
-        # `param_set` and `full_param_set` contain different values for the
+        # `toml_dict` and `full_param_set` contain different values for the
         # `gravitational_acceleration` parameter. The merged parameter set should
-        # contain the value from `param_set`.
-        full_param_set = CP.create_parameter_struct(Float64; dict_type = "name")
+        # contain the value from `toml_dict`.
+        full_param_set = CP.create_toml_dict(Float64; dict_type = "name")
         merged_param_set =
-            CP.merge_override_default_values(param_set, full_param_set)
+            CP.merge_override_default_values(toml_dict, full_param_set)
         grav_pair = CP.get_parameter_values(
             merged_param_set,
             "gravitational_acceleration",
@@ -208,7 +208,7 @@ logfilepath1 = joinpath(@__DIR__, "toml", "log_file_test_1.toml")
     end
 
     @testset "checks for overrides" begin
-        full_param_set = CP.create_parameter_struct(
+        full_param_set = CP.create_toml_dict(
             Float64;
             override_file = joinpath(@__DIR__, "toml", "override_typos.toml"),
             dict_type = "name",

@@ -4,10 +4,10 @@
 CurrentModule = CLIMAParameters
 ```
 
-## Parameter struct
+## Parameter dictionaries
 
 ```@docs
-AbstractParamDict
+AbstractTOMLDict
 ParamDict
 AliasParamDict
 ```
@@ -16,7 +16,7 @@ AliasParamDict
 
 ### User facing functions:
 ```@docs
-create_parameter_struct
+create_toml_dict
 get_parameter_values!
 get_parameter_values
 float_type
