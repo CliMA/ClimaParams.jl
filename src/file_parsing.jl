@@ -60,7 +60,19 @@ struct AliasParamDict{FT} <: AbstractTOMLDict{FT}
     data::Dict
     "either a nothing, or a dictionary representing an override parameter TOML file"
     override_dict::Union{Nothing, Dict}
+    "Alias->name map"
+    alias_to_name_map::Dict
+    function AliasParamDict{FT}(
+        data::Dict,
+        override_dict::Union{Nothing, Dict},
+    ) where {FT}
+        alias_to_name_map = Dict(map(collect(keys(data))) do key
+            Pair(data[key]["alias"], key)
+        end)
+        return new{FT}(data, override_dict, alias_to_name_map)
+    end
 end
+
 
 """
     float_type(::AbstractTOMLDict)
@@ -90,6 +102,9 @@ end
 Base.iterate(pd::ParamDict, state) = Base.iterate(pd.data, state)
 Base.iterate(pd::ParamDict) = Base.iterate(pd.data)
 
+Base.getindex(pd::ParamDict, i) = getindex(pd.data, i)
+Base.getindex(pd::AliasParamDict, i) =
+    getindex(pd.data, pd.alias_to_name_map[i])
 
 """
     log_component!(pd::AbstractTOMLDict, names, component)
