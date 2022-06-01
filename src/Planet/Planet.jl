@@ -52,7 +52,9 @@ export molmass_dryair,
     obliq_epoch,
     lon_perihelion_epoch,
     eccentricity_epoch,
-    lon_perihelion,
+    obliq_spline,
+    lon_perihelion_spline,
+    eccentricity_spline,
     MSLP,
     T_surf_ref,
     T_min_ref
@@ -169,11 +171,12 @@ subtended at the Sun by the orbital arc from vernal equinox to perihelion). """
 function lon_perihelion_epoch end
 """ Orbital eccentricity at the epoch """
 function eccentricity_epoch end
-""" Longitude of perihelion (radians), measured relative to vernal equinox.
-The calculation of the mean anomaly is formulated such that the vernal equinox
-is fixed in the calendar. However, this requires tracking both the current longitude of perihelion
-as well as the reference longitude of perihelion at the reference time (epoch). """
-function lon_perihelion end
+""" Orbital obliquity function for some time in years since J2000 (radians) """
+function obliq_spline end
+""" Longitude of perihelion function for some time in years since J2000 (radians) """
+function lon_perihelion_spline end
+""" Orbital eccentricity function for some time in years since J2000 """
+function eccentricity_spline end
 """ Mean sea level pressure (Pa) """
 function MSLP end
 """ Mean surface temperature (K) in reference state """

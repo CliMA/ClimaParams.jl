@@ -538,11 +538,23 @@ alias = "eccentricity_epoch"
 value = 0.016708634
 type = "float"
 
-[longitude_perihelion]
-alias = "lon_perihelion"
-value = 4.938188299449
+[orbit_obliquity_spline]
+alias = "obliq_spline"
+value = 0
 type = "float"
-description = "(282.937348 degrees) in radians"
+description = "interpolation from Laskar 2004"
+
+[longitude_perihelion_spline]
+alias = "lon_perihelion_spline"
+value = 0
+type = "float"
+description = "interpolation from Laskar 2004"
+
+[orbit_eccentricity_spline]
+alias = "eccentricity_spline"
+value = 0
+type = "float"
+description = "interpolation from Laskar 2004"
 
 [mean_sea_level_pressure]
 alias = "MSLP"
