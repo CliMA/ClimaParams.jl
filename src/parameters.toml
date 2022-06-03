@@ -511,9 +511,9 @@ type = "float"
 
 [epoch_time]
 alias = "epoch"
-value = 211813488000
-type = "float"
-description = "derived: 2451545.0 * [day]"
+value = "2000-01-01T11:58:56.816"
+type = "String"
+description = "J2000 epoch (Jan 1, 2000 11:58:56.816 UTC) as string"
 
 [mean_anomalistic_at_epoch]
 alias = "mean_anom_epoch"
@@ -537,12 +537,6 @@ description = "(282.937348 degrees) in radians"
 alias = "eccentricity_epoch"
 value = 0.016708634
 type = "float"
-
-[longitude_perihelion]
-alias = "lon_perihelion"
-value = 4.938188299449
-type = "float"
-description = "(282.937348 degrees) in radians"
 
 [mean_sea_level_pressure]
 alias = "MSLP"

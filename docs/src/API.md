@@ -102,7 +102,6 @@ Planet.mean_anom_epoch
 Planet.obliq_epoch
 Planet.lon_perihelion_epoch
 Planet.eccentricity_epoch
-Planet.lon_perihelion
 Planet.MSLP
 Planet.T_surf_ref
 Planet.T_min_ref
