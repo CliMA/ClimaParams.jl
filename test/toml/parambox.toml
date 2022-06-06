@@ -1,11 +1,14 @@
 [gas_constant]
 alias = "gas_constant"
+type = "float"
 value = 4.0
 
 [param_2]
 alias = "new_parameter"
+type = "float"
 value = 19.99
 
 [param_3]
 alias = "unusued_parameter"
+type = "float"
 value = 1.0

@@ -1,5 +1,6 @@
 include("toml_consistency.jl")
 include("param_boxes.jl")
+include("types_from_file.jl")
 
 include("old/planet.jl")
 include("old/subgrid_scale.jl")
