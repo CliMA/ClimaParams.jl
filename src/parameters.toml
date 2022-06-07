@@ -512,7 +512,7 @@ type = "float"
 [epoch_time]
 alias = "epoch"
 value = "2000-01-01T11:58:56.816"
-type = "String"
+type = "string"
 description = "J2000 epoch (Jan 1, 2000 11:58:56.816 UTC) as string"
 
 [mean_anomalistic_at_epoch]
