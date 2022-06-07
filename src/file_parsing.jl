@@ -152,12 +152,47 @@ function log_component!(
 end
 
 """
+    _get_typed_value(pd, val, valname, valtype)
+
+enforces `val` to be of type as specified in the toml file
+- `float_type(pd)` if type=\"float\"
+- `Int` if type=\"integer\"
+- `String` if  type=\"string\"
+Default type of `String` is used if no type is provided.
+"""
+function _get_typed_value(
+    pd::AbstractTOMLDict,
+    val,
+    valname::AbstractString,
+    valtype,
+)
+
+    if valtype == "float"
+        return float_type(pd)(val)
+    elseif valtype == "integer"
+        return Int(val)
+    elseif valtype == "string"
+        return String(val)
+    else
+        error(
+            "For parameter with identifier: \"",
+            valname,
+            "\", the attribute: type = \"",
+            valtype,
+            "\", is not recognised, ",
+            "\n please select from: type = \"string\", \"float\", or \"integer\" ",
+        )
+    end
+end
+
+
+
+"""
     get_values(pd::AbstractTOMLDict, names)
 
 gets the `value` of the named parameters.
 """
 function get_values(pd::AliasParamDict, aliases::NAMESTYPE)
-    FT = float_type(pd)
     data = pd.data
     # TODO: use map
     ret_values = []
@@ -165,8 +200,13 @@ function get_values(pd::AliasParamDict, aliases::NAMESTYPE)
         for (key, val) in data
             alias ≠ val["alias"] && continue
             param_value = val["value"]
+            param_type = haskey(val, "type") ? val["type"] : "string"
             elem =
-                eltype(param_value) != FT ? map(FT, param_value) : param_value
+                isa(param_value, AbstractVector) ?
+                map(
+                    x -> _get_typed_value(pd, x, alias, param_type),
+                    param_value,
+                ) : _get_typed_value(pd, param_value, alias, param_type)
             push!(ret_values, Pair(Symbol(alias), elem))
         end
     end
@@ -174,12 +214,14 @@ function get_values(pd::AliasParamDict, aliases::NAMESTYPE)
 end
 
 function get_values(pd::ParamDict, names::NAMESTYPE)
-    FT = float_type(pd)
     data = pd.data
     ret_values = map(names) do name
         param_value = data[name]["value"]
+        param_type =
+            haskey(data[name], "type") ? data[name]["type"] : "string"
         elem =
-            eltype(param_value) != FT ? map(FT, param_value) : param_value
+            isa(param_value, AbstractVector) ?
+            map(x -> _get_typed_value(pd, x, name, param_type), param_value) : _get_typed_value(pd, param_value, name, param_type)
         Pair(Symbol(name), elem)
     end
     return ret_values
