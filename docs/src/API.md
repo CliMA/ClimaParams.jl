@@ -21,15 +21,7 @@ get_parameter_values!
 get_parameter_values
 float_type
 log_parameter_information
-```
-
-### Internal functions:
-```@docs
-log_component!
-get_values
-check_override_parameter_usage
 write_log_file
-merge_override_default_values
 ```
 
 ## Types

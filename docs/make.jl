@@ -26,6 +26,7 @@ makedocs(
     sitename = "CLIMAParameters.jl",
     format = format,
     clean = true,
+    checkdocs = :exports,
     strict = true,
     modules = [CLIMAParameters],
     pages = pages,
