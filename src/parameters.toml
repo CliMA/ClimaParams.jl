@@ -406,6 +406,11 @@ alias = "pow_icenuc"
 value = 1
 type = "float"
 
+[microph_scaling]
+alias = "microph_scaling"
+value = 1.0
+type = "float"
+
 [microph_scaling_dep_sub]
 alias = "microph_scaling_dep_sub"
 value = 1.0
