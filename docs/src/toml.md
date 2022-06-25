@@ -89,7 +89,7 @@ The parameter dict is then used to build the codebase (see relevant Docs page).
 
 ### Logging parameters
 
-Once the CliMA components are built, it is important to log the parameters. We provide the following methodd
+Once the CliMA components are built, it is important to log the parameters. We provide the following method
 ```julia
 log_parameter_information(toml_dict, filepath; strict=false)
 ```
