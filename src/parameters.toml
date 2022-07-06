@@ -392,7 +392,7 @@ value = 3.9
 type = "float"
 
 [B1994_auctoconversion_coeff_d_high]
-alias = "d_low_acnv_B1994"
+alias = "d_high_acnv_B1994"
 value = 9.9
 type = "float"
 
