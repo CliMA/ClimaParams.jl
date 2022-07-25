@@ -334,6 +334,11 @@ alias = "E_rai_sno"
 value = 1
 type = "float"
 
+[prescribed_cloud_droplet_number_concentration]
+alias = "Nd_prescribed"
+value = 1e8
+type = "float"
+
 [TC1980_autoconversion_coeff_D]
 alias = "D_acnv_TC1980"
 value = 3268.0
@@ -520,6 +525,16 @@ type = "float"
 [pow_icenuc]
 alias = "pow_icenuc"
 value = 1
+type = "float"
+
+[microph_scaling_acnv]
+alias = "microph_scaling_acnv"
+value = 1.0
+type = "float"
+
+[microph_scaling_accr]
+alias = "microph_scaling_accr"
+value = 1.0
 type = "float"
 
 [microph_scaling]
