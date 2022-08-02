@@ -456,7 +456,10 @@ alias = "E_0_LD2004"
 value = 1.08e10
 type = "float"
 
-
+[threshold_smooth_transition_steepness]
+alias = "k_thrshld_stpnss"
+value = 2.0
+type = "float"
 
 # Initial planet_parameters toml file
 
