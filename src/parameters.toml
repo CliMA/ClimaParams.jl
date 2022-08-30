@@ -13,6 +13,16 @@ alias = "a_h_Businger"
 value = 4.7
 type = "float"
 
+[most_stability_parameter_businger]
+alias = "ζ_a_Businger"
+value = 2.5
+type = "float"
+
+[most_stability_exponent_businger]
+alias = "γ_Businger"
+value = 4.42
+type = "float"
+
 [prandtl_number_0_gryanik]
 alias = "Pr_0_Gryanik"
 value = 0.98
@@ -36,6 +46,16 @@ type = "float"
 [coefficient_b_h_gryanik]
 alias = "b_h_Gryanik"
 value = 0.4
+type = "float"
+
+[most_stability_parameter_gryanik]
+alias = "ζ_a_Gryanik"
+value = 7.25
+type = "float"
+
+[most_stability_exponent_gryanik]
+alias = "γ_Gryanik"
+value = 3.62
 type = "float"
 
 [prandtl_number_0_grachev]
@@ -67,6 +87,16 @@ type = "float"
 [coefficient_c_h_grachev]
 alias = "c_h_Grachev"
 value = 3.0
+type = "float"
+
+[most_stability_parameter_grachev]
+alias = "ζ_a_Grachev"
+value = 3.6
+type = "float"
+
+[most_stability_exponent_grachev]
+alias = "γ_Grachev"
+value = 2.92
 type = "float"
 
 [von_karman_constant]
