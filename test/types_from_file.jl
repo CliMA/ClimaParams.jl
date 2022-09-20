@@ -28,6 +28,7 @@ path_to_params = joinpath(@__DIR__, "toml", "typed_parameters.toml")
         "string_array_param",
         "untyped_param",
         "ft_array_param",
+        "bool_param",
         "light_speed",
     ]
 

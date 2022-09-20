@@ -15,7 +15,7 @@ A parameter is determined by its unique name. It has possible attributes
 6. `transformation`
 
 !!! warn
-    Currently we only support `float` and `array{float}` types. (option-type flags and string switches are not considered CLIMAParameters.)
+    Currently we support `Type` and `array{Type}` for the following Types: `float`, `integer`, `string` and `bool`.
 
 ### Minimal parameter requirement to run in CliMA
 
