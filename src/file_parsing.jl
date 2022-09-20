@@ -159,6 +159,8 @@ function _get_typed_value(
         return Int(val)
     elseif valtype == "string"
         return String(val)
+    elseif valtype == "bool"
+        return Bool(val)
     else
         error(
             "For parameter with identifier: \"",
@@ -166,7 +168,7 @@ function _get_typed_value(
             "\", the attribute: type = \"",
             valtype,
             "\", is not recognised, ",
-            "\n please select from: type = \"string\", \"float\", or \"integer\" ",
+            "\n please select from: type = \"string\", \"float\", \"integer\", or \"bool\"",
         )
     end
 end
@@ -281,7 +283,7 @@ function check_override_parameter_usage(
         @warn(
             string(
                 "Keys are present in parameter file but not used",
-                "in the simulation. \n Typically this is due to",
+                "in the simulation. \n Typically this is due to ",
                 "a mismatch in parameter name in toml and in source.",
                 "Offending keys: $(unused_override_keys)",
             )
