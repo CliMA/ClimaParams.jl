@@ -215,6 +215,12 @@ function get_values(pd::ParamDict, names::NAMESTYPE)
     return ret_values
 end
 
+function get_parameter_value(pd::AbstractTOMLDict, name::AbstractString)
+    param_pair = get_parameter_values!(pd, name, nothing)
+    return param_pair[2]
+
+end
+
 """
     get_parameter_values!(
         pd::AbstractTOMLDict,
@@ -236,12 +242,16 @@ function get_parameter_values!(
     return get_values(pd, names)
 end
 
-get_parameter_values!(
+function get_parameter_values!(
     pd::AbstractTOMLDict,
     names::AbstractString,
     args...;
     kwargs...,
-) = first(get_parameter_values!(pd, [names], args..., kwargs...))
+)
+    parameter_values = get_parameter_values!(pd, [names], args..., kwargs...)
+    @assert !isempty(parameter_values) string("The following parameters are missing from the ParamDict: ", names)
+    return first(parameter_values)
+end
 
 """
     get_parameter_values(pd::AbstractTOMLDict, names)
