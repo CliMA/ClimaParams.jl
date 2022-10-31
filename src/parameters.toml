@@ -661,6 +661,18 @@ alias = "grav"
 value = 9.81
 type = "float"
 
+[gravitational_constant]
+alias = "gravitational_constant"
+value = 6.6743e-11
+type = "float"
+description = "Universal gravitational constant (m``^3`` kg``^-1`` s``^-2``)"
+
+[planet_mass]
+alias = "planet_mass"
+value = 5.9722e24
+type = "float"
+description = "Planetary mass (kg)"
+
 [anomalistic_year_length]
 alias = "year_anom"
 value = 31558464
