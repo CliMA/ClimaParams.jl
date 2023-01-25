@@ -282,9 +282,9 @@ function check_override_parameter_usage(
         filter!(key -> unused_override[key], unused_override_keys)
         @warn(
             string(
-                "Keys are present in parameter file but not used",
+                "Keys are present in parameter file but not used ",
                 "in the simulation. \n Typically this is due to ",
-                "a mismatch in parameter name in toml and in source.",
+                "a mismatch in parameter name in toml and in source. ",
                 "Offending keys: $(unused_override_keys)",
             )
         )
