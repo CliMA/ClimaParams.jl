@@ -1,17 +1,3 @@
-using TOML
-using DocStringExtensions
-
-
-export AbstractTOMLDict
-export ParamDict, AliasParamDict
-
-export float_type,
-    get_parameter_values!,
-    get_parameter_values,
-    write_log_file,
-    log_parameter_information,
-    create_toml_dict
-
 """
     AbstractTOMLDict{FT <: AbstractFloat}
 
@@ -173,6 +159,8 @@ function _get_typed_value(
         return Int(val)
     elseif valtype == "string"
         return String(val)
+    elseif valtype == "bool"
+        return Bool(val)
     else
         error(
             "For parameter with identifier: \"",
@@ -180,7 +168,7 @@ function _get_typed_value(
             "\", the attribute: type = \"",
             valtype,
             "\", is not recognised, ",
-            "\n please select from: type = \"string\", \"float\", or \"integer\" ",
+            "\n please select from: type = \"string\", \"float\", \"integer\", or \"bool\"",
         )
     end
 end
@@ -294,9 +282,9 @@ function check_override_parameter_usage(
         filter!(key -> unused_override[key], unused_override_keys)
         @warn(
             string(
-                "Keys are present in parameter file but not used",
-                "in the simulation. \n Typically this is due to",
-                "a mismatch in parameter name in toml and in source.",
+                "Keys are present in parameter file but not used ",
+                "in the simulation. \n Typically this is due to ",
+                "a mismatch in parameter name in toml and in source. ",
                 "Offending keys: $(unused_override_keys)",
             )
         )

@@ -13,6 +13,16 @@ alias = "a_h_Businger"
 value = 4.7
 type = "float"
 
+[most_stability_parameter_businger]
+alias = "ζ_a_Businger"
+value = 2.5
+type = "float"
+
+[most_stability_exponent_businger]
+alias = "γ_Businger"
+value = 4.42
+type = "float"
+
 [prandtl_number_0_gryanik]
 alias = "Pr_0_Gryanik"
 value = 0.98
@@ -36,6 +46,16 @@ type = "float"
 [coefficient_b_h_gryanik]
 alias = "b_h_Gryanik"
 value = 0.4
+type = "float"
+
+[most_stability_parameter_gryanik]
+alias = "ζ_a_Gryanik"
+value = 7.25
+type = "float"
+
+[most_stability_exponent_gryanik]
+alias = "γ_Gryanik"
+value = 3.62
 type = "float"
 
 [prandtl_number_0_grachev]
@@ -67,6 +87,16 @@ type = "float"
 [coefficient_c_h_grachev]
 alias = "c_h_Grachev"
 value = 3.0
+type = "float"
+
+[most_stability_parameter_grachev]
+alias = "ζ_a_Grachev"
+value = 3.6
+type = "float"
+
+[most_stability_exponent_grachev]
+alias = "γ_Grachev"
+value = 2.92
 type = "float"
 
 [von_karman_constant]
@@ -334,10 +364,134 @@ alias = "E_rai_sno"
 value = 1
 type = "float"
 
+[prescribed_cloud_droplet_number_concentration]
+alias = "Nd_prescribed"
+value = 1e8
+type = "float"
 
+[TC1980_autoconversion_coeff_D]
+alias = "D_acnv_TC1980"
+value = 3268.0
+type = "float"
+
+[TC1980_autoconversion_coeff_a]
+alias = "a_acnv_TC1980"
+value = 2.33333333333333333333
+type = "float"
+description = "(7/3)"
+
+[TC1980_autoconversion_coeff_b]
+alias = "b_acnv_TC1980"
+value = -0.333333333333333333
+type = "float"
+description = "(-1/3)"
+
+[TC1980_autoconversion_coeff_r_0]
+alias = "r_0_acnv_TC1980"
+value = 7e-6
+type = "float"
+
+[TC1980_autoconversion_coeff_me_liq]
+alias = "me_liq_TC1980"
+value = 3.0
+type = "float"
+
+[TC1980_accretion_coeff_A]
+alias = "A_acc_TC1980"
+value =  4.7
+type = "float"
+
+[B1994_auctoconversion_coeff_C]
+alias = "C_acnv_B1994"
+value = 3e34
+type = "float"
+
+[B1994_auctoconversion_coeff_a]
+alias = "a_acnv_B1994"
+value = -1.7
+type = "float"
+
+[B1994_auctoconversion_coeff_b]
+alias = "b_acnv_B1994"
+value = 4.7
+type = "float"
+
+[B1994_auctoconversion_coeff_c]
+alias = "c_acnv_B1994"
+value = -3.3
+type = "float"
+
+[B1994_auctoconversion_coeff_d_low]
+alias = "d_low_acnv_B1994"
+value = 3.9
+type = "float"
+
+[B1994_auctoconversion_coeff_d_high]
+alias = "d_high_acnv_B1994"
+value = 9.9
+type = "float"
+
+[B1994_auctoconversion_coeff_N_0]
+alias = "N_0_B1994"
+value = 2e8
+type = "float"
+
+[B1994_accretion_coeff_A]
+alias = "A_acc_B1994"
+value = 6.0
+type = "float"
+
+[KK2000_auctoconversion_coeff_A]
+alias = "A_acnv_KK2000"
+value = 7.42e13
+type = "float"
+
+[KK2000_auctoconversion_coeff_a]
+alias = "a_acnv_KK2000"
+value = 2.47
+type = "float"
+
+[KK2000_auctoconversion_coeff_b]
+alias = "b_acnv_KK2000"
+value = -1.79
+type = "float"
+
+[KK2000_auctoconversion_coeff_c]
+alias = "c_acnv_KK2000"
+value = -1.47
+type = "float"
+
+[KK2000_accretion_coeff_A]
+alias = "A_acc_KK2000"
+value = 67.0
+type = "float"
+
+[KK2000_accretion_coeff_a]
+alias = "a_acc_KK2000"
+value = 1.15
+type = "float"
+
+[KK2000_accretion_coeff_b]
+alias = "b_acc_KK2000"
+value = -1.3
+type = "float"
+
+[LD2004_R_6C_coeff]
+alias = "R_6C_coeff_LD2004"
+value = 7.5
+type = "float"
+
+[LD2004_E_0_coeff]
+alias = "E_0_LD2004"
+value = 1.08e10
+type = "float"
+
+[threshold_smooth_transition_steepness]
+alias = "k_thrshld_stpnss"
+value = 2.0
+type = "float"
 
 # Initial planet_parameters toml file
-
 
 
 [molar_mass_dry_air]
@@ -404,6 +558,21 @@ type = "float"
 [pow_icenuc]
 alias = "pow_icenuc"
 value = 1
+type = "float"
+
+[microph_scaling_acnv]
+alias = "microph_scaling_acnv"
+value = 1.0
+type = "float"
+
+[microph_scaling_accr]
+alias = "microph_scaling_accr"
+value = 1.0
+type = "float"
+
+[microph_scaling]
+alias = "microph_scaling"
+value = 1.0
 type = "float"
 
 [microph_scaling_dep_sub]
@@ -588,3 +757,228 @@ alias = "avogad"
 value = 6.02214076e23
 type = "float"
 
+
+# EDMF
+
+
+[EDMF_surface_area]
+alias = "surface_area"
+value = 0.1
+type = "float"
+description = "Combined updraft surface area fraction; used to compute boundary conditions for prognostic updraft variables. The surface area for each updraft is `surface_area / N_updrafts`. See Cohen et al. (2020) [https://doi.org/10.1029/2020MS002162], Table 2."
+
+[EDMF_max_area]
+alias = "max_area"
+value = 0.9
+type = "float"
+description = "Maximum area fraction per updraft. Parameter not described in the literature."
+
+[EDMF_min_area]
+alias = "min_area"
+value = 1.0e-5
+type = "float"
+description = "Minimum area fraction per updraft. Parameter not described in the literature."
+
+[mixing_length_eddy_viscosity_coefficient]
+alias = "tke_ed_coeff"
+value = 0.14
+type = "float"
+description = "Turbulence kinetic energy diffusivity coefficient for the EDMF mixing length closure; denoted c_m. See Lopez-Gomez et al. (2020) [https://doi.org/10.1029/2020MS002162], Table 1."
+
+[mixing_length_diss_coeff]
+alias = "tke_diss_coeff"
+value = 0.22
+type = "float"
+description = "Turbulence kinetic energy dissipation coefficient for the EDMF mixing length closure; denoted c_d. See Lopez-Gomez et al. (2020) [https://doi.org/10.1029/2020MS002162], Table 1."
+
+[mixing_length_static_stab_coeff]
+alias = "static_stab_coeff"
+value = 0.4
+type = "float"
+description = "Static stability coefficient for the EDMF mixing length closure; denoted c_b. See Lopez-Gomez et al. (2020) [https://doi.org/10.1029/2020MS002162], Table 1."
+
+[mixing_length_tke_surf_scale]
+alias = "tke_surf_scale"
+value = 3.75
+type = "float"
+description = "Ratio of turbulence kinetic energy to squared friction velocity in the surface layer for the EDMF mixing length closure; denoted κ_*². See Lopez-Gomez et al. (2020) [https://doi.org/10.1029/2020MS002162], Table 1. Note: the square root, i.e. κ_*, is listed in the reference."
+
+[mixing_length_Prandtl_number_scale]
+alias = "Prandtl_number_scale"
+value = 4.076923076923077
+type = "float"
+description = "Cospectral budget factor for turbulent Prandtl number for the EDMF mixing length closure, denoted ω_pr. In Lopez-Gomez et al. (2020) [https://doi.org/10.1029/2020MS002162], Eq. 36, it is described as a phenomenological constant, denoted by ω₂ and set to 53/13 ≈ 4.0769..."
+
+[mixing_length_Prandtl_number_0]
+alias = "Prandtl_number_0"
+value = 0.74
+type = "float"
+description = "Turbulent Prandtl number in neutral conditions; denoted Pr_{t,0}. See Lopez-Gomez et al. (2020) [https://doi.org/10.1029/2020MS002162], Table 1 and Eq 36."
+
+[mixing_length_Ri_crit]
+alias = "Ri_crit"
+value = 0.25
+type = "float"
+description = "Critical gradient Richardson number. It is an upper limit to the gradient Richardson number . See Li (2019) [https://doi.org/10.1016/j.atmosres.2018.09.015], Section 6.2 for details."
+
+[mixing_length_smin_ub]
+alias = "smin_ub"
+value = 0.1
+type = "float"
+description = "Lower limit for smooth minimum function in mixing length closure. See Lopez-Gomez et al. (2020) Eq 40 [https://doi.org/10.1029/2020MS002161]."
+
+[mixing_length_smin_rm]
+alias = "smin_rm"
+value = 1.5
+type = "float"
+description = "Upper ratio limit for smooth minimum function in mixing length closure. See Lopez-Gomez et al. (2020) Eq 40 [https://doi.org/10.1029/2020MS002161]."
+
+[mixing_length_l_max]
+alias = "l_max"
+value = 1.0e6
+type = "float"
+description = "Upper limit for length scale limiter in mixing length closure. See Lopez-Gomez et al. (2020) [https://doi.org/10.1029/2020MS002161]."
+
+[entrainment_factor]
+alias = "entrainment_factor"
+value = 0.13
+type = "float"
+description = "Scaling constant for entrainment rate. See Cohen et al. (2022) Table 2 & Eq 39, 40 [https://doi.org/10.1029/2020MS002162]."
+
+[detrainment_factor]
+alias = "detrainment_factor"
+value = 0.51
+type = "float"
+description = "Scaling constant for detrainment rate. See Cohen et al. (2022) Table 2 & Eq 39, 40 [https://doi.org/10.1029/2020MS002162]."
+
+[turbulent_entrainment_factor]
+alias = "turbulent_entrainment_factor"
+value = 0.075
+type = "float"
+description = "Scaling constant for turbulent entrainment rate. See Cohen et al. (2022) Table 2 & eqn. 46 [https://doi.org/10.1029/2020MS002162]."
+
+[entrainment_smin_tke_coeff]
+alias = "entrainment_smin_tke_coeff"
+value = 0.3
+type = "float"
+description = "Scaling constant of TKE term in entrainment/detrainment inverse timescale smooth minimum.  See Cohen et al. (2022) Table 2 & eqn. 30 [https://doi.org/10.1029/2020MS002162]."
+
+[updraft_mixing_frac]
+alias = "updraft_mixing_frac"
+value = 0.25
+type = "float"
+description = "Fraction of updraft air for buoyancy mixing in entrainment/detrainment formulation. See Cohen et al. (2022) Table 2 & eqn. 36 [https://doi.org/10.1029/2020MS002162]."
+
+[entrainment_area_limiter_scale]
+alias = "area_limiter_scale"
+value = 10.0
+type = "float"
+description = "Constant scaling exponential argument in detrainment area limiter term. Parameter not described in the literature."
+
+[entrainment_area_limiter_power]
+alias = "area_limiter_power"
+value = 4.0
+type = "float"
+description = "Power of logistic term in detrainment area limiter term. Parameter not described in the literature."
+
+[entrainment_scale]
+alias = "entrainment_scale"
+value = 0.0004
+type = "float"
+description = "Dimensional constant scaling logistic function argument in entrainment/detrainment dry term. See Cohen et al. (2022) Table 2 & eqn. 37 [https://doi.org/10.1029/2020MS002162]."
+
+[entrainment_sorting_power]
+alias = "sorting_power"
+value = 2.0
+type = "float"
+description = "Sorting power for moisture term in entrainment/detrainment formulation. Controls the magnitude of the evaporative potential for a given relative humidity difference. See Cohen et al. (2022) Table 2 & eqn. 38 [https://doi.org/10.1029/2020MS002162]."
+
+[minimum_updraft_velocity]
+alias = "min_upd_velocity"
+value = 0.001
+type = "float"
+description = "Minimum updraft-environment vertical velocity difference allowable when computing inverse length scale in entrainment/detrainment formulation. Parameter not described in the literature."
+
+[minimum_updraft_top]
+alias = "min_updraft_top"
+value = 500.0
+type = "float"
+description = "Minimum updraft height limiter to avoid zero division in pressure drag and entrainment/detrainment closures. Parameter not described in the literature."
+
+[pressure_normalmode_buoy_coeff1]
+alias = "pressure_normalmode_buoy_coeff1"
+value = 0.12
+type = "float"
+description = "Pressure buoyancy coefficient (encapsulating virtual mass loading effect) in perturbation pressure closure. See He et al. 2022 Eq 34 [https://doi.org/10.1002/essoar.10505084.2]."
+
+[pressure_normalmode_adv_coeff]
+alias = "pressure_normalmode_adv_coeff"
+value = 0.1
+type = "float"
+description =  "Pressure advection (advection damping) coefficient in perturbation pressure closure. See He et al. 2022 Eq 34 [https://doi.org/10.1002/essoar.10505084.2]."
+
+[pressure_normalmode_drag_coeff]
+alias = "pressure_normalmode_drag_coeff"
+value = 10.0
+type = "float"
+description = "Updraft pressure drag coefficent in perturbation pressure closure. See He et al. 2022 Eq 34 [https://doi.org/10.1002/essoar.10505084.2]."
+
+[EDMF_thermodynamics_moisture_model]
+alias = "moisture_model"
+value = "equilibrium"
+type = "string"
+description = " Edmf moisture model choice. The default (equilibrium) results in diagnosing cloud liquid and ice water content using saturation adjustment. An experimental nonequilibrium option introduces prognostic equations for cloud liquid and cloud ice.  Not documented in the literature (yet) - Benjamin et.al. in prep."
+
+[EDMF_thermodynamics_covariance_model]
+alias = "thermo_covariance_model"
+value = "diagnostic"
+type = "string"
+description = "Edmf covaraince model choice. Valid options are diagnostic (default) and prognostic."
+
+[EDMF_thermodynamics_diagnostic_covar_limiter]
+alias = "diagnostic_covar_limiter"
+value = 0.001
+type = "float"
+description = "Regularization epsilon used in the denominator when computing covariances diagnostically."
+
+[EDMF_thermodynamics_sgs]
+alias = "sgs"
+value = "mean"
+type = "string"
+description = "Edmf environmental sub-grid scale model choice. Valid options are mean (default) and quadrature. The quadrature option switches on numerical sampling of 2-dimensional PDFs of edmf environmental state variables. Not documented in the literature (yet) - Jaruga et al in prep."
+
+[EDMF_thermodynamics_quadrature_order]
+alias = "quadrature_order"
+value = 3
+type = "integer"
+description = "Number of numerical quadrature sampling points in one dimension. Valid when running edmf with sgs quadrature choice. Not documented in the literature (yet) - Jaruga et al in prep."
+
+[EDMF_thermodynamics_quadrature_type]
+alias = "quadrature_type"
+value = "log-normal"
+type = "string"
+description = "Assumed distribution shape of the edmf state variables (q_tot and \theta_liq_ice) in the environment. Valid options are log-normal (default) and gaussian. Valid when running edmf with sgs quadrature choice. Not documented in the literature (yet) - Jaruga et al in prep."
+
+[updraft_number]
+alias = "updraft_number"
+value = 1
+type = "integer"
+description = "Number of edmf updrafts."
+
+[microphysics_model_precipitation_fraction]
+alias = "precip_fraction_model"
+value = "prescribed"
+type = "string"
+description = "Precipitation fraction model choice. Options are prescribed (default) and cloud_cover. Valid for simulations running with the 1-moment microphysics scheme, edmf turbulence convection model. Not documented in the literature (yet)."
+
+[microphysics_prescribed_precipitation_fraction]
+alias = "prescribed_precip_frac"
+value = 1.0
+type = "float"
+description = "Prescribed value of precipitation fraction. Should be between 0 and 1. Valid for simulations running with the 1-moment microphysics scheme, edmf turbulence convection model and prescribed precip_fraction_model. Not documented in the literature (yet)."
+
+[microphysics_precipitation_fraction_limiter]
+alias = "precip_fraction_limiter"
+value = 0.3
+type = "float"
+description = "Minimum precipitation fraction allowed. Should be between 0 and 1. Valid for simulations running with the 1-moment microphysics scheme, edmf turbulence convection model and cloud_cover precip_fraction_model. Not documented in the literature (yet)."
