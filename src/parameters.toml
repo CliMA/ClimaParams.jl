@@ -106,7 +106,7 @@ type = "float"
 
 
 
-# microphysics
+# Microphysics
 
 
 [precipitation_timescale]
@@ -490,6 +490,222 @@ type = "float"
 alias = "k_thrshld_stpnss"
 value = 2.0
 type = "float"
+
+
+# Microphysics - Modal aerosol model
+
+[mam3_stdev_coarse]
+alias = "stdev_coarse"
+value = 1.8e-6
+type = "float"
+description = "Geometric standard deviation for the coarse modal distribution of MAM3. Unitless. From Liu et al., 2012. DOI: 10.5194/gmd-5-709-2012"
+
+[mam3_stdev_accum]
+alias = "stdev_accum"
+value = 1.8e-6
+type = "float"
+description = "Geometric standard deviation for the accumulation modal distribution of MAM3. Unitless. From Liu et al., 2012. DOI: 10.5194/gmd-5-709-2012"
+
+[mam3_stdev_ait]
+alias = "stdev_ait"
+value = 1.6e-6
+type = "float"
+description = "Geometric standard deviation for the aitken modal distribution of MAM3. Unitless. From Liu et al., 2012. DOI: 10.5194/gmd-5-709-2012"
+
+# Nucleation Constants
+
+[mam3_nucleation_p_b_n_neutral]
+alias = "p_b_n"
+value = 3.95451
+type = "float"
+description = "Parameter for pure binary H2SO4-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentration of [H2SO4] is in 10^6 1/cm3.  From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
+
+[mam3_nucleation_p_b_i_ion_induced]
+alias = "p_b_i"
+value = 3.373738
+type = "float"
+description = "Parameter for pure binary H2SO4-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentration of [H2SO4] is in 10^6 1/cm3 and negative ion concentration [n_] is in 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
+
+[mam3_nucleation_u_b_n_neutral]
+alias = "u_b_n"
+value = 9.702973
+type = "float"
+description = "Parameter for pure binary H2SO4-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentration of [H2SO4] is in 10^6 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
+
+[mam3_nucleation_u_b_i_ion_induced]
+alias = "u_b_i"
+value = -11.48166
+type = "float"
+description = "Parameter for pure binary H2SO4-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentration of [H2SO4] is in 10^6 1/cm3 and negative ion concentration [n_] is in 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
+
+[mam3_nucleation_v_b_n_neutral]
+alias = "v_b_n"
+value = 12.62259
+type = "float"
+description = "Parameter for pure binary H2SO4-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentration of [H2SO4] is in 10^6 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
+
+[mam3_nucleation_v_b_i_ion_induced]
+alias = "v_b_i"
+value = 25.49469
+type = "float"
+description = "Parameter for pure binary H2SO4-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentration of [H2SO4] is in 10^6 1/cm3 and negative ion concentration [n_] is in 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
+
+[mam3_nucleation_w_b_n_neutral]
+alias = "w_b_n"
+value = -0.007066146
+type = "float"
+description = "Parameter for pure binary H2SO4-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentration of [H2SO4] is in 10^6 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
+
+[mam3_nucleation_w_b_i_ion_induced]
+alias = "w_b_i"
+value = 0.1810722
+type = "float"
+description = "Parameter for pure binary H2SO4-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentration of [H2SO4] is in 10^6 1/cm3 and negative ion concentration [n_] is in 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
+
+[mam3_nucleation_p_t_n_neutral]
+alias = "p_t_n"
+value = 2.891024
+type = "float"
+description = "Parameter for pure ternary H2SO4-NH3-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentrations of [H2SO4] and [NH3] are in 10^6 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
+
+[mam3_nucleation_p_t_i_ion_induced]
+alias = "p_t_i"
+value = 3.138719
+type = "float"
+description = "Parameter for pure ternary H2SO4-NH3-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentrations of [H2SO4] and [NH3] are in 10^6 1/cm3 and negative ion concentration [n_] is in 1/cm3.. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
+
+[mam3_nucleation_u_t_n_neutral]
+alias = "u_t_n"
+value = 182.4495
+type = "float"
+description = "Parameter for pure ternary H2SO4-NH3-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentrations of [H2SO4] and [NH3] are in 10^6 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
+
+[mam3_nucleation_u_t_i_ion_induced]
+alias = "u_t_i"
+value = -23.8002
+type = "float"
+description = "Parameter for pure ternary H2SO4-NH3-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentrations of [H2SO4] and [NH3] are in 10^6 1/cm3 and negative ion concentration [n_] is in 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
+
+[mam3_nucleation_v_t_n_neutral]
+alias = "v_t_n"
+value = 1.203451
+type = "float"
+description = "Parameter for pure ternary H2SO4-NH3-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentrations of [H2SO4] and [NH3] are in 10^6 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
+
+[mam3_nucleation_v_t_i_ion_induced]
+alias = "v_t_i"
+value = 37.03029
+type = "float"
+description = "Parameter for pure ternary H2SO4-NH3-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentrations of [H2SO4] and [NH3] are in 10^6 1/cm3 and negative ion concentration [n_] is in 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
+
+[mam3_nucleation_w_t_n_neutral]
+alias = "w_t_n"
+value = -4.188065
+type = "float"
+description = "Parameter for pure ternary H2SO4-NH3-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentrations of [H2SO4] and [NH3] are in 10^6 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
+
+[mam3_nucleation_w_t_i_ion_induced]
+alias = "w_t_i"
+value = 0.227413
+type = "float"
+description = "Parameter for pure ternary H2SO4-NH3-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentrations of [H2SO4] and [NH3] are in 10^6 1/cm3 and negative ion concentration [n_] is in 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
+
+[mam3_nucleation_p_A_n_neutral]
+alias = "p_A_n"
+value = 8.003471
+type = "float"
+description = "Parameter for pure ternary H2SO4-NH3-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentrations of [H2SO4] and [NH3] are in 10^6 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
+
+[mam3_nucleation_p_A_i_ion_induced]
+alias = "p_A_i"
+value = 3.071246
+type = "float"
+description = "Parameter for pure ternary H2SO4-NH3-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentrations of [H2SO4] and [NH3] are in 10^6 1/cm3 and negative ion concentration [n_] is in 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
+
+[mam3_nucleation_a_n_neutral]
+alias = "a_n"
+value = 1.5703478e-6
+type = "float"
+description = "Parameter for pure ternary H2SO4-NH3-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentrations of [H2SO4] and [NH3] are in 10^6 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
+
+[mam3_nucleation_a_i_ion_induced]
+alias = "a_i"
+value = 0.00483140
+type = "float"
+description = "Parameter for pure ternary H2SO4-NH3-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentrations of [H2SO4] and [NH3] are in 10^6 1/cm3 and negative ion concentration [n_] is in 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
+
+[mam3_nucleation_a_1_neutral]
+alias = "a_1"
+value = 0.0400097
+type = "float"
+description = "Parameter for pure organic nucleation. This is an empirical fit to data. The highly oxygenated organic molecules concentration [HOM] is in 10^7 1/cm3, the monoterpene [MT], [OH], and [O3] concentrations are in TODO and the ion concentrations are in 1/cm3. From Kirkby et al., 2016. DOI: 10.1038/nature17953."
+
+[mam3_nucleation_a_2_neutral]
+alias = "a_2"
+value = 1.84826
+type = "float"
+description = "Parameter for pure organic nucleation. This is an empirical fit to data. The highly oxygenated organic molecules concentration [HOM] is in 10^7 1/cm3, the monoterpene [MT], [OH], and [O3] concentrations are in TODO and the ion concentrations are in 1/cm3. From Kirkby et al., 2016. DOI: 10.1038/nature17953."
+
+[mam3_nucleation_a_3_ion_induced]
+alias = "a_3"
+value = 0.00136641
+type = "float"
+description = "Parameter for pure organic nucleation. This is an empirical fit to data. The highly oxygenated organic molecules concentration [HOM] is in 10^7 1/cm3, the monoterpene [MT], [OH], and [O3] concentrations are in TODO and the ion concentrations are in 1/cm3.  From Kirkby et al., 2016. DOI: 10.1038/nature17953."
+
+[mam3_nucleation_a_4_ion_induced]
+alias = "a_4"
+value = 1.56588
+type = "float"
+description = "Parameter for pure organic nucleation. This is an empirical fit to data. The highly oxygenated organic molecules concentration [HOM] is in 10^7 1/cm3, the monoterpene [MT], [OH], and [O3] concentrations are in TODO and the ion concentrations are in 1/cm3. From Kirkby et al., 2016. DOI: 10.1038/nature17953."
+
+[mam3_nucleation_a_5]
+alias = "a_5"
+value = 0.186303
+type = "float"
+description = "Parameter for pure organic nucleation. This is an empirical fit to data. The highly oxygenated organic molecules concentration [HOM] is in 10^7 1/cm3, the monoterpene [MT], [OH], and [O3] concentrations are in TODO and the ion concentrations are in 1/cm3. From Kirkby et al., 2016. DOI: 10.1038/nature17953."
+
+[mam3_nucleation_Y_MTO3_percent]
+alias = "Y_MTO3"
+value = 0.029
+type = "float"
+description = "Highly oxygenated organic molecule (HOM) percent yield from monoterpene (MT) oxidation with ozone, used for pure organic nucleation. This is an empirical fit to data. The highly oxygenated organic molecules concentration [HOM] is in 10^7 1/cm3, the monoterpene [MT], [OH], and [O3] concentrations are in TODO and the ion concentrations are in 1/cm3. From Kirkby et al., 2016. DOI: 10.1038/nature17953."
+
+[mam3_nucleation_Y_MTOH_percent]
+alias = "Y_MTOH"
+value = 0.012
+type = "float"
+description = "Highly oxygenated organic molecule (HOM) percent yield from monoterpene (MT) oxidation with hydroxyl radicals, used for pure organic nucleation. This is an empirical fit to data. The highly oxygenated organic molecules concentration [HOM] is in 10^7 1/cm3, the monoterpene [MT], [OH], and [O3] concentrations are in TODO and the ion concentrations are in 1/cm3. From Kirkby et al., 2016. DOI: 10.1038/nature17953."
+
+[mam3_nucleation_k_MTO3_organic_factor]
+alias = "k_MTO3"
+value =  8.05e-16
+type = "float"
+description = "Factor for temperature-dependent rate of monoterpene (MT) oxidation with ozone, used for pure organic nucleation. This is an empirical fit to data. The highly oxygenated organic molecules concentration [HOM] is in 10^7 1/cm3, the monoterpene [MT], [OH], and [O3] concentrations are in TODO and the ion concentrations are in 1/cm3. From Kirkby et al., 2016. DOI: 10.1038/nature17953."
+
+[mam3_nucleation_k_MTOH_organic_factor]
+alias = "k_MTOH"
+value =  1.2e-11
+type = "float"
+description = "Factor for temperature-dependent rate of monoterpene (MT) oxidation with hydroxyl radicals, used for pure organic nucleation. This is an empirical fit to data. The highly oxygenated organic molecules concentration [HOM] is in 10^7 1/cm3, the monoterpene [MT], [OH], and [O3] concentrations are in TODO and the ion concentrations are in 1/cm3. From Kirkby et al., 2016. DOI: 10.1038/nature17953."
+
+[mam3_nucleation_exp_MTO3_organic_factor]
+alias = "exp_MTO3"
+value = -640
+type = "float"
+description = "Additional factor for monoterpene (MT) oxidation with ozone, used for pure organic nucleation. This is an empirical fit to data. The highly oxygenated organic molecules concentration [HOM] is in 10^7 1/cm3, the monoterpene [MT], [OH], and [O3] concentrations are in TODO and the ion concentrations are in 1/cm3. From Kirkby et al., 2016. DOI: 10.1038/nature17953."
+
+[mam3_nucleation_exp_MTOH_organic_factor]
+alias = "exp_MTOH"
+value =  440
+type = "float"
+description = "Additional factor for monoterpene (MT) oxidation with hydroxyl radicals, used for pure organic nucleation. This is an empirical fit to data. The highly oxygenated organic molecules concentration [HOM] is in 10^7 1/cm3, the monoterpene [MT], [OH], and [O3] concentrations are in TODO and the ion concentrations are in 1/cm3.  From Kirkby et al., 2016. DOI: 10.1038/nature17953."
+
+[mam3_nucleation_k_H2SO4_mixed_organic_sulfuric_acid_factor]
+alias = "k_H2SO4org"
+value =  3.27e-21
+type = "float"
+description = "Temperature-dependent factor for monoterpene (MT) oxidation with hydroxyl radicals, used for mixed organic-sulfuric acid nucleation. This is an empirical fit to data. The [H2SO4] concentration is in 10^6 1/cm3 and the [BioOxOrg] organics concentration is in 1/cm3. From Riccobno et al., 2014. DOI: 10.1126/science.1243527."
+
 
 # Initial planet_parameters toml file
 
