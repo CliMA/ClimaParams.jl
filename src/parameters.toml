@@ -545,6 +545,180 @@ value = 4
 type = "float"
 description = "Parameter for the universal function that corrects the accretion rate. Unitless. From Seifer and Beheng, 2001. DOI: 10.1016/S0169-8095(01)00126-0."
 
+[SB2006_collection_kernel_coeff_kcc]
+alias = "kcc_SB2006"
+value = 4.44e9
+type = "float"
+description = "Collection kernel constant [m^3 kg^-2 s^-1]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
+
+[SB2006_collection_kernel_coeff_kcr]
+alias = "kcr_SB2006"
+value = 5.25
+type = "float"
+description = "Collection kernel constant [m^3 kg^-1 s^-1]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
+
+[SB2006_collection_kernel_coeff_krr]
+alias = "krr_SB2006"
+value = 7.12
+type = "float"
+description = "Collection kernel constant [m^3 kg^-1 s^-1]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
+
+[SB2006_collection_kernel_coeff_kapparr]
+alias = "κrr_SB2006"
+value = 60.7
+type = "float"
+description = "Collection kernel constant [kg^(-1/3)]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
+
+[SB2006_raindrops_min_mass]
+alias = "xr_min_SB2006"
+value = 2.6e-10
+type = "float"
+description = "Minimum mass of raindrops [kg]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
+
+[SB2006_raindrops_max_mass]
+alias = "xr_max_SB2006"
+value = 5e-6
+type = "float"
+description = "Maximum mass of raindrops [kg]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
+
+[SB2006_cloud_gamma_distribution_parameter]
+alias = "νc_SB2006"
+value = 2
+type = "float"
+description = "Gamma distibution parameter. Unitless. Default value from Seifert and Rasp, 2020. DOI: 10.1029/2020MS002301."
+
+[SB2006_reference_air_density]
+alias = "ρ0_SB2006"
+value = 1.225
+type = "float"
+description = "Air density at surface conditions [kg/m^3]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
+
+[SB2006_autoconversion_correcting_function_coeff_A]
+alias = "A_phi_au_SB2006"
+value = 400.0
+type = "float"
+description = "Constant in the universal function that corrects the autoconversion rate. Unitless. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
+
+[SB2006_autoconversion_correcting_function_coeff_a]
+alias = "a_phi_au_SB2006"
+value = 0.7
+type = "float"
+description = "Constant in the universal function that corrects the autoconversion rate. Unitless. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
+
+[SB2006_autoconversion_correcting_function_coeff_b]
+alias = "b_phi_au_SB2006"
+value = 3
+type = "float"
+description = "Constant in the universal function that corrects the autoconversion rate. Unitless. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
+
+[SB2006_accretion_correcting_function_coeff_tau0]
+alias = "τ0_phi_ac_SB2006"
+value = 5e-5
+type = "float"
+description = "Constant in the universal function that corrects the accretion rate. Unitless. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
+
+[SB2006_accretion_correcting_function_coeff_c]
+alias = "c_phi_ac_SB2006"
+value = 4
+type = "float"
+description = "Constant in the universal function that corrects the accretion rate. Unitless. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
+
+[SB2006_raindrops_self-collection_coeff_d]
+alias = "d_sc_SB2006"
+value = -5
+type = "float"
+description = "Constant in raindrops self-collection rate equation. Unitless. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
+
+[SB2006_raindrops_equlibrium_mean_diameter]
+alias = "Deq_br_SB2006"
+value = 9e-4
+type = "float"
+description = "Equilibrium mean diameter of raindrops for computing the breakup rate [m]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
+
+[SB2006_raindrops_breakup_mean_diameter_threshold]
+alias = "Dr_th_br_SB2006"
+value = 3.5e-4
+type = "float"
+description = "Threshold of raindrops mean diameter for breakup [m]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
+
+[SB2006_raindrops_breakup_coeff_kbr]
+alias = "kbr_SB2006"
+value = 1000
+type = "float"
+description = "Parameter of the raindrops breakup rate equation [1/m]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
+
+[SB2006_raindrops_breakup_coeff_kappabr]
+alias = "κbr_SB2006"
+value = 2300
+type = "float"
+description = "Parameter of the raindrops breakup rate equation [1/m]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
+
+[SB2006_raindrops_terminal_velocity_coeff_aR]
+alias = "aR_tv_SB2006"
+value = 9.65
+type = "float"
+description = "Parameter of the raindrops terminal velocity equation [m/s]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
+
+[SB2006_raindrops_terminal_velocity_coeff_bR]
+alias = "bR_tv_SB2006"
+value = 10.3
+type = "float"
+description = "Parameter of the raindrops terminal velocity equation [m/s]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
+
+[SB2006_raindrops_terminal_velocity_coeff_cR]
+alias = "cR_tv_SB2006"
+value = 600
+type = "float"
+description = "Parameter of the raindrops terminal velocity equation [1/m]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
+
+[SB2006_ventilation_factor_coeff_av]
+alias = "av_evap_SB2006"
+value = 0.78
+type = "float"
+description = "Constant in ventilation factor equation for computing the evaporation rate of rain. Unitless. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
+
+[SB2006_ventilation_factor_coeff_bv]
+alias = "bv_evap_SB2006"
+value = 0.308
+type = "float"
+description = "Constant in ventilation factor equation for computing the evaporation rate of rain. Unitless. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
+
+[SB2006_rain_evaportation_coeff_alpha]
+alias = "α_evap_SB2006"
+value = 159
+type = "float"
+description = "Constant in fallspeed relation for computing the evaporation rate of rain. Unitless. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
+
+[SB2006_rain_evaportation_coeff_beta]
+alias = "β_evap_SB2006"
+value = 0.266
+type = "float"
+description = "Constant in fallspeed relation for computing the evaporation rate of rain. Unitless. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
+
+[SB2006_raindrops_size_distribution_coeff_N0_min]
+alias = "N0_min_SB2006"
+value = 2.5e5
+type = "float"
+description = "Minimum of raindrops size distribution parameter N0 [m^(-4)]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
+
+[SB2006_raindrops_size_distribution_coeff_N0_max]
+alias = "N0_max_SB2006"
+value = 2e7
+type = "float"
+description = "Maximum of raindrops size distribution parameter N0 [m^(-4)]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
+
+[SB2006_raindrops_size_distribution_coeff_lambda_min]
+alias = "λ_min_SB2006"
+value = 1e3
+type = "float"
+description = "Minimum of raindrops size distribution parameter λ [1/m]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
+
+[SB2006_raindrops_size_distribution_coeff_lambda_max]
+alias = "λ_max_SB2006"
+value = 1e4
+type = "float"
+description = "Maximum of raindrops size distribution parameter λ [1/m]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
+
 # Microphysics - Modal aerosol model
 
 [mam3_stdev_coarse]
