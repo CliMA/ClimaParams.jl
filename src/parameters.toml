@@ -719,6 +719,142 @@ value = 1e4
 type = "float"
 description = "Maximum of raindrops size distribution parameter λ [1/m]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
 
+# Microphysics - ice deposition on dust
+
+[Mohler2006_maximum_allowed_Si]
+alias = "Si_max_Mohler2006"
+value = 1.35
+type = "float"
+description = "Maximum allowed supersaturation over ice Si_max [-]. From Mohler et al, 2006. DOI: 10.5194/acp-6-3007-2006."
+
+[Mohler2006_threshold_T]
+alias = "T_thr_Mohler2006"
+value = 220
+type = "float"
+description = "Threshold temperature separating two deposition regimes [K]. From Mohler et al, 2006. DOI: 10.5194/acp-6-3007-2006."
+
+[Mohler2006_S0_warm_ArizonaTestDust]
+alias = "S0_warm_ATD_Mohler2006"
+value = 1.03
+type = "float"
+description = "S0 for temperatures > T_thr for Arizona Test Dust [-]. From Mohler et al, 2006. DOI: 10.5194/acp-6-3007-2006."
+
+[Mohler2006_S0_cold_ArizonaTestDust]
+alias = "S0_cold_ATD_Mohler2006"
+value = 1.07
+type = "float"
+description = "S0 for temperatures < T_thr for Arizona Test Dust [-]. From Mohler et al, 2006. DOI: 10.5194/acp-6-3007-2006."
+
+[Mohler2006_a_warm_ArizonaTestDust]
+alias = "a_warm_ATD_Mohler2006"
+value = 4.7
+type = "float"
+description = "a for temperatures > T_thr for Arizona Test Dust [-]. From Mohler et al, 2006. DOI: 10.5194/acp-6-3007-2006."
+
+[Mohler2006_a_cold_ArizonaTestDust]
+alias = "a_cold_ATD_Mohler2006"
+value = 9.2
+type = "float"
+description = "a for temperatures < T_thr for Arizona Test Dust [-]. From Mohler et al, 2006. DOI: 10.5194/acp-6-3007-2006."
+
+[Mohler2006_S0_warm_DesertDust]
+alias = "S0_warm_DD_Mohler2006"
+value = 1.17
+type = "float"
+description = "S0 for temperatures > T_thr for Desert Dust [-]. From Mohler et al, 2006. DOI: 10.5194/acp-6-3007-2006."
+
+[Mohler2006_S0_cold_DesertDust]
+alias = "S0_cold_DD_Mohler2006"
+value = 1.03
+type = "float"
+description = "S0 for temperatures < T_thr for Desert Dust [-]. From Mohler et al, 2006. DOI: 10.5194/acp-6-3007-2006."
+
+[Mohler2006_a_warm_DesertDust]
+alias = "a_warm_DD_Mohler2006"
+value = 0.43
+type = "float"
+description = "a for temperatures > T_thr for Desert Dust [-]. From Mohler et al, 2006. DOI: 10.5194/acp-6-3007-2006."
+
+[Mohler2006_a_cold_DesertDust]
+alias = "a_cold_DD_Mohler2006"
+value = 2.35
+type = "float"
+description = "a for temperatures < T_thr for Desert Dust [-]. From Mohler et al, 2006. DOI: 10.5194/acp-6-3007-2006."
+
+# Microphysics - Aerosol activation
+
+[seasalt_aerosol_molar_mass]
+alias = "molmass_seasalt"
+value = 0.058443
+type = "float"
+description = "Molar mass of aerosol sea salt in kg/mol"
+
+[seasalt_aerosol_density]
+alias = "rho_seasalt"
+value = 2170
+type = "float"
+description = "Density of aerosol sea salt in kg/m3"
+
+[seasalt_aerosol_osmotic_coefficient]
+alias = "osm_coeff_seasalt"
+value = 0.9
+type = "float"
+description = "Osmotic coefficient of aerosol sea salt [-]"
+
+[seasalt_aerosol_ion_number]
+alias = "N_ion_seasalt"
+value = 2
+type = "float"
+description = "Number of ions that sea salt dissociates into when dissolved in water [-]"
+
+[seasalt_aerosol_water_soluble_mass_fraction]
+alias = "water_soluble_mass_frac_seasalt"
+value = 1
+type = "float"
+description = "Mass fraction of water soluble material for sea salt aerosol [-]"
+
+[seasalt_aerosol_kappa]
+alias = "kappa_seasalt"
+value = 1.12
+type = "float"
+description = "Hygroscopicity parameter kappa for sea salt aerosol [-], see: doi.org/10.5194/acp-7-1961-2007"
+
+[sulfate_aerosol_molar_mass]
+alias = "molmass_sulfate"
+value = 0.132
+type = "float"
+description = "Molar mass of aerosol sulfate in kg/mol"
+
+[sulfate_aerosol_density]
+alias = "rho_sulfate"
+value = 1770
+type = "float"
+description = "Density of aerosol sulfate in kg/m3"
+
+[sulfate_aerosol_osmotic_coefficient]
+alias = "osm_coeff_sulfate"
+value = 1
+type = "float"
+description = "Osmotic coefficient of aerosol sulfate [-]"
+
+[sulfate_aerosol_ion_number]
+alias = "N_ion_sulfate"
+value = 3
+type = "float"
+description = "Number of ions that sulfate dissociates into when dissolved in water [-]"
+
+[sulfate_aerosol_water_soluble_mass_fraction]
+alias = "water_soluble_mass_frac_sulfate"
+value = 1
+type = "float"
+description = "Mass fraction of water soluble material for sulfate aerosol [-]"
+
+[sulfate_aerosol_kappa]
+alias = "kappa_sulfate"
+value = 0.53
+type = "float"
+description = "Hygroscopicity parameter kappa for sulfate aerosol [-], see: doi.org/10.5194/acp-7-1961-2007"
+
 # Microphysics - Modal aerosol model
 
 [mam3_stdev_coarse]
