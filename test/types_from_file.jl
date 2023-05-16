@@ -1,10 +1,8 @@
+using Test
 
-# import CLIMAParameters
-import CLIMAParameters
-const CP = CLIMAParameters
+import CLIMAParameters as CP
 
 path_to_params = joinpath(@__DIR__, "toml", "typed_parameters.toml")
-
 
 @testset "parameter types from file" begin
 
