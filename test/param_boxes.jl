@@ -1,8 +1,8 @@
 module ParameterBoxes
 
 using Test
-import CLIMAParameters
-const CP = CLIMAParameters
+
+import CLIMAParameters as CP
 
 Base.@kwdef struct ParameterBox{FT}
     molmass_dryair::FT

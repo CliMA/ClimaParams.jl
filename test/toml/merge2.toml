@@ -1,0 +1,9 @@
+[a]
+value = 2
+type = "integer"
+alias = "a"
+
+[b]
+value = 3
+type = "float"
+alias = "b"

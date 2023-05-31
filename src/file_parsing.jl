@@ -173,8 +173,6 @@ function _get_typed_value(
     end
 end
 
-
-
 """
     get_values(pd::AbstractTOMLDict, names)
 
@@ -252,6 +250,33 @@ get_parameter_values(
     pd::AbstractTOMLDict,
     names::Union{NAMESTYPE, AbstractString},
 ) = get_parameter_values!(pd, names, nothing)
+
+
+"""
+    merge_toml_files(filepaths; override)
+
+Parses and merges all of the given TOML filepaths and returns them as a Dict.
+This allows a toml_dict to be constructed from multiple TOML files.
+By default, non-unique TOML entries are not allowed, but this can be
+changed by setting `override = true`.
+"""
+function merge_toml_files(filepaths; override = false)
+    merged_dict = Dict{String, Any}()
+    for filepath in filepaths
+        toml_data = TOML.parsefile(filepath)
+        for (table_name, table_data) in toml_data
+            if haskey(merged_dict, table_name)
+                override || error("Duplicate TOML entry: $table_name")
+                @warn """
+'$table_name' is being overwritten by '$filepath'
+Current entry: $(merged_dict[table_name]["type"])($(merged_dict[table_name]["value"]))
+New entry: $(table_data["type"])($(table_data["value"]))"""
+            end
+        end
+        merge!(merged_dict, toml_data)
+    end
+    return merged_dict
+end
 
 """
     check_override_parameter_usage(pd::ParamDict, strict)
@@ -380,25 +405,25 @@ end
     )
 
 Creates a `ParamDict{FT}` struct, by reading and merging upto
-two TOML files with override information taking precedence over
+two TOML files or Julia Dicts with override information taking precedence over
 default information.
 """
 function create_toml_dict(
     ::Type{FT};
-    override_file::Union{Nothing, String} = nothing,
-    default_file::String = joinpath(@__DIR__, "parameters.toml"),
+    override_file::Union{Nothing, String, Dict} = nothing,
+    default_file::Union{String, Dict} = joinpath(@__DIR__, "parameters.toml"),
     dict_type = "alias",
 ) where {FT <: AbstractFloat}
     @assert dict_type in ("alias", "name")
+    default_dict =
+        default_file isa String ? TOML.parsefile(default_file) : default_file
     PDT = _toml_dict(dict_type, FT)
-    if isnothing(override_file)
-        return PDT(TOML.parsefile(default_file), nothing)
-    end
-    override_toml_dict =
-        PDT(TOML.parsefile(override_file), TOML.parsefile(override_file))
-    default_toml_dict = PDT(TOML.parsefile(default_file), nothing)
+    default_toml_dict = PDT(default_dict, nothing)
+    isnothing(override_file) && return default_toml_dict
 
-    #overrides the defaults where they clash
+    override_dict =
+        override_file isa String ? TOML.parsefile(override_file) : override_file
+    override_toml_dict = PDT(override_dict, override_dict)
     return merge_override_default_values(override_toml_dict, default_toml_dict)
 end
 
@@ -411,3 +436,6 @@ function _toml_dict(s::String, ::Type{FT}) where {FT}
         error("Bad string option given")
     end
 end
+
+# Extend Base.print to AbstractTOMLDict
+Base.print(td::AbstractTOMLDict, io = stdout) = TOML.print(io, td.data)

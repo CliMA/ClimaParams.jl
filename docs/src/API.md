@@ -22,4 +22,5 @@ get_parameter_values
 float_type
 log_parameter_information
 write_log_file
+merge_toml_files
 ```
