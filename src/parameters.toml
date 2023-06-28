@@ -1,3 +1,7 @@
+## Surface Fluxes
+
+# Businger 
+
 [prandtl_number_0_businger]
 alias = "Pr_0_Businger"
 value = 0.74
@@ -22,6 +26,8 @@ type = "float"
 alias = "γ_Businger"
 value = 4.42
 type = "float"
+
+# Gryanik
 
 [prandtl_number_0_gryanik]
 alias = "Pr_0_Gryanik"
@@ -57,6 +63,8 @@ type = "float"
 alias = "γ_Gryanik"
 value = 3.62
 type = "float"
+
+# Grachev
 
 [prandtl_number_0_grachev]
 alias = "Pr_0_Grachev"
@@ -99,11 +107,163 @@ alias = "γ_Grachev"
 value = 2.92
 type = "float"
 
+# Cheng
+
+[prandtl_number_0_cheng]
+alias = "Pr_0_Cheng"
+value = 1.0
+type = "float"
+
+[coefficient_a_m_cheng]
+alias = "a_m_Cheng"
+value = 6.1
+type = "float"
+
+[coefficient_a_h_cheng]
+alias = "a_h_Cheng"
+value = 5.3
+type = "float"
+
+[coefficient_b_m_cheng]
+alias = "b_m_Cheng"
+value = 2.5
+type = "float"
+
+[coefficient_b_h_cheng]
+alias = "b_h_Cheng"
+value = 1.1
+type = "float"
+
+[most_stability_parameter_cheng]
+alias = "ζ_a_Cheng"
+value = 4.5
+type = "float"
+
+[most_stability_exponent_cheng]
+alias = "γ_Cheng"
+value = 2.28
+type = "float"
+
+
+# Holtslag
+
+[prandtl_number_0_holtslag]
+alias = "Pr_0_Holtslag"
+value = 1.0
+type = "float"
+
+[coefficient_a_m_holtslag]
+alias = "a_m_Holtslag"
+value = 0.7
+type = "float"
+
+[coefficient_a_h_holtslag]
+alias = "a_h_Holtslag"
+value = 0.7
+type = "float"
+
+[coefficient_b_m_holtslag]
+alias = "b_m_Holtslag"
+value = 0.75
+type = "float"
+
+[coefficient_b_h_holtslag]
+alias = "b_h_Holtslag"
+value = 0.75
+type = "float"
+
+[coefficient_c_m_holtslag]
+alias = "c_m_Holtslag"
+value = 5.0
+type = "float"
+
+[coefficient_c_h_holtslag]
+alias = "c_h_Holtslag"
+value = 5.0
+type = "float"
+
+[coefficient_d_m_holtslag]
+alias = "d_m_Holtslag"
+value = 0.35
+type = "float"
+
+[coefficient_d_h_holtslag]
+alias = "d_h_Holtslag"
+value = 0.35
+type = "float"
+
+[most_stability_parameter_holtslag]
+alias = "ζ_a_Holtslag"
+value = 4.0
+type = "float"
+
+[most_stability_exponent_holtslag]
+alias = "γ_Holtslag"
+value = 2.14
+type = "float"
+
+# Beljaars
+
+[prandtl_number_0_beljaars]
+alias = "Pr_0_Beljaars"
+value = 1.0
+type = "float"
+
+[coefficient_a_m_beljaars]
+alias = "a_m_Beljaars"
+value = 1.0
+type = "float"
+
+[coefficient_a_h_beljaars]
+alias = "a_h_Beljaars"
+value = 1.0
+type = "float"
+
+[coefficient_b_m_beljaars]
+alias = "b_m_Beljaars"
+value = 0.667
+type = "float"
+
+[coefficient_b_h_beljaars]
+alias = "b_h_Beljaars"
+value = 0.667
+type = "float"
+
+[coefficient_c_m_beljaars]
+alias = "c_m_Beljaars"
+value = 5.0
+type = "float"
+
+[coefficient_c_h_beljaars]
+alias = "c_h_Beljaars"
+value = 5.0
+type = "float"
+
+[coefficient_d_m_beljaars]
+alias = "d_m_Beljaars"
+value = 0.35
+type = "float"
+
+[coefficient_d_h_beljaars]
+alias = "d_h_Beljaars"
+value = 0.35
+type = "float"
+
+[most_stability_parameter_beljaars]
+alias = "ζ_a_Beljaars"
+value = 3.4
+type = "float"
+
+[most_stability_exponent_beljaars]
+alias = "γ_Beljaars"
+value = 2.04
+type = "float"
+
+
 [von_karman_constant]
 alias = "von_karman_const"
 value = 0.4
 type = "float"
-
 
 
 # Microphysics
