@@ -103,7 +103,7 @@ description = "a_h for Grachev heat universal functions. From Grachev et al, 200
 alias = "b_m_Grachev"
 value = 0.7692307692307693
 type = "float"
-description = "derived b_m = [coefficient_a_m_grachev] / 6.5 for Grachev momentum universal functions. From Grachev et al, 2007. DOI: 10.1007/s10546-007-9177-6""
+description = "derived b_m = [coefficient_a_m_grachev] / 6.5 for Grachev momentum universal functions. From Grachev et al, 2007. DOI: 10.1007/s10546-007-9177-6"
 
 [coefficient_b_h_grachev]
 alias = "b_h_Grachev"
