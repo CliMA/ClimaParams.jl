@@ -1,109 +1,320 @@
+## Surface Fluxes
+
+# Businger 
+
 [prandtl_number_0_businger]
 alias = "Pr_0_Businger"
 value = 0.74
 type = "float"
+description = "Pr_0 for Businger universal functions. From Businger et al, 1971. DOI: 10.1175/1520-0469(1971)028<0181:FPRITA>2.0.CO;2."
 
 [coefficient_a_m_businger]
 alias = "a_m_Businger"
 value = 4.7
 type = "float"
+description = "a_m for Businger momentum universal functions. From Businger et al, 1971. DOI: 10.1175/1520-0469(1971)028<0181:FPRITA>2.0.CO;2."
 
 [coefficient_a_h_businger]
 alias = "a_h_Businger"
 value = 4.7
 type = "float"
+description = "a_h for Businger heat universal functions. From Businger et al, 1971. DOI: 10.1175/1520-0469(1971)028<0181:FPRITA>2.0.CO;2."
+
 
 [most_stability_parameter_businger]
 alias = "ζ_a_Businger"
 value = 2.5
 type = "float"
+description = "ζ_a for Businger universal functions. From Businger et al, 1971. DOI: 10.1175/1520-0469(1971)028<0181:FPRITA>2.0.CO;2."
+
 
 [most_stability_exponent_businger]
 alias = "γ_Businger"
 value = 4.42
 type = "float"
+description = "γ for Businger universal functions. From Businger et al, 1971. DOI: 10.1175/1520-0469(1971)028<0181:FPRITA>2.0.CO;2."
+
+
+# Gryanik
 
 [prandtl_number_0_gryanik]
 alias = "Pr_0_Gryanik"
 value = 0.98
 type = "float"
+description = "Pr_0 for Gryanik universal functions. From Gryanik et al, 2020. DOI: 10.1175/JAS-D-19-0255.1"
 
 [coefficient_a_m_gryanik]
 alias = "a_m_Gryanik"
 value = 5.0
 type = "float"
+description = "a_m for Gryanik momentum universal functions. From Gryanik et al, 2020. DOI: 10.1175/JAS-D-19-0255.1"
 
 [coefficient_a_h_gryanik]
 alias = "a_h_Gryanik"
 value = 5.0
 type = "float"
+description = "a_h for Gryanik heat universal functions. From Gryanik et al, 2020. DOI: 10.1175/JAS-D-19-0255.1"
 
 [coefficient_b_m_gryanik]
 alias = "b_m_Gryanik"
 value = 0.3
 type = "float"
+description = "b_m for Gryanik momentum universal functions. From Gryanik et al, 2020. DOI: 10.1175/JAS-D-19-0255.1"
 
 [coefficient_b_h_gryanik]
 alias = "b_h_Gryanik"
 value = 0.4
 type = "float"
+description = "b_h for Gryanik heat universal functions. From Gryanik et al, 2020. DOI: 10.1175/JAS-D-19-0255.1"
 
 [most_stability_parameter_gryanik]
 alias = "ζ_a_Gryanik"
 value = 7.25
 type = "float"
+description = "ζ_a for Gryanik universal functions. From Gryanik et al, 2020. DOI: 10.1175/JAS-D-19-0255.1"
 
 [most_stability_exponent_gryanik]
 alias = "γ_Gryanik"
 value = 3.62
 type = "float"
+description = "γ for Gryanik universal functions. From Gryanik et al, 2020. DOI: 10.1175/JAS-D-19-0255.1"
+
+# Grachev
 
 [prandtl_number_0_grachev]
 alias = "Pr_0_Grachev"
 value = 0.98
 type = "float"
+description = "Pr_0 for Grachev universal functions. From Grachev et al, 2007. DOI: 10.1007/s10546-007-9177-6"
 
 [coefficient_a_m_grachev]
 alias = "a_m_Grachev"
 value = 5.0
 type = "float"
+description = "a_m for Grachev momentum universal functions. From Grachev et al, 2007. DOI: 10.1007/s10546-007-9177-6"
 
 [coefficient_a_h_grachev]
 alias = "a_h_Grachev"
 value = 5.0
 type = "float"
+description = "a_h for Grachev heat universal functions. From Grachev et al, 2007. DOI: 10.1007/s10546-007-9177-6"
 
 [coefficient_b_m_grachev]
 alias = "b_m_Grachev"
 value = 0.7692307692307693
 type = "float"
-description = "derived [coefficient_a_m_grachev] / 6.5"
+description = "derived b_m = [coefficient_a_m_grachev] / 6.5 for Grachev momentum universal functions. From Grachev et al, 2007. DOI: 10.1007/s10546-007-9177-6"
 
 [coefficient_b_h_grachev]
 alias = "b_h_Grachev"
 value = 5.0
 type = "float"
+description = "b_h for Grachev heat universal functions. From Grachev et al, 2007. DOI: 10.1007/s10546-007-9177-6"
 
 [coefficient_c_h_grachev]
 alias = "c_h_Grachev"
 value = 3.0
 type = "float"
+description = "c_h for Grachev heat universal functions. From Grachev et al, 2007. DOI: 10.1007/s10546-007-9177-6"
 
 [most_stability_parameter_grachev]
 alias = "ζ_a_Grachev"
 value = 3.6
 type = "float"
+description = "ζ_a for Grachev universal functions. From Grachev et al, 2007. DOI: 10.1007/s10546-007-9177-6"
 
 [most_stability_exponent_grachev]
 alias = "γ_Grachev"
 value = 2.92
 type = "float"
+description = "γ for Grachev universal functions. From Grachev et al, 2007. DOI: 10.1007/s10546-007-9177-6"
+
+# Cheng
+
+[prandtl_number_0_cheng]
+alias = "Pr_0_Cheng"
+value = 1.0
+type = "float"
+description = "Pr_0 for Cheng universal functions. From Cheng et al, 2005. DOI: 10.1007/s10546-004-1425-4"
+
+[coefficient_a_m_cheng]
+alias = "a_m_Cheng"
+value = 6.1
+type = "float"
+description = "a_m for Cheng momentum universal functions. From Cheng et al, 2005. DOI: 10.1007/s10546-004-1425-4"
+
+[coefficient_a_h_cheng]
+alias = "a_h_Cheng"
+value = 5.3
+type = "float"
+description = "a_h for Cheng heat universal functions. From Cheng et al, 2005. DOI: 10.1007/s10546-004-1425-4"
+
+[coefficient_b_m_cheng]
+alias = "b_m_Cheng"
+value = 2.5
+type = "float"
+description = "b_m for Cheng momentum universal functions. From Cheng et al, 2005. DOI: 10.1007/s10546-004-1425-4"
+
+[coefficient_b_h_cheng]
+alias = "b_h_Cheng"
+value = 1.1
+type = "float"
+description = "b_h for Cheng heat universal functions. From Cheng et al, 2005. DOI: 10.1007/s10546-004-1425-4"
+
+[most_stability_parameter_cheng]
+alias = "ζ_a_Cheng"
+value = 4.5
+type = "float"
+description = "ζ for Cheng universal functions. From Cheng et al, 2005. DOI: 10.1007/s10546-004-1425-4"
+
+[most_stability_exponent_cheng]
+alias = "γ_Cheng"
+value = 2.28
+type = "float"
+description = "γ for Cheng universal functions. From Cheng et al, 2005. DOI: 10.1007/s10546-004-1425-4"
+
+
+# Holtslag
+
+[prandtl_number_0_holtslag]
+alias = "Pr_0_Holtslag"
+value = 1.0
+type = "float"
+description = "Pr_0 for Holtslag universal functions. From Holtslag et al, 1988. DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2"
+
+[coefficient_a_m_holtslag]
+alias = "a_m_Holtslag"
+value = 0.7
+type = "float"
+description = "a_m for Holtslag momentum universal functions. From Holtslag et al, 1988. DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2"
+
+[coefficient_a_h_holtslag]
+alias = "a_h_Holtslag"
+value = 0.7
+type = "float"
+description = "a_h for Holtslag heat universal functions. From Holtslag et al, 1988. DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2"
+
+[coefficient_b_m_holtslag]
+alias = "b_m_Holtslag"
+value = 0.75
+type = "float"
+description = "b_m for Holtslag momentum universal functions. From Holtslag et al, 1988. DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2"
+
+[coefficient_b_h_holtslag]
+alias = "b_h_Holtslag"
+value = 0.75
+type = "float"
+description = "b_h for Holtslag heat universal functions. From Holtslag et al, 1988. DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2"
+
+[coefficient_c_m_holtslag]
+alias = "c_m_Holtslag"
+value = 5.0
+type = "float"
+description = "c_m for Holtslag momentum universal functions. From Holtslag et al, 1988. DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2"
+
+[coefficient_c_h_holtslag]
+alias = "c_h_Holtslag"
+value = 5.0
+type = "float"
+description = "c_h for Holtslag heat universal functions. From Holtslag et al, 1988. DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2"
+
+[coefficient_d_m_holtslag]
+alias = "d_m_Holtslag"
+value = 0.35
+type = "float"
+description = "d_m for Holtslag momentum universal functions. From Holtslag et al, 1988. DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2"
+
+[coefficient_d_h_holtslag]
+alias = "d_h_Holtslag"
+value = 0.35
+type = "float"
+description = "d_h for Holtslag heat universal functions. From Holtslag et al, 1988. DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2"
+
+[most_stability_parameter_holtslag]
+alias = "ζ_a_Holtslag"
+value = 4.0
+type = "float"
+description = "ζ_a for Holtslag universal functions. From Holtslag et al, 1988. DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2"
+
+[most_stability_exponent_holtslag]
+alias = "γ_Holtslag"
+value = 2.14
+type = "float"
+description = "γ for Holtslag universal functions. From Holtslag et al, 1988. DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2"
+
+
+# Beljaars
+
+[prandtl_number_0_beljaars]
+alias = "Pr_0_Beljaars"
+value = 1.0
+type = "float"
+description = "Pr_0 for Beljaars universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
+
+[coefficient_a_m_beljaars]
+alias = "a_m_Beljaars"
+value = 1.0
+type = "float"
+description = "a_m for Beljaars momentum universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
+
+[coefficient_a_h_beljaars]
+alias = "a_h_Beljaars"
+value = 1.0
+type = "float"
+description = "a_h for Beljaars heat universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
+
+[coefficient_b_m_beljaars]
+alias = "b_m_Beljaars"
+value = 0.667
+type = "float"
+description = "b_m for Beljaars momentum universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
+
+[coefficient_b_h_beljaars]
+alias = "b_h_Beljaars"
+value = 0.667
+type = "float"
+description = "b_h for Beljaars heat universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
+
+[coefficient_c_m_beljaars]
+alias = "c_m_Beljaars"
+value = 5.0
+type = "float"
+description = "c_m for Beljaars momentum universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
+
+[coefficient_c_h_beljaars]
+alias = "c_h_Beljaars"
+value = 5.0
+type = "float"
+description = "c_h for Beljaars heat universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
+
+[coefficient_d_m_beljaars]
+alias = "d_m_Beljaars"
+value = 0.35
+type = "float"
+description = "d_m for Beljaars momentum universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
+
+[coefficient_d_h_beljaars]
+alias = "d_h_Beljaars"
+value = 0.35
+type = "float"
+description = "d_h for Beljaars heat universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
+
+[most_stability_parameter_beljaars]
+alias = "ζ_a_Beljaars"
+value = 3.4
+type = "float"
+description = "ζ_a for Beljaars universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
+
+[most_stability_exponent_beljaars]
+alias = "γ_Beljaars"
+value = 2.04
+type = "float"
+description = "γ for Beljaars universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
 
 [von_karman_constant]
 alias = "von_karman_const"
 value = 0.4
 type = "float"
-
 
 
 # Microphysics
