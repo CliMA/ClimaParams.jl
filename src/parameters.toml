@@ -14,11 +14,23 @@ value = 4.7
 type = "float"
 description = "a_m for Businger momentum universal functions. From Businger et al, 1971. DOI: 10.1175/1520-0469(1971)028<0181:FPRITA>2.0.CO;2."
 
+[coefficient_b_m_businger]
+alias = "b_m_Businger"
+value = 15.0
+type = "float"
+description = "b_m for Businger momentum universal functions. From Businger et al, 1971. DOI: 10.1175/1520-0469(1971)028<0181:FPRITA>2.0.CO;2."
+
 [coefficient_a_h_businger]
 alias = "a_h_Businger"
 value = 4.7
 type = "float"
 description = "a_h for Businger heat universal functions. From Businger et al, 1971. DOI: 10.1175/1520-0469(1971)028<0181:FPRITA>2.0.CO;2."
+
+[coefficient_b_h_businger]
+alias = "b_h_Businger"
+value = 9.0
+type = "float"
+description = "b_h for Businger heat universal functions. From Businger et al, 1971. DOI: 10.1175/1520-0469(1971)028<0181:FPRITA>2.0.CO;2."
 
 
 [most_stability_parameter_businger]
