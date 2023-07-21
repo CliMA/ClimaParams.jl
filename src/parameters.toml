@@ -1553,9 +1553,21 @@ alias = "avogad"
 value = 6.02214076e23
 type = "float"
 
+# Held-Suarez
+
+[equator_pole_temperature_gradient_dry]
+alias = "ΔT_y_dry"
+value = 60
+type = "float"
+description = "Temperature gradient between equator and pole for dry adiabatic atmosphere. See Held and Suarez (1994) https://doi.org/10.1175/1520-0477(1994)075%3C1825:APFTIO%3E2.0.CO;2"
+
+[equator_pole_temperature_gradient_wet]
+alias = "ΔT_y_wet"
+value = 65
+type = "float"
+description = "Temperature gradient between equator and pole for moist adiabatic atmosphere. See Held and Suarez (1994) https://doi.org/10.1175/1520-0477(1994)075%3C1825:APFTIO%3E2.0.CO;2"
 
 # EDMF
-
 
 [EDMF_surface_area]
 alias = "surface_area"
