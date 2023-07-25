@@ -1565,6 +1565,39 @@ alias = "avogad"
 value = 6.02214076e23
 type = "float"
 
+[bulk_transfer_coeff]
+alias = "C_E"
+value = 0.0044
+type = "float"
+
+
+# Rayleigh Damping
+
+[rayleigh_sponge_vert_velocity_coeff]
+alias = "alpha_rayleigh_w"
+value = 1.0
+type = "float"
+
+[rayleigh_sponge_horz_velocity_coeff]
+alias = "alpha_rayleigh_uh"
+value = 0.0001
+type = "float"
+
+[rayleigh_sponge_height]
+alias = "zd_rayleigh"
+value = 15000.0
+type = "float"
+
+[viscous_sponge_height]
+alias = "zd_viscous"
+value = 15000.0
+type = "float"
+
+[viscous_sponge_coeff]
+alias = "kappa_2_sponge"
+value = 1.0e6
+type = "float"
+
 # Held-Suarez
 
 [equator_pole_temperature_gradient_dry]
