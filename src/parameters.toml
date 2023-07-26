@@ -1076,6 +1076,24 @@ value = 2.35
 type = "float"
 description = "a for temperatures < T_thr for Desert Dust [-]. From Mohler et al, 2006. DOI: 10.5194/acp-6-3007-2006."
 
+[BF1995_mass_exponent_beta]
+alias = "β_va_BF1995"
+value = 1.9
+type = "float"
+description = "Exponent in power law for mass grown by vapor diffusion and aggregation from Brown and Francis 1995--used in P3 Scheme (Morrison and Milbrandt 2015) [-]."
+
+[BF1995_mass_coeff_alpha]
+alias = "α_va_BF1995"
+value = 0.018537721864540644
+type = "float"
+description = "Coefficient in power law for mass grown by vapor diffusion and aggregation from Brown and Francis 1995--used in P3 Scheme (Morrison and Milbrandt 2015) [kg/mβ_va]."
+
+[MM2015_D_th]
+alias = "D_th_MM2015"
+value = 9.728093468486627e-5
+type = "float"
+description = "Threshold particle dimension from Morrison and Milbrandt 2015 between small spherical and large, nonspherical unrimed ice [m]."
+
 # Microphysics - Aerosol activation
 
 [seasalt_aerosol_molar_mass]
