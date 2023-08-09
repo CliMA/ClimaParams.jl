@@ -1,6 +1,6 @@
 ## Surface Fluxes
 
-# Businger 
+# Businger
 
 [prandtl_number_0_businger]
 alias = "Pr_0_Businger"
@@ -941,6 +941,78 @@ alias = "λ_max_SB2006"
 value = 1e4
 type = "float"
 description = "Maximum of raindrops size distribution parameter λ [1/m]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
+
+[Chen2022_table_B1_q_coeff]
+alias = "q_coeff_rain_Ch2022"
+value = 0.115231
+type = "float"
+description = "q coefficinet for raindrop terminal velocity parameterization [-]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B1_a1_coeff]
+alias = "a1_coeff_rain_Ch2022"
+value = 0.044612
+type = "float"
+description = "a1 coefficinet for raindrop terminal velocity parameterization [mm^-bi]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B1_a2_coeff]
+alias = "a2_coeff_rain_Ch2022"
+value = -0.263166
+type = "float"
+description = "a2 coefficinet for raindrop terminal velocity parameterization [mm^-bi]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B1_a3_coeff]
+alias = "a3_coeff_rain_Ch2022"
+value = 4.7178
+type = "float"
+description = "a3 coefficinet for raindrop terminal velocity parameterization [mm^-bi]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B1_a3_pow_coeff]
+alias = "a3_pow_coeff_rain_Ch2022"
+value = -0.47335
+type = "float"
+description = "a3 coefficinet for raindrop terminal velocity parameterization [-]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B1_b1_coeff]
+alias = "b1_coeff_rain_Ch2022"
+value = 2.2955
+type = "float"
+description = "b1 coefficinet for raindrop terminal velocity parameterization [-]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B1_b2_coeff]
+alias = "b2_coeff_rain_Ch2022"
+value = 2.2955
+type = "float"
+description = "b2 coefficinet for raindrop terminal velocity parameterization [-]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B1_b3_coeff]
+alias = "b3_coeff_rain_Ch2022"
+value = 1.1451
+type = "float"
+description = "b3 coefficinet for raindrop terminal velocity parameterization [-]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B1_b_rho_coeff]
+alias = "b_rho_coeff_rain_Ch2022"
+value = 0.038465
+type = "float"
+description = "b density coefficinet for raindrop terminal velocity parameterization [m3/kg]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B1_c1_coeff]
+alias = "c1_coeff_rain_Ch2022"
+value = 0.0
+type = "float"
+description = "c1 density coefficinet for raindrop terminal velocity parameterization [1/mm]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B1_c2_coeff]
+alias = "c2_coeff_rain_Ch2022"
+value = 0.184325
+type = "float"
+description = "c2 density coefficinet for raindrop terminal velocity parameterization [1/mm]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B1_c3_coeff]
+alias = "c3_coeff_rain_Ch2022"
+value = 0.184325
+type = "float"
+description = "c3 density coefficinet for raindrop terminal velocity parameterization [1/mm]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 # Microphysics - ice deposition on dust
 
