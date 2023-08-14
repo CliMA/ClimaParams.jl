@@ -1014,6 +1014,120 @@ value = 0.184325
 type = "float"
 description = "c3 density coefficinet for raindrop terminal velocity parameterization [1/mm]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
+[Chen2022_table_B3_As_coeff_1]
+alias = "As_coeff_1_Ch2022"
+value = 0.00174079
+type = "float"
+description = "part of AS coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B3_As_coeff_2]
+alias = "As_coeff_2_Ch2022"
+value = 0.0378769
+type = "float"
+description = "part of As coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B3_As_coeff_3]
+alias = "As_coeff_3_Ch2022"
+value = 0.263503
+type = "float"
+description = "part of As coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B3_Bs_coeff_1]
+alias = "Bs_coeff_1_Ch2022"
+value = 0.575231
+type = "float"
+description = "part of Bs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B3_Bs_coeff_2]
+alias = "Bs_coeff_2_Ch2022"
+value = 0.0909307
+type = "float"
+description = "part of Bs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B3_Bs_coeff_3]
+alias = "Bs_coeff_3_Ch2022"
+value = 0.515579
+type = "float"
+description = "part of Bs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B3_Cs_coeff_1]
+alias = "Cs_coeff_1_Ch2022"
+value = -0.345387
+type = "float"
+description = "part of Cs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B3_Cs_coeff_2]
+alias = "Cs_coeff_2_Ch2022"
+value = 0.177362
+type = "float"
+description = "part of Cs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B3_Cs_coeff_3]
+alias = "Cs_coeff_3_Ch2022"
+value = -0.000427794
+type = "float"
+description = "part of Cs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B3_Cs_coeff_4]
+alias = "Cs_coeff_4_Ch2022"
+value = 0.00419647
+type = "float"
+description = "part of Cs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B3_Es_coeff_1]
+alias = "Es_coeff_1_Ch2022"
+value = -0.156593
+type = "float"
+description = "part of Es coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B3_Es_coeff_2]
+alias = "Es_coeff_2_Ch2022"
+value = 0.0189334
+type = "float"
+description = "part of Es coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B3_Es_coeff_3]
+alias = "Es_coeff_3_Ch2022"
+value = 0.1377817
+type = "float"
+description = "part of Es coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B3_Fs_coeff_1]
+alias = "Fs_coeff_1_Ch2022"
+value = -3.35641
+type = "float"
+description = "part of Fs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B3_Fs_coeff_2]
+alias = "Fs_coeff_2_Ch2022"
+value = 0.0156199
+type = "float"
+description = "part of Fs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B3_Fs_coeff_3]
+alias = "Fs_coeff_3_Ch2022"
+value = 0.765337
+type = "float"
+description = "part of Fs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B3_Gs_coeff_1]
+alias = "Gs_coeff_1_Ch2022"
+value = -0.0309715
+type = "float"
+description = "part of Gs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B3_Gs_coeff_2]
+alias = "Gs_coeff_2_Ch2022"
+value = 1.55054
+type = "float"
+description = "part of Gs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B3_Gs_coeff_3]
+alias = "Gs_coeff_3_Ch2022"
+value = 0.518349
+type = "float"
+description = "part of Gs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
 # Microphysics - ice deposition on dust
 
 [Mohler2006_maximum_allowed_Si]
