@@ -55,4 +55,10 @@ end
 
 end
 
+@testset "Unique aliases" begin
+    toml_dict = CP.create_toml_dict(Float64; dict_type = "alias")
+    alias_values = [dict["alias"] for dict in values(toml_dict.data)]
+    @test length(alias_values) == length(unique(alias_values))
+end
+
 end # end module

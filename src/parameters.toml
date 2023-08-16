@@ -1811,6 +1811,36 @@ type = "float"
 
 # Held-Suarez
 
+[held_suarez_T_equator_dry]
+alias = "T_equator_dry"
+value = 294
+type = "float"
+description = "Equator temperature. See Held and Suarez (1994) https://doi.org/10.1175/1520-0477(1994)075%3C1825:APFTIO%3E2.0.CO;2"
+
+[held_suarez_T_equator_wet]
+alias = "T_equator_wet"
+value = 315
+type = "float"
+description = "Equator temperature. See Held and Suarez (1994) https://doi.org/10.1175/1520-0477(1994)075%3C1825:APFTIO%3E2.0.CO;2"
+
+[potential_temp_vertical_gradient]
+alias = "Δθ_z"
+value = 10
+type = "float"
+description = "Potential temperature gradient with height. See Held and Suarez (1994) https://doi.org/10.1175/1520-0477(1994)075%3C1825:APFTIO%3E2.0.CO;2"
+
+[drag_layer_vertical_extent]
+alias = "σ_b"
+value = 0.7
+type = "float"
+description = "Vertical extend of drag layer. See Held and Suarez (1994) https://doi.org/10.1175/1520-0477(1994)075%3C1825:APFTIO%3E2.0.CO;2"
+
+[held_suarez_minimum_temperature]
+alias = "T_min_hs"
+value = 200
+type = "float"
+description = "Minimum temperature. See Held and Suarez (1994) https://doi.org/10.1175/1520-0477(1994)075%3C1825:APFTIO%3E2.0.CO;2"
+
 [equator_pole_temperature_gradient_dry]
 alias = "ΔT_y_dry"
 value = 60
