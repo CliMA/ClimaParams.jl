@@ -1198,15 +1198,22 @@ description = "Exponent in power law for mass grown by vapor diffusion and aggre
 
 [BF1995_mass_coeff_alpha]
 alias = "α_va_BF1995"
-value = 0.018537721864540644
+value = 7.38e-11
 type = "float"
-description = "Coefficient in power law for mass grown by vapor diffusion and aggregation from Brown and Francis 1995--used in P3 Scheme (Morrison and Milbrandt 2015) [kg/mβ_va]."
+description = "Coefficient in power law for mass grown by vapor diffusion and aggregation from Brown and Francis 1995--used in P3 Scheme (Morrison and Milbrandt 2015) [g/μmβ_va]. To adjust units into kg and m, see the P3 Scheme documentation."
 
-[MM2015_D_th]
-alias = "D_th_MM2015"
-value = 9.728093468486627e-5
+[M1996_area_exponent_sigma]
+alias = "σ_M1996"
+value = 1.88
 type = "float"
-description = "Threshold particle dimension from Morrison and Milbrandt 2015 between small spherical and large, nonspherical unrimed ice [m]."
+description = "Exponent in power law for the area of ice side plane, column, bullet, and planar polycrystal aggregates in Mitchell 1996--used in P3 Scheme (Morrison and Milbrandt 2015) [-]."
+
+[M1996_area_coeff_gamma]
+alias = "γ_M1996"
+value = 0.2285
+type = "float"
+description = "Coefficient in power law for the area of ice side plane, column, bullet, and planar polycrystal aggregates in Mitchell 1996--used in P3 Scheme (Morrison and Milbrandt 2015) [μm^(2-σ_M1996)]. To adjust units into m and m2, see the P3 Scheme documentation."
+
 
 # Microphysics - Aerosol activation
 
