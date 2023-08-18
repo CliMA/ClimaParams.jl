@@ -1190,6 +1190,78 @@ value = 2.35
 type = "float"
 description = "a for temperatures < T_thr for Desert Dust [-]. From Mohler et al, 2006. DOI: 10.5194/acp-6-3007-2006."
 
+[KnopfAlpert2013_J_ABIFM_m_DesertDust]
+alias = "J_ABIFM_m_KA2013_DesertDust"
+value = 22.62
+type = "float"
+description = "Coefficient, m, for calculating immersion freezing J_het of Desert Dust [-]. From Knopf and Alpert 2013. DOI: 10.1039/C3FD00035D."
+
+[KnopfAlpert2013_J_ABIFM_c_DesertDust]
+alias = "J_ABIFM_c_KA2013_DesertDust"
+value = -1.35
+type = "float"
+description = "Coefficient, c, for calculating immersion freezing J_het of Desert Dust [-]. From Knopf and Alpert 2013. DOI: 10.1039/C3FD00035D."
+
+[KnopfAlpert2013_J_ABIFM_m_Kaolinite]
+alias = "J_ABIFM_m_KA2013_Kaolinite"
+value = 54.58834
+type = "float"
+description = "Coefficient, m, for calculating immersion freezing J_het of Kaolinite [-]. From Knopf and Alpert 2013. DOI: 10.1039/C3FD00035D."
+
+[KnopfAlpert2013_J_ABIFM_c_Kaolinite]
+alias = "J_ABIFM_c_KA2013_Kaolinite"
+value = -10.54758
+type = "float"
+description = "Coefficient, c, for calculating immersion freezing J_het of Kaolinite [-]. From Knopf and Alpert 2013. DOI: 10.1039/C3FD00035D."
+
+[KnopfAlpert2013_J_ABIFM_m_Illite]
+alias = "J_ABIFM_m_KA2013_Illite"
+value = 54.48075
+type = "float"
+description = "Coefficient, m, for calculating immersion freezing J_het of Illite [-]. From Knopf and Alpert 2013. DOI: 10.1039/C3FD00035D."
+
+[KnopfAlpert2013_J_ABIFM_c_Illite]
+alias = "J_ABIFM_c_KA2013_Illite"
+value = -10.66873
+type = "float"
+description = "Coefficient, c, for calculating immersion freezing J_het of Illite [-]. From Knopf and Alpert 2013. DOI: 10.1039/C3FD00035D."
+
+[Koop2000_min_delta_aw]
+alias = "Koop2000_min_delta_aw"
+value = 0.26
+type = "float"
+description = "Minimum valid Delta_a_w for J_hom parameterized by Koop 2000 [-]. From Koop 2000. DOI: 10.1038/35020537."
+
+[Koop2000_max_delta_aw]
+alias = "Koop2000_max_delta_aw"
+value = 0.34
+type = "float"
+description = "Maximum valid Delta_a_w for J_hom parameterized by Koop 2000 [-]. From Koop 2000. DOI: 10.1038/35020537."
+
+[Koop2000_J_hom_coeff1]
+alias = "Koop2000_J_hom_c1"
+value = -906.7
+type = "float"
+description = "Coefficient for calculating J_hom parameterized by Koop 2000 [-]. From Koop 2000. DOI: 10.1038/35020537."
+
+[Koop2000_J_hom_coeff2]
+alias = "Koop2000_J_hom_c2"
+value = 8502
+type = "float"
+description = "Coefficient for calculating J_hom parameterized by Koop 2000 [-]. From Koop 2000. DOI: 10.1038/35020537."
+
+[Koop2000_J_hom_coeff3]
+alias = "Koop2000_J_hom_c3"
+value = 26924
+type = "float"
+description = "Coefficient for calculating J_hom parameterized by Koop 2000 [-]. From Koop 2000. DOI: 10.1038/35020537."
+
+[Koop2000_J_hom_coeff4]
+alias = "Koop2000_J_hom_c4"
+value = 29180
+type = "float"
+description = "Coefficient for calculating J_hom parameterized by Koop 2000 [-]. From Koop 2000. DOI: 10.1038/35020537."
+
 [BF1995_mass_exponent_beta]
 alias = "β_va_BF1995"
 value = 1.9
