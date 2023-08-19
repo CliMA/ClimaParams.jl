@@ -1262,6 +1262,66 @@ value = 29180
 type = "float"
 description = "Coefficient for calculating J_hom parameterized by Koop 2000 [-]. From Koop 2000. DOI: 10.1038/35020537."
 
+[p_over_sulphuric_acid_solution_T_max]
+alias = "H2SO4_sol_T_max"
+value = 235
+type = "float"
+description = "Maximum valid temperature for calculation of H2SO4 solution vapor pressure [K]. From Luo et al 1995. DOI: 10.1029/94GL02988."
+
+[p_over_sulphuric_acid_solution_T_min]
+alias = "H2SO4_sol_T_min"
+value = 185
+type = "float"
+description = "Minimum valid temperature for calculation of H2SO4 solution vapor pressure [K]. From Luo et al 1995. DOI: 10.1029/94GL02988."
+
+[p_over_sulphuric_acid_solution_w_2]
+alias = "H2SO4_sol_w_2"
+value = 1.4408
+type = "float"
+description = "Coefficient used for calculation of H2SO4 solution vapor pressure [-]. From Luo et al 1995. DOI: 10.1029/94GL02988."
+
+[p_over_sulphuric_acid_solution_c1]
+alias = "H2SO4_sol_c1"
+value = 23.306
+type = "float"
+description = "Coefficient used for calculation of H2SO4 solution vapor pressure [-]. From Luo et al 1995. DOI: 10.1029/94GL02988."
+
+[p_over_sulphuric_acid_solution_c2]
+alias = "H2SO4_sol_c2"
+value = 5.3465
+type = "float"
+description = "Coefficient used for calculation of H2SO4 solution vapor pressure [-]. From Luo et al 1995. DOI: 10.1029/94GL02988."
+
+[p_over_sulphuric_acid_solution_c3]
+alias = "H2SO4_sol_c3"
+value = 12
+type = "float"
+description = "Coefficient used for calculation of H2SO4 solution vapor pressure [-]. From Luo et al 1995. DOI: 10.1029/94GL02988."
+
+[p_over_sulphuric_acid_solution_c4]
+alias = "H2SO4_sol_c4"
+value = 8.19
+type = "float"
+description = "Coefficient used for calculation of H2SO4 solution vapor pressure [-]. From Luo et al 1995. DOI: 10.1029/94GL02988."
+
+[p_over_sulphuric_acid_solution_c5]
+alias = "H2SO4_sol_c5"
+value = -5814
+type = "float"
+description = "Coefficient used for calculation of H2SO4 solution vapor pressure [-]. From Luo et al 1995. DOI: 10.1029/94GL02988."
+
+[p_over_sulphuric_acid_solution_c6]
+alias = "H2SO4_sol_c6"
+value = 928.9
+type = "float"
+description = "Coefficient used for calculation of H2SO4 solution vapor pressure [-]. From Luo et al 1995. DOI: 10.1029/94GL02988."
+
+[p_over_sulphuric_acid_solution_c7]
+alias = "H2SO4_sol_c7"
+value = 1876.7
+type = "float"
+description = "Coefficient used for calculation of H2SO4 solution vapor pressure [-]. From Luo et al 1995. DOI: 10.1029/94GL02988."
+
 [BF1995_mass_exponent_beta]
 alias = "β_va_BF1995"
 value = 1.9
