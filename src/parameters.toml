@@ -1876,6 +1876,12 @@ value = 4.938188299449
 type = "float"
 description = "(282.937348 degrees) in radians"
 
+[potential_temperature_reference_pressure]
+alias = "p_ref_theta"
+value = 100000
+type = "float"
+description = "Reference pressure used in potential temperature definition"
+
 [mean_sea_level_pressure]
 alias = "MSLP"
 value = 101325
