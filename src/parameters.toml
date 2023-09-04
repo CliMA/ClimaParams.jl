@@ -1397,10 +1397,25 @@ value = 2.5
 type = "float"
 description = "Scaling coefficient for an empirically determined functional dependence in Abdul-Razzak and Ghan, 2000. Unitless. DOI: https://doi.org/10.1029/1999JD901161"
 
-[ARG2000_g_coeff]
+[ARG2000_g_coeff_1]
+value = 1.0
+type = "float"
+description = "Scaling coefficient for an empirically determined functional dependence in Abdul-Razzak and Ghan, 2000. Unitless. DOI: https://doi.org/10.1029/1999JD901161"
+
+[ARG2000_g_coeff_2]
 value = 0.25
 type = "float"
 description = "Scaling coefficient for an empirically determined functional dependence in Abdul-Razzak and Ghan, 2000. Unitless. DOI: https://doi.org/10.1029/1999JD901161"
+
+[ARG2000_pow_1]
+value = 1.5
+type = "float"
+description = "Power of (zeta / eta) for an empirically determined functional dependence in Abdul-Razzak and Ghan, 2000. Unitless. DOI: https://doi.org/10.1029/1999JD901161"
+
+[ARG2000_pow_2]
+value = 0.75
+type = "float"
+description = "Power of (S_m^2 / (zeta + 3 * eta)) for an empirically determined functional dependence in Abdul-Razzak and Ghan, 2000. Unitless. DOI: https://doi.org/10.1029/1999JD901161"
 
 # Microphysics - Modal aerosol model
 
