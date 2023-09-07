@@ -709,7 +709,7 @@ alias = "E_0_LD2004"
 value = 1.08e10
 type = "float"
 
-[Variable_time_scale_auctoconversion_coeff_alpha]
+[Variable_time_scale_autoconversion_coeff_alpha]
 alias = "α_var_time_scale_acnv"
 value = 1.0
 type = "float"
