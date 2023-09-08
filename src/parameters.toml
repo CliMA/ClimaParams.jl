@@ -2017,6 +2017,18 @@ description = "Temperature gradient between equator and pole for moist adiabatic
 
 # EDMF
 
+[EDMF_entrainment_coefficient]
+alias = "entr_coeff"
+value = 1
+type = "float"
+description = "TODO: Remove this. Constant entrainment coefficient used for testing EDMF"
+
+[EDMF_detrainment_coefficient]
+alias = "detr_coeff"
+value = 0.001
+type = "float"
+description = "TODO: Remove this. Constant detrainment coefficient used for testing EDMF"
+
 [EDMF_surface_area]
 alias = "surface_area"
 value = 0.1
