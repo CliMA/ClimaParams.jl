@@ -1663,6 +1663,11 @@ description = "Temperature-dependent factor for monoterpene (MT) oxidation with 
 # Initial planet_parameters toml file
 
 
+[f_plane_coriolis_frequency]
+alias = "f_plane_coriolis_frequency"
+value = 0
+type = "float"
+
 [molar_mass_dry_air]
 alias = "molmass_dryair"
 value = 0.02897
