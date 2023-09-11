@@ -339,7 +339,7 @@ type = "float"
 
 [specific_humidity_precipitation_threshold]
 alias = "qc_0"
-value = 0.005
+value = 5e-6
 type = "float"
 
 [supersaturation_precipitation_threshold]
