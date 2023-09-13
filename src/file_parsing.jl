@@ -182,6 +182,7 @@ function get_values(pd::AliasParamDict, aliases::NAMESTYPE)
     data = pd.data
     # TODO: use map
     ret_values = []
+    unique_aliases = Dict()
     for alias in aliases
         for (key, val) in data
             alias ≠ val["alias"] && continue
@@ -195,6 +196,18 @@ function get_values(pd::AliasParamDict, aliases::NAMESTYPE)
                 ) : _get_typed_value(pd, param_value, alias, param_type)
             push!(ret_values, Pair(Symbol(alias), elem))
         end
+    end
+    # Test that no aliases are duplicated
+    for (key, val) in data
+        if haskey(unique_aliases, val["alias"])
+            push!(unique_aliases[val["alias"]], key)
+        else
+            unique_aliases[val["alias"]] = [key]
+        end
+    end
+    for (alias, params) in unique_aliases
+        length(params) > 1 &&
+            error("Parameters `$params` have the same alias `$alias`")
     end
     return ret_values
 end

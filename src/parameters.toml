@@ -1943,38 +1943,43 @@ alias = "avogad"
 value = 6.02214076e23
 type = "float"
 
-[bulk_transfer_coeff]
+[C_E]
 alias = "C_E"
 value = 0.0044
 type = "float"
-
+description = "bulk transfer coefficient"
 
 # Rayleigh Damping
 
-[rayleigh_sponge_vert_velocity_coeff]
+[alpha_rayleigh_w]
 alias = "alpha_rayleigh_w"
 value = 1.0
 type = "float"
+description = "rayleigh sponge vert velocity coeff"
 
-[rayleigh_sponge_horz_velocity_coeff]
+[alpha_rayleigh_uh]
 alias = "alpha_rayleigh_uh"
 value = 0.0001
 type = "float"
+description = "rayleigh sponge horizontal velocity coefficient"
 
-[rayleigh_sponge_height]
+[zd_rayleigh]
 alias = "zd_rayleigh"
 value = 15000.0
 type = "float"
+description = "rayleigh sponge height"
 
-[viscous_sponge_height]
+[zd_viscous]
 alias = "zd_viscous"
 value = 15000.0
 type = "float"
+description = "viscous sponge height"
 
-[viscous_sponge_coeff]
+[kappa_2_sponge]
 alias = "kappa_2_sponge"
 value = 1.0e6
 type = "float"
+description = "viscous sponge coefficient"
 
 # Held-Suarez
 
@@ -2022,13 +2027,13 @@ description = "Temperature gradient between equator and pole for moist adiabatic
 
 # EDMF
 
-[EDMF_entrainment_coefficient]
+[entr_coeff]
 alias = "entr_coeff"
 value = 1
 type = "float"
 description = "TODO: Remove this. Constant entrainment coefficient used for testing EDMF"
 
-[EDMF_detrainment_coefficient]
+[detr_coeff]
 alias = "detr_coeff"
 value = 0.001
 type = "float"
