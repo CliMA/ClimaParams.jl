@@ -2027,6 +2027,11 @@ description = "Temperature gradient between equator and pole for moist adiabatic
 
 # EDMF
 
+[entr_tau]
+alias = "entr_tau"
+value = 900
+type = "float"
+
 [entr_coeff]
 alias = "entr_coeff"
 value = 1
