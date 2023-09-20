@@ -2023,6 +2023,12 @@ type = "float"
 alias = "C_E"
 value = 0.0044
 type = "float"
+description = "vertical diffusion coefficient"
+
+[C_H]
+alias = "C_H"
+value = 0.0044
+type = "float"
 description = "bulk transfer coefficient"
 
 # Rayleigh Damping
