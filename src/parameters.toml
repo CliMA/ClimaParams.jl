@@ -1,3 +1,79 @@
+## Land
+
+# Soil model
+
+[thermal_conductivity_of_quartz]
+alias = "K_quartz"
+value = 8.0
+type = "float"
+description = "[W/m/K]; see Balland and Arp, J. Environ. Eng. Sci. 4: 549-558 (2005)."
+
+[thermal_conductivity_of_soil_minerals]
+alias = "K_minerals"
+value = 2.5
+type = "float"
+description = "[W/m/K]. Not including quartz; see Balland and Arp, J. Environ. Eng. Sci. 4: 549-558 (2005)."
+
+[thermal_conductivity_of_organic_matter]
+alias = "K_som"
+value = 0.25
+type = "float"
+description = "[W/m/K]; see Balland and Arp, J. Environ. Eng. Sci. 4: 549-558 (2005)."
+
+[thermal_conductivity_of_liquid_water]
+alias = "K_liq"
+value = 0.57
+type = "float"
+description = "[W/m/K]. At 10 degrees C; see Balland and Arp, J. Environ. Eng. Sci. 4: 549-558 (2005)."
+
+[thermal_conductivity_of_water_ice]
+alias = "K_ice"
+value = 2.21
+type = "float"
+description = "[W/m/K]. At the freezing temperature of water; see Balland and Arp, J. Environ. Eng. Sci. 4: 549-558 (2005)."
+
+[kersten_number_alpha]
+alias = "a_kersten"
+value = 0.24
+type = "float"
+description = "fit unitless constant used in computing the Kersten number; See Balland and Arp, J. Environ. Eng. Sci. 4: 549-558 (2005)."
+
+[kersten_number_beta]
+alias = "b_kersten"
+value = 18.3
+type = "float"
+description = "fit unitless constant used in computing the Kersten number; See Balland and Arp, J. Environ. Eng. Sci. 4: 549-558 (2005)."
+
+[ice_impedance_omega]
+alias = "omega_ice"
+value = 7.0
+type = "float"
+description = "Unitless parameter used to adjust soil hydraulic conductivity when ice is present; see Lundin J. Hydrol. (Amsterdam) 118:289–310. (1990)"
+
+[temperature_factor_soil_hydraulic_conductivity]
+alias = "gamma_soilK"
+value = 0.0264
+type = "float"
+description = "Empirical parameter [1/K] used to adjust soil hydraulic conductivity given soil temperature."
+
+[temperature_reference_soil_hydraulic_conductivity]
+alias = "gammaTref_soilK"
+value = 288
+type = "float"
+description = "Reference temperature (K) used to adjust soil hydraulic conductivity given soil temperature."
+
+[maximum_dry_soil_layer_depth]
+alias = "d_ds"
+value = 0.015
+type = "float"
+description = "Maximum depth of the dry soil layer that develops under evaporation; communication with Dani Or."
+
+[emissivity_bare_soil]
+alias = "soil_emissivity"
+value = 0.96
+type = "float"
+description = "Emissivity of soil, approximated as context. Reference: CLM5 Documentation, 2020. "
+
 ## Surface Fluxes
 
 # Businger
