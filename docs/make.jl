@@ -27,7 +27,7 @@ makedocs(
     format = format,
     clean = true,
     checkdocs = :exports,
-    # strict = true,
+    strict = true,
     modules = [CLIMAParameters],
     pages = pages,
 )
