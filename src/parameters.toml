@@ -2113,6 +2113,13 @@ description = "Temperature gradient between equator and pole for moist adiabatic
 alias = "entr_tau"
 value = 900
 type = "float"
+description = "Entrainment timescale"
+
+[detr_tau]
+alias = "detr_tau"
+value = 900
+type = "float"
+description = "Detrainment timescale"
 
 [entr_coeff]
 alias = "entr_coeff"
