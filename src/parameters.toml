@@ -2121,6 +2121,18 @@ value = 1
 type = "float"
 description = "TODO: Remove this. Constant entrainment coefficient used for testing EDMF"
 
+[min_area_limiter_scale]
+alias = "min_area_limiter_scale"
+value = 1e-3
+type = "float"
+description = "Constant coefficient that scales the minimum area limiter term in entrainment. Parameter not described in the literature."
+
+[min_area_limiter_power]
+alias = "min_area_limiter_power"
+value = 10
+type = "float"
+description = "Constant coefficient for the exponent in the minimum area limiter term in entrainment. Parameter not described in the literature."
+
 [detr_tau]
 alias = "detr_tau"
 value = 900
@@ -2138,6 +2150,24 @@ alias = "detr_buoy_coeff"
 value = 0.12
 type = "float"
 description = "Coefficient for the b/w^2 term in the detrainment closure. See Tan et al. (2018) [https://doi.org/10.1002/2017MS001162], Eq 27."
+
+[max_area_limiter_scale]
+alias = "max_area_limiter_scale"
+value = 0.1
+type = "float"
+description = "Constant coefficient that scales the maximum area limiter term in detrainment. Parameter not described in the literature."
+
+[max_area_limiter_power]
+alias = "max_area_limiter_power"
+value = 10
+type = "float"
+description = "Constant coefficient for the exponent in the maximum area limiter term in detrainment. Parameter not described in the literature."
+
+[c_smag]
+alias = "c_smag"
+value = 0.2
+type = "float"
+description = "Smagorinsky coefficient"
 
 [EDMF_surface_area]
 alias = "surface_area"
@@ -2216,6 +2246,12 @@ alias = "l_max"
 value = 1.0e6
 type = "float"
 description = "Upper limit for length scale limiter in mixing length closure. See Lopez-Gomez et al. (2020) [https://doi.org/10.1029/2020MS002161]."
+
+[mixing_length_l_min]
+alias = "l_min"
+value = 10
+type = "float"
+description = "Lower limit for mixing length. Parameter not described in the literature."
 
 [entrainment_factor]
 alias = "entrainment_factor"
