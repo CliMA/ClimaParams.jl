@@ -2285,15 +2285,15 @@ description = "Fraction of updraft air for buoyancy mixing in entrainment/detrai
 
 [entrainment_area_limiter_scale]
 alias = "area_limiter_scale"
-value = 10.0
+value = 4.0
 type = "float"
-description = "Constant scaling exponential argument in detrainment area limiter term. Parameter not described in the literature."
+description = "Constant scaling factor (amplitude) of exponential detrainment area limiter. Parameter not described in the literature."
 
 [entrainment_area_limiter_power]
 alias = "area_limiter_power"
-value = 4.0
+value = 10.0
 type = "float"
-description = "Power of logistic term in detrainment area limiter term. Parameter not described in the literature."
+description = "Exponential decay constant in detrainment area limiter. Parameter not described in the literature."
 
 [entrainment_scale]
 alias = "entrainment_scale"
