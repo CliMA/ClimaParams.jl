@@ -8,7 +8,6 @@ Contains all universal constants and physical parameters in the [CliMA ecosystem
 | **Documentation**    | [![dev][docs-dev-img]][docs-dev-url]          |
 | **GHA CI**           | [![gha ci][gha-ci-img]][gha-ci-url]           |
 | **Code Coverage**    | [![codecov][codecov-img]][codecov-url]        |
-| **Bors enabled**     | [![bors][bors-img]][bors-url]                 |
 
 [docs-bld-img]: https://github.com/CliMA/CLIMAParameters.jl/actions/workflows/Docs.yml/badge.svg
 [docs-bld-url]: https://github.com/CliMA/CLIMAParameters.jl/actions/workflows/Docs.yml
@@ -21,7 +20,4 @@ Contains all universal constants and physical parameters in the [CliMA ecosystem
 
 [codecov-img]: https://codecov.io/gh/CliMA/CLIMAParameters.jl/branch/main/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/CliMA/CLIMAParameters.jl
-
-[bors-img]: https://bors.tech/images/badge_small.svg
-[bors-url]: https://app.bors.tech/repositories/24020
 
