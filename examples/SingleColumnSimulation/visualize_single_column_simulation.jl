@@ -32,6 +32,10 @@ lines!(axu, vn, z, label="v")
 lines!(axT, Tn, z)
 lines!(axe, en, z)
 
+xlims!(axu, -0.1, 0.1)
+xlims!(axT, 19, 20)
+xlims!(axe, -1e-5, 4e-4)
+
 record(fig, "single_column_simulation.mp4", 1:Nt, framerate=24) do nn
     n[] = nn
 end
