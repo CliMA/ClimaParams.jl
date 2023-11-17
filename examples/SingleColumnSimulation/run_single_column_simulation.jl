@@ -12,6 +12,13 @@ parameters = CLIMAParameters.create_toml_dict(Float64,
 parameters = CLIMAParameters.get_parameter_values!(parameters, String[], "Ocean")
 parameters = NamedTuple(parameters...)
 
-simulation = single_column_simulation(; parameters...)
+output_filename = "single_column_simulation.jld2"
+simulation = single_column_simulation(; parameters..., output_filename,
+                                      initial_buoyancy_frequency = 1e-5)
+
+@info "Running a simulation on \n $(simulation.model.grid)..."
 
 run!(simulation)
+
+include("visualize_single_column_simulation.jl")
+
