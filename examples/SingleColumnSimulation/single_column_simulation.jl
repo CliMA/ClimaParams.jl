@@ -21,7 +21,7 @@ function single_column_simulation(;
     output_filename  = "single_column_simulation.jld2",
     # Boundary conditions
     surface_heat_flux                = 200,
-    surface_momentum_flux            = -2e-4,
+    surface_momentum_flux            = -0.2,
     # Ocean physical parameters
     ocean_reference_density          = 1020,
     ocean_heat_capacity              = 3991,
