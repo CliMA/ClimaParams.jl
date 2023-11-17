@@ -33,6 +33,6 @@ lines!(axT, Tn, z)
 lines!(axe, en, z)
 
 record(fig, "single_column_simulation.mp4", 1:Nt, framerate=24) do nn
-    n[] = n
+    n[] = nn
 end
 
