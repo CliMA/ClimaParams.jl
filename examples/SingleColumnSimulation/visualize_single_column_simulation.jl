@@ -32,4 +32,7 @@ lines!(axu, vn, z, label="v")
 lines!(axT, Tn, z)
 lines!(axe, en, z)
 
-display(fig)
+record(fig, "single_column_simulation.mp4", 1:Nt, framerate=24) do nn
+    n[] = n
+end
+
