@@ -84,7 +84,7 @@ description = "Critical Richardson number, stable mixing cutoff. Ref: Frierson e
 
 [surface_layer_fraction]
 alias = "f_b_surface"
-value = 0.10
+value = 0.1
 type = "float"
 description = "Surface layer thickness as a fraction of the planetary boundary layer. Ref: Frierson et al (2006) https://doi.org/10.1175/JAS3753.1"
 
