@@ -808,60 +808,6 @@ alias = "k_thrshld_stpnss"
 value = 2.0
 type = "float"
 
-[SB2001_Long_collection_kernel_coeff_kc]
-alias = "kc_SB2001"
-value = 9.44e9
-type = "float"
-description = "Long's collection kernel constant [m^3 kg^-2 s^-1]. From Seifer and Beheng, 2001. DOI: 10.1016/S0169-8095(01)00126-0."
-
-[SB2001_Long_collection_kernel_coeff_kr]
-alias = "kr_SB2001"
-value = 5.78
-type = "float"
-description = "Long's collection kernel constant [m^3 kg^-1 s^-1]. From Seifer and Beheng, 2001. DOI: 10.1016/S0169-8095(01)00126-0."
-
-[SB2001_cloud_rain_mass_threshold]
-alias = "xstar_SB2001"
-value = 2.6e-10
-type = "float"
-description = "Drop mass separting cloud and rain portions of the spectrum [kg]. From Seifer and Beheng, 2001. DOI: 10.1016/S0169-8095(01)00126-0."
-
-[SB2001_cloud_gamma_distribution_parameter]
-alias = "ν_SB2001"
-value = 2
-type = "float"
-description = "Gamma distibution parameter.Unitless. From Seifer and Beheng, 2001. DOI: 10.1016/S0169-8095(01)00126-0."
-
-[SB2001_autoconversion_correcting_function_coeff_A]
-alias = "A_phi_au_SB2001"
-value = 600.0
-type = "float"
-description = "Parameter for the universal function that corrects the autoconversion rate. Unitless. From Seifer and Beheng, 2001. DOI: 10.1016/S0169-8095(01)00126-0."
-
-[SB2001_autoconversion_correcting_function_coeff_a]
-alias = "a_phi_au_SB2001"
-value = 0.68
-type = "float"
-description = "Parameter for the universal function that corrects the autoconversion rate. Unitless. From Seifer and Beheng, 2001. DOI: 10.1016/S0169-8095(01)00126-0."
-
-[SB2001_autoconversion_correcting_function_coeff_b]
-alias = "b_phi_au_SB2001"
-value = 3
-type = "float"
-description = "Parameter for the universal function that corrects the autoconversion rate. Unitless. From Seifer and Beheng, 2001. DOI: 10.1016/S0169-8095(01)00126-0."
-
-[SB2001_accretion_correcting_function_coeff_tau0]
-alias = "τ_0_phi_ac_SB2001"
-value = 5e-4
-type = "float"
-description = "Parameter for the universal function that corrects the accretion rate. Unitless. From Seifer and Beheng, 2001. DOI: 10.1016/S0169-8095(01)00126-0."
-
-[SB2001_accretion_correcting_function_coeff_c]
-alias = "c_phi_ac_SB2001"
-value = 4
-type = "float"
-description = "Parameter for the universal function that corrects the accretion rate. Unitless. From Seifer and Beheng, 2001. DOI: 10.1016/S0169-8095(01)00126-0."
-
 [SB2006_collection_kernel_coeff_kcc]
 alias = "kcc_SB2006"
 value = 4.44e9
@@ -1832,8 +1778,8 @@ alias = "microph_scaling_accr"
 value = 1.0
 type = "float"
 
-[microph_scaling]
-alias = "microph_scaling"
+[microph_scaling_evap]
+alias = "microph_scaling_evap"
 value = 1.0
 type = "float"
 
@@ -2121,8 +2067,8 @@ description = "Temperature gradient between equator and pole for moist adiabatic
 
 # EDMF
 
-[entr_tau]
-alias = "entr_tau"
+[entr_inv_tau]
+alias = "entr_inv_tau"
 value = 900
 type = "float"
 description = "Entrainment timescale"
@@ -2151,8 +2097,8 @@ value = 10
 type = "float"
 description = "Constant coefficient for the exponent in the minimum area limiter term in entrainment. Parameter not described in the literature."
 
-[detr_tau]
-alias = "detr_tau"
+[detr_inv_tau]
+alias = "detr_inv_tau"
 value = 900
 type = "float"
 description = "Detrainment timescale"
