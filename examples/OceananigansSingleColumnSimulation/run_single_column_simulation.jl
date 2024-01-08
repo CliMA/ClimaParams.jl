@@ -9,7 +9,7 @@ parameters = CLIMAParameters.create_toml_dict(Float64,
                                               default_file = "default_parameters.toml",
                                               dict_type = "name")
 
-parameters = CLIMAParameters.get_parameter_values!(parameters, String[], "Ocean")
+parameters = CLIMAParameters.get_parameter_values!(parameters, "gravitational_acceleration", "Ocean")
 parameters = NamedTuple(parameters...)
 
 output_filename = "single_column_simulation.jld2"
