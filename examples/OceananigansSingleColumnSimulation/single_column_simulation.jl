@@ -2,6 +2,7 @@ using Oceananigans
 using Oceananigans.Units
 using SeawaterPolynomials
 using SeawaterPolynomials.TEOS10: TEOS10EquationOfState
+using CLIMAParameters
 
 using Printf
 
@@ -12,23 +13,23 @@ using Oceananigans.TurbulenceClosures.CATKEVerticalDiffusivities:
     
 function single_column_simulation(;
     # Grid / domain parameters
-    architecture = CPU(),
-    Nz = 64,
-    Lz = 256,
-    floating_point_type = Float64,
+    architecture                                       = CPU(),
+    Nz                                                 = 64,
+    Lz                                                 = 256,
+    floating_point_type                                = Float64,
     # Output
-    output_fields = (:u, :v, :T, :S, :e),
-    output_schedule  = TimeInterval(10minutes),
-    output_filename  = "single_column_simulation.jld2",
+    output_fields                                      = (:u, :v, :T, :S, :e),
+    output_schedule                                    = TimeInterval(10minutes),
+    output_filename                                    = "single_column_simulation.jld2",
     # Boundary conditions
-    surface_heat_flux                = 200,
-    surface_zonal_momentum_flux      = -0.2,
-    surface_meridional_momentum_flux = 0.0,
+    surface_heat_flux                                  = 200,
+    surface_zonal_momentum_flux                        = -0.2,
+    surface_meridional_momentum_flux                   = 0.0,
     # Ocean physical parameters
-    ocean_reference_density          = 1020,
-    ocean_heat_capacity              = 3991,
-    gravitational_acceleration       = 9.81,
-    coriolis_parameter               = 1e-4,
+    ocean_reference_density                            = 1020,
+    ocean_heat_capacity                                = 3991,
+    gravitational_acceleration                         = 9.81,
+    coriolis_parameter                                 = 1e-4,
     # CATKE parameters
     catke_surface_distance_coefficient                 = 2.4,
     catke_tracer_convective_mixing_length_coefficient  = 1.5,
@@ -50,13 +51,13 @@ function single_column_simulation(;
     catke_surface_tke_convective_flux_coefficient      = 4.0,
     catke_minimum_turbulent_kinetic_energy             = 1e-6,
     # Initial conditions
-    initial_salinity                 = 35,
-    initial_surface_temperature      = 20,
-    initial_turbulent_kinetic_energy = 1e-6,
+    initial_salinity                                   = 35,
+    initial_surface_temperature                        = 20,
+    initial_turbulent_kinetic_energy                   = 1e-6,
     # Simulation parameters
-    stop_time                        = 8days,
-    time_step                        = 10minutes,
-    initial_buoyancy_frequency       = 1e-6)
+    stop_time                                          = 8days,
+    time_step                                          = 10minutes,
+    initial_buoyancy_frequency                         = 1e-6)
 
     # A single colunn grid
     FT = floating_point_type
