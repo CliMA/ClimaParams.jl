@@ -120,20 +120,17 @@ value = 9.0
 type = "float"
 description = "b_h for Businger heat universal functions. From Businger et al, 1971. DOI: 10.1175/1520-0469(1971)028<0181:FPRITA>2.0.CO;2."
 
-
 [most_stability_parameter_businger]
 alias = "ζ_a_Businger"
 value = 2.5
 type = "float"
 description = "ζ_a for Businger universal functions. From Businger et al, 1971. DOI: 10.1175/1520-0469(1971)028<0181:FPRITA>2.0.CO;2."
 
-
 [most_stability_exponent_businger]
 alias = "γ_Businger"
 value = 4.42
 type = "float"
 description = "γ for Businger universal functions. From Businger et al, 1971. DOI: 10.1175/1520-0469(1971)028<0181:FPRITA>2.0.CO;2."
-
 
 # Gryanik
 
@@ -415,7 +412,6 @@ description = "γ for Beljaars universal functions. From Beljaars et al, 1991. D
 alias = "von_karman_const"
 value = 0.4
 type = "float"
-
 
 # Microphysics
 
