@@ -10,8 +10,6 @@ CLIMAParameters serve several functionalities and require certain attributes. A 
  - The parameter does not vary in time (per climate simulation)
  - The parameter is a function of only constants other CLIMAParameters and or constants
 
-In addition, CLIMAParameters have the flexibility of two important behaviors:
-
 ## Usage
 
 See the [The TOML parameter file interface](@ref) and [Parameter Dictionaries](@ref) for usage examples.

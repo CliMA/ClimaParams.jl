@@ -19,6 +19,9 @@ AliasParamDict
 create_toml_dict
 get_parameter_values!
 get_parameter_values
+get_tagged_parameter_values
+get_tagged_parameter_names
+fuzzy_match
 float_type
 log_parameter_information
 write_log_file

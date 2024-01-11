@@ -12,7 +12,8 @@ A parameter is determined by its unique name. It has possible attributes
 3. `type`
 4. `description`
 5. `prior`
-6. `transformation`
+6. `tag`
+7. `transformation`
 
 !!! warn
     Currently we support `Type` and `array{Type}` for the following Types: `float`, `integer`, `string` and `bool`.
@@ -34,6 +35,28 @@ value = 0.02897
 type = "float"
 description = "Molecular weight dry air (kg/mol)"
 ```
+
+### Properly tagged parameter
+To add a tag to a parameter, set the `tag` field with a list of tags.
+Tags are an optional convenience and do not create a namespace. All parameter names must be unique.
+
+As an initial convention, parameters will be tagged with the component(s) in which they are used.
+This convention will be changed as we see how packages use tags.
+
+```TOML
+[prandtl_number_0_grachev]
+alias = "Pr_0_Grachev"
+value = 0.98
+type = "float"
+description = "Pr_0 for Grachev universal functions. From Grachev et al, 2007. DOI: 10.1007/s10546-007-9177-6"
+tag = ["SurfaceFluxes"]
+```
+If this convention is followed, to obtain the parameters used to build tagged by "surfacefluxes", one could call for example:
+```julia
+surfacefluxes_params = get_tagged_parameter_values(toml_dict, "surfacefluxes")
+```
+
+When tags are matched, punctuation and capitalization is removed. For more information, see [`fuzzy_match`](@ref Main.fuzzy_match).
 
 ### A more complex parameter for calibration
 
