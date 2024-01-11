@@ -452,3 +452,53 @@ end
 
 # Extend Base.print to AbstractTOMLDict
 Base.print(td::AbstractTOMLDict, io = stdout) = TOML.print(io, td.data)
+
+
+"""
+    get_tagged_parameter_names(pd::AbstractTOMLDict, tag::AbstractString)
+    get_tagged_parameter_names(pd::AbstractTOMLDict, tags::Vector{AbstractString})
+
+Returns a list of the parameters with a given tag.
+"""
+function get_tagged_parameter_names(pd::AbstractTOMLDict, tag::AbstractString)
+    data = pd.data
+    ret_values = String[]
+    for (key, val) in data
+        if any(fuzzy_match.(tag, get(val, "tag", [])))
+            push!(ret_values, key)
+        end
+    end
+    return ret_values
+end
+
+get_tagged_parameter_names(
+    pd::AbstractTOMLDict,
+    tags::Vector{S},
+) where {S <: AbstractString} =
+    vcat(map(x -> get_tagged_parameter_names(pd, x), tags)...)
+
+"""
+    fuzzy_match(s1::AbstractString, s2::AbstractString)
+
+Takes two strings and checks them for equality. 
+This strips punctuation [' ', '_', '*', '.', ',', '-', '(', ')'] and removes capitalization.
+"""
+function fuzzy_match(s1::AbstractString, s2::AbstractString)
+    strip_chars(x) = replace(x, [' ', '_', '*', '.', ',', '-', '(', ')'] => "")
+    return lowercase(strip_chars(s1)) == lowercase(strip_chars(s2))
+end
+
+"""
+    get_tagged_parameter_values(pd::AbstractTOMLDict, tag::AbstractString)
+    get_tagged_parameter_values(pd::AbstractTOMLDict, tags::Vector{AbstractString})
+
+Returns a list of name-value Pairs of the parameters with the given tag(s).
+"""
+get_tagged_parameter_values(pd::AbstractTOMLDict, tag::AbstractString) =
+    get_parameter_values(pd, get_tagged_parameter_names(pd, tag))
+
+get_tagged_parameter_values(
+    pd::AbstractTOMLDict,
+    tags::Vector{S},
+) where {S <: AbstractString} =
+    vcat(map(x -> get_tagged_parameter_values(pd, x), tags)...)

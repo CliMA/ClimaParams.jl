@@ -12,7 +12,10 @@ export float_type,
     write_log_file,
     log_parameter_information,
     create_toml_dict,
-    merge_toml_files
+    merge_toml_files,
+    get_tagged_parameter_values,
+    get_tagged_parameter_names,
+    fuzzy_match
 
 include("file_parsing.jl")
 
