@@ -9,7 +9,6 @@ CurrentModule = CLIMAParameters
 ```@docs
 AbstractTOMLDict
 ParamDict
-AliasParamDict
 ```
 
 ## File parsing and parameter logging
@@ -17,7 +16,6 @@ AliasParamDict
 ### User facing functions:
 ```@docs
 create_toml_dict
-get_parameter_values!
 get_parameter_values
 get_tagged_parameter_values
 get_tagged_parameter_names
@@ -26,4 +24,5 @@ float_type
 log_parameter_information
 write_log_file
 merge_toml_files
+create_parameter_struct
 ```
