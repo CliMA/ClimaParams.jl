@@ -3,73 +3,61 @@
 # Soil model
 
 [thermal_conductivity_of_quartz]
-alias = "K_quartz"
 value = 8.0
 type = "float"
 description = "[W/m/K]; see Balland and Arp, J. Environ. Eng. Sci. 4: 549-558 (2005)."
 
 [thermal_conductivity_of_soil_minerals]
-alias = "K_minerals"
 value = 2.5
 type = "float"
 description = "[W/m/K]. Not including quartz; see Balland and Arp, J. Environ. Eng. Sci. 4: 549-558 (2005)."
 
 [thermal_conductivity_of_organic_matter]
-alias = "K_som"
 value = 0.25
 type = "float"
 description = "[W/m/K]; see Balland and Arp, J. Environ. Eng. Sci. 4: 549-558 (2005)."
 
 [thermal_conductivity_of_liquid_water]
-alias = "K_liq"
 value = 0.57
 type = "float"
 description = "[W/m/K]. At 10 degrees C; see Balland and Arp, J. Environ. Eng. Sci. 4: 549-558 (2005)."
 
 [thermal_conductivity_of_water_ice]
-alias = "K_ice"
 value = 2.21
 type = "float"
 description = "[W/m/K]. At the freezing temperature of water; see Balland and Arp, J. Environ. Eng. Sci. 4: 549-558 (2005)."
 
 [kersten_number_alpha]
-alias = "a_kersten"
 value = 0.24
 type = "float"
 description = "fit unitless constant used in computing the Kersten number; See Balland and Arp, J. Environ. Eng. Sci. 4: 549-558 (2005)."
 
 [kersten_number_beta]
-alias = "b_kersten"
 value = 18.3
 type = "float"
 description = "fit unitless constant used in computing the Kersten number; See Balland and Arp, J. Environ. Eng. Sci. 4: 549-558 (2005)."
 
 [ice_impedance_omega]
-alias = "omega_ice"
 value = 7.0
 type = "float"
 description = "Unitless parameter used to adjust soil hydraulic conductivity when ice is present; see Lundin J. Hydrol. (Amsterdam) 118:289–310. (1990)"
 
 [temperature_factor_soil_hydraulic_conductivity]
-alias = "gamma_soilK"
 value = 0.0264
 type = "float"
 description = "Empirical parameter [1/K] used to adjust soil hydraulic conductivity given soil temperature."
 
 [temperature_reference_soil_hydraulic_conductivity]
-alias = "gammaTref_soilK"
 value = 288
 type = "float"
 description = "Reference temperature (K) used to adjust soil hydraulic conductivity given soil temperature."
 
 [maximum_dry_soil_layer_depth]
-alias = "d_ds"
 value = 0.015
 type = "float"
 description = "Maximum depth of the dry soil layer that develops under evaporation; communication with Dani Or."
 
 [emissivity_bare_soil]
-alias = "soil_emissivity"
 value = 0.96
 type = "float"
 description = "Emissivity of soil, approximated as context. Reference: CLM5 Documentation, 2020. "
@@ -77,13 +65,11 @@ description = "Emissivity of soil, approximated as context. Reference: CLM5 Docu
 ## Surface Fluxes
 
 [richardson_critical]
-alias = "Ri_crit_bulk"
 value = 1.0
 type = "float"
 description = "Critical Richardson number, stable mixing cutoff. Ref: Frierson et al (2006) https://doi.org/10.1175/JAS3753.1"
 
 [surface_layer_fraction]
-alias = "f_b_surface"
 value = 0.1
 type = "float"
 description = "Surface layer thickness as a fraction of the planetary boundary layer. Ref: Frierson et al (2006) https://doi.org/10.1175/JAS3753.1"
@@ -91,43 +77,36 @@ description = "Surface layer thickness as a fraction of the planetary boundary l
 # Businger
 
 [prandtl_number_0_businger]
-alias = "Pr_0_Businger"
 value = 0.74
 type = "float"
 description = "Pr_0 for Businger universal functions. From Businger et al, 1971. DOI: 10.1175/1520-0469(1971)028<0181:FPRITA>2.0.CO;2."
 
 [coefficient_a_m_businger]
-alias = "a_m_Businger"
 value = 4.7
 type = "float"
 description = "a_m for Businger momentum universal functions. From Businger et al, 1971. DOI: 10.1175/1520-0469(1971)028<0181:FPRITA>2.0.CO;2."
 
 [coefficient_b_m_businger]
-alias = "b_m_Businger"
 value = 15.0
 type = "float"
 description = "b_m for Businger momentum universal functions. From Businger et al, 1971. DOI: 10.1175/1520-0469(1971)028<0181:FPRITA>2.0.CO;2."
 
 [coefficient_a_h_businger]
-alias = "a_h_Businger"
 value = 4.7
 type = "float"
 description = "a_h for Businger heat universal functions. From Businger et al, 1971. DOI: 10.1175/1520-0469(1971)028<0181:FPRITA>2.0.CO;2."
 
 [coefficient_b_h_businger]
-alias = "b_h_Businger"
 value = 9.0
 type = "float"
 description = "b_h for Businger heat universal functions. From Businger et al, 1971. DOI: 10.1175/1520-0469(1971)028<0181:FPRITA>2.0.CO;2."
 
 [most_stability_parameter_businger]
-alias = "ζ_a_Businger"
 value = 2.5
 type = "float"
 description = "ζ_a for Businger universal functions. From Businger et al, 1971. DOI: 10.1175/1520-0469(1971)028<0181:FPRITA>2.0.CO;2."
 
 [most_stability_exponent_businger]
-alias = "γ_Businger"
 value = 4.42
 type = "float"
 description = "γ for Businger universal functions. From Businger et al, 1971. DOI: 10.1175/1520-0469(1971)028<0181:FPRITA>2.0.CO;2."
@@ -135,43 +114,36 @@ description = "γ for Businger universal functions. From Businger et al, 1971. D
 # Gryanik
 
 [prandtl_number_0_gryanik]
-alias = "Pr_0_Gryanik"
 value = 0.98
 type = "float"
 description = "Pr_0 for Gryanik universal functions. From Gryanik et al, 2020. DOI: 10.1175/JAS-D-19-0255.1"
 
 [coefficient_a_m_gryanik]
-alias = "a_m_Gryanik"
 value = 5.0
 type = "float"
 description = "a_m for Gryanik momentum universal functions. From Gryanik et al, 2020. DOI: 10.1175/JAS-D-19-0255.1"
 
 [coefficient_a_h_gryanik]
-alias = "a_h_Gryanik"
 value = 5.0
 type = "float"
 description = "a_h for Gryanik heat universal functions. From Gryanik et al, 2020. DOI: 10.1175/JAS-D-19-0255.1"
 
 [coefficient_b_m_gryanik]
-alias = "b_m_Gryanik"
 value = 0.3
 type = "float"
 description = "b_m for Gryanik momentum universal functions. From Gryanik et al, 2020. DOI: 10.1175/JAS-D-19-0255.1"
 
 [coefficient_b_h_gryanik]
-alias = "b_h_Gryanik"
 value = 0.4
 type = "float"
 description = "b_h for Gryanik heat universal functions. From Gryanik et al, 2020. DOI: 10.1175/JAS-D-19-0255.1"
 
 [most_stability_parameter_gryanik]
-alias = "ζ_a_Gryanik"
 value = 7.25
 type = "float"
 description = "ζ_a for Gryanik universal functions. From Gryanik et al, 2020. DOI: 10.1175/JAS-D-19-0255.1"
 
 [most_stability_exponent_gryanik]
-alias = "γ_Gryanik"
 value = 3.62
 type = "float"
 description = "γ for Gryanik universal functions. From Gryanik et al, 2020. DOI: 10.1175/JAS-D-19-0255.1"
@@ -179,49 +151,41 @@ description = "γ for Gryanik universal functions. From Gryanik et al, 2020. DOI
 # Grachev
 
 [prandtl_number_0_grachev]
-alias = "Pr_0_Grachev"
 value = 0.98
 type = "float"
 description = "Pr_0 for Grachev universal functions. From Grachev et al, 2007. DOI: 10.1007/s10546-007-9177-6"
 
 [coefficient_a_m_grachev]
-alias = "a_m_Grachev"
 value = 5.0
 type = "float"
 description = "a_m for Grachev momentum universal functions. From Grachev et al, 2007. DOI: 10.1007/s10546-007-9177-6"
 
 [coefficient_a_h_grachev]
-alias = "a_h_Grachev"
 value = 5.0
 type = "float"
 description = "a_h for Grachev heat universal functions. From Grachev et al, 2007. DOI: 10.1007/s10546-007-9177-6"
 
 [coefficient_b_m_grachev]
-alias = "b_m_Grachev"
 value = 0.7692307692307693
 type = "float"
 description = "derived b_m = [coefficient_a_m_grachev] / 6.5 for Grachev momentum universal functions. From Grachev et al, 2007. DOI: 10.1007/s10546-007-9177-6"
 
 [coefficient_b_h_grachev]
-alias = "b_h_Grachev"
 value = 5.0
 type = "float"
 description = "b_h for Grachev heat universal functions. From Grachev et al, 2007. DOI: 10.1007/s10546-007-9177-6"
 
 [coefficient_c_h_grachev]
-alias = "c_h_Grachev"
 value = 3.0
 type = "float"
 description = "c_h for Grachev heat universal functions. From Grachev et al, 2007. DOI: 10.1007/s10546-007-9177-6"
 
 [most_stability_parameter_grachev]
-alias = "ζ_a_Grachev"
 value = 3.6
 type = "float"
 description = "ζ_a for Grachev universal functions. From Grachev et al, 2007. DOI: 10.1007/s10546-007-9177-6"
 
 [most_stability_exponent_grachev]
-alias = "γ_Grachev"
 value = 2.92
 type = "float"
 description = "γ for Grachev universal functions. From Grachev et al, 2007. DOI: 10.1007/s10546-007-9177-6"
@@ -229,43 +193,36 @@ description = "γ for Grachev universal functions. From Grachev et al, 2007. DOI
 # Cheng
 
 [prandtl_number_0_cheng]
-alias = "Pr_0_Cheng"
 value = 1.0
 type = "float"
 description = "Pr_0 for Cheng universal functions. From Cheng et al, 2005. DOI: 10.1007/s10546-004-1425-4"
 
 [coefficient_a_m_cheng]
-alias = "a_m_Cheng"
 value = 6.1
 type = "float"
 description = "a_m for Cheng momentum universal functions. From Cheng et al, 2005. DOI: 10.1007/s10546-004-1425-4"
 
 [coefficient_a_h_cheng]
-alias = "a_h_Cheng"
 value = 5.3
 type = "float"
 description = "a_h for Cheng heat universal functions. From Cheng et al, 2005. DOI: 10.1007/s10546-004-1425-4"
 
 [coefficient_b_m_cheng]
-alias = "b_m_Cheng"
 value = 2.5
 type = "float"
 description = "b_m for Cheng momentum universal functions. From Cheng et al, 2005. DOI: 10.1007/s10546-004-1425-4"
 
 [coefficient_b_h_cheng]
-alias = "b_h_Cheng"
 value = 1.1
 type = "float"
 description = "b_h for Cheng heat universal functions. From Cheng et al, 2005. DOI: 10.1007/s10546-004-1425-4"
 
 [most_stability_parameter_cheng]
-alias = "ζ_a_Cheng"
 value = 4.5
 type = "float"
 description = "ζ for Cheng universal functions. From Cheng et al, 2005. DOI: 10.1007/s10546-004-1425-4"
 
 [most_stability_exponent_cheng]
-alias = "γ_Cheng"
 value = 2.28
 type = "float"
 description = "γ for Cheng universal functions. From Cheng et al, 2005. DOI: 10.1007/s10546-004-1425-4"
@@ -274,67 +231,56 @@ description = "γ for Cheng universal functions. From Cheng et al, 2005. DOI: 10
 # Holtslag
 
 [prandtl_number_0_holtslag]
-alias = "Pr_0_Holtslag"
 value = 1.0
 type = "float"
 description = "Pr_0 for Holtslag universal functions. From Holtslag et al, 1988. DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2"
 
 [coefficient_a_m_holtslag]
-alias = "a_m_Holtslag"
 value = 0.7
 type = "float"
 description = "a_m for Holtslag momentum universal functions. From Holtslag et al, 1988. DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2"
 
 [coefficient_a_h_holtslag]
-alias = "a_h_Holtslag"
 value = 0.7
 type = "float"
 description = "a_h for Holtslag heat universal functions. From Holtslag et al, 1988. DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2"
 
 [coefficient_b_m_holtslag]
-alias = "b_m_Holtslag"
 value = 0.75
 type = "float"
 description = "b_m for Holtslag momentum universal functions. From Holtslag et al, 1988. DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2"
 
 [coefficient_b_h_holtslag]
-alias = "b_h_Holtslag"
 value = 0.75
 type = "float"
 description = "b_h for Holtslag heat universal functions. From Holtslag et al, 1988. DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2"
 
 [coefficient_c_m_holtslag]
-alias = "c_m_Holtslag"
 value = 5.0
 type = "float"
 description = "c_m for Holtslag momentum universal functions. From Holtslag et al, 1988. DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2"
 
 [coefficient_c_h_holtslag]
-alias = "c_h_Holtslag"
 value = 5.0
 type = "float"
 description = "c_h for Holtslag heat universal functions. From Holtslag et al, 1988. DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2"
 
 [coefficient_d_m_holtslag]
-alias = "d_m_Holtslag"
 value = 0.35
 type = "float"
 description = "d_m for Holtslag momentum universal functions. From Holtslag et al, 1988. DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2"
 
 [coefficient_d_h_holtslag]
-alias = "d_h_Holtslag"
 value = 0.35
 type = "float"
 description = "d_h for Holtslag heat universal functions. From Holtslag et al, 1988. DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2"
 
 [most_stability_parameter_holtslag]
-alias = "ζ_a_Holtslag"
 value = 4.0
 type = "float"
 description = "ζ_a for Holtslag universal functions. From Holtslag et al, 1988. DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2"
 
 [most_stability_exponent_holtslag]
-alias = "γ_Holtslag"
 value = 2.14
 type = "float"
 description = "γ for Holtslag universal functions. From Holtslag et al, 1988. DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2"
@@ -343,73 +289,61 @@ description = "γ for Holtslag universal functions. From Holtslag et al, 1988. D
 # Beljaars
 
 [prandtl_number_0_beljaars]
-alias = "Pr_0_Beljaars"
 value = 1.0
 type = "float"
 description = "Pr_0 for Beljaars universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
 
 [coefficient_a_m_beljaars]
-alias = "a_m_Beljaars"
 value = 1.0
 type = "float"
 description = "a_m for Beljaars momentum universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
 
 [coefficient_a_h_beljaars]
-alias = "a_h_Beljaars"
 value = 1.0
 type = "float"
 description = "a_h for Beljaars heat universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
 
 [coefficient_b_m_beljaars]
-alias = "b_m_Beljaars"
 value = 0.667
 type = "float"
 description = "b_m for Beljaars momentum universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
 
 [coefficient_b_h_beljaars]
-alias = "b_h_Beljaars"
 value = 0.667
 type = "float"
 description = "b_h for Beljaars heat universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
 
 [coefficient_c_m_beljaars]
-alias = "c_m_Beljaars"
 value = 5.0
 type = "float"
 description = "c_m for Beljaars momentum universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
 
 [coefficient_c_h_beljaars]
-alias = "c_h_Beljaars"
 value = 5.0
 type = "float"
 description = "c_h for Beljaars heat universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
 
 [coefficient_d_m_beljaars]
-alias = "d_m_Beljaars"
 value = 0.35
 type = "float"
 description = "d_m for Beljaars momentum universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
 
 [coefficient_d_h_beljaars]
-alias = "d_h_Beljaars"
 value = 0.35
 type = "float"
 description = "d_h for Beljaars heat universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
 
 [most_stability_parameter_beljaars]
-alias = "ζ_a_Beljaars"
 value = 3.4
 type = "float"
 description = "ζ_a for Beljaars universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
 
 [most_stability_exponent_beljaars]
-alias = "γ_Beljaars"
 value = 2.04
 type = "float"
 description = "γ for Beljaars universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
 
 [von_karman_constant]
-alias = "von_karman_const"
 value = 0.4
 type = "float"
 
@@ -417,749 +351,612 @@ type = "float"
 
 
 [precipitation_timescale]
-alias = "τ_precip"
 value = 1000
 type = "float"
 
 [specific_humidity_precipitation_threshold]
-alias = "qc_0"
 value = 5e-6
 type = "float"
 
 [supersaturation_precipitation_threshold]
-alias = "S_0"
 value = 0.02
 type = "float"
 
 [rain_drop_drag_coefficient]
-alias = "C_drag"
 value = 0.55
 type = "float"
 
 [thermal_conductivity_of_air ]
-alias = "K_therm"
 value = 0.024
 type = "float"
 
 [diffusivity_of_water_vapor]
-alias = "D_vapor"
 value = 0.0000226
 type = "float"
 
 [kinematic_viscosity_of_air]
-alias = "ν_air"
 value = 0.000016
 type = "float"
 
 [condensation_evaporation_timescale]
-alias = "τ_cond_evap"
 value = 10
 type = "float"
 
 [sublimation_deposition_timescale]
-alias = "τ_sub_dep"
 value = 10
 type = "float"
 
 [ice_snow_threshold_radius]
-alias = "r_ice_snow"
 value = 6.25e-5
 type = "float"
 
 [cloud_ice_size_distribution_coefficient_n0]
-alias = "n0_ice"
 value = 2e7
 type = "float"
 
 [cloud_ice_crystals_length_scale]
-alias = "r0_ice"
 value = 0.00001
 type = "float"
 
 [cloud_ice_mass_size_relation_coefficient_me]
-alias = "me_ice"
 value = 3
 type = "float"
 
 [cloud_ice_mass_size_relation_coefficient_chim]
-alias = "χm_ice"
 value = 1
 type = "float"
 
 [cloud_ice_mass_size_relation_coefficient_delm]
-alias = "Δm_ice"
 value = 0
 type = "float"
 
 [cloud_liquid_water_specific_humidity_autoconversion_threshold]
-alias = "q_liq_threshold"
 value = 0.0005
 type = "float"
 
 [rain_autoconversion_timescale]
-alias = "τ_acnv_rai"
 value = 1000
 type = "float"
 
 [rain_ventillation_coefficient_a]
-alias = "a_vent_rai"
 value = 1.5
 type = "float"
 
 [rain_ventillation_coefficient_b ]
-alias = "b_vent_rai"
 value = 0.53
 type = "float"
 
 [rain_drop_size_distribution_coefficient_n0]
-alias = "n0_rai"
 value = 1.6e7
 type = "float"
 
 [rain_drop_length_scale]
-alias = "r0_rai"
 value = 0.001
 type = "float"
 
 [rain_mass_size_relation_coefficient_me]
-alias = "me_rai"
 value = 3
 type = "float"
 
 [rain_cross_section_size_relation_coefficient_ae]
-alias = "ae_rai"
 value = 2
 type = "float"
 
 [rain_terminal_velocity_size_relation_coefficient_ve]
-alias = "ve_rai"
 value = 0.5
 type = "float"
 
 [rain_mass_size_relation_coefficient_chim]
-alias = "χm_rai"
 value = 1
 type = "float"
 
 [rain_mass_size_relation_coefficient_delm]
-alias = "Δm_rai"
 value = 0
 type = "float"
 
 [rain_cross_section_size_relation_coefficient_chia]
-alias = "χa_rai"
 value = 1
 type = "float"
 
 [rain_cross_section_size_relation_coefficient_dela]
-alias = "Δa_rai"
 value = 0
 type = "float"
 
 [rain_terminal_velocity_size_relation_coefficient_chiv]
-alias = "χv_rai"
 value = 1
 type = "float"
 
 [rain_terminal_velocity_size_relation_coefficient_delv]
-alias = "Δv_rai"
 value = 0
 type = "float"
 
 [cloud_ice_specific_humidity_autoconversion_threshold]
-alias = "q_ice_threshold"
 value = 0.000001
 type = "float"
 
 [snow_autoconversion_timescale]
-alias = "τ_acnv_sno"
 value = 100
 type = "float"
 
 [snow_ventillation_coefficient_a]
-alias = "a_vent_sno"
 value = 0.65
 type = "float"
 
 [snow_ventillation_coefficient_b]
-alias = "b_vent_sno"
 value = 0.44
 type = "float"
 
 [snow_flake_size_distribution_coefficient_mu]
-alias = "μ_sno"
 value = 4.36e9
 type = "float"
 
 [snow_flake_size_distribution_coefficient_nu]
-alias = "ν_sno"
 value = 0.63
 type = "float"
 
 [snow_flake_length_scale]
-alias = "r0_sno"
 value = 0.001
 type = "float"
 
 [snow_mass_size_relation_coefficient_me]
-alias = "me_sno"
 value = 2
 type = "float"
 
 [snow_cross_section_size_relation_coefficient]
-alias = "ae_sno"
 value = 2
 type = "float"
 
 [snow_terminal_velocity_size_relation_coefficient]
-alias = "ve_sno"
 value = 0.25
 type = "float"
 
 [snow_mass_size_relation_coefficient_chim]
-alias = "χm_sno"
 value = 1
 type = "float"
 
 [snow_mass_size_relation_coefficient_delm]
-alias = "Δm_sno"
 value = 0
 type = "float"
 
 [snow_cross_section_size_relation_coefficient_chia]
-alias = "χa_sno"
 value = 1
 type = "float"
 
 [snow_cross_section_size_relation_coefficient_dela]
-alias = "Δa_sno"
 value = 0
 type = "float"
 
 [snow_terminal_velocity_size_relation_coefficient_chiv]
-alias = "χv_sno"
 value = 1
 type = "float"
 
 [snow_terminal_velocity_size_relation_coefficient_delv]
-alias = "Δv_sno"
 value = 0
 type = "float"
 
 [cloud_liquid_rain_collision_efficiency]
-alias = "E_liq_rai"
 value = 0.8
 type = "float"
 
 [cloud_liquid_snow_collision_efficiency]
-alias = "E_liq_sno"
 value = 0.1
 type = "float"
 
 [cloud_ice_rain_collision_efficiency]
-alias = "E_ice_rai"
 value = 1
 type = "float"
 
 [cloud_ice_snow_collision_efficiency]
-alias = "E_ice_sno"
 value = 0.1
 type = "float"
 
 [rain_snow_collision_efficiency]
-alias = "E_rai_sno"
 value = 1
 type = "float"
 
 [prescribed_cloud_droplet_number_concentration]
-alias = "Nd_prescribed"
 value = 1e8
 type = "float"
 
 [TC1980_autoconversion_coeff_D]
-alias = "D_acnv_TC1980"
 value = 3268.0
 type = "float"
 
 [TC1980_autoconversion_coeff_a]
-alias = "a_acnv_TC1980"
 value = 2.33333333333333333333
 type = "float"
 description = "(7/3)"
 
 [TC1980_autoconversion_coeff_b]
-alias = "b_acnv_TC1980"
 value = -0.333333333333333333
 type = "float"
 description = "(-1/3)"
 
 [TC1980_autoconversion_coeff_r_0]
-alias = "r_0_acnv_TC1980"
 value = 7e-6
 type = "float"
 
 [TC1980_autoconversion_coeff_me_liq]
-alias = "me_liq_TC1980"
 value = 3.0
 type = "float"
 
 [TC1980_accretion_coeff_A]
-alias = "A_acc_TC1980"
 value =  4.7
 type = "float"
 
 [B1994_auctoconversion_coeff_C]
-alias = "C_acnv_B1994"
 value = 3e34
 type = "float"
 
 [B1994_auctoconversion_coeff_a]
-alias = "a_acnv_B1994"
 value = -1.7
 type = "float"
 
 [B1994_auctoconversion_coeff_b]
-alias = "b_acnv_B1994"
 value = 4.7
 type = "float"
 
 [B1994_auctoconversion_coeff_c]
-alias = "c_acnv_B1994"
 value = -3.3
 type = "float"
 
 [B1994_auctoconversion_coeff_d_low]
-alias = "d_low_acnv_B1994"
 value = 3.9
 type = "float"
 
 [B1994_auctoconversion_coeff_d_high]
-alias = "d_high_acnv_B1994"
 value = 9.9
 type = "float"
 
 [B1994_auctoconversion_coeff_N_0]
-alias = "N_0_B1994"
 value = 2e8
 type = "float"
 
 [B1994_accretion_coeff_A]
-alias = "A_acc_B1994"
 value = 6.0
 type = "float"
 
 [KK2000_auctoconversion_coeff_A]
-alias = "A_acnv_KK2000"
 value = 7.42e13
 type = "float"
 
 [KK2000_auctoconversion_coeff_a]
-alias = "a_acnv_KK2000"
 value = 2.47
 type = "float"
 
 [KK2000_auctoconversion_coeff_b]
-alias = "b_acnv_KK2000"
 value = -1.79
 type = "float"
 
 [KK2000_auctoconversion_coeff_c]
-alias = "c_acnv_KK2000"
 value = -1.47
 type = "float"
 
 [KK2000_accretion_coeff_A]
-alias = "A_acc_KK2000"
 value = 67.0
 type = "float"
 
 [KK2000_accretion_coeff_a]
-alias = "a_acc_KK2000"
 value = 1.15
 type = "float"
 
 [KK2000_accretion_coeff_b]
-alias = "b_acc_KK2000"
 value = -1.3
 type = "float"
 
 [LD2004_R_6C_coeff]
-alias = "R_6C_coeff_LD2004"
 value = 7.5
 type = "float"
 
 [LD2004_E_0_coeff]
-alias = "E_0_LD2004"
 value = 1.08e10
 type = "float"
 
 [Variable_time_scale_autoconversion_coeff_alpha]
-alias = "α_var_time_scale_acnv"
 value = 1.0
 type = "float"
 description = "Power of number density in the function describing the autoconversion time scale. Unitless."
 
 [threshold_smooth_transition_steepness]
-alias = "k_thrshld_stpnss"
 value = 2.0
 type = "float"
 
 [SB2006_collection_kernel_coeff_kcc]
-alias = "kcc_SB2006"
 value = 4.44e9
 type = "float"
 description = "Collection kernel constant [m^3 kg^-2 s^-1]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_collection_kernel_coeff_kcr]
-alias = "kcr_SB2006"
 value = 5.25
 type = "float"
 description = "Collection kernel constant [m^3 kg^-1 s^-1]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_collection_kernel_coeff_krr]
-alias = "krr_SB2006"
 value = 7.12
 type = "float"
 description = "Collection kernel constant [m^3 kg^-1 s^-1]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_collection_kernel_coeff_kapparr]
-alias = "κrr_SB2006"
 value = 60.7
 type = "float"
 description = "Collection kernel constant [kg^(-1/3)]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_raindrops_min_mass]
-alias = "xr_min_SB2006"
 value = 2.6e-10
 type = "float"
 description = "Minimum mass of raindrops [kg]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_raindrops_max_mass]
-alias = "xr_max_SB2006"
 value = 5e-6
 type = "float"
 description = "Maximum mass of raindrops [kg]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_cloud_gamma_distribution_parameter]
-alias = "νc_SB2006"
 value = 2
 type = "float"
 description = "Gamma distibution parameter. Unitless. Default value from Seifert and Rasp, 2020. DOI: 10.1029/2020MS002301."
 
 [SB2006_reference_air_density]
-alias = "ρ0_SB2006"
 value = 1.225
 type = "float"
 description = "Air density at surface conditions [kg/m^3]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_autoconversion_correcting_function_coeff_A]
-alias = "A_phi_au_SB2006"
 value = 400.0
 type = "float"
 description = "Constant in the universal function that corrects the autoconversion rate. Unitless. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_autoconversion_correcting_function_coeff_a]
-alias = "a_phi_au_SB2006"
 value = 0.7
 type = "float"
 description = "Constant in the universal function that corrects the autoconversion rate. Unitless. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_autoconversion_correcting_function_coeff_b]
-alias = "b_phi_au_SB2006"
 value = 3
 type = "float"
 description = "Constant in the universal function that corrects the autoconversion rate. Unitless. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_accretion_correcting_function_coeff_tau0]
-alias = "τ0_phi_ac_SB2006"
 value = 5e-5
 type = "float"
 description = "Constant in the universal function that corrects the accretion rate. Unitless. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_accretion_correcting_function_coeff_c]
-alias = "c_phi_ac_SB2006"
 value = 4
 type = "float"
 description = "Constant in the universal function that corrects the accretion rate. Unitless. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_raindrops_self-collection_coeff_d]
-alias = "d_sc_SB2006"
 value = -5
 type = "float"
 description = "Constant in raindrops self-collection rate equation. Unitless. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_raindrops_equlibrium_mean_diameter]
-alias = "Deq_br_SB2006"
 value = 9e-4
 type = "float"
 description = "Equilibrium mean diameter of raindrops for computing the breakup rate [m]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_raindrops_breakup_mean_diameter_threshold]
-alias = "Dr_th_br_SB2006"
 value = 3.5e-4
 type = "float"
 description = "Threshold of raindrops mean diameter for breakup [m]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_raindrops_breakup_coeff_kbr]
-alias = "kbr_SB2006"
 value = 1000
 type = "float"
 description = "Parameter of the raindrops breakup rate equation [1/m]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_raindrops_breakup_coeff_kappabr]
-alias = "κbr_SB2006"
 value = 2300
 type = "float"
 description = "Parameter of the raindrops breakup rate equation [1/m]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_raindrops_terminal_velocity_coeff_aR]
-alias = "aR_tv_SB2006"
 value = 9.65
 type = "float"
 description = "Parameter of the raindrops terminal velocity equation [m/s]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_raindrops_terminal_velocity_coeff_bR]
-alias = "bR_tv_SB2006"
 value = 10.3
 type = "float"
 description = "Parameter of the raindrops terminal velocity equation [m/s]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_raindrops_terminal_velocity_coeff_cR]
-alias = "cR_tv_SB2006"
 value = 600
 type = "float"
 description = "Parameter of the raindrops terminal velocity equation [1/m]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_ventilation_factor_coeff_av]
-alias = "av_evap_SB2006"
 value = 0.78
 type = "float"
 description = "Constant in ventilation factor equation for computing the evaporation rate of rain. Unitless. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_ventilation_factor_coeff_bv]
-alias = "bv_evap_SB2006"
 value = 0.308
 type = "float"
 description = "Constant in ventilation factor equation for computing the evaporation rate of rain. Unitless. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_rain_evaportation_coeff_alpha]
-alias = "α_evap_SB2006"
 value = 159
 type = "float"
 description = "Constant in fallspeed relation for computing the evaporation rate of rain. Unitless. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_rain_evaportation_coeff_beta]
-alias = "β_evap_SB2006"
 value = 0.266
 type = "float"
 description = "Constant in fallspeed relation for computing the evaporation rate of rain. Unitless. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_raindrops_size_distribution_coeff_N0_min]
-alias = "N0_min_SB2006"
 value = 2.5e5
 type = "float"
 description = "Minimum of raindrops size distribution parameter N0 [m^(-4)]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_raindrops_size_distribution_coeff_N0_max]
-alias = "N0_max_SB2006"
 value = 2e7
 type = "float"
 description = "Maximum of raindrops size distribution parameter N0 [m^(-4)]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_raindrops_size_distribution_coeff_lambda_min]
-alias = "λ_min_SB2006"
 value = 1e3
 type = "float"
 description = "Minimum of raindrops size distribution parameter λ [1/m]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_raindrops_size_distribution_coeff_lambda_max]
-alias = "λ_max_SB2006"
 value = 1e4
 type = "float"
 description = "Maximum of raindrops size distribution parameter λ [1/m]. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4."
 
 [Chen2022_table_B1_q_coeff]
-alias = "q_coeff_rain_Ch2022"
 value = 0.115231
 type = "float"
 description = "q coefficinet for raindrop terminal velocity parameterization [-]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B1_a1_coeff]
-alias = "a1_coeff_rain_Ch2022"
 value = 0.044612
 type = "float"
 description = "a1 coefficinet for raindrop terminal velocity parameterization [mm^-bi]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B1_a2_coeff]
-alias = "a2_coeff_rain_Ch2022"
 value = -0.263166
 type = "float"
 description = "a2 coefficinet for raindrop terminal velocity parameterization [mm^-bi]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B1_a3_coeff]
-alias = "a3_coeff_rain_Ch2022"
 value = 4.7178
 type = "float"
 description = "a3 coefficinet for raindrop terminal velocity parameterization [mm^-bi]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B1_a3_pow_coeff]
-alias = "a3_pow_coeff_rain_Ch2022"
 value = -0.47335
 type = "float"
 description = "a3 coefficinet for raindrop terminal velocity parameterization [-]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B1_b1_coeff]
-alias = "b1_coeff_rain_Ch2022"
 value = 2.2955
 type = "float"
 description = "b1 coefficinet for raindrop terminal velocity parameterization [-]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B1_b2_coeff]
-alias = "b2_coeff_rain_Ch2022"
 value = 2.2955
 type = "float"
 description = "b2 coefficinet for raindrop terminal velocity parameterization [-]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B1_b3_coeff]
-alias = "b3_coeff_rain_Ch2022"
 value = 1.1451
 type = "float"
 description = "b3 coefficinet for raindrop terminal velocity parameterization [-]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B1_b_rho_coeff]
-alias = "b_rho_coeff_rain_Ch2022"
 value = 0.038465
 type = "float"
 description = "b density coefficinet for raindrop terminal velocity parameterization [m3/kg]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B1_c1_coeff]
-alias = "c1_coeff_rain_Ch2022"
 value = 0.0
 type = "float"
 description = "c1 density coefficinet for raindrop terminal velocity parameterization [1/mm]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B1_c2_coeff]
-alias = "c2_coeff_rain_Ch2022"
 value = 0.184325
 type = "float"
 description = "c2 density coefficinet for raindrop terminal velocity parameterization [1/mm]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B1_c3_coeff]
-alias = "c3_coeff_rain_Ch2022"
 value = 0.184325
 type = "float"
 description = "c3 density coefficinet for raindrop terminal velocity parameterization [1/mm]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B3_As_coeff_1]
-alias = "As_coeff_1_Ch2022"
 value = 0.00174079
 type = "float"
 description = "part of AS coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B3_As_coeff_2]
-alias = "As_coeff_2_Ch2022"
 value = 0.0378769
 type = "float"
 description = "part of As coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B3_As_coeff_3]
-alias = "As_coeff_3_Ch2022"
 value = 0.263503
 type = "float"
 description = "part of As coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B3_Bs_coeff_1]
-alias = "Bs_coeff_1_Ch2022"
 value = 0.575231
 type = "float"
 description = "part of Bs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B3_Bs_coeff_2]
-alias = "Bs_coeff_2_Ch2022"
 value = 0.0909307
 type = "float"
 description = "part of Bs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B3_Bs_coeff_3]
-alias = "Bs_coeff_3_Ch2022"
 value = 0.515579
 type = "float"
 description = "part of Bs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B3_Cs_coeff_1]
-alias = "Cs_coeff_1_Ch2022"
 value = -0.345387
 type = "float"
 description = "part of Cs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B3_Cs_coeff_2]
-alias = "Cs_coeff_2_Ch2022"
 value = 0.177362
 type = "float"
 description = "part of Cs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B3_Cs_coeff_3]
-alias = "Cs_coeff_3_Ch2022"
 value = -0.000427794
 type = "float"
 description = "part of Cs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B3_Cs_coeff_4]
-alias = "Cs_coeff_4_Ch2022"
 value = 0.00419647
 type = "float"
 description = "part of Cs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B3_Es_coeff_1]
-alias = "Es_coeff_1_Ch2022"
 value = -0.156593
 type = "float"
 description = "part of Es coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B3_Es_coeff_2]
-alias = "Es_coeff_2_Ch2022"
 value = 0.0189334
 type = "float"
 description = "part of Es coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B3_Es_coeff_3]
-alias = "Es_coeff_3_Ch2022"
 value = 0.1377817
 type = "float"
 description = "part of Es coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B3_Fs_coeff_1]
-alias = "Fs_coeff_1_Ch2022"
 value = -3.35641
 type = "float"
 description = "part of Fs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B3_Fs_coeff_2]
-alias = "Fs_coeff_2_Ch2022"
 value = 0.0156199
 type = "float"
 description = "part of Fs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B3_Fs_coeff_3]
-alias = "Fs_coeff_3_Ch2022"
 value = 0.765337
 type = "float"
 description = "part of Fs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B3_Gs_coeff_1]
-alias = "Gs_coeff_1_Ch2022"
 value = -0.0309715
 type = "float"
 description = "part of Gs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B3_Gs_coeff_2]
-alias = "Gs_coeff_2_Ch2022"
 value = 1.55054
 type = "float"
 description = "part of Gs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B3_Gs_coeff_3]
-alias = "Gs_coeff_3_Ch2022"
 value = 0.518349
 type = "float"
 description = "part of Gs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
@@ -1167,217 +964,181 @@ description = "part of Gs coefficient for ice terminal velocity parameterization
 # Microphysics - ice deposition on dust
 
 [Mohler2006_maximum_allowed_Si]
-alias = "Si_max_Mohler2006"
 value = 1.35
 type = "float"
 description = "Maximum allowed supersaturation over ice Si_max [-]. From Mohler et al, 2006. DOI: 10.5194/acp-6-3007-2006."
 
 [Mohler2006_threshold_T]
-alias = "T_thr_Mohler2006"
 value = 220
 type = "float"
 description = "Threshold temperature separating two deposition regimes [K]. From Mohler et al, 2006. DOI: 10.5194/acp-6-3007-2006."
 
 [Mohler2006_S0_warm_ArizonaTestDust]
-alias = "S0_warm_ATD_Mohler2006"
 value = 1.03
 type = "float"
 description = "S0 for temperatures > T_thr for Arizona Test Dust [-]. From Mohler et al, 2006. DOI: 10.5194/acp-6-3007-2006."
 
 [Mohler2006_S0_cold_ArizonaTestDust]
-alias = "S0_cold_ATD_Mohler2006"
 value = 1.07
 type = "float"
 description = "S0 for temperatures < T_thr for Arizona Test Dust [-]. From Mohler et al, 2006. DOI: 10.5194/acp-6-3007-2006."
 
 [Mohler2006_a_warm_ArizonaTestDust]
-alias = "a_warm_ATD_Mohler2006"
 value = 4.7
 type = "float"
 description = "a for temperatures > T_thr for Arizona Test Dust [-]. From Mohler et al, 2006. DOI: 10.5194/acp-6-3007-2006."
 
 [Mohler2006_a_cold_ArizonaTestDust]
-alias = "a_cold_ATD_Mohler2006"
 value = 9.2
 type = "float"
 description = "a for temperatures < T_thr for Arizona Test Dust [-]. From Mohler et al, 2006. DOI: 10.5194/acp-6-3007-2006."
 
 [Mohler2006_S0_warm_DesertDust]
-alias = "S0_warm_DD_Mohler2006"
 value = 1.17
 type = "float"
 description = "S0 for temperatures > T_thr for Desert Dust [-]. From Mohler et al, 2006. DOI: 10.5194/acp-6-3007-2006."
 
 [Mohler2006_S0_cold_DesertDust]
-alias = "S0_cold_DD_Mohler2006"
 value = 1.03
 type = "float"
 description = "S0 for temperatures < T_thr for Desert Dust [-]. From Mohler et al, 2006. DOI: 10.5194/acp-6-3007-2006."
 
 [Mohler2006_a_warm_DesertDust]
-alias = "a_warm_DD_Mohler2006"
 value = 0.43
 type = "float"
 description = "a for temperatures > T_thr for Desert Dust [-]. From Mohler et al, 2006. DOI: 10.5194/acp-6-3007-2006."
 
 [Mohler2006_a_cold_DesertDust]
-alias = "a_cold_DD_Mohler2006"
 value = 2.35
 type = "float"
 description = "a for temperatures < T_thr for Desert Dust [-]. From Mohler et al, 2006. DOI: 10.5194/acp-6-3007-2006."
 
 [KnopfAlpert2013_J_ABIFM_m_DesertDust]
-alias = "J_ABIFM_m_KA2013_DesertDust"
 value = 22.62
 type = "float"
 description = "Coefficient, m, for calculating immersion freezing J_het of Desert Dust [-]. From Knopf and Alpert 2013. DOI: 10.1039/C3FD00035D."
 
 [KnopfAlpert2013_J_ABIFM_c_DesertDust]
-alias = "J_ABIFM_c_KA2013_DesertDust"
 value = -1.35
 type = "float"
 description = "Coefficient, c, for calculating immersion freezing J_het of Desert Dust [-]. From Knopf and Alpert 2013. DOI: 10.1039/C3FD00035D."
 
 [KnopfAlpert2013_J_ABIFM_m_Kaolinite]
-alias = "J_ABIFM_m_KA2013_Kaolinite"
 value = 54.58834
 type = "float"
 description = "Coefficient, m, for calculating immersion freezing J_het of Kaolinite [-]. From Knopf and Alpert 2013. DOI: 10.1039/C3FD00035D."
 
 [KnopfAlpert2013_J_ABIFM_c_Kaolinite]
-alias = "J_ABIFM_c_KA2013_Kaolinite"
 value = -10.54758
 type = "float"
 description = "Coefficient, c, for calculating immersion freezing J_het of Kaolinite [-]. From Knopf and Alpert 2013. DOI: 10.1039/C3FD00035D."
 
 [KnopfAlpert2013_J_ABIFM_m_Illite]
-alias = "J_ABIFM_m_KA2013_Illite"
 value = 54.48075
 type = "float"
 description = "Coefficient, m, for calculating immersion freezing J_het of Illite [-]. From Knopf and Alpert 2013. DOI: 10.1039/C3FD00035D."
 
 [KnopfAlpert2013_J_ABIFM_c_Illite]
-alias = "J_ABIFM_c_KA2013_Illite"
 value = -10.66873
 type = "float"
 description = "Coefficient, c, for calculating immersion freezing J_het of Illite [-]. From Knopf and Alpert 2013. DOI: 10.1039/C3FD00035D."
 
 [Koop2000_min_delta_aw]
-alias = "Koop2000_min_delta_aw"
 value = 0.26
 type = "float"
 description = "Minimum valid Delta_a_w for J_hom parameterized by Koop 2000 [-]. From Koop 2000. DOI: 10.1038/35020537."
 
 [Koop2000_max_delta_aw]
-alias = "Koop2000_max_delta_aw"
 value = 0.34
 type = "float"
 description = "Maximum valid Delta_a_w for J_hom parameterized by Koop 2000 [-]. From Koop 2000. DOI: 10.1038/35020537."
 
 [Koop2000_J_hom_coeff1]
-alias = "Koop2000_J_hom_c1"
 value = -906.7
 type = "float"
 description = "Coefficient for calculating J_hom parameterized by Koop 2000 [-]. From Koop 2000. DOI: 10.1038/35020537."
 
 [Koop2000_J_hom_coeff2]
-alias = "Koop2000_J_hom_c2"
 value = 8502
 type = "float"
 description = "Coefficient for calculating J_hom parameterized by Koop 2000 [-]. From Koop 2000. DOI: 10.1038/35020537."
 
 [Koop2000_J_hom_coeff3]
-alias = "Koop2000_J_hom_c3"
 value = 26924
 type = "float"
 description = "Coefficient for calculating J_hom parameterized by Koop 2000 [-]. From Koop 2000. DOI: 10.1038/35020537."
 
 [Koop2000_J_hom_coeff4]
-alias = "Koop2000_J_hom_c4"
 value = 29180
 type = "float"
 description = "Coefficient for calculating J_hom parameterized by Koop 2000 [-]. From Koop 2000. DOI: 10.1038/35020537."
 
 [p_over_sulphuric_acid_solution_T_max]
-alias = "H2SO4_sol_T_max"
 value = 235
 type = "float"
 description = "Maximum valid temperature for calculation of H2SO4 solution vapor pressure [K]. From Luo et al 1995. DOI: 10.1029/94GL02988."
 
 [p_over_sulphuric_acid_solution_T_min]
-alias = "H2SO4_sol_T_min"
 value = 185
 type = "float"
 description = "Minimum valid temperature for calculation of H2SO4 solution vapor pressure [K]. From Luo et al 1995. DOI: 10.1029/94GL02988."
 
 [p_over_sulphuric_acid_solution_w_2]
-alias = "H2SO4_sol_w_2"
 value = 1.4408
 type = "float"
 description = "Coefficient used for calculation of H2SO4 solution vapor pressure [-]. From Luo et al 1995. DOI: 10.1029/94GL02988."
 
 [p_over_sulphuric_acid_solution_c1]
-alias = "H2SO4_sol_c1"
 value = 23.306
 type = "float"
 description = "Coefficient used for calculation of H2SO4 solution vapor pressure [-]. From Luo et al 1995. DOI: 10.1029/94GL02988."
 
 [p_over_sulphuric_acid_solution_c2]
-alias = "H2SO4_sol_c2"
 value = 5.3465
 type = "float"
 description = "Coefficient used for calculation of H2SO4 solution vapor pressure [-]. From Luo et al 1995. DOI: 10.1029/94GL02988."
 
 [p_over_sulphuric_acid_solution_c3]
-alias = "H2SO4_sol_c3"
 value = 12
 type = "float"
 description = "Coefficient used for calculation of H2SO4 solution vapor pressure [-]. From Luo et al 1995. DOI: 10.1029/94GL02988."
 
 [p_over_sulphuric_acid_solution_c4]
-alias = "H2SO4_sol_c4"
 value = 8.19
 type = "float"
 description = "Coefficient used for calculation of H2SO4 solution vapor pressure [-]. From Luo et al 1995. DOI: 10.1029/94GL02988."
 
 [p_over_sulphuric_acid_solution_c5]
-alias = "H2SO4_sol_c5"
 value = -5814
 type = "float"
 description = "Coefficient used for calculation of H2SO4 solution vapor pressure [-]. From Luo et al 1995. DOI: 10.1029/94GL02988."
 
 [p_over_sulphuric_acid_solution_c6]
-alias = "H2SO4_sol_c6"
 value = 928.9
 type = "float"
 description = "Coefficient used for calculation of H2SO4 solution vapor pressure [-]. From Luo et al 1995. DOI: 10.1029/94GL02988."
 
 [p_over_sulphuric_acid_solution_c7]
-alias = "H2SO4_sol_c7"
 value = 1876.7
 type = "float"
 description = "Coefficient used for calculation of H2SO4 solution vapor pressure [-]. From Luo et al 1995. DOI: 10.1029/94GL02988."
 
 [BF1995_mass_exponent_beta]
-alias = "β_va_BF1995"
 value = 1.9
 type = "float"
 description = "Exponent in power law for mass grown by vapor diffusion and aggregation from Brown and Francis 1995--used in P3 Scheme (Morrison and Milbrandt 2015) [-]."
 
 [BF1995_mass_coeff_alpha]
-alias = "α_va_BF1995"
 value = 7.38e-11
 type = "float"
 description = "Coefficient in power law for mass grown by vapor diffusion and aggregation from Brown and Francis 1995--used in P3 Scheme (Morrison and Milbrandt 2015) [g/μmβ_va]. To adjust units into kg and m, see the P3 Scheme documentation."
 
 [M1996_area_exponent_sigma]
-alias = "σ_M1996"
 value = 1.88
 type = "float"
 description = "Exponent in power law for the area of ice side plane, column, bullet, and planar polycrystal aggregates in Mitchell 1996--used in P3 Scheme (Morrison and Milbrandt 2015) [-]."
 
 [M1996_area_coeff_gamma]
-alias = "γ_M1996"
 value = 0.2285
 type = "float"
 description = "Coefficient in power law for the area of ice side plane, column, bullet, and planar polycrystal aggregates in Mitchell 1996--used in P3 Scheme (Morrison and Milbrandt 2015) [μm^(2-σ_M1996)]. To adjust units into m and m2, see the P3 Scheme documentation."
@@ -1386,91 +1147,76 @@ description = "Coefficient in power law for the area of ice side plane, column, 
 # Microphysics - Aerosol activation
 
 [seasalt_aerosol_molar_mass]
-alias = "molmass_seasalt"
 value = 0.058443
 type = "float"
 description = "Molar mass of aerosol sea salt in kg/mol"
 
 [seasalt_aerosol_density]
-alias = "rho_seasalt"
 value = 2170
 type = "float"
 description = "Density of aerosol sea salt in kg/m3"
 
 [seasalt_aerosol_osmotic_coefficient]
-alias = "osm_coeff_seasalt"
 value = 0.9
 type = "float"
 description = "Osmotic coefficient of aerosol sea salt [-]"
 
 [seasalt_aerosol_ion_number]
-alias = "N_ion_seasalt"
 value = 2
 type = "float"
 description = "Number of ions that sea salt dissociates into when dissolved in water [-]"
 
 [seasalt_aerosol_water_soluble_mass_fraction]
-alias = "water_soluble_mass_frac_seasalt"
 value = 1
 type = "float"
 description = "Mass fraction of water soluble material for sea salt aerosol [-]"
 
 [seasalt_aerosol_kappa]
-alias = "kappa_seasalt"
 value = 1.12
 type = "float"
 description = "Hygroscopicity parameter kappa for sea salt aerosol [-], see: doi.org/10.5194/acp-7-1961-2007"
 
 [sulfate_aerosol_molar_mass]
-alias = "molmass_sulfate"
 value = 0.132
 type = "float"
 description = "Molar mass of aerosol sulfate in kg/mol"
 
 [sulfate_aerosol_density]
-alias = "rho_sulfate"
 value = 1770
 type = "float"
 description = "Density of aerosol sulfate in kg/m3"
 
 [sulfate_aerosol_osmotic_coefficient]
-alias = "osm_coeff_sulfate"
 value = 1
 type = "float"
 description = "Osmotic coefficient of aerosol sulfate [-]"
 
 [sulfate_aerosol_ion_number]
-alias = "N_ion_sulfate"
 value = 3
 type = "float"
 description = "Number of ions that sulfate dissociates into when dissolved in water [-]"
 
 [sulfate_aerosol_water_soluble_mass_fraction]
-alias = "water_soluble_mass_frac_sulfate"
 value = 1
 type = "float"
 description = "Mass fraction of water soluble material for sulfate aerosol [-]"
 
 [sulfate_aerosol_kappa]
-alias = "kappa_sulfate"
 value = 0.53
 type = "float"
 description = "Hygroscopicity parameter kappa for sulfate aerosol [-], see: doi.org/10.5194/acp-7-1961-2007"
 
 [ARG2000_f_coeff_1]
-alias = "f_coeff_1_ARG2000"
 value = 0.5
 type = "float"
 description = "Scaling coefficient for an empirically determined functional dependence in Abdul-Razzak and Ghan, 2000. Unitless. DOI: https://doi.org/10.1029/1999JD901161"
 
 [ARG2000_f_coeff_2]
-alias = "f_coeff_2_ARG2000"
 value = 2.5
 type = "float"
 description = "Scaling coefficient for an empirically determined functional dependence in Abdul-Razzak and Ghan, 2000. Unitless. DOI: https://doi.org/10.1029/1999JD901161"
 
 [ARG2000_g_coeff]
-alias = "g_coeff_ARG2000"
 value = 0.25
 type = "float"
 description = "Scaling coefficient for an empirically determined functional dependence in Abdul-Razzak and Ghan, 2000. Unitless. DOI: https://doi.org/10.1029/1999JD901161"
@@ -1478,19 +1224,16 @@ description = "Scaling coefficient for an empirically determined functional depe
 # Microphysics - Modal aerosol model
 
 [mam3_stdev_coarse]
-alias = "stdev_coarse"
 value = 1.8e-6
 type = "float"
 description = "Geometric standard deviation for the coarse modal distribution of MAM3. Unitless. From Liu et al., 2012. DOI: 10.5194/gmd-5-709-2012"
 
 [mam3_stdev_accum]
-alias = "stdev_accum"
 value = 1.8e-6
 type = "float"
 description = "Geometric standard deviation for the accumulation modal distribution of MAM3. Unitless. From Liu et al., 2012. DOI: 10.5194/gmd-5-709-2012"
 
 [mam3_stdev_ait]
-alias = "stdev_ait"
 value = 1.6e-6
 type = "float"
 description = "Geometric standard deviation for the aitken modal distribution of MAM3. Unitless. From Liu et al., 2012. DOI: 10.5194/gmd-5-709-2012"
@@ -1498,193 +1241,161 @@ description = "Geometric standard deviation for the aitken modal distribution of
 # Nucleation Constants
 
 [mam3_nucleation_p_b_n_neutral]
-alias = "p_b_n"
 value = 3.95451
 type = "float"
 description = "Parameter for pure binary H2SO4-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentration of [H2SO4] is in 10^6 1/cm3.  From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
 
 [mam3_nucleation_p_b_i_ion_induced]
-alias = "p_b_i"
 value = 3.373738
 type = "float"
 description = "Parameter for pure binary H2SO4-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentration of [H2SO4] is in 10^6 1/cm3 and negative ion concentration [n_] is in 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
 
 [mam3_nucleation_u_b_n_neutral]
-alias = "u_b_n"
 value = 9.702973
 type = "float"
 description = "Parameter for pure binary H2SO4-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentration of [H2SO4] is in 10^6 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
 
 [mam3_nucleation_u_b_i_ion_induced]
-alias = "u_b_i"
 value = -11.48166
 type = "float"
 description = "Parameter for pure binary H2SO4-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentration of [H2SO4] is in 10^6 1/cm3 and negative ion concentration [n_] is in 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
 
 [mam3_nucleation_v_b_n_neutral]
-alias = "v_b_n"
 value = 12.62259
 type = "float"
 description = "Parameter for pure binary H2SO4-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentration of [H2SO4] is in 10^6 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
 
 [mam3_nucleation_v_b_i_ion_induced]
-alias = "v_b_i"
 value = 25.49469
 type = "float"
 description = "Parameter for pure binary H2SO4-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentration of [H2SO4] is in 10^6 1/cm3 and negative ion concentration [n_] is in 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
 
 [mam3_nucleation_w_b_n_neutral]
-alias = "w_b_n"
 value = -0.007066146
 type = "float"
 description = "Parameter for pure binary H2SO4-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentration of [H2SO4] is in 10^6 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
 
 [mam3_nucleation_w_b_i_ion_induced]
-alias = "w_b_i"
 value = 0.1810722
 type = "float"
 description = "Parameter for pure binary H2SO4-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentration of [H2SO4] is in 10^6 1/cm3 and negative ion concentration [n_] is in 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
 
 [mam3_nucleation_p_t_n_neutral]
-alias = "p_t_n"
 value = 2.891024
 type = "float"
 description = "Parameter for pure ternary H2SO4-NH3-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentrations of [H2SO4] and [NH3] are in 10^6 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
 
 [mam3_nucleation_p_t_i_ion_induced]
-alias = "p_t_i"
 value = 3.138719
 type = "float"
 description = "Parameter for pure ternary H2SO4-NH3-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentrations of [H2SO4] and [NH3] are in 10^6 1/cm3 and negative ion concentration [n_] is in 1/cm3.. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
 
 [mam3_nucleation_u_t_n_neutral]
-alias = "u_t_n"
 value = 182.4495
 type = "float"
 description = "Parameter for pure ternary H2SO4-NH3-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentrations of [H2SO4] and [NH3] are in 10^6 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
 
 [mam3_nucleation_u_t_i_ion_induced]
-alias = "u_t_i"
 value = -23.8002
 type = "float"
 description = "Parameter for pure ternary H2SO4-NH3-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentrations of [H2SO4] and [NH3] are in 10^6 1/cm3 and negative ion concentration [n_] is in 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
 
 [mam3_nucleation_v_t_n_neutral]
-alias = "v_t_n"
 value = 1.203451
 type = "float"
 description = "Parameter for pure ternary H2SO4-NH3-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentrations of [H2SO4] and [NH3] are in 10^6 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
 
 [mam3_nucleation_v_t_i_ion_induced]
-alias = "v_t_i"
 value = 37.03029
 type = "float"
 description = "Parameter for pure ternary H2SO4-NH3-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentrations of [H2SO4] and [NH3] are in 10^6 1/cm3 and negative ion concentration [n_] is in 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
 
 [mam3_nucleation_w_t_n_neutral]
-alias = "w_t_n"
 value = -4.188065
 type = "float"
 description = "Parameter for pure ternary H2SO4-NH3-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentrations of [H2SO4] and [NH3] are in 10^6 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
 
 [mam3_nucleation_w_t_i_ion_induced]
-alias = "w_t_i"
 value = 0.227413
 type = "float"
 description = "Parameter for pure ternary H2SO4-NH3-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentrations of [H2SO4] and [NH3] are in 10^6 1/cm3 and negative ion concentration [n_] is in 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
 
 [mam3_nucleation_p_A_n_neutral]
-alias = "p_A_n"
 value = 8.003471
 type = "float"
 description = "Parameter for pure ternary H2SO4-NH3-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentrations of [H2SO4] and [NH3] are in 10^6 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
 
 [mam3_nucleation_p_A_i_ion_induced]
-alias = "p_A_i"
 value = 3.071246
 type = "float"
 description = "Parameter for pure ternary H2SO4-NH3-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentrations of [H2SO4] and [NH3] are in 10^6 1/cm3 and negative ion concentration [n_] is in 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
 
 [mam3_nucleation_a_n_neutral]
-alias = "a_n"
 value = 1.5703478e-6
 type = "float"
 description = "Parameter for pure ternary H2SO4-NH3-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentrations of [H2SO4] and [NH3] are in 10^6 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
 
 [mam3_nucleation_a_i_ion_induced]
-alias = "a_i"
 value = 0.00483140
 type = "float"
 description = "Parameter for pure ternary H2SO4-NH3-H2O nucleation. This is an empirical fit to data and the parameter assumes the concentrations of [H2SO4] and [NH3] are in 10^6 1/cm3 and negative ion concentration [n_] is in 1/cm3. From Dunne et al., 2016. DOI: 10.1126/science.aaf2649."
 
 [mam3_nucleation_a_1_neutral]
-alias = "a_1"
 value = 0.0400097
 type = "float"
 description = "Parameter for pure organic nucleation. This is an empirical fit to data. The highly oxygenated organic molecules concentration [HOM] is in 10^7 1/cm3, the monoterpene [MT], [OH], and [O3] concentrations are in TODO and the ion concentrations are in 1/cm3. From Kirkby et al., 2016. DOI: 10.1038/nature17953."
 
 [mam3_nucleation_a_2_neutral]
-alias = "a_2"
 value = 1.84826
 type = "float"
 description = "Parameter for pure organic nucleation. This is an empirical fit to data. The highly oxygenated organic molecules concentration [HOM] is in 10^7 1/cm3, the monoterpene [MT], [OH], and [O3] concentrations are in TODO and the ion concentrations are in 1/cm3. From Kirkby et al., 2016. DOI: 10.1038/nature17953."
 
 [mam3_nucleation_a_3_ion_induced]
-alias = "a_3"
 value = 0.00136641
 type = "float"
 description = "Parameter for pure organic nucleation. This is an empirical fit to data. The highly oxygenated organic molecules concentration [HOM] is in 10^7 1/cm3, the monoterpene [MT], [OH], and [O3] concentrations are in TODO and the ion concentrations are in 1/cm3.  From Kirkby et al., 2016. DOI: 10.1038/nature17953."
 
 [mam3_nucleation_a_4_ion_induced]
-alias = "a_4"
 value = 1.56588
 type = "float"
 description = "Parameter for pure organic nucleation. This is an empirical fit to data. The highly oxygenated organic molecules concentration [HOM] is in 10^7 1/cm3, the monoterpene [MT], [OH], and [O3] concentrations are in TODO and the ion concentrations are in 1/cm3. From Kirkby et al., 2016. DOI: 10.1038/nature17953."
 
 [mam3_nucleation_a_5]
-alias = "a_5"
 value = 0.186303
 type = "float"
 description = "Parameter for pure organic nucleation. This is an empirical fit to data. The highly oxygenated organic molecules concentration [HOM] is in 10^7 1/cm3, the monoterpene [MT], [OH], and [O3] concentrations are in TODO and the ion concentrations are in 1/cm3. From Kirkby et al., 2016. DOI: 10.1038/nature17953."
 
 [mam3_nucleation_Y_MTO3_percent]
-alias = "Y_MTO3"
 value = 0.029
 type = "float"
 description = "Highly oxygenated organic molecule (HOM) percent yield from monoterpene (MT) oxidation with ozone, used for pure organic nucleation. This is an empirical fit to data. The highly oxygenated organic molecules concentration [HOM] is in 10^7 1/cm3, the monoterpene [MT], [OH], and [O3] concentrations are in TODO and the ion concentrations are in 1/cm3. From Kirkby et al., 2016. DOI: 10.1038/nature17953."
 
 [mam3_nucleation_Y_MTOH_percent]
-alias = "Y_MTOH"
 value = 0.012
 type = "float"
 description = "Highly oxygenated organic molecule (HOM) percent yield from monoterpene (MT) oxidation with hydroxyl radicals, used for pure organic nucleation. This is an empirical fit to data. The highly oxygenated organic molecules concentration [HOM] is in 10^7 1/cm3, the monoterpene [MT], [OH], and [O3] concentrations are in TODO and the ion concentrations are in 1/cm3. From Kirkby et al., 2016. DOI: 10.1038/nature17953."
 
 [mam3_nucleation_k_MTO3_organic_factor]
-alias = "k_MTO3"
 value =  8.05e-16
 type = "float"
 description = "Factor for temperature-dependent rate of monoterpene (MT) oxidation with ozone, used for pure organic nucleation. This is an empirical fit to data. The highly oxygenated organic molecules concentration [HOM] is in 10^7 1/cm3, the monoterpene [MT], [OH], and [O3] concentrations are in TODO and the ion concentrations are in 1/cm3. From Kirkby et al., 2016. DOI: 10.1038/nature17953."
 
 [mam3_nucleation_k_MTOH_organic_factor]
-alias = "k_MTOH"
 value =  1.2e-11
 type = "float"
 description = "Factor for temperature-dependent rate of monoterpene (MT) oxidation with hydroxyl radicals, used for pure organic nucleation. This is an empirical fit to data. The highly oxygenated organic molecules concentration [HOM] is in 10^7 1/cm3, the monoterpene [MT], [OH], and [O3] concentrations are in TODO and the ion concentrations are in 1/cm3. From Kirkby et al., 2016. DOI: 10.1038/nature17953."
 
 [mam3_nucleation_exp_MTO3_organic_factor]
-alias = "exp_MTO3"
 value = -640
 type = "float"
 description = "Additional factor for monoterpene (MT) oxidation with ozone, used for pure organic nucleation. This is an empirical fit to data. The highly oxygenated organic molecules concentration [HOM] is in 10^7 1/cm3, the monoterpene [MT], [OH], and [O3] concentrations are in TODO and the ion concentrations are in 1/cm3. From Kirkby et al., 2016. DOI: 10.1038/nature17953."
 
 [mam3_nucleation_exp_MTOH_organic_factor]
-alias = "exp_MTOH"
 value =  440
 type = "float"
 description = "Additional factor for monoterpene (MT) oxidation with hydroxyl radicals, used for pure organic nucleation. This is an empirical fit to data. The highly oxygenated organic molecules concentration [HOM] is in 10^7 1/cm3, the monoterpene [MT], [OH], and [O3] concentrations are in TODO and the ion concentrations are in 1/cm3.  From Kirkby et al., 2016. DOI: 10.1038/nature17953."
 
 [mam3_nucleation_k_H2SO4_mixed_organic_sulfuric_acid_factor]
-alias = "k_H2SO4org"
 value =  3.27e-21
 type = "float"
 description = "Temperature-dependent factor for monoterpene (MT) oxidation with hydroxyl radicals, used for mixed organic-sulfuric acid nucleation. This is an empirical fit to data. The [H2SO4] concentration is in 10^6 1/cm3 and the [BioOxOrg] organics concentration is in 1/cm3. From Riccobno et al., 2014. DOI: 10.1126/science.1243527."
@@ -1694,293 +1405,237 @@ description = "Temperature-dependent factor for monoterpene (MT) oxidation with 
 
 
 [f_plane_coriolis_frequency]
-alias = "f_plane_coriolis_frequency"
 value = 0
 type = "float"
 
 [molar_mass_dry_air]
-alias = "molmass_dryair"
 value = 0.02897
 type = "float"
 
 [adiabatic_exponent_dry_air]
-alias = "kappa_d"
 value = 0.28571428571
 type = "float"
 description = "(2/7)"
 
 [density_liquid_water]
-alias = "ρ_cloud_liq"
 value = 1000
 type = "float"
 
 [density_ice_water]
-alias = "ρ_cloud_ice"
 value = 916.7
 type = "float"
 
 [molar_mass_water]
-alias = "molmass_water"
 value = 0.01801528
 type = "float"
 
 [isobaric_specific_heat_vapor]
-alias = "cp_v"
 value = 1859
 type = "float"
 
 [isobaric_specific_heat_liquid]
-alias = "cp_l"
 value = 4181
 type = "float"
 
 [isobaric_specific_heat_ice]
-alias = "cp_i"
 value = 2100
 type = "float"
 
 [temperature_water_freeze]
-alias = "T_freeze"
 value = 273.15
 type = "float"
 
 [temperature_saturation_adjustment_min]
-alias = "T_min"
 value = 150
 type = "float"
 
 [temperature_saturation_adjustment_max]
-alias = "T_max"
 value = 1000
 type = "float"
 
 [temperature_homogenous_nucleation]
-alias = "T_icenuc"
 value = 233
 type = "float"
 
 [pow_icenuc]
-alias = "pow_icenuc"
 value = 1
 type = "float"
 
 [microph_scaling_acnv]
-alias = "microph_scaling_acnv"
 value = 1.0
 type = "float"
 
 [microph_scaling_accr]
-alias = "microph_scaling_accr"
 value = 1.0
 type = "float"
 
 [microph_scaling_evap]
-alias = "microph_scaling_evap"
 value = 1.0
 type = "float"
 
 [microph_scaling_dep_sub]
-alias = "microph_scaling_dep_sub"
 value = 1.0
 type = "float"
 
 [microph_scaling_melt]
-alias = "microph_scaling_melt"
 value = 1.0
 type = "float"
 
 [temperature_triple_point]
-alias = "T_triple"
 value = 273.16
 type = "float"
 
 [thermodynamics_temperature_reference]
-alias = "T_0"
 value = 273.16
 type = "float"
 
 
 [latent_heat_vaporization_at_reference]
-alias = "LH_v0"
 value = 2500800
 type = "float"
 
 [latent_heat_sublimation_at_reference]
-alias = "LH_s0"
 value = 2834400
 type = "float"
 
 [pressure_triple_point]
-alias = "press_triple"
 value = 611.657
 type = "float"
 
 [surface_tension_water]
-alias = "surface_tension_coeff"
 value = 0.072
 type = "float"
 
 [entropy_dry_air]
-alias = "entropy_dry_air"
 value = 6864.8
 type = "float"
 
 [entropy_water_vapor]
-alias = "entropy_water_vapor"
 value = 10513.6
 type = "float"
 
 [entropy_reference_temperature]
-alias = "entropy_reference_temperature"
 value = 298.15
 type = "float"
 
 [density_ocean_reference]
-alias = "ρ_ocean"
 value = 1035
 type = "float"
 
 [specific_heat_ocean]
-alias = "cp_ocean"
 value = 3989.25
 type = "float"
 
 [planet_radius]
-alias = "planet_radius"
 value = 6371000
 type = "float"
 
 [day]
-alias = "day"
 value = 86400
 type = "float"
 
 [angular_velocity_planet_rotation]
-alias = "Omega"
 value = 0.000072921159
 type = "float"
 
 [gravitational_acceleration]
-alias = "grav"
 value = 9.81
 type = "float"
 
 [anomalistic_year_length]
-alias = "year_anom"
 value = 31558464
 type = "float"
 description = "derived: 365.25 * [day]"
 
 [length_orbit_semi_major]
-alias = "orbit_semimaj"
 value = 149597870000
 type = "float"
 description = "derived: 1 * [astronomical_unit]"
 
 [total_solar_irradiance]
-alias = "tot_solar_irrad"
 value = 1362
 type = "float"
 
 [epoch_time]
-alias = "epoch"
 value = 211813488000
 type = "float"
 description = "derived: 2451545.0 * [day]"
 
 [mean_anomalistic_at_epoch]
-alias = "mean_anom_epoch"
 value = 6.24006014121
 type = "float"
 description = "(357.52911 degrees) in radians"
 
 [orbit_obliquity_at_epoch]
-alias = "obliq_epoch"
 value = 0.408979125113246
 type = "float"
 description = "(23.432777778 degrees) in radians"
 
 [longitude_perihelion_at_epoch]
-alias = "lon_perihelion_epoch"
 value = 4.938188299449
 type = "float"
 description = "(282.937348 degrees) in radians"
 
 [orbit_eccentricity_at_epoch]
-alias = "eccentricity_epoch"
 value = 0.016708634
 type = "float"
 
 [longitude_perihelion]
-alias = "lon_perihelion"
 value = 4.938188299449
 type = "float"
 description = "(282.937348 degrees) in radians"
 
 [potential_temperature_reference_pressure]
-alias = "p_ref_theta"
 value = 100000
 type = "float"
 description = "Reference pressure used in potential temperature definition"
 
 [mean_sea_level_pressure]
-alias = "MSLP"
 value = 101325
 type = "float"
 
 [temperature_mean_at_reference]
-alias = "T_surf_ref"
 value = 290
 type = "float"
 
 [temperature_min_at_reference]
-alias = "T_min_ref"
 value = 220
 type = "float"
 
 [gas_constant]
-alias = "gas_constant"
 value = 8.3144598
 type = "float"
 
 [light_speed]
-alias = "light_speed"
 value = 299792458
 type = "float"
 
 [planck_constant]
-alias = "h_Planck"
 value = 6.626e-34
 type = "float"
 
 [bolztmann_constant]
-alias = "k_Boltzmann"
 value = 1.381e-23
 type = "float"
 
 [stefan_boltzmann_constant]
-alias = "Stefan"
 value = 5.67e-8
 type = "float"
 
 [astronomical_unit]
-alias = "astro_unit"
 value = 149597870000
 type = "float"
 
 [avogadro_constant]
-alias = "avogad"
 value = 6.02214076e23
 type = "float"
 
 [C_E]
-alias = "C_E"
 value = 0.0044
 type = "float"
 description = "vertical diffusion coefficient"
 
 [C_H]
-alias = "C_H"
 value = 0.0044
 type = "float"
 description = "bulk transfer coefficient"
@@ -1988,31 +1643,26 @@ description = "bulk transfer coefficient"
 # Rayleigh Damping
 
 [alpha_rayleigh_w]
-alias = "alpha_rayleigh_w"
 value = 1.0
 type = "float"
 description = "rayleigh sponge vert velocity coeff"
 
 [alpha_rayleigh_uh]
-alias = "alpha_rayleigh_uh"
 value = 0.0001
 type = "float"
 description = "rayleigh sponge horizontal velocity coefficient"
 
 [zd_rayleigh]
-alias = "zd_rayleigh"
 value = 15000.0
 type = "float"
 description = "rayleigh sponge height"
 
 [zd_viscous]
-alias = "zd_viscous"
 value = 15000.0
 type = "float"
 description = "viscous sponge height"
 
 [kappa_2_sponge]
-alias = "kappa_2_sponge"
 value = 1.0e6
 type = "float"
 description = "viscous sponge coefficient"
@@ -2020,43 +1670,36 @@ description = "viscous sponge coefficient"
 # Held-Suarez
 
 [held_suarez_T_equator_dry]
-alias = "T_equator_dry"
 value = 315
 type = "float"
 description = "Equator temperature. See Held and Suarez (1994) https://doi.org/10.1175/1520-0477(1994)075%3C1825:APFTIO%3E2.0.CO;2"
 
 [held_suarez_T_equator_wet]
-alias = "T_equator_wet"
 value = 294
 type = "float"
 description = "Equator temperature. See Held and Suarez (1994) https://doi.org/10.1175/1520-0477(1994)075%3C1825:APFTIO%3E2.0.CO;2"
 
 [potential_temp_vertical_gradient]
-alias = "Δθ_z"
 value = 10
 type = "float"
 description = "Potential temperature gradient with height. See Held and Suarez (1994) https://doi.org/10.1175/1520-0477(1994)075%3C1825:APFTIO%3E2.0.CO;2"
 
 [drag_layer_vertical_extent]
-alias = "σ_b"
 value = 0.7
 type = "float"
 description = "Vertical extend of drag layer. See Held and Suarez (1994) https://doi.org/10.1175/1520-0477(1994)075%3C1825:APFTIO%3E2.0.CO;2"
 
 [held_suarez_minimum_temperature]
-alias = "T_min_hs"
 value = 200
 type = "float"
 description = "Minimum temperature. See Held and Suarez (1994) https://doi.org/10.1175/1520-0477(1994)075%3C1825:APFTIO%3E2.0.CO;2"
 
 [equator_pole_temperature_gradient_dry]
-alias = "ΔT_y_dry"
 value = 60
 type = "float"
 description = "Temperature gradient between equator and pole for dry adiabatic atmosphere. See Held and Suarez (1994) https://doi.org/10.1175/1520-0477(1994)075%3C1825:APFTIO%3E2.0.CO;2"
 
 [equator_pole_temperature_gradient_wet]
-alias = "ΔT_y_wet"
 value = 65
 type = "float"
 description = "Temperature gradient between equator and pole for moist adiabatic atmosphere. See Held and Suarez (1994) https://doi.org/10.1175/1520-0477(1994)075%3C1825:APFTIO%3E2.0.CO;2"
@@ -2064,301 +1707,251 @@ description = "Temperature gradient between equator and pole for moist adiabatic
 # EDMF
 
 [entr_inv_tau]
-alias = "entr_inv_tau"
 value = 900
 type = "float"
 description = "Entrainment timescale"
 
 [entr_coeff]
-alias = "entr_coeff"
 value = 1
 type = "float"
 description = "TODO: Remove this. Constant entrainment coefficient used for testing EDMF"
 
 [entr_vertdiv_coeff]
-alias = "entr_vertdiv_coeff"
 value = 1
 type = "float"
 description = "Coefficient for the vertical divergence term in the entrainment closure. Parameter not described in the literature."
 
 [min_area_limiter_scale]
-alias = "min_area_limiter_scale"
 value = 1e-3
 type = "float"
 description = "Constant coefficient that scales the minimum area limiter term in entrainment. Parameter not described in the literature."
 
 [min_area_limiter_power]
-alias = "min_area_limiter_power"
 value = 10
 type = "float"
 description = "Constant coefficient for the exponent in the minimum area limiter term in entrainment. Parameter not described in the literature."
 
 [detr_inv_tau]
-alias = "detr_inv_tau"
 value = 900
 type = "float"
 description = "Detrainment timescale"
 
 [detr_coeff]
-alias = "detr_coeff"
 value = 0.001
 type = "float"
 description = "TODO: Remove this. Constant detrainment coefficient used for testing EDMF"
 
 [detr_buoy_coeff]
-alias = "detr_buoy_coeff"
 value = 0.12
 type = "float"
 description = "Coefficient for the b/w^2 term in the detrainment closure. See Tan et al. (2018) [https://doi.org/10.1002/2017MS001162], Eq 27."
 
 [detr_vertdiv_coeff]
-alias = "detr_vertdiv_coeff"
 value = 1
 type = "float"
 description = "Coefficient for the vertical divergence term in the detrainment closure. Parameter not described in the literature."
 
 [max_area_limiter_scale]
-alias = "max_area_limiter_scale"
 value = 0.1
 type = "float"
 description = "Constant coefficient that scales the maximum area limiter term in detrainment. Parameter not described in the literature."
 
 [max_area_limiter_power]
-alias = "max_area_limiter_power"
 value = 10
 type = "float"
 description = "Constant coefficient for the exponent in the maximum area limiter term in detrainment. Parameter not described in the literature."
 
 [c_smag]
-alias = "c_smag"
 value = 0.2
 type = "float"
 description = "Smagorinsky coefficient"
 
 [EDMF_surface_area]
-alias = "surface_area"
 value = 0.1
 type = "float"
 description = "Combined updraft surface area fraction; used to compute boundary conditions for prognostic updraft variables. The surface area for each updraft is `surface_area / N_updrafts`. See Cohen et al. (2020) [https://doi.org/10.1029/2020MS002162], Table 2."
 
 [EDMF_max_area]
-alias = "max_area"
 value = 0.9
 type = "float"
 description = "Maximum area fraction per updraft. Parameter not described in the literature."
 
 [EDMF_min_area]
-alias = "min_area"
 value = 1.0e-5
 type = "float"
 description = "Minimum area fraction per updraft. Parameter not described in the literature."
 
 [mixing_length_eddy_viscosity_coefficient]
-alias = "tke_ed_coeff"
 value = 0.14
 type = "float"
 description = "Turbulence kinetic energy diffusivity coefficient for the EDMF mixing length closure; denoted c_m. See Lopez-Gomez et al. (2020) [https://doi.org/10.1029/2020MS002162], Table 1."
 
 [mixing_length_diss_coeff]
-alias = "tke_diss_coeff"
 value = 0.22
 type = "float"
 description = "Turbulence kinetic energy dissipation coefficient for the EDMF mixing length closure; denoted c_d. See Lopez-Gomez et al. (2020) [https://doi.org/10.1029/2020MS002162], Table 1."
 
 [mixing_length_static_stab_coeff]
-alias = "static_stab_coeff"
 value = 0.4
 type = "float"
 description = "Static stability coefficient for the EDMF mixing length closure; denoted c_b. See Lopez-Gomez et al. (2020) [https://doi.org/10.1029/2020MS002162], Table 1."
 
 [mixing_length_tke_surf_scale]
-alias = "tke_surf_scale"
 value = 3.75
 type = "float"
 description = "Ratio of turbulence kinetic energy to squared friction velocity in the surface layer for the EDMF mixing length closure; denoted κ_*². See Lopez-Gomez et al. (2020) [https://doi.org/10.1029/2020MS002162], Table 1. Note: the square root, i.e. κ_*, is listed in the reference."
 
 [mixing_length_Prandtl_number_scale]
-alias = "Prandtl_number_scale"
 value = 4.076923076923077
 type = "float"
 description = "Cospectral budget factor for turbulent Prandtl number for the EDMF mixing length closure, denoted ω_pr. In Lopez-Gomez et al. (2020) [https://doi.org/10.1029/2020MS002162], Eq. 36, it is described as a phenomenological constant, denoted by ω₂ and set to 53/13 ≈ 4.0769..."
 
 [mixing_length_Prandtl_number_0]
-alias = "Prandtl_number_0"
 value = 0.74
 type = "float"
 description = "Turbulent Prandtl number in neutral conditions; denoted Pr_{t,0}. See Lopez-Gomez et al. (2020) [https://doi.org/10.1029/2020MS002162], Table 1 and Eq 36."
 
 [mixing_length_Ri_crit]
-alias = "Ri_crit"
 value = 0.25
 type = "float"
 description = "Critical gradient Richardson number. It is an upper limit to the gradient Richardson number . See Li (2019) [https://doi.org/10.1016/j.atmosres.2018.09.015], Section 6.2 for details."
 
 [mixing_length_smin_ub]
-alias = "smin_ub"
 value = 0.1
 type = "float"
 description = "Lower limit for smooth minimum function in mixing length closure. See Lopez-Gomez et al. (2020) Eq 40 [https://doi.org/10.1029/2020MS002161]."
 
 [mixing_length_smin_rm]
-alias = "smin_rm"
 value = 1.5
 type = "float"
 description = "Upper ratio limit for smooth minimum function in mixing length closure. See Lopez-Gomez et al. (2020) Eq 40 [https://doi.org/10.1029/2020MS002161]."
 
 [mixing_length_l_max]
-alias = "l_max"
 value = 1.0e6
 type = "float"
 description = "Upper limit for length scale limiter in mixing length closure. See Lopez-Gomez et al. (2020) [https://doi.org/10.1029/2020MS002161]."
 
 [mixing_length_l_min]
-alias = "l_min"
 value = 10
 type = "float"
 description = "Lower limit for mixing length. Parameter not described in the literature."
 
 [entrainment_factor]
-alias = "entrainment_factor"
 value = 0.13
 type = "float"
 description = "Scaling constant for entrainment rate. See Cohen et al. (2022) Table 2 & Eq 39, 40 [https://doi.org/10.1029/2020MS002162]."
 
 [detrainment_factor]
-alias = "detrainment_factor"
 value = 0.51
 type = "float"
 description = "Scaling constant for detrainment rate. See Cohen et al. (2022) Table 2 & Eq 39, 40 [https://doi.org/10.1029/2020MS002162]."
 
 [turbulent_entrainment_factor]
-alias = "turbulent_entrainment_factor"
 value = 0.075
 type = "float"
 description = "Scaling constant for turbulent entrainment rate. See Cohen et al. (2022) Table 2 & eqn. 46 [https://doi.org/10.1029/2020MS002162]."
 
 [entrainment_smin_tke_coeff]
-alias = "entrainment_smin_tke_coeff"
 value = 0.3
 type = "float"
 description = "Scaling constant of TKE term in entrainment/detrainment inverse timescale smooth minimum.  See Cohen et al. (2022) Table 2 & eqn. 30 [https://doi.org/10.1029/2020MS002162]."
 
 [updraft_mixing_frac]
-alias = "updraft_mixing_frac"
 value = 0.25
 type = "float"
 description = "Fraction of updraft air for buoyancy mixing in entrainment/detrainment formulation. See Cohen et al. (2022) Table 2 & eqn. 36 [https://doi.org/10.1029/2020MS002162]."
 
 [entrainment_area_limiter_scale]
-alias = "area_limiter_scale"
 value = 4.0
 type = "float"
 description = "Constant scaling factor (amplitude) of exponential detrainment area limiter. Parameter not described in the literature."
 
 [entrainment_area_limiter_power]
-alias = "area_limiter_power"
 value = 10.0
 type = "float"
 description = "Exponential decay constant in detrainment area limiter. Parameter not described in the literature."
 
 [entrainment_scale]
-alias = "entrainment_scale"
 value = 0.0004
 type = "float"
 description = "Dimensional constant scaling logistic function argument in entrainment/detrainment dry term. See Cohen et al. (2022) Table 2 & eqn. 37 [https://doi.org/10.1029/2020MS002162]."
 
 [entrainment_sorting_power]
-alias = "sorting_power"
 value = 2.0
 type = "float"
 description = "Sorting power for moisture term in entrainment/detrainment formulation. Controls the magnitude of the evaporative potential for a given relative humidity difference. See Cohen et al. (2022) Table 2 & eqn. 38 [https://doi.org/10.1029/2020MS002162]."
 
 [minimum_updraft_velocity]
-alias = "min_upd_velocity"
 value = 0.001
 type = "float"
 description = "Minimum updraft-environment vertical velocity difference allowable when computing inverse length scale in entrainment/detrainment formulation. Parameter not described in the literature."
 
 [minimum_updraft_top]
-alias = "min_updraft_top"
 value = 500.0
 type = "float"
 description = "Minimum updraft height limiter to avoid zero division in pressure drag and entrainment/detrainment closures. Parameter not described in the literature."
 
 [pressure_normalmode_buoy_coeff1]
-alias = "pressure_normalmode_buoy_coeff1"
 value = 0.12
 type = "float"
 description = "Pressure buoyancy coefficient (encapsulating virtual mass loading effect) in perturbation pressure closure. See He et al. 2022 Eq 34 [https://doi.org/10.1002/essoar.10505084.2]."
 
 [pressure_normalmode_adv_coeff]
-alias = "pressure_normalmode_adv_coeff"
 value = 0.1
 type = "float"
 description =  "Pressure advection (advection damping) coefficient in perturbation pressure closure. See He et al. 2022 Eq 34 [https://doi.org/10.1002/essoar.10505084.2]."
 
 [pressure_normalmode_drag_coeff]
-alias = "pressure_normalmode_drag_coeff"
 value = 10.0
 type = "float"
 description = "Updraft pressure drag coefficent in perturbation pressure closure. See He et al. 2022 Eq 34 [https://doi.org/10.1002/essoar.10505084.2]."
 
 [EDMF_thermodynamics_moisture_model]
-alias = "moisture_model"
 value = "equilibrium"
 type = "string"
 description = " Edmf moisture model choice. The default (equilibrium) results in diagnosing cloud liquid and ice water content using saturation adjustment. An experimental nonequilibrium option introduces prognostic equations for cloud liquid and cloud ice.  Not documented in the literature (yet) - Benjamin et.al. in prep."
 
 [EDMF_thermodynamics_covariance_model]
-alias = "thermo_covariance_model"
 value = "diagnostic"
 type = "string"
 description = "Edmf covaraince model choice. Valid options are diagnostic (default) and prognostic."
 
 [EDMF_thermodynamics_diagnostic_covar_limiter]
-alias = "diagnostic_covar_limiter"
 value = 0.001
 type = "float"
 description = "Regularization epsilon used in the denominator when computing covariances diagnostically."
 
 [EDMF_thermodynamics_sgs]
-alias = "sgs"
 value = "mean"
 type = "string"
 description = "Edmf environmental sub-grid scale model choice. Valid options are mean (default) and quadrature. The quadrature option switches on numerical sampling of 2-dimensional PDFs of edmf environmental state variables. Not documented in the literature (yet) - Jaruga et al in prep."
 
 [EDMF_thermodynamics_quadrature_order]
-alias = "quadrature_order"
 value = 3
 type = "integer"
 description = "Number of numerical quadrature sampling points in one dimension. Valid when running edmf with sgs quadrature choice. Not documented in the literature (yet) - Jaruga et al in prep."
 
 [EDMF_thermodynamics_quadrature_type]
-alias = "quadrature_type"
 value = "log-normal"
 type = "string"
 description = "Assumed distribution shape of the edmf state variables (q_tot and \theta_liq_ice) in the environment. Valid options are log-normal (default) and gaussian. Valid when running edmf with sgs quadrature choice. Not documented in the literature (yet) - Jaruga et al in prep."
 
 [updraft_number]
-alias = "updraft_number"
 value = 1
 type = "integer"
 description = "Number of edmf updrafts."
 
 [microphysics_model_precipitation_fraction]
-alias = "precip_fraction_model"
 value = "prescribed"
 type = "string"
 description = "Precipitation fraction model choice. Options are prescribed (default) and cloud_cover. Valid for simulations running with the 1-moment microphysics scheme, edmf turbulence convection model. Not documented in the literature (yet)."
 
 [microphysics_prescribed_precipitation_fraction]
-alias = "prescribed_precip_frac"
 value = 1.0
 type = "float"
 description = "Prescribed value of precipitation fraction. Should be between 0 and 1. Valid for simulations running with the 1-moment microphysics scheme, edmf turbulence convection model and prescribed precip_fraction_model. Not documented in the literature (yet)."
 
 [microphysics_precipitation_fraction_limiter]
-alias = "precip_fraction_limiter"
 value = 0.3
 type = "float"
 description = "Minimum precipitation fraction allowed. Should be between 0 and 1. Valid for simulations running with the 1-moment microphysics scheme, edmf turbulence convection model and cloud_cover precip_fraction_model. Not documented in the literature (yet)."
