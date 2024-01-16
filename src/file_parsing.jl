@@ -1,9 +1,8 @@
 """
     AbstractTOMLDict{FT <: AbstractFloat}
 
-Abstract parameter dict. Two subtypes:
+Abstract parameter dict. One subtype:
  - [`ParamDict`](@ref)
- - [`AliasParamDict`](@ref)
 """
 abstract type AbstractTOMLDict{FT <: AbstractFloat} end
 
@@ -30,67 +29,16 @@ struct ParamDict{FT} <: AbstractTOMLDict{FT}
 end
 
 """
-    AliasParamDict(data::Dict, override_dict::Union{Nothing,Dict})
-
-Structure to hold information read-in from TOML
-file, as well as a parametrization type `FT`.
-
-Uses the alias to search
-
-# Fields
-
-$(DocStringExtensions.FIELDS)
-"""
-struct AliasParamDict{FT} <: AbstractTOMLDict{FT}
-    "dictionary representing a default/merged parameter TOML file"
-    data::Dict
-    "either a nothing, or a dictionary representing an override parameter TOML file"
-    override_dict::Union{Nothing, Dict}
-    "Alias->name map"
-    alias_to_name_map::Dict
-    function AliasParamDict{FT}(
-        data::Dict,
-        override_dict::Union{Nothing, Dict},
-    ) where {FT}
-        alias_to_name_map = Dict(map(collect(keys(data))) do key
-            Pair(data[key]["alias"], key)
-        end)
-        return new{FT}(data, override_dict, alias_to_name_map)
-    end
-end
-
-
-"""
     float_type(::AbstractTOMLDict)
 
 The float type from the parameter dict.
 """
 float_type(::AbstractTOMLDict{FT}) where {FT} = FT
 
-function Base.iterate(pd::AliasParamDict)
-    it = iterate(pd.data)
-    if it !== nothing
-        return (Pair(it[1].second["alias"], it[1].second), it[2])
-    else
-        return nothing
-    end
-end
-
-function Base.iterate(pd::AliasParamDict, state)
-    it = iterate(pd.data, state)
-    if it !== nothing
-        return (Pair(it[1].second["alias"], it[1].second), it[2])
-    else
-        return nothing
-    end
-end
-
 Base.iterate(pd::ParamDict, state) = Base.iterate(pd.data, state)
 Base.iterate(pd::ParamDict) = Base.iterate(pd.data)
 
 Base.getindex(pd::ParamDict, i) = getindex(pd.data, i)
-Base.getindex(pd::AliasParamDict, i) =
-    getindex(pd.data, pd.alias_to_name_map[i])
 
 """
     log_component!(pd::AbstractTOMLDict, names, component)
@@ -99,25 +47,6 @@ Adds a new key,val pair: `("used_in",component)` to each
 named parameter in `pd`.
 Appends a new val: `component` if "used_in" key exists.
 """
-function log_component!(
-    pd::AliasParamDict,
-    names::NAMESTYPE,
-    component::AbstractString,
-)
-    component_key = "used_in"
-    data = pd.data
-    for name in names
-        for (key, val) in data
-            name ≠ val["alias"] && continue
-            data[key][component_key] = if component_key in keys(data[key])
-                unique([data[key][component_key]..., component])
-            else
-                [component]
-            end
-        end
-    end
-end
-
 function log_component!(
     pd::ParamDict,
     names::NAMESTYPE,
@@ -176,67 +105,56 @@ end
 """
     get_values(pd::AbstractTOMLDict, names)
 
-gets the `value` of the named parameters.
+Gets the values of the parameters in `names` from the TOML dict `pd`.
 """
-function get_values(pd::AliasParamDict, aliases::NAMESTYPE)
-    data = pd.data
-    # TODO: use map
-    ret_values = []
-    unique_aliases = Dict()
-    for alias in aliases
-        for (key, val) in data
-            alias ≠ val["alias"] && continue
-            param_value = val["value"]
-            param_type = haskey(val, "type") ? val["type"] : "string"
-            elem =
-                isa(param_value, AbstractVector) ?
-                map(
-                    x -> _get_typed_value(pd, x, alias, param_type),
-                    param_value,
-                ) : _get_typed_value(pd, param_value, alias, param_type)
-            push!(ret_values, Pair(Symbol(alias), elem))
-        end
-    end
-    # Test that no aliases are duplicated
-    for (key, val) in data
-        if haskey(unique_aliases, val["alias"])
-            push!(unique_aliases[val["alias"]], key)
-        else
-            unique_aliases[val["alias"]] = [key]
-        end
-    end
-    for (alias, params) in unique_aliases
-        length(params) > 1 &&
-            error("Parameters `$params` have the same alias `$alias`")
-    end
-    return ret_values
-end
-
 function get_values(pd::ParamDict, names::NAMESTYPE)
     data = pd.data
     ret_values = map(names) do name
-        param_value = data[name]["value"]
-        param_type =
-            haskey(data[name], "type") ? data[name]["type"] : "string"
-        elem =
-            isa(param_value, AbstractVector) ?
-            map(x -> _get_typed_value(pd, x, name, param_type), param_value) : _get_typed_value(pd, param_value, name, param_type)
+        param_data = data[name]
+        param_value = param_data["value"]
+        param_type = get(param_data, "type", "string")
+
+        elem = if param_value isa AbstractVector
+            map(x -> _get_typed_value(pd, x, name, param_type), param_value)
+        else
+            _get_typed_value(pd, param_value, name, param_type)
+        end
+
         Pair(Symbol(name), elem)
     end
-    return ret_values
+    return (; ret_values...)
 end
 
 """
-    get_parameter_values!(
+    get_parameter_values(
         pd::AbstractTOMLDict,
         names::Union{String,Vector{String}},
         component::String
     )
 
-(Note the `!`) Gets the parameter values, and logs
-the component (if given) where parameters are used.
+    get_parameter_values(
+        pd::AbstractTOMLDict,
+        name_map::Union{Dict, Vector{Pair}, NTuple{N, Pair}, Vararg{Pair}},
+        component::String
+    )
+
+Given a toml dict and a list of parameter names, returns a NamedTuple of the 
+parameters and their values. If a component is specified, the parameter is
+logged as being used in that component.
+
+Instead of a list of parameter names, this can take an iterable mapping from
+parameter names to variable names in code. Then, this function retrieves all parameters 
+from the long names and returns a NamedTuple where the keys are the variable names.
 """
-function get_parameter_values!(
+function get_parameter_values(
+    pd::AbstractTOMLDict,
+    names::AbstractString,
+    component = nothing,
+)
+    return get_parameter_values(pd, [names], component)
+end
+
+function get_parameter_values(
     pd::AbstractTOMLDict,
     names::NAMESTYPE,
     component::Union{AbstractString, Nothing} = nothing,
@@ -247,23 +165,83 @@ function get_parameter_values!(
     return get_values(pd, names)
 end
 
-get_parameter_values!(
+function get_parameter_values(
     pd::AbstractTOMLDict,
-    names::AbstractString,
-    args...;
-    kwargs...,
-) = first(get_parameter_values!(pd, [names], args..., kwargs...))
+    name_map::Union{AbstractVector{Pair}, NTuple{N, Pair}},
+    component = nothing,
+) where {N}
+    return get_parameter_values(pd, Dict(name_map), component)
+end
+
+function get_parameter_values(
+    pd::AbstractTOMLDict,
+    name_map::Vararg{Pair};
+    component = nothing,
+)
+    return get_parameter_values(
+        pd,
+        Dict(Symbol(key) => Symbol(value) for (key, value) in name_map),
+        component,
+    )
+end
+
+function get_parameter_values(
+    pd::AbstractTOMLDict,
+    name_map::Dict{S, S},
+    component = nothing,
+) where {S <: AbstractString}
+
+    return get_parameter_values(
+        pd,
+        Dict(Symbol(key) => Symbol(value) for (key, value) in name_map),
+        component,
+    )
+end
+
+function get_parameter_values(
+    pd::AbstractTOMLDict,
+    name_map::Dict{Symbol, Symbol},
+    component = nothing,
+)
+    params = get_parameter_values(pd, string.(keys(name_map)), component)
+    return (;
+        [
+            short_name => getfield(params, long_name) for
+            (long_name, short_name) in name_map
+        ]...
+    )
+end
 
 """
-    get_parameter_values(pd::AbstractTOMLDict, names)
+    create_parameter_struct(
+        toml_dict,
+        param_struct_type,
+        name_map,
+        nested_structs = (;),
+    )
 
-Gets the parameter values only.
+Constructs the parameter struct from the TOML dictionary. If the parameter struct
+has nested parameter structs, they must be passed.
+Floating type is inherited from the TOML dictionary.
+
+This is fairly rigid and makes a few assumptions:
+ - The parameter struct has a constructor that takes keyword arguments
+ - The parameter struct's first type parameter is the floating point type
+ - All nested parameter structs are given.
 """
-get_parameter_values(
-    pd::AbstractTOMLDict,
-    names::Union{NAMESTYPE, AbstractString},
-) = get_parameter_values!(pd, names, nothing)
-
+function create_parameter_struct(
+    param_struct_type,
+    toml_dict,
+    name_map,
+    nested_structs = (;),
+)
+    params = get_parameter_values(toml_dict, name_map)
+    FT = float_type(toml_dict)
+    return param_struct_type{FT, typeof.(values(nested_structs))...}(;
+        params...,
+        nested_structs...,
+    )
+end
 
 """
     merge_toml_files(filepaths; override)
@@ -311,7 +289,7 @@ function check_override_parameter_usage(
     override_dict,
 )
     unused_override = Dict()
-    for (key, val) in override_dict
+    for (key, _) in override_dict
         logged_val = pd.data[key]
         unused_override[key] = !("used_in" in keys(logged_val))
     end
@@ -382,7 +360,6 @@ function log_parameter_information(
     check_override_parameter_usage(pd, strict)
 end
 
-
 """
     merge_override_default_values(
         override_toml_dict::AbstractTOMLDict{FT},
@@ -414,7 +391,6 @@ end
     create_toml_dict(FT;
         override_file,
         default_file,
-        dict_type="alias"
     )
 
 Creates a `ParamDict{FT}` struct, by reading and merging upto
@@ -425,29 +401,18 @@ function create_toml_dict(
     ::Type{FT};
     override_file::Union{Nothing, String, Dict} = nothing,
     default_file::Union{String, Dict} = joinpath(@__DIR__, "parameters.toml"),
-    dict_type = "alias",
 ) where {FT <: AbstractFloat}
-    @assert dict_type in ("alias", "name")
+
     default_dict =
         default_file isa String ? TOML.parsefile(default_file) : default_file
-    PDT = _toml_dict(dict_type, FT)
-    default_toml_dict = PDT(default_dict, nothing)
+    default_toml_dict = ParamDict{FT}(default_dict, nothing)
     isnothing(override_file) && return default_toml_dict
 
     override_dict =
         override_file isa String ? TOML.parsefile(override_file) : override_file
-    override_toml_dict = PDT(override_dict, override_dict)
-    return merge_override_default_values(override_toml_dict, default_toml_dict)
-end
+    override_toml_dict = ParamDict{FT}(override_dict, override_dict)
 
-function _toml_dict(s::String, ::Type{FT}) where {FT}
-    if s == "alias"
-        return AliasParamDict{FT}
-    elseif s == "name"
-        return ParamDict{FT}
-    else
-        error("Bad string option given")
-    end
+    return merge_override_default_values(override_toml_dict, default_toml_dict)
 end
 
 # Extend Base.print to AbstractTOMLDict
@@ -501,4 +466,4 @@ get_tagged_parameter_values(
     pd::AbstractTOMLDict,
     tags::Vector{S},
 ) where {S <: AbstractString} =
-    vcat(map(x -> get_tagged_parameter_values(pd, x), tags)...)
+    merge(map(x -> get_tagged_parameter_values(pd, x), tags)...)

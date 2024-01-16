@@ -10,7 +10,15 @@ CLIMAParameters serve several functionalities and require certain attributes. A 
  - The parameter does not vary in time (per climate simulation)
  - The parameter is a function of only constants other CLIMAParameters and or constants
 
-## Usage
+## Getting Started
 
-See the [The TOML parameter file interface](@ref) and [Parameter Dictionaries](@ref) for usage examples.
+The basic flow is as follows:
+1. Create the parameter dictionary with your desired floating point type
+2. Retrieve parameters
+```julia
+import CLIMAParameters as CP
+param_dict = CP.create_toml_dict(Float64)
+params = CP.get_parameter_values(param_dict, ["gravitational_acceleration", "planet_radius"])
+```
 
+See the [The TOML parameter file interface](@ref) and [Basic Parameter Retrieval](@ref) for detailed usage examples and integration into your code.

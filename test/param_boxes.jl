@@ -8,34 +8,25 @@ Base.@kwdef struct ParameterBox{FT}
     molmass_dryair::FT
     gas_constant::FT
     new_parameter::FT
-    # Derived parameters
-    R_d::FT = gas_constant / molmass_dryair
 end
 
-function ParameterBox(toml_dict::CP.AbstractTOMLDict)
+# Derived parameters
+R_d(pb::ParameterBox) = pb.gas_constant / pb.molmass_dryair
 
-    aliases = ["molmass_dryair", "gas_constant", "new_parameter"]
-
-    params = CP.get_parameter_values!(toml_dict, aliases, "ParameterBox")
-    # Returns an array of `Pair`s for all given `aliases`
-
-    FT = CP.float_type(toml_dict)
-    return ParameterBox{FT}(; params...)
-end
-
+name_map = Dict(
+    :gas_constant => :gas_constant,
+    :molar_mass_dry_air => :molmass_dryair,
+    :param_2 => :new_parameter,
+)
 
 @testset "Example use case: parameter box" begin
 
     # [1.] read from file
     toml_file = joinpath(@__DIR__, "toml", "parambox.toml")
-    toml_dict = CP.create_toml_dict(
-        Float64;
-        override_file = toml_file,
-        dict_type = "alias",
-    )
+    toml_dict = CP.create_toml_dict(Float64; override_file = toml_file)
 
     # [2.] build
-    param_set = ParameterBox(toml_dict)
+    param_set = CP.create_parameter_struct(ParameterBox, toml_dict, name_map)
 
     # [3.] log & checks(with warning)
     mktempdir(@__DIR__) do path
@@ -49,16 +40,10 @@ end
     # overridden default
     @test param_set.gas_constant ≈ 4.0
     # derived in constructor
-    @test param_set.R_d ≈ param_set.gas_constant / param_set.molmass_dryair
+    @test R_d(param_set) ≈ param_set.gas_constant / param_set.molmass_dryair
     # from toml
     @test param_set.new_parameter ≈ 19.99
 
-end
-
-@testset "Unique aliases" begin
-    toml_dict = CP.create_toml_dict(Float64; dict_type = "alias")
-    alias_values = [dict["alias"] for dict in values(toml_dict.data)]
-    @test length(alias_values) == length(unique(alias_values))
 end
 
 end # end module

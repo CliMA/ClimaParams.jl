@@ -4,10 +4,9 @@ using TOML
 using DocStringExtensions
 
 export AbstractTOMLDict
-export ParamDict, AliasParamDict
+export ParamDict
 
 export float_type,
-    get_parameter_values!,
     get_parameter_values,
     write_log_file,
     log_parameter_information,

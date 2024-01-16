@@ -7,16 +7,15 @@ The complete user interface consists of two files in `TOML` format
 ## Parameter style-guide
 
 A parameter is determined by its unique name. It has possible attributes
-1. `alias`
-2. `value`
-3. `type`
-4. `description`
-5. `prior`
-6. `tag`
-7. `transformation`
+1. `value`
+2. `type`
+3. `description`
+4. `prior`
+5. `tag`
+6. `transformation`
 
 !!! warn
-    Currently we support `Type` and `array{Type}` for the following Types: `float`, `integer`, `string` and `bool`.
+    Currently we support `Type` and `array{Type}` for the following Types: `float`, `integer`, `string` and `bool`. Array types are currently designated by the same `type` as singleton types.
 
 ### Minimal parameter requirement to run in CliMA
 
@@ -30,7 +29,6 @@ type = "float"
 
 ```TOML
 [molar_mass_dry_air]
-alias = "molmass_dryair"
 value = 0.02897
 type = "float"
 description = "Molecular weight dry air (kg/mol)"
@@ -45,7 +43,6 @@ This convention will be changed as we see how packages use tags.
 
 ```TOML
 [prandtl_number_0_grachev]
-alias = "Pr_0_Grachev"
 value = 0.98
 type = "float"
 description = "Pr_0 for Grachev universal functions. From Grachev et al, 2007. DOI: 10.1007/s10546-007-9177-6"
@@ -56,15 +53,14 @@ If this convention is followed, to obtain the parameters used to build tagged by
 surfacefluxes_params = get_tagged_parameter_values(toml_dict, "surfacefluxes")
 ```
 
-When tags are matched, punctuation and capitalization is removed. For more information, see [`fuzzy_match`](@ref Main.fuzzy_match).
+To match tags, punctuation and capitalization is removed. For more information, see [`fuzzy_match`](@ref Main.fuzzy_match).
 
 ### A more complex parameter for calibration
 
 ```TOML
 [neural_net_entrainment]
-alias = "c_gen"
 value = [0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]
-type = "array"
+type = "float"
 description = "NN weights to represent the non-dimensional entrainment function"
 prior = "MvNormal(0,I)"
 ```
@@ -75,40 +71,37 @@ On read an experiment file, the default file is also read and any duplicate para
 e.g. If the minimal example above was loaded from an experiment file, and the informative example above was in the defaults file, then the loaded parameter would look as follows:
 ``` TOML
 [molar_mass_dry_air]
-alias = "molmass_dryair"
 value = 0.03
 type = "float"
 description = "Molecular weight dry air (kg/mol)"
 ```
 Here, the `value` field has been overwritten by the experiment value.
 
-## File and parameter interaction on with CliMA
+## File and parameter interaction with CliMA
 
 `CLIMAParameters.jl` provides several methods to parse, merge, and log parameter information.
-
 
 ### Loading from file
 We provide the following methods to load parameters from file
 ```julia
-create_toml_dict(Float64;override_filepath, default_filepath, dict_type="alias")
-create_toml_dict(Float64;override_filepath ; dict_type="alias")
-create_toml_dict(Float64; dict_type="name")
+create_toml_dict(Float64; override_filepath, default_filepath)
+create_toml_dict(Float64; override_filepath)
 ```
-- The `dict_type = "name"` or `"alias"` determines the method of lookup of parameters (by `name` or by `alias` attributes).
-- The `Float64` (or `Float32`) defines the requested precision of the returned parameters.
+The `Float64` (or `Float32`) defines the requested precision of the returned parameters.
 
 Typical usage involves passing the local parameter file
 ```julia
 import CLIMAParameters
-local_exp_file = joinpath(@__DIR__,"local_exp_parameters.toml")
-toml_dict = CLIMAParameters.create_toml_dict(;local_exp_file)
+local_experiment_file = joinpath(@__DIR__,"local_exp_parameters.toml")
+toml_dict = CLIMAParameters.create_toml_dict(; override_file = local_experiment_file)
 ```
 If no file is passed it will use only the defaults from `CLIMAParameters.jl` (causing errors if required parameters are not within this list).
 
-!!! note
-    Currently we search by the `alias` field (`dict_type="alias"` by default), so all parameters need an `alias` field, if in doubt, set alias and name to match the current code name convention.
+You can also pass Julia `Dicts` directly to `override_filepath` and `default_filepath`.
 
-The parameter dict is then used to build the codebase (see relevant Docs page).
+If you want to use more than two TOML files, you can merge them with [`merge_toml_files(filepaths...)`](@ref Main.merge_toml_files). By default, duplicate TOML entries are not allowed, but this can be changed by setting `override = true`.
+
+The parameter dict is then used to build the codebase (see Parameter Retrieval for usage and examples).
 
 ### Logging parameters
 
@@ -136,7 +129,6 @@ This function performs two tasks
 Continuing our previous example, imagine `molar_mass_dry_air` was extracted in `ThermodynamicsParameters`. Then the log file will contain:
 ``` TOML
 [molar_mass_dry_air]
-alias = "molmass_dryair"
 value = 0.03
 type = "float"
 description = "Molecular weight dry air (kg/mol)"

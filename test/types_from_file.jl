@@ -7,17 +7,9 @@ path_to_params = joinpath(@__DIR__, "toml", "typed_parameters.toml")
 @testset "parameter types from file" begin
 
     # read parameters needed for tests
-    toml_dict_64 = CP.create_toml_dict(
-        Float64;
-        override_file = path_to_params,
-        dict_type = "name",
-    )
+    toml_dict_64 = CP.create_toml_dict(Float64; override_file = path_to_params)
 
-    toml_dict_32 = CP.create_toml_dict(
-        Float32;
-        override_file = path_to_params,
-        dict_type = "name",
-    )
+    toml_dict_32 = CP.create_toml_dict(Float32; override_file = path_to_params)
 
     param_names = [
         "int_array_param",

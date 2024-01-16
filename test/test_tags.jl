@@ -2,7 +2,7 @@ import CLIMAParameters as CP
 using Test
 
 override_file = joinpath("toml", "tags.toml")
-toml_dict = CP.create_toml_dict(Float32; dict_type = "name", override_file)
+toml_dict = CP.create_toml_dict(Float32; override_file)
 
 beljaars_param_names = sort([
     "coefficient_a_m_beljaars",
@@ -18,12 +18,12 @@ beljaars_param_names = sort([
     "most_stability_exponent_beljaars",
 ])
 
-beljaars_params = sort(CP.get_parameter_values(toml_dict, beljaars_param_names))
+beljaars_params = CP.get_parameter_values(toml_dict, beljaars_param_names)
 
 @testset "Tags" begin
 
-    @test beljaars_params ==
-          sort(CP.get_tagged_parameter_values(toml_dict, ["bel jaa*rs"]))
+    @test pairs(beljaars_params) ==
+          pairs(CP.get_tagged_parameter_values(toml_dict, ["bel jaa*rs"]))
 
     @test beljaars_param_names ==
           sort(CP.get_tagged_parameter_names(toml_dict, ["bel jaa*rs"]))
