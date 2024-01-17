@@ -24,26 +24,26 @@ params.gravitational_acceleration
 
 ## Name Maps
 Name maps are a way to map global descriptive parameter names (indexing the toml_dict) 
-to local user-defined names. One can define a name with a Dict object as follows...
+to local user-defined names. One can define a name with a NamedTuple as follows...
 It will return a NamedTuple of the parameters with your given variable names.
 ```julia
-name_map = Dict(
-    "gravitational_acceleration" => "g",
-    "angular_velocity_planet_rotation" => "omega"
+name_map = (;
+    :gravitational_acceleration => :g,
+    :angular_velocity_planet_rotation => :omega
 )
 params = CP.get_parameter_values(toml_dict, name_map)
 params.g  # gives value field of gravitational_acceleration
 params.omega
 ```
-A name map does not strictly need to be a Dict. It can be a Vector, Tuple, or Varargs of Pairs.
-The entries in the name map can also be Symbols instead of Strings.
+A name map does not strictly need to be a NamedTuple. It can be a Dict, Vector, Tuple, or Varargs of Pairs.
+The entries in the name map can also be Strings instead of Symbols.
 
 ```julia
-name_map = (:gravitational_acceleration => :g, :angular_velocity_planet_rotation => :omega)
+name_map = Dict("gravitational_acceleration" => "g", "angular_velocity_planet_rotation" => "omega")
 params = CP.get_parameter_values(toml_dict, name_map)
 
-params = CP.get_parameter_values(toml_dict, "gravitational_acceleration" => "g",
-                                            "angular_velocity_planet_rotation" => "omega")
+params = CP.get_parameter_values(toml_dict, :gravitational_acceleration => :g,
+                                            :angular_velocity_planet_rotation => :omega)
 ```
 
 ## Example Usage
@@ -81,12 +81,12 @@ ThermodynamicsParameters(::Type{FT}) = ThermodynamicsParameters(CP.create_toml_d
 # TOML dictionary constructor
 function ThermodynamicsParameters(toml_dict)
     name_map = [
-        "temperature_triple_point" => "T_triple",
-        "adiabatic_exponent_dry_air" => "kappa_d",
-        "pressure_triple_point" => "press_triple",
-        "thermodynamics_temperature_reference" => "T_0",
-        "temperature_water_freeze" => "T_freeze",
-        "isobaric_specific_heat_ice" => "cp_i",
+        :temperature_triple_point => :T_triple,
+        :adiabatic_exponent_dry_air => :kappa_d,
+        :pressure_triple_point => :press_triple,
+        :thermodynamics_temperature_reference => :T_0,
+        :temperature_water_freeze => :T_freeze,
+        :isobaric_specific_heat_ice => :cp_i,
         ...
     ]
 
