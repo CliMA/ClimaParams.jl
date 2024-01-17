@@ -167,9 +167,9 @@ end
 
 function get_parameter_values(
     pd::AbstractTOMLDict,
-    name_map::Union{AbstractVector{Pair}, NTuple{N, Pair}},
+    name_map::Union{AbstractVector{Pair{S, S}}, NTuple{N, Pair}},
     component = nothing,
-) where {N}
+) where {S, N}
     return get_parameter_values(pd, Dict(name_map), component)
 end
 
@@ -196,6 +196,14 @@ function get_parameter_values(
         Dict(Symbol(key) => Symbol(value) for (key, value) in name_map),
         component,
     )
+end
+
+function get_parameter_values(
+    pd::AbstractTOMLDict,
+    name_map::NamedTuple,
+    component = nothing,
+)
+    return get_parameter_values(pd, Dict(pairs(name_map)), component)
 end
 
 function get_parameter_values(
