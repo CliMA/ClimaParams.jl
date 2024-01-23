@@ -1648,7 +1648,7 @@ type = "float"
 description = "rayleigh sponge vert velocity coeff"
 
 [alpha_rayleigh_uh]
-value = 0.0001
+value = 0.0
 type = "float"
 description = "rayleigh sponge horizontal velocity coefficient"
 
