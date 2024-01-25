@@ -1013,6 +1013,40 @@ value = 2.35
 type = "float"
 description = "a for temperatures < T_thr for Desert Dust [-]. From Mohler et al, 2006. DOI: 10.5194/acp-6-3007-2006."
 
+# Microphysics - water activity based ice deposition nucleation
+
+[Alpert2022_J_deposition_m_Feldspar]
+value = 13.2251
+type = "float"
+description = "Coefficient, m, for calculating deposition nucleation J_het of Feldspar [-]. From Alpert et al 2022. DOI: 10.1039/D1EA00077B."
+
+[Alpert2022_J_deposition_c_Feldspar]
+value = 0.7716
+type = "float"
+description = "Coefficient, c, for calculating deposition nucleation J_het of Feldspar [-]. From Alpert et al 2022. DOI: 10.1039/D1EA00077B."
+
+[Alpert2022_J_deposition_m_Ferrihydrate]
+value = 12.3525
+type = "float"
+description = "Coefficient, m, for calculating deposition nucleation J_het of Ferrihydrate [-]. From Alpert et al 2022. DOI: 10.1039/D1EA00077B."
+
+[Alpert2022_J_deposition_c_Ferrihydrate]
+value = 0.0516
+type = "float"
+description = "Coefficient, c, for calculating deposition nucleation J_het of Ferrihydrate [-]. From Alpert et al 2022. DOI: 10.1039/D1EA00077B."
+
+[China2017_J_deposition_m_Kaolinite]
+value = 27.551
+type = "float"
+description = "Coefficient, m, for calculating deposition nucleation J_het of Kaolinite [-]. From China et al 2017. DOI: 10.1002/2016JD025817."
+
+[China2017_J_deposition_c_Kaolinite]
+value = 2.2209
+type = "float"
+description = "Coefficient, c, for calculating deposition nucleation J_het of Kaolinite [-]. From China et al 2017. DOI: 10.1002/2016JD025817."
+
+# Microphysics - water activity based immersion freezing/nucleation
+
 [KnopfAlpert2013_J_ABIFM_m_DesertDust]
 value = 22.62
 type = "float"
@@ -1043,6 +1077,8 @@ value = -10.66873
 type = "float"
 description = "Coefficient, c, for calculating immersion freezing J_het of Illite [-]. From Knopf and Alpert 2013. DOI: 10.1039/C3FD00035D."
 
+# Microphysics - water activity based homogeneous freezing/nucleation
+
 [Koop2000_min_delta_aw]
 value = 0.26
 type = "float"
@@ -1072,6 +1108,8 @@ description = "Coefficient for calculating J_hom parameterized by Koop 2000 [-].
 value = 29180
 type = "float"
 description = "Coefficient for calculating J_hom parameterized by Koop 2000 [-]. From Koop 2000. DOI: 10.1038/35020537."
+
+# Microphysics - Luo 1995 H2SO4 vapor pressure 
 
 [p_over_sulphuric_acid_solution_T_max]
 value = 235
