@@ -1025,15 +1025,15 @@ value = 0.7716
 type = "float"
 description = "Coefficient, c, for calculating deposition nucleation J_het of Feldspar [-]. From Alpert et al 2022. DOI: 10.1039/D1EA00077B."
 
-[Alpert2022_J_deposition_m_Ferrihydrate]
+[Alpert2022_J_deposition_m_Ferrihydrite]
 value = 12.3525
 type = "float"
-description = "Coefficient, m, for calculating deposition nucleation J_het of Ferrihydrate [-]. From Alpert et al 2022. DOI: 10.1039/D1EA00077B."
+description = "Coefficient, m, for calculating deposition nucleation J_het of Ferrihydrite [-]. From Alpert et al 2022. DOI: 10.1039/D1EA00077B."
 
-[Alpert2022_J_deposition_c_Ferrihydrate]
+[Alpert2022_J_deposition_c_Ferrihydrite]
 value = 0.0516
 type = "float"
-description = "Coefficient, c, for calculating deposition nucleation J_het of Ferrihydrate [-]. From Alpert et al 2022. DOI: 10.1039/D1EA00077B."
+description = "Coefficient, c, for calculating deposition nucleation J_het of Ferrihydrite [-]. From Alpert et al 2022. DOI: 10.1039/D1EA00077B."
 
 [China2017_J_deposition_m_Kaolinite]
 value = 27.551
@@ -1041,7 +1041,7 @@ type = "float"
 description = "Coefficient, m, for calculating deposition nucleation J_het of Kaolinite [-]. From China et al 2017. DOI: 10.1002/2016JD025817."
 
 [China2017_J_deposition_c_Kaolinite]
-value = 2.2209
+value = -2.2209
 type = "float"
 description = "Coefficient, c, for calculating deposition nucleation J_het of Kaolinite [-]. From China et al 2017. DOI: 10.1002/2016JD025817."
 
