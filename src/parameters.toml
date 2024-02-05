@@ -1,5 +1,43 @@
 ## Land
 
+# AutotrophicRespiration parameters
+
+[N_factor_Vcmax25]
+alias = "ne"
+value = 8e-4
+type = "float"
+description = "Vcmax25 to N factor (mol CO2 m-2 s-1 kg C (kg C)-1)"
+
+[live_stem_wood_coeff]
+value = 0.01
+type = "float"
+description = "Live stem wood coefficient (kg C m-3)"
+
+[specific_leaf_density]
+value = 0.05
+type = "float"
+description = "Specific leaf density (kg C m-2 [leaf])"
+
+[root_leaf_nitrogen_ratio]
+value = 1
+type = "float"
+description = "Ratio root nitrogen to top leaf nitrogen (unitless)"
+
+[stem_leaf_nitrogen_ratio]
+value = 0.1
+type = "float"
+description = "Ratio stem nitrogen to top leaf nitrogen (unitless)"
+
+[mol_CO2_to_kg_C_factor]
+value = 0.012
+type = "float"
+description = "Factor to convert from mol CO2 to kg C"
+
+[relative_contribution_factor]
+value = 0.25
+type = "float"
+description = "Factor of relative contribution or Rgrowth (-)"
+
 # Soil model
 
 [thermal_conductivity_of_quartz]
