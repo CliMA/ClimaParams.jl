@@ -1047,15 +1047,15 @@ description = "Coefficient, c, for calculating deposition nucleation J_het of Ka
 
 # Microphysics - water activity based immersion freezing/nucleation
 
-[KnopfAlpert2013_J_ABIFM_m_DesertDust]
+[AlpertKnopf2016_J_ABIFM_m_DesertDust]
 value = 22.62
 type = "float"
-description = "Coefficient, m, for calculating immersion freezing J_het of Desert Dust [-]. From Knopf and Alpert 2013. DOI: 10.1039/C3FD00035D."
+description = "Coefficient, m, for calculating immersion freezing J_het of Desert Dust [-]. From Alpert and Knopf 2016. DOI: 10.5194/acp-16-2083-2016."
 
-[KnopfAlpert2013_J_ABIFM_c_DesertDust]
+[AlpertKnopf2016_J_ABIFM_c_DesertDust]
 value = -1.35
 type = "float"
-description = "Coefficient, c, for calculating immersion freezing J_het of Desert Dust [-]. From Knopf and Alpert 2013. DOI: 10.1039/C3FD00035D."
+description = "Coefficient, c, for calculating immersion freezing J_het of Desert Dust [-]. From Alpert and Knopf 2016. DOI: 10.5194/acp-16-2083-2016."
 
 [KnopfAlpert2013_J_ABIFM_m_Kaolinite]
 value = 54.58834
