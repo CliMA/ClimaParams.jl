@@ -112,7 +112,9 @@ function get_values(pd::ParamDict, names::NAMESTYPE)
     ret_values = map(names) do name
         param_data = data[name]
         param_value = param_data["value"]
-        param_type = get(param_data, "type", "string")
+        param_type = get(param_data, "type", nothing)
+        isnothing(param_type) &&
+            error("No type found for parameter `$name`")
 
         elem = if param_value isa AbstractVector
             map(x -> _get_typed_value(pd, x, name, param_type), param_value)

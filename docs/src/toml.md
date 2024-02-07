@@ -15,7 +15,8 @@ A parameter is determined by its unique name. It has possible attributes
 6. `transformation`
 
 !!! warn
-    Currently we support `Type` and `array{Type}` for the following Types: `float`, `integer`, `string` and `bool`. Array types are currently designated by the same `type` as singleton types.
+    Currently we support types: `float`, `integer`, `string` and `bool`.
+    Array types are designated by the same `type` as singleton types.
 
 ### Minimal parameter requirement to run in CliMA
 
