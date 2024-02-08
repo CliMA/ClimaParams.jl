@@ -43,67 +43,67 @@ description = "Factor of relative contribution or Rgrowth (-)"
 [CO2_compensation_point_25c]
 value = 4.275e-5
 type = "float"
-description = "Γstar at 25 °C (mol/mol)"
+description = "Γstar at 25 °C (mol/mol). Source: Bernacchi et al. (2001)"
 
 [CO2_michaelis_menten]
 value = 4.049e-4
 type = "float"
-description = "Michaelis-Menten parameter for CO2 at 25 °C (mol/mol)"
+description = "Michaelis-Menten parameter for CO2 at 25 °C (mol/mol). Source: Bernacchi et al. (2001)"
 
 [O2_michaelis_menten]
-value = 0.2874
+value = 0.2784
 type = "float"
-description = "Michaelis-Menten parameter for O2 at 25 °C (mol/mol)"
+description = "Michaelis-Menten parameter for O2 at 25 °C (mol/mol). Source: Bernacchi et al. (2001)"
 
 [CO2_activation_energy]
 value = 79430
 type = "float"
-description = "Energy of activation for CO2 (J/mol)"
+description = "Energy of activation for CO2 (J/mol). Source: Bonan (2019), Table 11.2 and Bernacchi et al. (2001, 2003)"
 
 [O2_activation_energy]
 value = 36380
 type = "float"
-description = "Energy of activation for oxygen (J/mol)"
+description = "Energy of activation for oxygen (J/mol). Source: Bonan (2019), Table 11.2 and Bernacchi et al. (2001, 2003)"
 
 [Vcmax_activation_energy]
-value = 58520
+value = 65330
 type = "float"
-description = "Energy of activation for Vcmax (J/mol)"
+description = "Energy of activation for Vcmax (J/mol). Source: Bonan (2019), Table 11.2 and Bernacchi et al. (2001, 2003)"
 
 ["Γstar_activation_energy"]
-value = 58520
+value = 37830
 type = "float"
-description = "Energy of activation for Γstar (J/mol)"
+description = "Energy of activation for Γstar (J/mol). Source: Bonan (2019), Table 11.2 and Bernacchi et al. (2001, 2003)"
 
 [Jmax_activation_energy]
 value = 43540
 type = "float"
-description = "Energy of activation for Jmax (J/mol)"
+description = "Energy of activation for Jmax (J/mol). Source: Bonan (2019), Table 11.2 and Bernacchi et al. (2001, 2003)"
 
 [Rd_activation_energy]
 value = 46390
 type = "float"
-description = "Energy of activation for Rd (J/mol)"
+description = "Energy of activation for Rd (J/mol). Source: Bonan (2019), Table 11.2 and Bernacchi et al. (2001, 2003)"
 
 [kelvin_25C]
 value = 298.15
 type = "float"
 description = "Reference temperature equal to 25 degrees Celsius (K)"
 
-[intercellular_CO2_concentration]
+[intercellular_O2_concentration]
 value = 0.209
 type = "float"
 description = "Intercelluar O2 concentration (mol/mol); taken to be constant"
 
 [photosystem_II_quantum_yield]
-value = 0.6
+value = 0.7
 type = "float"
-description = "Quantum yield of photosystem II (Bernacchi, 2003; unitless)"
+description = "Quantum yield of photosystem II (unitless). Source: Bonan (2019), Bernacchi (2003)"
 
 [Farquhar_curvature_parameter]
-value = 0.6
+value = 0.9
 type = "float"
-description = "Curvature parameter, a fitting constant to compute J, unitless"
+description = "Curvature parameter, a fitting constant to compute J, unitless. Source: von Caemmerer 2000,2013; Bernacchi et al.2003,2013; von Caemmerer et al. 2009"
 
 [dark_respiration_factor]
 value = 0.015
