@@ -1641,8 +1641,12 @@ type = "float"
 value = 273.15
 type = "float"
 
-[temperature_saturation_adjustment_min]
+[temperature_saturation_adjustment_init_min]
 value = 150
+type = "float"
+
+[temperature_saturation_adjustment_min]
+value = 1
 type = "float"
 
 [temperature_saturation_adjustment_max]
