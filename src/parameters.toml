@@ -115,7 +115,7 @@ value = 5e-6
 type = "float"
 
 [moisture_stress_ref_water_pressure]
-value = -2e5
+value = -2e6
 type = "float"
 description = "Reference water pressure for the moisture stress factor (Pa) [Tuzet et al. (2003)]"
 
