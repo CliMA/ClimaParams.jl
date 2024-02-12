@@ -477,304 +477,377 @@ type = "float"
 [precipitation_timescale]
 value = 1000
 type = "float"
+description = "0-moment microphysics precipitation formation timescale [s]"
 
 [specific_humidity_precipitation_threshold]
 value = 5e-6
 type = "float"
+description = "0-moment microphysics precipitation formation threshold as specific humidity [-]"
 
 [supersaturation_precipitation_threshold]
 value = 0.02
 type = "float"
+description = "0-moment microphysics precipitation formation threshold as supersaturation [-]"
 
 [rain_drop_drag_coefficient]
 value = 0.55
 type = "float"
+description = "1-moment microphysics rain drop drag coefficient [-]"
 
 [thermal_conductivity_of_air ]
 value = 0.024
 type = "float"
+description = "thermal conductivity of air [J/m/s/K]"
 
 [diffusivity_of_water_vapor]
 value = 0.0000226
 type = "float"
+description = "diffusivity of water vapor [m^2/s]"
 
 [kinematic_viscosity_of_air]
 value = 0.000016
 type = "float"
+description = "kinematic viscosity of air [m^2/s]"
 
 [condensation_evaporation_timescale]
 value = 10
 type = "float"
+description = "Non-equilibrium microphysics condensation/evaporation time scale [s]"
 
 [sublimation_deposition_timescale]
 value = 10
 type = "float"
+description = "Non-equilibrium microphysics deposition/sublimation time scale [s]"
 
 [ice_snow_threshold_radius]
 value = 6.25e-5
 type = "float"
+description = "1-moment microphysics threshold particle radius between ice and snow [m]"
 
 [cloud_ice_size_distribution_coefficient_n0]
 value = 2e7
 type = "float"
+description = "1-moment microphysics cloud ice size distribution parameter [1/m^4]"
 
 [cloud_ice_crystals_length_scale]
 value = 0.00001
 type = "float"
+description = "1-moment microphysics cloud ice particle length scale [m]"
 
 [cloud_ice_mass_size_relation_coefficient_me]
 value = 3
 type = "float"
+description = "1-moment microphysics cloud ice mass(radius) coefficient [-]"
 
 [cloud_ice_mass_size_relation_coefficient_chim]
 value = 1
 type = "float"
+description = "1-moment microphysics cloud ice mass(radius) coefficient [-]"
 
 [cloud_ice_mass_size_relation_coefficient_delm]
 value = 0
 type = "float"
+description = "1-moment microphysics cloud ice mass(radius) coefficient [-]"
 
 [cloud_liquid_water_specific_humidity_autoconversion_threshold]
 value = 0.0005
 type = "float"
+description = "1-moment microphysics rain formation threshold as specific humidity [-]"
 
 [rain_autoconversion_timescale]
 value = 1000
 type = "float"
+description = "1-moment microphysics rain formation timescale [s]"
 
 [rain_ventillation_coefficient_a]
 value = 1.5
 type = "float"
+description = "1-moment microphysics rain ventilation coefficient [-]"
 
 [rain_ventillation_coefficient_b ]
 value = 0.53
 type = "float"
+description = "1-moment microphysics rain ventilation coefficient [-]"
 
 [rain_drop_size_distribution_coefficient_n0]
 value = 1.6e7
 type = "float"
+description = "1-moment microphysics rain size distribution coefficient [1/m^4]"
 
 [rain_drop_length_scale]
 value = 0.001
 type = "float"
+description = "1-moment microphysics rain drop length scale [m]"
 
 [rain_mass_size_relation_coefficient_me]
 value = 3
 type = "float"
+description = "1-moment microphysics rain drop mass(radius) coefficient [-]"
 
 [rain_cross_section_size_relation_coefficient_ae]
 value = 2
 type = "float"
+description = "1-moment microphysics rain drop cross section(radius) coefficient [-]"
 
 [rain_terminal_velocity_size_relation_coefficient_ve]
 value = 0.5
 type = "float"
+description = "1-moment microphysics rain drop terminal velocity(radius) coefficient [-]"
 
 [rain_mass_size_relation_coefficient_chim]
 value = 1
 type = "float"
+description = "1-moment microphysics rain drop mass(radius) coefficient [-]"
 
 [rain_mass_size_relation_coefficient_delm]
 value = 0
 type = "float"
+description = "1-moment microphysics rain drop mass(radius) coefficient [-]"
 
 [rain_cross_section_size_relation_coefficient_chia]
 value = 1
 type = "float"
+description = "1-moment microphysics rain drop cross section(radius) coefficient [-]"
 
 [rain_cross_section_size_relation_coefficient_dela]
 value = 0
 type = "float"
+description = "1-moment microphysics rain drop cross section(radius) coefficient [-]"
 
 [rain_terminal_velocity_size_relation_coefficient_chiv]
 value = 1
 type = "float"
+description = "1-moment microphysics rain drop terminal velocity(radius) coefficient [-]"
 
 [rain_terminal_velocity_size_relation_coefficient_delv]
 value = 0
 type = "float"
+description = "1-moment microphysics rain drop terminal velocity(radius) coefficient [-]"
 
 [cloud_ice_specific_humidity_autoconversion_threshold]
 value = 0.000001
 type = "float"
+description = "1-moment microphysics snow autoconversion threshold as specific humidity [-]"
 
 [snow_autoconversion_timescale]
 value = 100
 type = "float"
+description = "1-moment microphysics snow autoconversion timescale [s]"
 
 [snow_ventillation_coefficient_a]
 value = 0.65
 type = "float"
+description = "1-moment microphysics snow ventilation coefficient [-]"
 
 [snow_ventillation_coefficient_b]
 value = 0.44
 type = "float"
+description = "1-moment microphysics snow ventilation coefficient [-]"
 
 [snow_flake_size_distribution_coefficient_mu]
 value = 4.36e9
 type = "float"
+description = "1-moment microphysics snow size distribution coefficient [1/m^4]"
 
 [snow_flake_size_distribution_coefficient_nu]
 value = 0.63
 type = "float"
+description = "1-moment microphysics snow size distribution coefficient [-]"
 
 [snow_flake_length_scale]
 value = 0.001
 type = "float"
+description = "1-moment microphysics snow particle length scale [m]"
 
 [snow_mass_size_relation_coefficient_me]
 value = 2
 type = "float"
+description = "1-moment microphysics snow mass(radius) coefficient [-]"
 
 [snow_cross_section_size_relation_coefficient]
 value = 2
 type = "float"
+description = "1-moment microphysics snow cross section(radius) coefficient [-]"
 
 [snow_terminal_velocity_size_relation_coefficient]
 value = 0.25
 type = "float"
+description = "1-moment microphysics snow terminal velocity(radius) coefficient [-]"
 
 [snow_mass_size_relation_coefficient_chim]
 value = 1
 type = "float"
+description = "1-moment microphysics snow mass(radius) coefficient [-]"
 
 [snow_mass_size_relation_coefficient_delm]
 value = 0
 type = "float"
+description = "1-moment microphysics snow mass(radius) coefficient [-]"
 
 [snow_cross_section_size_relation_coefficient_chia]
 value = 1
 type = "float"
+description = "1-moment microphysics snow cross section(radius) coefficient [-]"
 
 [snow_cross_section_size_relation_coefficient_dela]
 value = 0
 type = "float"
+description = "1-moment microphysics snow drop cross section(radius) coefficient [-]"
 
 [snow_terminal_velocity_size_relation_coefficient_chiv]
 value = 1
 type = "float"
+description = "1-moment microphysics snow terminal velocity(radius) coefficient [-]"
 
 [snow_terminal_velocity_size_relation_coefficient_delv]
 value = 0
 type = "float"
+description = "1-moment microphysics snow terminal velocity(radius) coefficient [-]"
 
 [cloud_liquid_rain_collision_efficiency]
 value = 0.8
 type = "float"
+description = "1-moment microphysics cloud liquid rain collision efficiency [-]"
 
 [cloud_liquid_snow_collision_efficiency]
 value = 0.1
 type = "float"
+description = "1-moment microphysics cloud liquid snow collision efficiency [-]"
 
 [cloud_ice_rain_collision_efficiency]
 value = 1
 type = "float"
+description = "1-moment microphysics cloud ice rain collision efficiency [-]"
 
 [cloud_ice_snow_collision_efficiency]
 value = 0.1
 type = "float"
+description = "1-moment microphysics cloud ice snow collision efficiency [-]"
 
 [rain_snow_collision_efficiency]
 value = 1
 type = "float"
+description = "1-moment microphysics rain snow collision efficiency [-]"
 
 [prescribed_cloud_droplet_number_concentration]
 value = 1e8
 type = "float"
+description = "prescribed number concentration of cloud droplets [1/m3]"
 
 [TC1980_autoconversion_coeff_D]
 value = 3268.0
 type = "float"
+description = "Tripoli and Cotton 1980 rain autoconversion coefficient [m^3b/s], see Table 1 in DOI: 10.1175/JAS3530.1"
 
 [TC1980_autoconversion_coeff_a]
 value = 2.33333333333333333333
 type = "float"
-description = "(7/3)"
+description = "default = 7/3, Tripoli and Cotton 1980 rain autoconversion coefficient [-], see Table 1 in DOI: 10.1175/JAS3530.1"
 
 [TC1980_autoconversion_coeff_b]
 value = -0.333333333333333333
 type = "float"
-description = "(-1/3)"
+description = "default = -1/3, Tripoli and Cotton 1980 rain autoconversion coefficient [-], see Table 1 in DOI: 10.1175/JAS3530.1"
 
 [TC1980_autoconversion_coeff_r_0]
 value = 7e-6
 type = "float"
+description = "Tripoli and Cotton 1980 rain autoconversion threshold size [m], see Table 1 in DOI: 10.1175/JAS3530.1"
 
 [TC1980_autoconversion_coeff_me_liq]
 value = 3.0
 type = "float"
+description = "Tripoli and Cotton 1980 mass(size) [-], see Table 1 in DOI: 10.1175/JAS3530.1"
 
 [TC1980_accretion_coeff_A]
 value =  4.7
 type = "float"
+description = "Tripoli and Cotton 1980 accretion coefficient [1/s], see Table 1 in DOI: 10.1175/JAS3530.1"
 
-[B1994_auctoconversion_coeff_C]
+[B1994_autoconversion_coeff_C]
 value = 3e34
 type = "float"
+description = "Beheng 1994 autoconversion coefficient [m^3(c+b-1) / s / kg^(b-1)], see Table 1 in DOI: 10.1175/JAS3530.1"
 
-[B1994_auctoconversion_coeff_a]
+[B1994_autoconversion_coeff_a]
 value = -1.7
 type = "float"
+description = "Beheng 1994 autoconversion coefficient [-], see Table 1 in DOI: 10.1175/JAS3530.1"
 
-[B1994_auctoconversion_coeff_b]
+[B1994_autoconversion_coeff_b]
 value = 4.7
 type = "float"
+description = "Beheng 1994 autoconversion coefficient [-], see Table 1 in DOI: 10.1175/JAS3530.1"
 
-[B1994_auctoconversion_coeff_c]
+[B1994_autoconversion_coeff_c]
 value = -3.3
 type = "float"
+description = "Beheng 1994 autoconversion coefficient [-], see Table 1 in DOI: 10.1175/JAS3530.1"
 
-[B1994_auctoconversion_coeff_d_low]
+[B1994_autoconversion_coeff_d_low]
 value = 3.9
 type = "float"
+description = "Beheng 1994 autoconversion coefficient [-], see Table 1 in DOI: 10.1175/JAS3530.1"
 
-[B1994_auctoconversion_coeff_d_high]
+[B1994_autoconversion_coeff_d_high]
 value = 9.9
 type = "float"
+description = "Beheng 1994 autoconversion coefficient [-], see Table 1 in DOI: 10.1175/JAS3530.1"
 
-[B1994_auctoconversion_coeff_N_0]
+[B1994_autoconversion_coeff_N_0]
 value = 2e8
 type = "float"
+description = "Beheng 1994 autoconversion coefficient [1/m3], see Table 1 in DOI: 10.1175/JAS3530.1"
 
 [B1994_accretion_coeff_A]
 value = 6.0
 type = "float"
+description = "Beheng 1994 accretion coefficient [1/s], see Table 1 in DOI: 10.1175/JAS3530.1"
 
-[KK2000_auctoconversion_coeff_A]
+[KK2000_autoconversion_coeff_A]
 value = 7.42e13
 type = "float"
+description = "Khairoutdinov and Kogan 2000 autoconversion coefficient [m^3(b+c)/s/kg^c], see Table 1 in DOI: 10.1175/JAS3530.1"
 
-[KK2000_auctoconversion_coeff_a]
+[KK2000_autoconversion_coeff_a]
 value = 2.47
 type = "float"
+description = "Khairoutdinov and Kogan 2000 autoconversion coefficient [-], see Table 1 in DOI: 10.1175/JAS3530.1"
 
-[KK2000_auctoconversion_coeff_b]
+[KK2000_autoconversion_coeff_b]
 value = -1.79
 type = "float"
+description = "Khairoutdinov and Kogan 2000 autoconversion coefficient [-], see Table 1 in DOI: 10.1175/JAS3530.1"
 
-[KK2000_auctoconversion_coeff_c]
+[KK2000_autoconversion_coeff_c]
 value = -1.47
 type = "float"
+description = "Khairoutdinov and Kogan 2000 autoconversion coefficient [-], see Table 1 in DOI: 10.1175/JAS3530.1"
 
 [KK2000_accretion_coeff_A]
 value = 67.0
 type = "float"
+description = "Khairoutdinov and Kogan 2000 accretion coefficient [m^3b/kg^b/s], see Table 1 in DOI: 10.1175/JAS3530.1"
 
 [KK2000_accretion_coeff_a]
 value = 1.15
 type = "float"
+description = "Khairoutdinov and Kogan 2000 accretion coefficient [-], see Table 1 in DOI: 10.1175/JAS3530.1"
 
 [KK2000_accretion_coeff_b]
 value = -1.3
 type = "float"
+description = "Khairoutdinov and Kogan 2000 accretion coefficient [-], see Table 1 in DOI: 10.1175/JAS3530.1"
 
 [LD2004_R_6C_coeff]
 value = 7.5
 type = "float"
+description = "Liu and Daum 2004 autoconversion coefficient [um^3/2 kg^1/6 / m^1/2], see Table 1 in DOI: 10.1175/JAS3530.1"
 
 [LD2004_E_0_coeff]
 value = 1.08e10
 type = "float"
+description = "Liu and Daum 2004 autoconversion coefficient [m^3/kg^2/s], see Table 1 in DOI: 10.1175/JAS3530.1"
 
 [Variable_time_scale_autoconversion_coeff_alpha]
 value = 1.0
@@ -935,155 +1008,60 @@ value = 0.115231
 type = "float"
 description = "q coefficinet for raindrop terminal velocity parameterization [-]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
-[Chen2022_table_B1_a1_coeff]
-value = 0.044612
+[Chen2022_table_B1_ai]
+value = [0.044612, -0.263166, 4.7178]
 type = "float"
-description = "a1 coefficinet for raindrop terminal velocity parameterization [mm^-bi]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
-
-[Chen2022_table_B1_a2_coeff]
-value = -0.263166
-type = "float"
-description = "a2 coefficinet for raindrop terminal velocity parameterization [mm^-bi]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
-
-[Chen2022_table_B1_a3_coeff]
-value = 4.7178
-type = "float"
-description = "a3 coefficinet for raindrop terminal velocity parameterization [mm^-bi]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+description = "ai coefficients for raindrop terminal velocity parameterization [mm^-bi]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B1_a3_pow_coeff]
 value = -0.47335
 type = "float"
 description = "a3 coefficinet for raindrop terminal velocity parameterization [-]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
-[Chen2022_table_B1_b1_coeff]
-value = 2.2955
+[Chen2022_table_B1_bi]
+value = [2.2955, 2.2955, 1.1451]
 type = "float"
-description = "b1 coefficinet for raindrop terminal velocity parameterization [-]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
-
-[Chen2022_table_B1_b2_coeff]
-value = 2.2955
-type = "float"
-description = "b2 coefficinet for raindrop terminal velocity parameterization [-]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
-
-[Chen2022_table_B1_b3_coeff]
-value = 1.1451
-type = "float"
-description = "b3 coefficinet for raindrop terminal velocity parameterization [-]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+description = "bi coefficients for raindrop terminal velocity parameterization [-]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 [Chen2022_table_B1_b_rho_coeff]
 value = 0.038465
 type = "float"
 description = "b density coefficinet for raindrop terminal velocity parameterization [m3/kg]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
-[Chen2022_table_B1_c1_coeff]
-value = 0.0
+[Chen2022_table_B1_ci]
+value = [0.0, 0.184325, 0.184325]
 type = "float"
-description = "c1 density coefficinet for raindrop terminal velocity parameterization [1/mm]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+description = "ci coefficients for raindrop terminal velocity parameterization [1/mm]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
-[Chen2022_table_B1_c2_coeff]
-value = 0.184325
+[Chen2022_table_B3_As]
+value = [-0.263503, 0.00174079, 0.0378769]
 type = "float"
-description = "c2 density coefficinet for raindrop terminal velocity parameterization [1/mm]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+description = "As coefficients for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
-[Chen2022_table_B1_c3_coeff]
-value = 0.184325
+[Chen2022_table_B3_Bs]
+value = [0.575231, 0.0909307, 0.515579]
 type = "float"
-description = "c3 density coefficinet for raindrop terminal velocity parameterization [1/mm]. See Table B1 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+description = "Bs coefficients for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
-[Chen2022_table_B3_As_coeff_1]
-value = 0.00174079
+[Chen2022_table_B3_Cs]
+value = [-0.345387, 0.177362, -0.000427794, 0.00419647]
 type = "float"
-description = "part of AS coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+description = "Cs coefficients for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
-[Chen2022_table_B3_As_coeff_2]
-value = 0.0378769
+[Chen2022_table_B3_Es]
+value = [-0.156593, 0.0189334, 0.1377817]
 type = "float"
-description = "part of As coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+description = "Es coefficients for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
-[Chen2022_table_B3_As_coeff_3]
-value = 0.263503
+[Chen2022_table_B3_Fs]
+value = [-3.35641, 0.0156199, 0.765337]
 type = "float"
-description = "part of As coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+description = "Fs coefficients for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
-[Chen2022_table_B3_Bs_coeff_1]
-value = 0.575231
+[Chen2022_table_B3_Gs]
+value = [-0.0309715, 1.55054, 0.518349]
 type = "float"
-description = "part of Bs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
-
-[Chen2022_table_B3_Bs_coeff_2]
-value = 0.0909307
-type = "float"
-description = "part of Bs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
-
-[Chen2022_table_B3_Bs_coeff_3]
-value = 0.515579
-type = "float"
-description = "part of Bs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
-
-[Chen2022_table_B3_Cs_coeff_1]
-value = -0.345387
-type = "float"
-description = "part of Cs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
-
-[Chen2022_table_B3_Cs_coeff_2]
-value = 0.177362
-type = "float"
-description = "part of Cs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
-
-[Chen2022_table_B3_Cs_coeff_3]
-value = -0.000427794
-type = "float"
-description = "part of Cs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
-
-[Chen2022_table_B3_Cs_coeff_4]
-value = 0.00419647
-type = "float"
-description = "part of Cs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
-
-[Chen2022_table_B3_Es_coeff_1]
-value = -0.156593
-type = "float"
-description = "part of Es coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
-
-[Chen2022_table_B3_Es_coeff_2]
-value = 0.0189334
-type = "float"
-description = "part of Es coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
-
-[Chen2022_table_B3_Es_coeff_3]
-value = 0.1377817
-type = "float"
-description = "part of Es coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
-
-[Chen2022_table_B3_Fs_coeff_1]
-value = -3.35641
-type = "float"
-description = "part of Fs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
-
-[Chen2022_table_B3_Fs_coeff_2]
-value = 0.0156199
-type = "float"
-description = "part of Fs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
-
-[Chen2022_table_B3_Fs_coeff_3]
-value = 0.765337
-type = "float"
-description = "part of Fs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
-
-[Chen2022_table_B3_Gs_coeff_1]
-value = -0.0309715
-type = "float"
-description = "part of Gs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
-
-[Chen2022_table_B3_Gs_coeff_2]
-value = 1.55054
-type = "float"
-description = "part of Gs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
-
-[Chen2022_table_B3_Gs_coeff_3]
-value = 0.518349
-type = "float"
-description = "part of Gs coefficient for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+description = "Gs coefficients for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
 # Microphysics - ice deposition on dust
 
