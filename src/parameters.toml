@@ -1179,6 +1179,23 @@ value = -10.66873
 type = "float"
 description = "Coefficient, c, for calculating immersion freezing J_het of Illite [-]. From Knopf and Alpert 2013. DOI: 10.1039/C3FD00035D."
 
+# Microphysics - temperature dependant, aerosol independant immerson freezing
+
+[Frostenberg2023_standard_deviation]
+value = 1.37
+type = "float"
+description = "Standard deviation for the ice nucleating particles concentration [-]. Eq (1) in Frostenberg et al 2023 doi: 10.5194/acp-23-10883-2023"
+
+[Frostenberg2023_a_coefficient]
+value = 1
+type = "float"
+description = "Coefficient a for the ice nucleating particles concentration [m^3]. Eq (1) in Frostenberg et al 2023 doi: 10.5194/acp-23-10883-2023"
+
+[Frostenberg2023_b_coefficient]
+value = 1
+type = "float"
+description = "Coefficient b for the ice nucleating particles concentration [1/C]. Eq (1) in Frostenberg et al 2023 doi: 10.5194/acp-23-10883-2023"
+
 # Microphysics - water activity based homogeneous freezing/nucleation
 
 [Koop2000_min_delta_aw]
