@@ -1179,6 +1179,28 @@ value = -10.66873
 type = "float"
 description = "Coefficient, c, for calculating immersion freezing J_het of Illite [-]. From Knopf and Alpert 2013. DOI: 10.1039/C3FD00035D."
 
+# Microphysics - P3 ice nucleation paramerizations
+
+[Thompson2004_c1_Cooper]
+value = 0.005
+type = "float"
+description = "Coefficient, c1, for calculating P3 deposition nucleation [-]. From Thompson et al 2004. DOI: 10.1175/1520-0493(2004)132<0519:EFOWPU>2.0.CO;2."
+
+[Thompson2004_c2_Cooper]
+value = 0.304
+type = "float"
+description = "Coefficient, c2, for calculating P3 deposition nucleation [-]. From Thompson et al 2004. DOI: 10.1175/1520-0493(2004)132<0519:EFOWPU>2.0.CO;2."
+
+[BarklieGokhale1959_a_parameter]
+value = 0.65
+type = "float"
+description = "Mean of parameter a for determining P3 heterogeneous freezing [°C^-1]. From Barklie & Gokhale 1959. No DOI. See Pruppacher & Klett 1997 pg 350."
+
+[BarklieGokhale1959_B_parameter]
+value = 2e-4
+type = "float"
+description = "Parameter, B, for rain water. Used to determine P3 heterogeneous freezing. [cm^-3 s^-1]. From Barklie & Gokhale 1959. No DOI. See Pruppacher & Klett 1997 pg 350."
+
 # Microphysics - temperature dependant, aerosol independant immerson freezing
 
 [Frostenberg2023_standard_deviation]
