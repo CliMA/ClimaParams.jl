@@ -1,4 +1,4 @@
-import CLIMAParameters as CP
+import ClimaParameters as CP
 using Test
 
 override_file = joinpath("toml", "tags.toml")

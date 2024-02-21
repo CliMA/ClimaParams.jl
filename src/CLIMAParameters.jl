@@ -1,4 +1,4 @@
-module CLIMAParameters
+module ClimaParameters
 
 using TOML
 using DocStringExtensions

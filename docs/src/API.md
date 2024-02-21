@@ -1,7 +1,7 @@
 # API
 
 ```@meta
-CurrentModule = CLIMAParameters
+CurrentModule = ClimaParameters
 ```
 
 ## Parameter dictionaries
