@@ -1,6 +1,6 @@
 using Test
 
-import ClimaParameters as CP
+import ClimaParams as CP
 
 @testset "Merge correctness" begin
 

@@ -1,5 +1,5 @@
 using Test
-import ClimaParameters as CP
+import ClimaParams as CP
 import Thermodynamics.Parameters.ThermodynamicsParameters
 
 @testset "name map tests" begin

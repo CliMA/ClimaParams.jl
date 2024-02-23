@@ -2,7 +2,7 @@
 
 The complete user interface consists of two files in `TOML` format
 1. A user-defined experiment file - in the local experiment directory
-2. A defaults file - in `src/` directory of `ClimaParameters.jl`
+2. A defaults file - in `src/` directory of `ClimaParams.jl`
 
 ## Parameter style-guide
 
@@ -80,7 +80,7 @@ Here, the `value` field has been overwritten by the experiment value.
 
 ## File and parameter interaction with CliMA
 
-`ClimaParameters.jl` provides several methods to parse, merge, and log parameter information.
+`ClimaParams.jl` provides several methods to parse, merge, and log parameter information.
 
 ### Loading from file
 We provide the following methods to load parameters from file
@@ -92,11 +92,11 @@ The `Float64` (or `Float32`) defines the requested precision of the returned par
 
 Typical usage involves passing the local parameter file
 ```julia
-import ClimaParameters
+import ClimaParams
 local_experiment_file = joinpath(@__DIR__,"local_exp_parameters.toml")
-toml_dict = ClimaParameters.create_toml_dict(; override_file = local_experiment_file)
+toml_dict = ClimaParams.create_toml_dict(; override_file = local_experiment_file)
 ```
-If no file is passed it will use only the defaults from `ClimaParameters.jl` (causing errors if required parameters are not within this list).
+If no file is passed it will use only the defaults from `ClimaParams.jl` (causing errors if required parameters are not within this list).
 
 You can also pass Julia `Dicts` directly to `override_filepath` and `default_filepath`.
 
@@ -118,7 +118,7 @@ therm_params = Thermodynamics.ThermodynamicsParameters(toml_dict)
 #... build(thermodynamics model,therm_params)
 
 log_file = joinpath(@__DIR__,"parameter_log.toml")
-ClimaParameters.log_parameter_information(toml_dict,log_file)
+ClimaParams.log_parameter_information(toml_dict,log_file)
 
 # ... run(thermodynamics_model)
 ```

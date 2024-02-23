@@ -7,7 +7,7 @@ There are two keys functions for parameter retrieval:
 To construct a TOML dictionary, pass in the desired floating point type. 
 This will source parameter values from the global default list stored in `src/parameters.toml`
 ```julia
-import ClimaParameters as CP
+import ClimaParams as CP
 toml_dict = CP.create_toml_dict(Float64)
 ```
 To retrieve parameters, pass in the TOML dictionary and the names that match the default parameters.
@@ -52,7 +52,7 @@ params = CP.get_parameter_values(toml_dict, :gravitational_acceleration => :g,
 
 #### In the user-facing driver file
 ```julia
-import ClimaParameters
+import ClimaParams
 using Thermodynamics
 
 thermo_params = ThermodynamicsParameters(Float64)
@@ -90,7 +90,7 @@ function ThermodynamicsParameters(toml_dict)
         ...
     ]
 
-    parameters = ClimaParameters.get_parameter_values(
+    parameters = ClimaParams.get_parameter_values(
         toml_dict,
         name_map,
         "Thermodynamics",
@@ -114,12 +114,12 @@ end
 Here we build a `CloudMicrophysics` parameter set. In this case, the user wishes to use a
 0-moment microphysics parameterization scheme.
 ```julia
-import ClimaParameters
+import ClimaParams
 import Thermodynamics
 import CloudMicrophysics
 
 #load defaults
-toml_dict = ClimaParameters.create_toml_dict(Float64)
+toml_dict = ClimaParams.create_toml_dict(Float64)
 
 #build the low level parameter set
 param_therm = Thermodynamics.Parameters.ThermodynamicsParameters(toml_dict)
@@ -169,7 +169,7 @@ function CloudMicrophysicsParameters(
 
     parameter_names = [ "K_therm", ... ]
 
-    parameters  = ClimaParameters.get_parameter_values(
+    parameters  = ClimaParams.get_parameter_values(
         toml_dict,
         parameter_names,
         "CloudMicrophysics",
