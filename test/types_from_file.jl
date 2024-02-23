@@ -1,6 +1,6 @@
 using Test
 
-import ClimaParameters as CP
+import ClimaParams as CP
 
 path_to_params = joinpath(@__DIR__, "toml", "typed_parameters.toml")
 

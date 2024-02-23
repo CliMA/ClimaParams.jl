@@ -1,5 +1,5 @@
 [deps]
-ClimaParameters = "5c42b081-d73a-476f-9059-fd94b934656c"
+ClimaParams = "5c42b081-d73a-476f-9059-fd94b934656c"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 
 [compat]

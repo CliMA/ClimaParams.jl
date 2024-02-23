@@ -1,4 +1,4 @@
-using ClimaParameters, Documenter
+using ClimaParams, Documenter
 
 pages = Any[
     "Home" => "index.md",
@@ -23,17 +23,17 @@ format = Documenter.HTML(
 )
 
 makedocs(
-    sitename = "ClimaParameters.jl",
+    sitename = "ClimaParams.jl",
     format = format,
     clean = true,
     checkdocs = :exports,
     strict = true,
-    modules = [ClimaParameters],
+    modules = [ClimaParams],
     pages = pages,
 )
 
 deploydocs(
-    repo = "github.com/CliMA/ClimaParameters.jl.git",
+    repo = "github.com/CliMA/ClimaParams.jl.git",
     target = "build",
     push_preview = true,
     devbranch = "main",

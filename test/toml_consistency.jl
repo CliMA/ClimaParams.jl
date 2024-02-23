@@ -1,6 +1,6 @@
 using Test
 
-import ClimaParameters as CP
+import ClimaParams as CP
 
 # read parameters needed for tests
 full_parameter_set = CP.create_toml_dict(Float64)
