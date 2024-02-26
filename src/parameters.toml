@@ -238,6 +238,43 @@ value = 2.01e6
 type = "float"
 description = "Source: Balland and Arp (2005)"
 
+# Bucket Model
+
+[soil_conductivity]
+value = 1.5
+type = "float"
+description = "Conductivity of the soil (W/K/m); constant. Source: SLIM model (Laguë et al 2019)"
+
+[soil_heat_capacity]
+value = 2e6
+type = "float"
+description = "Volumetric heat capacity of the soil (J/m^3/K). Source: SLIM model (Laguë et al 2019)"
+
+[critical_snow_water_equivalent]
+value = 0.05
+type = "float"
+description = "Critical σSWE amount (m) where surface transitions to snow-covered. Source: SLIM model (Laguë et al 2019)"
+
+[land_bucket_capacity]
+value = 0.2
+type = "float"
+description = "Capacity of the land bucket (m). Source: SLIM model (Laguë et al 2019)"
+
+[critical_snow_fraction]
+value = 0.0
+type = "float"
+description = "Fraction of critical amount of snow at which sublimation β begins to decay to zero (unitless). Source: SLIM model (Laguë et al 2019)"
+
+[bucket_capacity_fraction]
+value = 0.75
+type = "float"
+description = "Fraction of bucket capacity at which evaporation β begins to decay to zero (unitless). Source: SLIM model (Laguë et al 2019)"
+
+[bucket_beta_decay_exponent]
+value = 1
+type = "float"
+description = "Exponent used in β decay (unitless). Source: SLIM model (Laguë et al 2019)"
+
 ## Surface Fluxes
 
 [richardson_critical]
