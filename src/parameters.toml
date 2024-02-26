@@ -186,6 +186,58 @@ value = 0.96
 type = "float"
 description = "Emissivity of soil, approximated as context. Reference: CLM5 Documentation, 2020. "
 
+# Energy Hydrology Parameters
+
+[soil_momentum_roughness_length]
+value = 0.01
+type = "float"
+description = "Source: CLM Tech note 5"
+
+[soil_scalar_roughness_length]
+value = 0.007
+type = "float"
+description = "Source: CLM Tech note 5, using u* of 5m/s"
+
+[snow_momentum_roughness_length]
+value = 0.0024
+type = "float"
+description = "Source: CLM Tech note 5"
+
+[snow_scalar_roughness_length]
+value = 0.08
+type = "float"
+description = "Source: CLM Tech note 5, using u* of 5m/s"
+
+[particle_density_quartz]
+value = 2.66e3
+type = "float"
+description = "Source: Hillel (1982), De Vries (1966)"
+
+[particle_density_minerals]
+value = 2.65e3
+type = "float"
+description = "Source: Hillel (1982)"
+
+[particle_density_organic_matter]
+value = 1.3e3
+type = "float"
+description = "Source: Hillel (1982)"
+
+[vol_heat_capacity_quartz]
+value = 2.01e6
+type = "float"
+description = "Source: Balland and Arp (2005)"
+
+[vol_heat_capacity_organic_matter]
+value = 2.51e6
+type = "float"
+description = "Source: Balland and Arp (2005)"
+
+[vol_heat_capacity_minerals]
+value = 2.01e6
+type = "float"
+description = "Source: Balland and Arp (2005)"
+
 ## Surface Fluxes
 
 [richardson_critical]
