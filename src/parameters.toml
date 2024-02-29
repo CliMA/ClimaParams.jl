@@ -128,57 +128,47 @@ description = "Constant describing cost of maintaining electron transport (unitl
 [CO2_diffusion_coefficient]
 value = 1.39e-5
 type = "float"
-description = "Diffusion coefficient for CO₂ in air at standard temperature and pressure (m² s⁻¹)"
-
-[soilCO2_absval_slope]
-value = 4.547
-type = "float"
-description = "Absolute value of the slope of the line relating log(ψ) versus log(θ) (unitless)"
-
-[soil_C_substrate_diffusivity]
-value = 3.17
-type = "float"
-description = "Diffusivity of soil C substrate in liquid (unitless)"
-
-[soilCO2_pre_expontential_factor]
-value = 194e3
-type = "float"
-description = "Pre-exponential factor (kg C m-3 s-1)"
-
-[soilCO2_activation_energy]
-value = 61e3
-type = "float"
-description = "Activation energy (J mol-1)"
-
-[michaelis_constant]
-value = 5e-3
-type = "float"
-description = "Michaelis constant (kg C m-3)"
-
-[O2_michaelis_constant]
-value = 0.004
-type = "float"
-description = "Michaelis constant for O2 (m3 m-3)"
-
-[O2_volume_fraction]
-value = 0.209
-type = "float"
-description = "Volumetric fraction of O₂ in the soil air, dimensionless"
+description = "Diffusion coefficient for CO₂ in air at standard temperature and pressure (m² s⁻¹). Source: Ryan et al. (2018). DOI: https://doi.org/10.5194/gmd-11-1909-2018"
 
 [oxygen_diffusion_coefficient]
 value = 1.67
 type = "float"
-description = "Diffusion coefficient of oxygen in air, dimensionless"
+description = "Diffusion coefficient of oxygen in air, dimensionless. Source: Davidson et al. (2011). DOI: https://doi.org/10.1111/j.1365-2486.2011.02546.x"
+
+[soil_C_substrate_diffusivity]
+value = 3.17
+type = "float"
+description = "Diffusivity of soil C substrate in liquid (unitless). Source: Ryan et al. (2018). DOI: https://doi.org/10.5194/gmd-11-1909-2018"
+
+[soilCO2_pre_expontential_factor]
+value = 194e3
+type = "float"
+description = "Pre-exponential factor (kg C m-3 s-1). Source: Davidson et al. (2011). DOI: https://doi.org/10.1111/j.1365-2486.2011.02546.x"
+
+[soilCO2_activation_energy]
+value = 61e3
+type = "float"
+description = "Activation energy (J mol-1). Source: Davidson et al. (2011). DOI: https://doi.org/10.1111/j.1365-2486.2011.02546.x"
+
+[michaelis_constant]
+value = 5e-3
+type = "float"
+description = "Michaelis constant (kg C m-3). Source: Davidson et al. (2011). DOI: https://doi.org/10.1111/j.1365-2486.2011.02546.x"
+
+[O2_michaelis_constant]
+value = 0.004
+type = "float"
+description = "Michaelis constant for O2 (m3 m-3). Source: Davidson et al. (2011). DOI: https://doi.org/10.1111/j.1365-2486.2011.02546.x"
+
+[O2_volume_fraction]
+value = 0.209
+type = "float"
+description = "Volumetric fraction of O₂ in the soil air, dimensionless. Source: Davidson et al. (2011). DOI: https://doi.org/10.1111/j.1365-2486.2011.02546.x"
 
 [soluble_soil_carbon_fraction]
 value = 0.024
 type = "float"
-description = "Fraction of soil carbon that is considered soluble, dimensionless"
-
-[co2_diffusion_porosity_n100]
-value = 0.1816
-type = "float"
-description = "Air-filled porosity at soil water potential of -100 cm H₂O (~ 10 Pa)"
+description = "Fraction of soil carbon that is considered soluble, dimensionless. Source: Davidson et al. (2011). DOI: https://doi.org/10.1111/j.1365-2486.2011.02546.x"
 
 # Soil model
 
