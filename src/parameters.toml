@@ -37,7 +37,6 @@ value = 0.25
 type = "float"
 description = "Factor of relative contribution or Rgrowth (-)"
 
-
 # Farquhar Parameters
 
 [CO2_compensation_point_25c]
@@ -274,6 +273,68 @@ description = "Fraction of bucket capacity at which evaporation β begins to dec
 value = 1
 type = "float"
 description = "Exponent used in β decay (unitless). Source: SLIM model (Laguë et al 2019)"
+
+# Snow 
+
+[snow_density]
+value = 200
+type = "float"
+description = "Density of snow (kg/m^3)"
+
+[snow_albedo]
+value = 0.8
+type = "float"
+description = "Albedo of snow (unitless)"
+
+[snow_emissivity]
+value = 0.97
+type = "float"
+description = "Emissivity of snow (unitless). Source: CLM Tech note 5"
+
+[holding_capacity_of_water_in_snow]
+value = 0.08
+type = "float"
+description = "Volumetric holding capacity of water in snow (unitless)"
+
+[wet_snow_hydraulic_conductivity]
+value = 1e-3
+type = "float"
+description = "Hydraulic conductivity of wet snow (m/s)"
+
+[snow_cover_fraction_crit_threshold]
+value = 0.2
+type = "float"
+description = "Critical threshold for snow cover fraction (m)"
+
+# Two Stream/Beer Lambert Parameters
+
+[wavelength_per_PAR_photon]
+value = 5e-7
+type = "float"
+description = "Typical wavelength per PAR photon (m)"
+
+[wavelength_per_NIR_photon]
+value = 1.65e-6
+type = "float"
+description = "Typical wavelength per NIR photon (m)"
+
+[canopy_emissivity]
+value = 0.97
+type = "float"
+description = "Emissivity of the canopy"
+
+# Medlyn Conductance 
+
+[relative_diffusivity_of_water_vapor]
+value = 1.6
+type = "float"
+description = "Relative diffusivity of water vapor (unitless)"
+
+[min_stomatal_conductance]
+value = 1e-4
+type = "float"
+description = "Minimum stomatal conductance mol/m^2/s"
+
 
 ## Surface Fluxes
 
