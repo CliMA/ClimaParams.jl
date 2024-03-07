@@ -1,6 +1,11 @@
 ClimaParams.jl Release Notes
 ========================
 
+v0.10.2
+-------
+- Add parameters for Snow, MedlynConductance, and BeerLambert ([#164](https://github.com/CliMA/ClimaParams.jl/pull/164))
+- Add SoilCO2Model Land parameters ([#179](https://github.com/CliMA/ClimaParams.jl/pull/179))
+
 v0.10.1
 -------
 - Added Bucket model parameters ([#183](https://github.com/CliMA/ClimaParams.jl/pull/183))
