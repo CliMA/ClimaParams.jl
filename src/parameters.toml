@@ -1260,6 +1260,41 @@ value = [-0.0309715, 1.55054, 0.518349]
 type = "float"
 description = "Gs coefficients for ice terminal velocity parameterization - See Table B3 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
+[Chen2022_table_B5_Al]
+value = [-0.475897, -0.00231270, 1.12293]
+type = "float"
+description = "Al coefficients for ice terminal velocity parameterization - See Table B5 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B5_Bl]
+value = [-2.56289, -0.00513504, 0.608459]
+type = "float"
+description = "Bl coefficients for ice terminal velocity parameterization - See Table B5 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B5_Cl]
+value = [-0.756064, 0.935922, -1.70952]
+type = "float"
+description = "Cl coefficients for ice terminal velocity parameterization - See Table B5 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B5_El]
+value = [0.00639847, 0.00906454, -0.108232]
+type = "float"
+description = "El coefficients for ice terminal velocity parameterization - See Table B5 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B5_Fl]
+value = [0.515453, -0.0725042, -1.86810e19]
+type = "float"
+description = "Fl coefficients for ice terminal velocity parameterization - See Table B5 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B5_Gl]
+value = [2.65236, 0.00158269, 259.935]
+type = "float"
+description = "Gl coefficients for ice terminal velocity parameterization - See Table B5 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
+[Chen2022_table_B5_Hl]
+value = [-0.346044, -7.17829e-11, -1.24394e20]
+type = "float"
+description = "Hl coefficients for ice terminal velocity parameterization - See Table B5 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
+
 # Microphysics - ice deposition on dust
 
 [Mohler2006_maximum_allowed_Si]
