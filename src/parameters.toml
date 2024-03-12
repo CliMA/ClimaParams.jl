@@ -2165,6 +2165,11 @@ value = 1
 type = "float"
 description = "Coefficient for the vertical divergence term in the detrainment closure. Parameter not described in the literature."
 
+[detr_massflux_vertdiv_coeff]
+value = 1
+type = "float"
+description = "Coefficient for the mass flux vertical divergence term in the detrainment closure. Parameter not described in the literature."
+
 [max_area_limiter_scale]
 value = 0.1
 type = "float"
