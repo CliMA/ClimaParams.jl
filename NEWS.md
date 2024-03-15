@@ -1,6 +1,15 @@
 ClimaParams.jl Release Notes
 ========================
 
+v0.10.4
+------
+- Add albedo parameters ([#188](https://github.com/CliMA/ClimaParams.jl/pull/188))
+
+v0.10.3
+------
+- Add Chen Terminal Velocity Table B5 coefficients ([#186](https://github.com/CliMA/ClimaParams.jl/pull/186))
+- Add a detrainment parameter ([#187](https://github.com/CliMA/ClimaParams.jl/pull/187))
+
 v0.10.2
 -------
 - Add parameters for Snow, MedlynConductance, and BeerLambert ([#164](https://github.com/CliMA/ClimaParams.jl/pull/164))
