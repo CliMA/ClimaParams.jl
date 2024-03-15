@@ -2153,6 +2153,17 @@ value = 65
 type = "float"
 description = "Temperature gradient between equator and pole for moist adiabatic atmosphere. See Held and Suarez (1994) https://doi.org/10.1175/1520-0477(1994)075%3C1825:APFTIO%3E2.0.CO;2"
 
+# radiation
+[ocean_surface_albedo]
+value = 0.38
+type = "float"
+description = "Ocean surface albedo for idealized simulations. See O'Gorman and Schneider (2008) [https://journals.ametsoc.org/view/journals/clim/21/15/2007jcli2065.1.xml]"
+
+[water_refractive_index]
+value = 1.34
+type = "float"
+description = "The relative refractive index of water and air for broadband ocean surface albedo calculation. See Jin et al. (2011) [https://opg.optica.org/oe/fulltext.cfm?uri=oe-19-27-26429&id=225797]"
+
 # EDMF
 
 [entr_inv_tau]
