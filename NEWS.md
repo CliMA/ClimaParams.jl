@@ -1,6 +1,10 @@
 ClimaParams.jl Release Notes
 ========================
 
+v0.10.5
+------
+- Add linear fit parameters for homogeneous ice nucleation ([#366](https://github.com/CliMA/CloudMicrophysics.jl/pull/366))
+
 v0.10.4
 ------
 - Add albedo parameters ([#188](https://github.com/CliMA/ClimaParams.jl/pull/188))

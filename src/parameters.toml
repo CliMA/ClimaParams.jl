@@ -1482,6 +1482,16 @@ value = 29180
 type = "float"
 description = "Coefficient for calculating J_hom parameterized by Koop 2000 [-]. From Koop 2000. DOI: 10.1038/35020537."
 
+[Linear_J_hom_coeff1]
+value = -68.5532830403637
+type = "float"
+description = "Intercept coefficient for calculating J_hom derived from linear fit of Koop2000 parameterization as shown in CloudMicrophysics.jl docs [-]. DOI:10.1038/35020537."
+
+[Linear_J_hom_coeff2]
+value = 255.9271249999972
+type = "float"
+description = "Slope coefficient for calculating J_hom derived from linear fit of Koop2000 parameterization as shown in CloudMicrophysics.jl docs [-]. DOI:10.1038/35020537."
+
 # Microphysics - Luo 1995 H2SO4 vapor pressure
 
 [p_over_sulphuric_acid_solution_T_max]
