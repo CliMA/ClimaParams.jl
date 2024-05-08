@@ -1090,6 +1090,21 @@ value = 2
 type = "float"
 description = "Gamma distibution parameter. Unitless. Default value from Seifert and Rasp, 2020. DOI: 10.1029/2020MS002301."
 
+[SB2006_cloud_gamma_distribution_coeff_mu]
+value = 1
+type = "float"
+description = "Gamma distibution coefficient. Unitless. Default value from Seifert and Rasp, 2020. DOI: 10.1029/2020MS002301."
+
+[SB2006_rain_distribution_coeff_nu]
+value = -0.66666666666667
+type = "float"
+description = "Gamma distibution coefficient. Unitless. Default value from Seifert and Rasp, 2020. DOI: 10.1029/2020MS002301."
+
+[SB2006_rain_distribution_coeff_mu]
+value = 0.33333333333333
+type = "float"
+description = "Gamma distibution coefficient. Unitless. Default value from Seifert and Rasp, 2020. DOI: 10.1029/2020MS002301."
+
 [SB2006_reference_air_density]
 value = 1.225
 type = "float"
