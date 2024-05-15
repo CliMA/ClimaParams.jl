@@ -1310,6 +1310,11 @@ value = [-0.346044, -7.17829e-11, -1.24394e20]
 type = "float"
 description = "Hl coefficients for ice terminal velocity parameterization - See Table B5 in Chen et al 2022 DOI: 10.1016/j.atmosres.2022.106171"
 
+[Chen2022_ice_cutoff]
+value = 0.000625
+type = "float"
+description = "Chen2022 parametrization cut off for diameter between small and large ice particles [m]"
+
 # Microphysics - ice deposition on dust
 
 [Mohler2006_maximum_allowed_Si]
@@ -1598,6 +1603,16 @@ description = "Coefficient for shape parameter mu for ice in P3 scheme. See eq 3
 value = 6
 type = "float"
 description = "Limiter for shape parameter mu for ice in P3 scheme. See eq 3 in Morrison and Milbrandt 2015. Units: [-]"
+
+[p3_ventillation_a]
+value = 0.78
+type = "float" 
+description = "a coefficient for ventillation factor calculations in p3 tendencies, unitless. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4" 
+
+[p3_ventiallation_b] 
+value = 0.308
+type = "float" 
+description = "b coefficient for ventillation factor calculations in p3 tendencies, unitless. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4"
 
 # Microphysics - Aerosol activation
 
