@@ -1,22 +1,21 @@
 using Oceananigans
-using CLIMAParameters
+using ClimaParams
 
 # In a "real" use case, we recommend implementing setups in source code.
 include("single_column_simulation.jl")
+project_dir = dirname(Base.active_project())
 
-parameters = CLIMAParameters.create_toml_dict(
+toml_dict = ClimaParams.create_toml_dict(
     Float64,
-    override_file = "my_parameters.toml",
-    default_file = "default_parameters.toml",
-    dict_type = "name",
+    override_file = joinpath(project_dir, "my_parameters.toml"),
+    default_file = joinpath(project_dir, "default_parameters.toml"),
 )
 
-parameters = CLIMAParameters.get_parameter_values!(
-    parameters,
+parameters = ClimaParams.get_parameter_values(
+    toml_dict,
     "gravitational_acceleration",
     "Ocean",
 )
-parameters = NamedTuple(parameters...)
 
 output_filename = "single_column_simulation.jld2"
 simulation = single_column_simulation(;

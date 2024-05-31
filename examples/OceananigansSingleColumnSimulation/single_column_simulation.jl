@@ -2,7 +2,7 @@ using Oceananigans
 using Oceananigans.Units
 using SeawaterPolynomials
 using SeawaterPolynomials.TEOS10: TEOS10EquationOfState
-using CLIMAParameters
+using ClimaParams
 
 using Printf
 
