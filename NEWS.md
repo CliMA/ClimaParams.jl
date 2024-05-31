@@ -1,6 +1,18 @@
 ClimaParams.jl Release Notes
 ========================
 
+main
+------
+- Add example of Oceananigans single column model using ClimaParams ([#151](https://github.com/CliMA/ClimaParams.jl/pull/151))
+
+v0.10.7
+------
+- Add CloudMicrophysics P3 parameters for sink terms ([#192](https://github.com/CliMA/ClimaParams.jl/pull/192))
+
+v0.10.6
+------
+- Add 2-moment parameters for CloudMicrophysics ([#191](https://github.com/CliMA/ClimaParams.jl/pull/191))
+
 v0.10.5
 ------
 - Add linear fit parameters for homogeneous ice nucleation ([#366](https://github.com/CliMA/CloudMicrophysics.jl/pull/366))
