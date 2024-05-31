@@ -7,7 +7,6 @@ CurrentModule = ClimaParams
 ## Parameter dictionaries
 
 ```@docs
-AbstractTOMLDict
 ParamDict
 ```
 
