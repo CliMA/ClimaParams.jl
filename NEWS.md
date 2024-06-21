@@ -3,6 +3,10 @@ ClimaParams.jl Release Notes
 
 main
 ------
+
+v0.10.8
+------
+- Add parameters for minimum and maximum temperature for the radiation lookup table ([#198](https://github.com/CliMA/ClimaParams.jl/pull/198))
 - Add example of Oceananigans single column model using ClimaParams ([#151](https://github.com/CliMA/ClimaParams.jl/pull/151))
 
 v0.10.7
