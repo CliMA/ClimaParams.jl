@@ -1,7 +1,7 @@
 name = "ClimaParams"
 uuid = "5c42b081-d73a-476f-9059-fd94b934656c"
 authors = ["Climate Modeling Alliance"]
-version = "0.10.7"
+version = "0.10.8"
 
 [deps]
 DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"

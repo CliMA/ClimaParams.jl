@@ -2204,6 +2204,16 @@ value = 1.34
 type = "float"
 description = "The relative refractive index of water and air for broadband ocean surface albedo calculation. See Jin et al. (2011) [https://opg.optica.org/oe/fulltext.cfm?uri=oe-19-27-26429&id=225797]"
 
+[optics_lookup_temperature_min]
+value = 160
+type = "float"
+description = "Miminum temperature in the lookup table for optical properties in RRTMGP"
+
+[optics_lookup_temperature_max]
+value = 355
+type = "float"
+description = "Maximum temperature in the lookup table for optical properties in RRTMGP"
+
 # EDMF
 
 [entr_inv_tau]
