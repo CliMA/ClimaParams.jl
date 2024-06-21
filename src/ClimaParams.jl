@@ -3,7 +3,6 @@ module ClimaParams
 using TOML
 using DocStringExtensions
 
-export AbstractTOMLDict
 export ParamDict
 
 export float_type,
