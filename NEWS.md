@@ -4,6 +4,10 @@ ClimaParams.jl Release Notes
 main
 ------
 
+v0.10.9
+------
+- Add parameters for RCEMIP surface temperature distribution ([#199](https://github.com/CliMA/ClimaParams.jl/pull/199))
+
 v0.10.8
 ------
 - Add parameters for minimum and maximum temperature for the radiation lookup table ([#198](https://github.com/CliMA/ClimaParams.jl/pull/198))

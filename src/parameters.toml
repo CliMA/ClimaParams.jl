@@ -2214,6 +2214,28 @@ value = 355
 type = "float"
 description = "Maximum temperature in the lookup table for optical properties in RRTMGP"
 
+# RCEMIP
+
+[SST_mean]
+value = 300
+type = "float"
+description = "Mean sea surface temperature for RCEMIPII surface conditions. See Wing et al. (2018) [https://gmd.copernicus.org/articles/11/793/2018/]"
+
+[SST_delta]
+value = 1.25
+type = "float"
+description = "Twice the amplitude of sea surface temperarture sinusoid for RCEMIPII surface conditions. See Wing et al. (2018) [https://gmd.copernicus.org/articles/11/793/2018/]"
+
+[SST_wavelength]
+value = 6000000
+type = "float"
+description = "Wavelength of the sea surface temperature sinusoid for RCEMIPII box models. See Wing et al. (2018) [https://gmd.copernicus.org/articles/11/793/2018/]"
+
+[SST_wavelength_latitude]
+value = 54
+type = "float"
+description = "Wavelength of the sea surface temperature sinusoid for RCEMIPII sphere models. See Wing et al. (2018) [https://gmd.copernicus.org/articles/11/793/2018/]"
+
 # EDMF
 
 [entr_inv_tau]
