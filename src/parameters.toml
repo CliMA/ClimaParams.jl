@@ -2239,14 +2239,14 @@ description = "Wavelength of the sea surface temperature sinusoid for RCEMIPII s
 # EDMF
 
 [entr_inv_tau]
-value = 900
+value = 0.001
 type = "float"
-description = "Entrainment timescale"
+description = "Entrainment inverse timescale"
 
 [entr_coeff]
 value = 1
 type = "float"
-description = "TODO: Remove this. Constant entrainment coefficient used for testing EDMF"
+description = "Coefficient for the w/z term in the entrainment closure. Parameter not described in the literature."
 
 [entr_vertdiv_coeff]
 value = 1
@@ -2264,14 +2264,14 @@ type = "float"
 description = "Constant coefficient for the exponent in the minimum area limiter term in entrainment. Parameter not described in the literature."
 
 [detr_inv_tau]
-value = 900
+value = 0.001
 type = "float"
-description = "Detrainment timescale"
+description = "Detrainment inverse timescale"
 
 [detr_coeff]
 value = 0.001
 type = "float"
-description = "TODO: Remove this. Constant detrainment coefficient used for testing EDMF"
+description = "Coefficient for the w term in the detrainment closure. Parameter not described in the literature."
 
 [detr_buoy_coeff]
 value = 0.12
