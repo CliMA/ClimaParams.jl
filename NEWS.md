@@ -4,6 +4,11 @@ ClimaParams.jl Release Notes
 main
 ------
 
+v0.10.10
+------
+- Add parameters for surface wind gustiness ([#201](https://github.com/CliMA/ClimaParams.jl/pull/201))
+- Update default values for edmf parameters ([#200](https://github.com/CliMA/ClimaParams.jl/pull/200))
+
 v0.10.9
 ------
 - Add parameters for RCEMIP surface temperature distribution ([#199](https://github.com/CliMA/ClimaParams.jl/pull/199))
