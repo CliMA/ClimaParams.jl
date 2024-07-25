@@ -395,6 +395,11 @@ value = 0.1
 type = "float"
 description = "Surface layer thickness as a fraction of the planetary boundary layer. Ref: Frierson et al (2006) https://doi.org/10.1175/JAS3753.1"
 
+[gustiness]
+value = 1.0
+type = "float"
+description = "Near-surface gustiness[m/s]."
+
 # Businger
 
 [prandtl_number_0_businger]
