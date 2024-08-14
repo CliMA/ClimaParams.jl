@@ -2249,7 +2249,7 @@ type = "float"
 description = "Data-driven entrainment parameter vector"
 
 [turb_entr_param_vec]
-value = [1.0, 1.0, 1.0]
+value = [0.0, 0.0, 0.0]
 type = "float"
 description = "Data-driven turbulent entrainment parameter vector"
 
@@ -2467,6 +2467,11 @@ description = " Edmf moisture model choice. The default (equilibrium) results in
 value = "diagnostic"
 type = "string"
 description = "Edmf covaraince model choice. Valid options are diagnostic (default) and prognostic."
+
+[diagnostic_covariance_coeff]
+value = 2.1
+type = "float"
+description = "Prefactor used in turbulent production term of EDMF covariance equation."
 
 [EDMF_thermodynamics_diagnostic_covar_limiter]
 value = 0.001
