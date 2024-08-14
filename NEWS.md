@@ -1,9 +1,10 @@
 ClimaParams.jl Release Notes
 ========================
 
-main
+v0.10.11
 ------
 - Add data-driven entrainment parameter vector ([#202](https://github.com/CliMA/ClimaParams.jl/pull/202))
+- Add data-driven turbulent entrainment parameter vector ([#203](https://github.com/CliMA/ClimaParams.jl/pull/203))
 
 v0.10.10
 ------
