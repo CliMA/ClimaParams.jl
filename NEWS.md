@@ -1,6 +1,10 @@
 ClimaParams.jl Release Notes
 ========================
 
+v0.10.12
+------
+- Add diagnostic covariance coeff, change turbulent entrainment parameter vec default  ([#204](https://github.com/CliMA/ClimaParams.jl/pull/204))
+
 v0.10.11
 ------
 - Add data-driven entrainment parameter vector ([#202](https://github.com/CliMA/ClimaParams.jl/pull/202))
