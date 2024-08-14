@@ -2248,6 +2248,11 @@ value = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
 type = "float"
 description = "Data-driven entrainment parameter vector"
 
+[turb_entr_param_vec]
+value = [1.0, 1.0, 1.0]
+type = "float"
+description = "Data-driven turbulent entrainment parameter vector"
+
 [entr_inv_tau]
 value = 0.001
 type = "float"
