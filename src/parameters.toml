@@ -27,11 +27,6 @@ value = 0.1
 type = "float"
 description = "Ratio stem nitrogen to top leaf nitrogen (unitless)"
 
-[mol_CO2_to_kg_C_factor]
-value = 0.012
-type = "float"
-description = "Factor to convert from mol CO2 to kg C"
-
 [relative_contribution_factor]
 value = 0.25
 type = "float"
