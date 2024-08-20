@@ -27,11 +27,6 @@ value = 0.1
 type = "float"
 description = "Ratio stem nitrogen to top leaf nitrogen (unitless)"
 
-[mol_CO2_to_kg_C_factor]
-value = 0.012
-type = "float"
-description = "Factor to convert from mol CO2 to kg C"
-
 [relative_contribution_factor]
 value = 0.25
 type = "float"
@@ -124,6 +119,11 @@ type = "float"
 description = "Constant describing cost of maintaining electron transport (unitless)"
 
 # SoilCO2Model
+
+[kg_C_to_mol_CO2_factor]
+value = 83.26 
+type = "float"
+description = "Conversion factor from kg C to mol CO2"
 
 [CO2_diffusion_coefficient]
 value = 1.39e-5
