@@ -1,6 +1,10 @@
 ClimaParams.jl Release Notes
 ========================
 
+v0.10.13
+------
+- Remove mol co2 to kg C factor AutotrophicResp, add kg C to mol CO2 factor Heterotrophic Resp ([#205](https://github.com/CliMA/ClimaParams.jl/pull/205))
+
 v0.10.12
 ------
 - Add diagnostic covariance coeff, change turbulent entrainment parameter vec default  ([#204](https://github.com/CliMA/ClimaParams.jl/pull/204))
