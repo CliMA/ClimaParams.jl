@@ -120,6 +120,11 @@ description = "Constant describing cost of maintaining electron transport (unitl
 
 # SoilCO2Model
 
+[kg_C_to_mol_CO2_factor]
+value = 83.26 
+type = "float"
+description = "Conversion factor from kg C to mol CO2"
+
 [CO2_diffusion_coefficient]
 value = 1.39e-5
 type = "float"
