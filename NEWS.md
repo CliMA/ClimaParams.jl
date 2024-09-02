@@ -1,6 +1,10 @@
 ClimaParams.jl Release Notes
 ========================
 
+v0.10.14
+------
+- Remove all dependencies ([#208](https://github.com/CliMA/ClimaParams.jl/pull/208))
+
 v0.10.13
 ------
 - Remove mol co2 to kg C factor AutotrophicResp, add kg C to mol CO2 factor Heterotrophic Resp ([#205](https://github.com/CliMA/ClimaParams.jl/pull/205))

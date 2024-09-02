@@ -19,7 +19,8 @@ Uses the name to search
 
 # Fields
 
-$(DocStringExtensions.FIELDS)
+- `data`: dictionary representing a default/merged parameter TOML file
+- `override_dict`: either a nothing, or a dictionary representing an override parameter TOML file
 """
 struct ParamDict{FT} <: AbstractTOMLDict{FT}
     "dictionary representing a default/merged parameter TOML file"

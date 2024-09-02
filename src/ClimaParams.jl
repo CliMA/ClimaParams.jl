@@ -1,7 +1,6 @@
 module ClimaParams
 
 using TOML
-using DocStringExtensions
 
 export AbstractTOMLDict
 export ParamDict
