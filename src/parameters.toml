@@ -121,7 +121,7 @@ description = "Constant describing cost of maintaining electron transport (unitl
 # SoilCO2Model
 
 [kg_C_to_mol_CO2_factor]
-value = 83.26 
+value = 83.26
 type = "float"
 description = "Conversion factor from kg C to mol CO2"
 
@@ -321,7 +321,7 @@ value = 1
 type = "float"
 description = "Exponent used in β decay (unitless). Source: SLIM model (Laguë et al 2019)"
 
-# Snow 
+# Snow
 
 [snow_density]
 value = 200
@@ -370,7 +370,7 @@ value = 0.97
 type = "float"
 description = "Emissivity of the canopy"
 
-# Medlyn Conductance 
+# Medlyn Conductance
 
 [relative_diffusivity_of_water_vapor]
 value = 1.6
@@ -905,6 +905,16 @@ description = "1-moment microphysics snow terminal velocity(radius) coefficient 
 value = 0
 type = "float"
 description = "1-moment microphysics snow terminal velocity(radius) coefficient [-]"
+
+[snow_aspect_ratio]
+value = 0.15
+type = "float"
+description = "assumed aspect ratio in 1-moment microphysics for snow [-]"
+
+[snow_aspect_ratio_coefficient]
+value = 0.3333333333333333
+type = "float"
+description = "power law coeff. for terminal velocity dependence on snow aspect ratio from Chen et al 2022 [-]"
 
 [cloud_liquid_rain_collision_efficiency]
 value = 0.8
@@ -1611,12 +1621,12 @@ description = "Limiter for shape parameter mu for ice in P3 scheme. See eq 3 in 
 
 [p3_ventillation_a]
 value = 0.78
-type = "float" 
-description = "a coefficient for ventillation factor calculations in p3 tendencies, unitless. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4" 
+type = "float"
+description = "a coefficient for ventillation factor calculations in p3 tendencies, unitless. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4"
 
-[p3_ventiallation_b] 
+[p3_ventiallation_b]
 value = 0.308
-type = "float" 
+type = "float"
 description = "b coefficient for ventillation factor calculations in p3 tendencies, unitless. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4"
 
 # Microphysics - Aerosol activation

@@ -1,6 +1,10 @@
 ClimaParams.jl Release Notes
 ========================
 
+v0.10.15
+--------
+- Add snow aspect ratio coefficients for Chen et al 2022 terminal velocity parameterization ([#211](https://github.com/CliMA/ClimaParams.jl/pull/211))
+
 v0.10.14
 ------
 - Remove all dependencies ([#208](https://github.com/CliMA/ClimaParams.jl/pull/208))
