@@ -826,6 +826,16 @@ value = 0
 type = "float"
 description = "1-moment microphysics rain drop terminal velocity(radius) coefficient [-]"
 
+[cloud_ice_apparent_density]
+value = 500
+type = "float"
+description = "The apparent density of cloud ice particles, from doi:10.1029/2020JD034157 [kg/m3]"
+
+[snow_apparent_density]
+value = 100
+type = "float"
+description = "The apparent density of snow particles, from doi:10.1029/2020JD034157 [kg/m3]"
+
 [cloud_ice_specific_humidity_autoconversion_threshold]
 value = 0.000001
 type = "float"
