@@ -1,6 +1,10 @@
 ClimaParams.jl Release Notes
 ========================
 
+v0.10.16
+--------
+- Add apparent snow and cloud ice density based on doi:10.1029/2020JD034157 ([#212](https://github.com/CliMA/ClimaParams.jl/pull/212))
+
 v0.10.15
 --------
 - Add snow aspect ratio coefficients for Chen et al 2022 terminal velocity parameterization ([#211](https://github.com/CliMA/ClimaParams.jl/pull/211))
