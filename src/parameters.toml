@@ -2154,6 +2154,16 @@ value = 0.0044
 type = "float"
 description = "bulk transfer coefficient"
 
+[D_0_diffusion]
+value = 5
+type = "float"
+description = "Coefficient in DecayWithHeightDiffusion vertical diffusion scheme [m2/s]"
+
+[H_diffusion]
+value = 8000
+type = "float"
+description = "Height scale in DecayWithHeightDiffusion vertical diffusion scheme [m]"
+
 # Rayleigh Damping
 
 [alpha_rayleigh_w]
