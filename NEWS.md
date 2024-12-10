@@ -1,6 +1,10 @@
 ClimaParams.jl Release Notes
 ========================
 
+v0.10.17
+--------
+- Add parameters for DecayWithHeightDiffusion scheme ([#212](https://github.com/CliMA/ClimaParams.jl/pull/213))
+
 v0.10.16
 --------
 - Add apparent snow and cloud ice density based on doi:10.1029/2020JD034157 ([#212](https://github.com/CliMA/ClimaParams.jl/pull/212))
