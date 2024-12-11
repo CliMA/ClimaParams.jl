@@ -1,6 +1,10 @@
 ClimaParams.jl Release Notes
 ========================
 
+v0.10.18
+--------
+- Add parameters for ABDINM and ABIFM for Illite and Arizona Test Dust ([#214](https://github.com/CliMA/ClimaParams.jl/pull/214))
+
 v0.10.17
 --------
 - Add parameters for DecayWithHeightDiffusion scheme ([#212](https://github.com/CliMA/ClimaParams.jl/pull/213))

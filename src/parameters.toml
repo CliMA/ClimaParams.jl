@@ -1394,6 +1394,26 @@ description = "a for temperatures < T_thr for Desert Dust [-]. From Mohler et al
 
 # Microphysics - water activity based ice deposition nucleation
 
+[J_ABDINM_m_Illite]
+value = 13.2251
+type = "float"
+description = "Arbitrary coefficient, m, for calculating deposition nucleation J_het of Illite [-]."
+
+[J_ABDINM_c_Illite]
+value = 0.7716
+type = "float"
+description = "Arbitrary coefficient, c, for calculating deposition nucleation J_het of Illite [-]."
+
+[J_ABDINM_m_ArizonaTestDust]
+value = 13.2251
+type = "float"
+description = "Arbitrary coefficient, m, for calculating deposition nucleation J_het of Arizona Test Dust [-]."
+
+[J_ABDINM_c_ArizonaTestDust]
+value = 0.7716
+type = "float"
+description = "Arbitrary coefficient, c, for calculating deposition nucleation J_het of Arizona Test Dust [-]."
+
 [Alpert2022_J_deposition_m_Feldspar]
 value = 13.2251
 type = "float"
@@ -1425,6 +1445,16 @@ type = "float"
 description = "Coefficient, c, for calculating deposition nucleation J_het of Kaolinite [-]. From China et al 2017. DOI: 10.1002/2016JD025817."
 
 # Microphysics - water activity based immersion freezing/nucleation
+
+[J_ABIFM_m_ArizonaTestDust]
+value = 22.62
+type = "float"
+description = "Arbitrary coefficient, m, for calculating immersion freezing J_het of Arizona Test Dust [-]."
+
+[J_ABIFM_c_ArizonaTestDust]
+value = -1.35
+type = "float"
+description = "Arbitrary coefficient, c, for calculating immersion freezing J_het of Arizona Test Dust [-]."
 
 [AlpertKnopf2016_J_ABIFM_m_DesertDust]
 value = 22.62
