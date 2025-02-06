@@ -716,6 +716,16 @@ value = 10
 type = "float"
 description = "Non-equilibrium microphysics condensation/evaporation time scale [s]"
 
+[liquid_cloud_effective_radius]
+value = 14e-6
+type = "float"
+description = "Constant assumed liquid cloud effective radius [m]"
+
+[ice_cloud_effective_radius]
+value = 25e-6
+type = "float"
+description = "Constant assumed ice cloud effective radius [m]"
+
 [sublimation_deposition_timescale]
 value = 10
 type = "float"
