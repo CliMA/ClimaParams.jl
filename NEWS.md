@@ -1,6 +1,10 @@
 ClimaParams.jl Release Notes
 ========================
 
+v0.10.20
+--------
+- Add parameters for ABDINM and ABIFM for Asian, Saharan, Israelan, and generic Dust ([#216](https://github.com/CliMA/ClimaParams.jl/pull/216))
+
 v0.10.19
 --------
 - Add parameters for cloud effective radius diagnostics ([#215](https://github.com/CliMA/ClimaParams.jl/pull/215))
