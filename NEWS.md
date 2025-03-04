@@ -1,6 +1,11 @@
 ClimaParams.jl Release Notes
 ========================
 
+v0.10.22
+--------
+- Add parameter for exponent in (1 - area)^c entrainment limiter ([#217](https://github.com/CliMA/ClimaParams.jl/pull/217))
+- Add parameter vectors for data-driven mixing length and perturbation pressure closures ([#220](https://github.com/CliMA/ClimaParams.jl/pull/220))
+
 v0.10.21
 --------
 - Add parameter for constant slope parameterization in CloudMicrophysics.jl P3 scheme. ([#218](https://github.com/CliMA/ClimaParams.jl/pull/218))
