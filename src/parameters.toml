@@ -2383,6 +2383,11 @@ value = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
 type = "float"
 description = "Data-driven entrainment parameter vector"
 
+[entr_mult_limiter_coeff]
+value = 0.0
+type = "float"
+description = "Exponent for multiplicative entrainment limiter of the form (1 - area)^c"
+
 [turb_entr_param_vec]
 value = [0.0, 0.0, 0.0]
 type = "float"
