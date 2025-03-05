@@ -1,6 +1,10 @@
 ClimaParams.jl Release Notes
 ========================
 
+v0.10.21
+--------
+- Add parameter for constant slope parameterization in CloudMicrophysics.jl P3 scheme. ([#218](https://github.com/CliMA/ClimaParams.jl/pull/218))
+
 v0.10.20
 --------
 - Add parameters for ABDINM and ABIFM for Asian, Saharan, Israelan, and generic Dust ([#216](https://github.com/CliMA/ClimaParams.jl/pull/216))

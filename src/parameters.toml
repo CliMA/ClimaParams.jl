@@ -1729,6 +1729,11 @@ value = 6
 type = "float"
 description = "Limiter for shape parameter mu for ice in P3 scheme. See eq 3 in Morrison and Milbrandt 2015. Units: [-]"
 
+[P3_constant_slope_parameterization_value]
+value = 3.0
+type = "float"
+description = "Value of μ for constant slope parameterization in P3 scheme. Units: [-]"
+
 [p3_ventillation_a]
 value = 0.78
 type = "float"
