@@ -1434,6 +1434,16 @@ value = 0.7716
 type = "float"
 description = "Arbitrary coefficient, c, for calculating deposition nucleation J_het of Saharan Dust [-]."
 
+[J_ABDINM_m_AsianDust]
+value = 13.2251
+type = "float"
+description = "Arbitrary coefficient, m, for calculating deposition nucleation J_het of Asian Dust [-]."
+
+[J_ABDINM_c_AsianDust]
+value = 0.7716
+type = "float"
+description = "Arbitrary coefficient, c, for calculating deposition nucleation J_het of Asian Dust [-]."
+
 [J_ABDINM_m_ArizonaTestDust]
 value = 13.2251
 type = "float"
@@ -1516,15 +1526,15 @@ value = -1.35
 type = "float"
 description = "Arbitrary coefficient, c, for calculating immersion freezing J_het of Asian Dust [-]."
 
-[J_ABIFM_m_IsraelanDust]
+[J_ABIFM_m_MiddleEasternDust]
 value = 22.62
 type = "float"
-description = "Arbitrary coefficient, m, for calculating immersion freezing J_het of Israelan Dust [-]."
+description = "Arbitrary coefficient, m, for calculating immersion freezing J_het of Middle Eastern Dust [-]."
 
-[J_ABIFM_c_IsraelanDust]
+[J_ABIFM_c_MiddleEasternDust]
 value = -1.35
 type = "float"
-description = "Arbitrary coefficient, c, for calculating immersion freezing J_het of Israelan Dust [-]."
+description = "Arbitrary coefficient, c, for calculating immersion freezing J_het of Middle Eastern Dust [-]."
 
 [AlpertKnopf2016_J_ABIFM_m_DesertDust]
 value = 22.62
