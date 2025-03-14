@@ -2259,6 +2259,11 @@ type = "float"
 value = 6.02214076e23
 type = "float"
 
+[tracer_hyperdiffusion_factor]
+value = 0
+type = "float"
+description = "Scaling factor for hyperdiffusion of fields that have strong gradients, e.g. precipitation (unitless)"
+
 [C_E]
 value = 0.0044
 type = "float"
@@ -2278,6 +2283,11 @@ description = "Coefficient in DecayWithHeightDiffusion vertical diffusion scheme
 value = 8000
 type = "float"
 description = "Height scale in DecayWithHeightDiffusion vertical diffusion scheme [m]"
+
+[tracer_vertical_diffusion_factor]
+value = 1
+type = "float"
+description = "Scaling factor for vertical diffusion of fields that have strong gradients, e.g. precipitation (unitless)"
 
 # Rayleigh Damping
 
