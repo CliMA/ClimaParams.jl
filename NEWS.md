@@ -1,6 +1,10 @@
 ClimaParams.jl Release Notes
 ========================
 
+v0.10.24
+--------
+- Add parameters for data driven number concnetration parameterization ([#224](https://github.com/CliMA/ClimaParams.jl/pull/224))
+
 v0.10.23
 --------
 - Add parameters for scaling factors for tracer hyperdiffusion and vertical diffusion. ([#223](https://github.com/CliMA/ClimaParams.jl/pull/223))

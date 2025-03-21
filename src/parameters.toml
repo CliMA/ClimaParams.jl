@@ -2025,9 +2025,44 @@ value =  3.27e-21
 type = "float"
 description = "Temperature-dependent factor for monoterpene (MT) oxidation with hydroxyl radicals, used for mixed organic-sulfuric acid nucleation. This is an empirical fit to data. The [H2SO4] concentration is in 10^6 1/cm3 and the [BioOxOrg] organics concentration is in 1/cm3. From Riccobno et al., 2014. DOI: 10.1126/science.1243527."
 
+# Microphysics - ML parameters for cloud droplet number concentration
+
+[dust_calibration_coefficient]
+value = 0
+type = "float"
+desciption = "Coefficient in the data driven cloud droplet number concentration function [-]"
+
+[seasalt_calibration_coefficient]
+value = 0
+type = "float"
+desciption = "Coefficient in the data driven cloud droplet number concentration function [-]"
+
+[ammonium_sulfate_calibration_coefficient]
+value = 0
+type = "float"
+desciption = "Coefficient in the data driven cloud droplet number concentration function [-]"
+
+[liquid_water_specific_humidity_calibration_coefficent]
+value = 0
+type = "float"
+desciption = "Coefficient in the data driven cloud droplet number concentration function [-]"
+
+[reference_dust_aerosol_mass_concentration]
+value = 1e-8
+type = "float"
+desciption = "Normalization factor for dust aerosol in the data driven cloud droplet number concentration function [kg/kg]"
+
+[reference_seasalt_aerosol_mass_concentration]
+value = 1e-8
+type = "float"
+desciption = "Normalization factor for sea salt aerosol in the data driven cloud droplet number concentration function [kg/kg]"
+
+[reference_ammonium_sulfate_mass_concentration]
+value = 1e-8
+type = "float"
+desciption = "Normalization factor for ammonium sulfate aerosol in the data driven cloud droplet number concentration function [kg/kg]"
 
 # Initial planet_parameters toml file
-
 
 [f_plane_coriolis_frequency]
 value = 0
