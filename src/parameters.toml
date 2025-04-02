@@ -2583,6 +2583,11 @@ value = 10
 type = "float"
 description = "Lower limit for mixing length. Parameter not described in the literature."
 
+[mixing_length_param_vec]
+value = [0.0, 0.0, 0.0, 0.0, 0.0]
+type = "float"
+description = "Data-driven mixing length parameter vector"
+
 [entrainment_factor]
 value = 0.13
 type = "float"
@@ -2652,6 +2657,11 @@ description =  "Pressure advection (advection damping) coefficient in perturbati
 value = 10.0
 type = "float"
 description = "Updraft pressure drag coefficent in perturbation pressure closure. See He et al. 2022 Eq 34 [https://doi.org/10.1002/essoar.10505084.2]."
+
+[pressure_normalmode_param_vec]
+value = [0.0, 0.0, 0.0, 0.0, 0.0]
+type = "float"
+description = "Data-driven perturbation pressure parameter vector"
 
 [EDMF_thermodynamics_moisture_model]
 value = "equilibrium"

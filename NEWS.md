@@ -1,6 +1,11 @@
 ClimaParams.jl Release Notes
 ========================
 
+v0.10.25
+--------
+- Add parameter vectors for data-driven mixing length and perturbation pressure closures ([#220](https://github.com/CliMA/ClimaParams.jl/pull/220))
+- Adds 8 timescale parameters for relaxing forced single column model profiles ([#210](https://github.com/CliMA/ClimaParams.jl/pull/210))
+
 v0.10.24
 --------
 - Add parameters for data driven number concnetration parameterization ([#224](https://github.com/CliMA/ClimaParams.jl/pull/224))
