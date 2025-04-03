@@ -2703,45 +2703,25 @@ value = 1
 type = "integer"
 description = "Number of edmf updrafts."
 
-[gcmdriven_shallow_momentum_relaxation_timescale]
+[gcmdriven_momentum_relaxation_timescale]
 value = 21600.0
 type = "float"
-description = "Horizontal wind relaxation timescale toward forcing profile in shallow SCM cases (in seconds). Parameter described in 2.2.3 of Shen et al. 2022 [https://doi.org/10.1029/2021MS002631]."
+description = "Horizontal wind relaxation timescale toward forcing profile in SCM cases (in seconds). Parameter described in 2.2.3 of Shen et al. 2022 [https://doi.org/10.1029/2021MS002631]."
 
-[gcmdriven_shallow_scalar_relaxation_timescale]
+[gcmdriven_scalar_relaxation_timescale]
 value = 86400.0
 type = "float"
-description = "Scalar relaxation timescale used to relax temperature and humidities toward forcing profile in shallow SCM cases (in seconds). Parameter described in 2.2.3 Eq 11 of Shen et al. 2022 [https://doi.org/10.1029/2021MS002631]."
+description = "Scalar relaxation timescale used to relax temperature and humidities toward forcing profile in SCM cases (in seconds). Parameter described in 2.2.3 Eq 11 of Shen et al. 2022 [https://doi.org/10.1029/2021MS002631]."
 
-[gcmdriven_deep_momentum_relaxation_timescale]
-value = 3600.0
-type = "float"
-description = "Horizontal wind relaxation timescale toward forcing profile in deep SCM cases (in seconds). Parameter described in 2.2.3 of Shen et al. 2022 [https://doi.org/10.1029/2021MS002631]."
-
-[gcmdriven_deep_scalar_relaxation_timescale]
-value = 7200.0
-type = "float"
-description = "Scalar relaxation timescale used to relax temperature and humidities toward forcing profile in deep SCM cases (in seconds). Parameter described in 2.2.3 Eq 11 of Shen et al. 2022 [https://doi.org/10.1029/2021MS002631]."
-
-[gcmdriven_shallow_relaxation_minimum_height]
+[gcmdriven_relaxation_minimum_height]
 value = 3000.0
 type = "float"
-description = "Starting height for relaxation towards forcing profile in shallow SCM cases (in meters). Parameter described in 2.2.3 Eq 11 of Shen et al. 2022 [https://doi.org/10.1029/2021MS002631]."
+description = "Starting height for relaxation towards forcing profile in SCM cases (in meters). Parameter described in 2.2.3 Eq 11 of Shen et al. 2022 [https://doi.org/10.1029/2021MS002631]."
 
-[gcmdriven_shallow_relaxation_maximum_height]
+[gcmdriven_relaxation_maximum_height]
 value = 3500.0
 type = "float"
-description = "Height for relaxation towards forcing profile in shallow SCM cases at which the relaxation timescale coefficient becomes 1 (in meters). Parameter described in 2.2.3 Eq 11 of Shen et al. 2022 [https://doi.org/10.1029/2021MS002631]."
-
-[gcmdriven_deep_relaxation_minimum_height]
-value = 16000.0
-type = "float"
-description = "Starting height for relaxation towards forcing profile in deep SCM cases (in meters). Parameter described in 2.2.3 Eq 11 of Shen et al. 2022 [https://doi.org/10.1029/2021MS002631]."
-
-[gcmdriven_deep_relaxation_maximum_height]
-value = 20000.0
-type = "float"
-description = "Height for relaxation towards forcing profile in deep SCM cases at which the relaxation timescale coefficient becomes 1 (in meters). Parameter described in 2.2.3 Eq 11 of Shen et al. 2022 [https://doi.org/10.1029/2021MS002631]."
+description = "Height for relaxation towards forcing profile in SCM cases at which the relaxation timescale coefficient becomes 1 (in meters). Parameter described in 2.2.3 Eq 11 of Shen et al. 2022 [https://doi.org/10.1029/2021MS002631]."
 
 [microphysics_model_precipitation_fraction]
 value = "prescribed"
