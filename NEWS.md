@@ -1,6 +1,10 @@
 ClimaParams.jl Release Notes
 ========================
 
+v0.10.26
+--------
+- Consolidate GCM-driven SCM relaxation parameters from separate shallow/deep versions into single parameters ([#225](https://github.com/CliMA/ClimaParams.jl/pull/225))
+
 v0.10.25
 --------
 - Add parameter vectors for data-driven mixing length and perturbation pressure closures ([#220](https://github.com/CliMA/ClimaParams.jl/pull/220))
