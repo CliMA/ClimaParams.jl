@@ -1,6 +1,10 @@
 ClimaParams.jl Release Notes
 ========================
 
+v0.10.27
+--------
+- Add one more parameter for data driven number concnetration parameterization ([#226](https://github.com/CliMA/ClimaParams.jl/pull/226))
+
 v0.10.26
 --------
 - Consolidate GCM-driven SCM relaxation parameters from separate shallow/deep versions into single parameters ([#225](https://github.com/CliMA/ClimaParams.jl/pull/225))

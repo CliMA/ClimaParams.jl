@@ -2062,6 +2062,11 @@ value = 1e-8
 type = "float"
 desciption = "Normalization factor for ammonium sulfate aerosol in the data driven cloud droplet number concentration function [kg/kg]"
 
+[reference_liquid_water_specific_humidity]
+value = 1e-6
+type = "float"
+description = "Normalization factor for cloud water specific humidity in the data driven cloud droplet number concentration function [kg/kg]"
+
 # Initial planet_parameters toml file
 
 [f_plane_coriolis_frequency]
