@@ -791,6 +791,11 @@ value = 0.001
 type = "float"
 description = "1-moment microphysics rain drop length scale [m]"
 
+[rain_minimum_inverse_lambda]
+value = 1e-8
+type = "float"
+description = "1-moment microphysics minimum value for the inverse of the shape parameter of rain drop size distribution [m]"
+
 [rain_mass_size_relation_coefficient_me]
 value = 3
 type = "float"
