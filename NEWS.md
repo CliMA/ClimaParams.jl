@@ -1,9 +1,13 @@
 ClimaParams.jl Release Notes
 ========================
 
+v0.10.28
+--------
+- Add minimum value for inverse lambda parameter for 1-moment cloud microphysics ([#228](https://github.com/CliMA/ClimaParams.jl/pull/228))
+
 v0.10.27
 --------
-- Add one more parameter for data driven number concnetration parameterization ([#226](https://github.com/CliMA/ClimaParams.jl/pull/226))
+- Add one more parameter for data driven number concnetration parameterization ([#227](https://github.com/CliMA/ClimaParams.jl/pull/227))
 
 v0.10.26
 --------
