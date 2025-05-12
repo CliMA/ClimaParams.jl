@@ -1,6 +1,10 @@
 ClimaParams.jl Release Notes
 ========================
 
+v0.10.29
+--------
+- Add maximum value for Prandtl number ([#229](https://github.com/CliMA/ClimaParams.jl/pull/229))
+
 v0.10.28
 --------
 - Add minimum value for inverse lambda parameter for 1-moment cloud microphysics ([#228](https://github.com/CliMA/ClimaParams.jl/pull/228))
