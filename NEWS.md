@@ -1,6 +1,10 @@
 ClimaParams.jl Release Notes
 ========================
 
+v0.10.30
+--------
+- Update the value of Prandtl max number ([#230](https://github.com/CliMA/ClimaParams.jl/pull/230))
+
 v0.10.29
 --------
 - Add maximum value for Prandtl number ([#229](https://github.com/CliMA/ClimaParams.jl/pull/229))

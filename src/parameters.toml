@@ -2569,7 +2569,7 @@ type = "float"
 description = "Turbulent Prandtl number in neutral conditions; denoted Pr_{t,0}. See Lopez-Gomez et al. (2020) [https://doi.org/10.1029/2020MS002162], Table 1 and Eq 36."
 
 [mixing_length_Prandtl_maximum]
-value = 100
+value = 10
 type = "float"
 description = "Maximum allowed Prandtl number"
 
