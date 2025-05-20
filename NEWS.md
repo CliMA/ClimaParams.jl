@@ -1,6 +1,10 @@
 ClimaParams.jl Release Notes
 ========================
 
+v0.10.31
+--------
+- Add parameters for detrainment ramp and ustar^3 surface tke flux formulation. ([#231](https://github.com/CliMA/ClimaParams.jl/pull/231))
+
 v0.10.30
 --------
 - Update the value of Prandtl max number ([#230](https://github.com/CliMA/ClimaParams.jl/pull/230))
