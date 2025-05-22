@@ -2508,6 +2508,16 @@ value = 1
 type = "float"
 description = "Coefficient for the mass flux vertical divergence term in the detrainment closure. Parameter not described in the literature."
 
+[detr_ramp_z_start]
+value = 20000.0
+type = "float"
+description = "Start height of the sigmoid ramp for detrainment top limiter (m). Prevents updrafts from hitting domain top."
+
+[detr_ramp_steepness_factor]
+value = 10.0
+type = "float"
+description = "Factor used to calculate the steepness of the sigmoid ramp for detrainment top limiter. Steepness = factor / (z_end - z_start). Prevents updrafts from hitting domain top."
+
 [max_area_limiter_scale]
 value = 0.1
 type = "float"
@@ -2557,6 +2567,11 @@ description = "Static stability coefficient for the EDMF mixing length closure; 
 value = 3.75
 type = "float"
 description = "Ratio of turbulence kinetic energy to squared friction velocity in the surface layer for the EDMF mixing length closure; denoted κ_*². See Lopez-Gomez et al. (2020) [https://doi.org/10.1029/2020MS002162], Table 1. Note: the square root, i.e. κ_*, is listed in the reference."
+
+[mixing_length_tke_surf_flux_coeff]
+value = 2.5
+type = "float"
+description = "Coefficient multiplying flux in ustar^3 surface flux formulation of tke (tke_surf_flux_coeff * ρ * ustar^3)"
 
 [mixing_length_Prandtl_number_scale]
 value = 4.076923076923077
