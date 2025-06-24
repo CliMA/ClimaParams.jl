@@ -1801,6 +1801,31 @@ value = 1.12
 type = "float"
 description = "Hygroscopicity parameter kappa for sea salt aerosol [-], see: doi.org/10.5194/acp-7-1961-2007"
 
+[MERRA2_seasalt_aerosol_bin01_radius]
+value = 0.079e-6
+type = "float"
+description = "Dry particle radius associated with sea salt aerosol in bin 01 of the MERRA-2 dataset [m], see: doi.org/10.5067/LTVB4GPCOTK2"
+
+[MERRA2_seasalt_aerosol_bin02_radius]
+value = 0.316e-6
+type = "float"
+description = "Dry particle radius associated with sea salt aerosol in bin 02 of the MERRA-2 dataset [m], see: doi.org/10.5067/LTVB4GPCOTK2"
+
+[MERRA2_seasalt_aerosol_bin03_radius]
+value = 1.119e-6
+type = "float"
+description = "Dry particle radius associated with sea salt aerosol in bin 03 of the MERRA-2 dataset [m], see: doi.org/10.5067/LTVB4GPCOTK2"
+
+[MERRA2_seasalt_aerosol_bin04_radius]
+value = 2.818e-6
+type = "float"
+description = "Dry particle radius associated with sea salt aerosol in bin 04 of the MERRA-2 dataset [m], see: doi.org/10.5067/LTVB4GPCOTK2"
+
+[MERRA2_seasalt_aerosol_bin05_radius]
+value = 7.772e-6
+type = "float"
+description = "Dry particle radius associated with sea salt aerosol in bin 05 of the MERRA-2 dataset [m], see: doi.org/10.5067/LTVB4GPCOTK2"
+
 [sulfate_aerosol_molar_mass]
 value = 0.132
 type = "float"
@@ -1830,6 +1855,11 @@ description = "Mass fraction of water soluble material for sulfate aerosol [-]"
 value = 0.53
 type = "float"
 description = "Hygroscopicity parameter kappa for sulfate aerosol [-], see: doi.org/10.5194/acp-7-1961-2007"
+
+[MERRA2_sulfate_aerosol_radius]
+value = 0.35e-6
+type = "float"
+description = "Dry particle radius associated with sulfate aerosol in the MERRA-2 dataset [m], see: doi.org/10.5067/LTVB4GPCOTK2"
 
 [ARG2000_f_coeff_1]
 value = 0.5
@@ -1864,17 +1894,17 @@ description = "Power of (S_m^2 / (zeta + 3 * eta)) for an empirically determined
 # Microphysics - Modal aerosol model
 
 [mam3_stdev_coarse]
-value = 1.8e-6
+value = 1.8
 type = "float"
 description = "Geometric standard deviation for the coarse modal distribution of MAM3. Unitless. From Liu et al., 2012. DOI: 10.5194/gmd-5-709-2012"
 
 [mam3_stdev_accum]
-value = 1.8e-6
+value = 1.8
 type = "float"
 description = "Geometric standard deviation for the accumulation modal distribution of MAM3. Unitless. From Liu et al., 2012. DOI: 10.5194/gmd-5-709-2012"
 
 [mam3_stdev_ait]
-value = 1.6e-6
+value = 1.6
 type = "float"
 description = "Geometric standard deviation for the aitken modal distribution of MAM3. Unitless. From Liu et al., 2012. DOI: 10.5194/gmd-5-709-2012"
 
