@@ -1650,6 +1650,21 @@ value = 3.0
 type = "float"
 description = "Value of μ for constant slope parameterization in P3 scheme. Units: [-]"
 
+[CL1993_local_rime_density_constant_coeff]
+value = 51
+type = "float"
+description = "Constant coefficient for local rime density in P3 scheme. Units: [kg / m³]. See Eq. (17) in Cober and List (1993), DOI: 10.1175/1520-0469(1993)050<1591:MOTHAM>2.0.CO;2"
+
+[CL1993_local_rime_density_linear_coeff]
+value = 114
+type = "float"
+description = "Linear coefficient for local rime density in P3 scheme. Units: [kg / m³ / (m² / s / °C)]. See Eq. (17) in Cober and List (1993), DOI: 10.1175/1520-0469(1993)050<1591:MOTHAM>2.0.CO;2"
+
+[CL1993_local_rime_density_quadratic_coeff]
+value = -5.5
+type = "float"
+description = "Quadratic coefficient for local rime density in P3 scheme. Units: [kg / m³ / (m² / s / °C)²]. See Eq. (17) in Cober and List (1993), DOI: 10.1175/1520-0469(1993)050<1591:MOTHAM>2.0.CO;2"
+
 # Microphysics - temperature dependant, aerosol independant immerson freezing
 
 [Frostenberg2023_standard_deviation]
