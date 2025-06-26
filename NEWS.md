@@ -1,6 +1,11 @@
 ClimaParams.jl Release Notes
 ========================
 
+v0.10.34
+--------
+- Add parameters for P3 scheme ([#235](https://github.com/CliMA/ClimaParams.jl/pull/235))
+- Remove duplicate parameters for SB2006 ventilation parameterization ([#234](https://github.com/CliMA/ClimaParams.jl/pull/234))
+
 v0.10.31
 --------
 - Add parameters for detrainment ramp and ustar^3 surface tke flux formulation. ([#231](https://github.com/CliMA/ClimaParams.jl/pull/231))
