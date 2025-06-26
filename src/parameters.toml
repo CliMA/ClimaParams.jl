@@ -1603,6 +1603,63 @@ value = 2e-4
 type = "float"
 description = "Parameter, B, for rain water. Used to determine P3 heterogeneous freezing. [cm^-3 s^-1]. From Barklie & Gokhale 1959. No DOI. See Pruppacher & Klett 1997 pg 350."
 
+# Microphysics - P3 particle properties parameterizations: mass, area, size distribution, density
+
+[BF1995_mass_exponent_beta]
+value = 1.9
+type = "float"
+description = "Exponent in power law for mass grown by vapor diffusion and aggregation from Brown and Francis 1995--used in P3 Scheme (Morrison and Milbrandt 2015) [-]."
+
+[BF1995_mass_coeff_alpha]
+value = 7.38e-11
+type = "float"
+description = "Coefficient in power law for mass grown by vapor diffusion and aggregation from Brown and Francis 1995--used in P3 Scheme (Morrison and Milbrandt 2015) [g/μmβ_va]. To adjust units into kg and m, see the P3 Scheme documentation."
+
+[M1996_area_exponent_sigma]
+value = 1.88
+type = "float"
+description = "Exponent in power law for the area of ice side plane, column, bullet, and planar polycrystal aggregates in Mitchell 1996--used in P3 Scheme (Morrison and Milbrandt 2015) [-]."
+
+[M1996_area_coeff_gamma]
+value = 0.2285
+type = "float"
+description = "Coefficient in power law for the area of ice side plane, column, bullet, and planar polycrystal aggregates in Mitchell 1996--used in P3 Scheme (Morrison and Milbrandt 2015) [μm^(2-σ_M1996)]. To adjust units into m and m2, see the P3 Scheme documentation."
+
+[Heymsfield_mu_coeff1]
+value = 0.00191
+type = "float"
+description = "Coefficient for shape parameter mu for ice in P3 scheme. See eq 3 in Morrison and Milbrandt 2015. Units: [m^0.8]"
+
+[Heymsfield_mu_coeff2]
+value = 0.8
+type = "float"
+description = "Coefficient for shape parameter mu for ice in P3 scheme. See eq 3 in Morrison and Milbrandt 2015. Units: [-]"
+
+[Heymsfield_mu_coeff3]
+value = 2
+type = "float"
+description = "Coefficient for shape parameter mu for ice in P3 scheme. See eq 3 in Morrison and Milbrandt 2015. Units: [-]"
+
+[Heymsfield_mu_cutoff]
+value = 6
+type = "float"
+description = "Limiter for shape parameter mu for ice in P3 scheme. See eq 3 in Morrison and Milbrandt 2015. Units: [-]"
+
+[P3_constant_slope_parameterization_value]
+value = 3.0
+type = "float"
+description = "Value of μ for constant slope parameterization in P3 scheme. Units: [-]"
+
+[p3_ventillation_a]
+value = 0.78
+type = "float"
+description = "a coefficient for ventillation factor calculations in p3 tendencies, unitless. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4"
+
+[p3_ventiallation_b]
+value = 0.308
+type = "float"
+description = "b coefficient for ventillation factor calculations in p3 tendencies, unitless. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4"
+
 # Microphysics - temperature dependant, aerosol independant immerson freezing
 
 [Frostenberg2023_standard_deviation]
@@ -1713,61 +1770,6 @@ description = "Coefficient used for calculation of H2SO4 solution vapor pressure
 value = 1876.7
 type = "float"
 description = "Coefficient used for calculation of H2SO4 solution vapor pressure [-]. From Luo et al 1995. DOI: 10.1029/94GL02988."
-
-[BF1995_mass_exponent_beta]
-value = 1.9
-type = "float"
-description = "Exponent in power law for mass grown by vapor diffusion and aggregation from Brown and Francis 1995--used in P3 Scheme (Morrison and Milbrandt 2015) [-]."
-
-[BF1995_mass_coeff_alpha]
-value = 7.38e-11
-type = "float"
-description = "Coefficient in power law for mass grown by vapor diffusion and aggregation from Brown and Francis 1995--used in P3 Scheme (Morrison and Milbrandt 2015) [g/μmβ_va]. To adjust units into kg and m, see the P3 Scheme documentation."
-
-[M1996_area_exponent_sigma]
-value = 1.88
-type = "float"
-description = "Exponent in power law for the area of ice side plane, column, bullet, and planar polycrystal aggregates in Mitchell 1996--used in P3 Scheme (Morrison and Milbrandt 2015) [-]."
-
-[M1996_area_coeff_gamma]
-value = 0.2285
-type = "float"
-description = "Coefficient in power law for the area of ice side plane, column, bullet, and planar polycrystal aggregates in Mitchell 1996--used in P3 Scheme (Morrison and Milbrandt 2015) [μm^(2-σ_M1996)]. To adjust units into m and m2, see the P3 Scheme documentation."
-
-[Heymsfield_mu_coeff1]
-value = 0.00191
-type = "float"
-description = "Coefficient for shape parameter mu for ice in P3 scheme. See eq 3 in Morrison and Milbrandt 2015. Units: [m^0.8]"
-
-[Heymsfield_mu_coeff2]
-value = 0.8
-type = "float"
-description = "Coefficient for shape parameter mu for ice in P3 scheme. See eq 3 in Morrison and Milbrandt 2015. Units: [-]"
-
-[Heymsfield_mu_coeff3]
-value = 2
-type = "float"
-description = "Coefficient for shape parameter mu for ice in P3 scheme. See eq 3 in Morrison and Milbrandt 2015. Units: [-]"
-
-[Heymsfield_mu_cutoff]
-value = 6
-type = "float"
-description = "Limiter for shape parameter mu for ice in P3 scheme. See eq 3 in Morrison and Milbrandt 2015. Units: [-]"
-
-[P3_constant_slope_parameterization_value]
-value = 3.0
-type = "float"
-description = "Value of μ for constant slope parameterization in P3 scheme. Units: [-]"
-
-[p3_ventillation_a]
-value = 0.78
-type = "float"
-description = "a coefficient for ventillation factor calculations in p3 tendencies, unitless. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4"
-
-[p3_ventiallation_b]
-value = 0.308
-type = "float"
-description = "b coefficient for ventillation factor calculations in p3 tendencies, unitless. From Seifert and Beheng, 2006. DOI: 10.1007/s00703-005-0112-4"
 
 # Microphysics - Aerosol activation
 
