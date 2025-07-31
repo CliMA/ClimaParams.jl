@@ -2160,7 +2160,7 @@ value = 4181
 type = "float"
 
 [isobaric_specific_heat_ice]
-value = 2100
+value = 2070.0
 type = "float"
 
 [temperature_water_freeze]
