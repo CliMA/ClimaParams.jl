@@ -26,7 +26,7 @@ full_parameter_set = CP.create_toml_dict(Float64)
     end
     # Make sure logging preserves parameter set values
     for (k, v) in full_parameter_set #iterates over data
-        @test v["value"] == full_parameter_set_from_log[k]["value"]
+        @test full_parameter_set[k] == full_parameter_set_from_log[k]
     end
 end
 

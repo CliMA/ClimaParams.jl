@@ -39,7 +39,31 @@ float_type(::AbstractTOMLDict{FT}) where {FT} = FT
 Base.iterate(pd::ParamDict, state) = Base.iterate(pd.data, state)
 Base.iterate(pd::ParamDict) = Base.iterate(pd.data)
 
-Base.getindex(pd::ParamDict, i) = getindex(pd.data, i)
+
+"""
+    Base.getindex(pd::ParamDict, i)
+
+Enables direct access to parameter values from a ParamDict.
+Returns the typed value of the parameter, not the full parameter structure.
+
+# Examples
+```julia
+toml_dict = CP.create_toml_dict(Float64)
+param_value = toml_dict["parameter_name"]  # Returns the typed value directly
+```
+"""
+function Base.getindex(pd::ParamDict, i)
+    param_data = getindex(pd.data, i)
+    param_value = param_data["value"]
+    param_type = get(param_data, "type", nothing)
+    isnothing(param_type) && error("No type found for parameter `$i`")
+
+    if param_value isa AbstractVector
+        return map(x -> _get_typed_value(pd, x, i, param_type), param_value)
+    else
+        return _get_typed_value(pd, param_value, i, param_type)
+    end
+end
 
 """
     log_component!(pd::AbstractTOMLDict, names, component)
@@ -104,31 +128,6 @@ function _get_typed_value(
 end
 
 """
-    get_values(pd::AbstractTOMLDict, names)
-
-Gets the values of the parameters in `names` from the TOML dict `pd`.
-"""
-function get_values(pd::ParamDict, names::NAMESTYPE)
-    data = pd.data
-    ret_values = map(names) do name
-        param_data = data[name]
-        param_value = param_data["value"]
-        param_type = get(param_data, "type", nothing)
-        isnothing(param_type) &&
-            error("No type found for parameter `$name`")
-
-        elem = if param_value isa AbstractVector
-            map(x -> _get_typed_value(pd, x, name, param_type), param_value)
-        else
-            _get_typed_value(pd, param_value, name, param_type)
-        end
-
-        Pair(Symbol(name), elem)
-    end
-    return (; ret_values...)
-end
-
-"""
     get_parameter_values(
         pd::AbstractTOMLDict,
         names::Union{String,Vector{String}},
@@ -165,8 +164,10 @@ function get_parameter_values(
     if !isnothing(component)
         log_component!(pd, names, component)
     end
-    return get_values(pd, names)
+    return NamedTuple(map(x -> Symbol(x) => pd[x], names))
 end
+
+
 
 function get_parameter_values(
     pd::AbstractTOMLDict,
