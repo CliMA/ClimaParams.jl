@@ -4,7 +4,7 @@ import ClimaParams as CP
 
 @testset "Merge correctness" begin
 
-    FT = Float64
+    FT = Float32
     toml_1 = ("toml/merge1.toml")
     toml_2 = ("toml/merge2.toml")
 
@@ -18,6 +18,12 @@ import ClimaParams as CP
     (; a) = CP.get_parameter_values(toml_dict_2, "a")
     @test a == 2
     @test a isa Int
+
+    # Test direct access
+    @test toml_dict_1["a"] == 0.0
+    @test toml_dict_1["a"] isa FT
+    @test toml_dict_2["a"] == 2
+    @test toml_dict_2["a"] isa Int
 
     # Test merging
     merged_dict = CP.merge_toml_files([toml_1, toml_2]; override = true)
