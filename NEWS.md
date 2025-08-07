@@ -1,6 +1,10 @@
 ClimaParams.jl Release Notes
 ========================
 
+v0.11.0
+--------
+- Update the specific heat of ice
+
 v0.10.35
 --------
 - Add wet growth timescale parameter for P3 scheme ([#236](https://github.com/CliMA/ClimaParams.jl/pull/236))
