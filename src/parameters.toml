@@ -2391,22 +2391,27 @@ description = "Scaling factor for vertical diffusion of fields that have strong 
 [alpha_rayleigh_w]
 value = 1.0
 type = "float"
-description = "rayleigh sponge vert velocity coeff"
+description = "rayleigh sponge coefficient for vertical velocity"
 
 [alpha_rayleigh_uh]
 value = 0.0
 type = "float"
-description = "rayleigh sponge horizontal velocity coefficient"
+description = "rayleigh sponge coefficient for horizontal velocity"
+
+[alpha_rayleigh_sgs_tracer]
+value = 0.0
+type = "float"
+description = "rayleigh sponge coefficient for subgrid-scale tracer"
 
 [zd_rayleigh]
 value = 15000.0
 type = "float"
-description = "rayleigh sponge height"
+description = "rayleigh sponge starting height"
 
 [zd_viscous]
 value = 15000.0
 type = "float"
-description = "viscous sponge height"
+description = "viscous sponge starting height"
 
 [kappa_2_sponge]
 value = 1.0e6
