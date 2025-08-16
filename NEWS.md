@@ -1,6 +1,10 @@
 ClimaParams.jl Release Notes
 ========================
 
+v0.11.2
+--------
+- Log parameter when getindex is called ([#243](https://github.com/CliMA/ClimaParams.jl/pull/243))
+
 v0.11.0
 --------
 - Update the specific heat of ice
