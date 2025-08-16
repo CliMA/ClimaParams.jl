@@ -1,4 +1,4 @@
-[gas_constant]
+[universal_gas_constant]
 type = "float"
 value = 4.0
 

@@ -6,15 +6,15 @@ import ClimaParams as CP
 
 Base.@kwdef struct ParameterBox{FT}
     molmass_dryair::FT
-    gas_constant::FT
+    universal_gas_constant::FT
     new_parameter::FT
 end
 
 # Derived parameters
-R_d(pb::ParameterBox) = pb.gas_constant / pb.molmass_dryair
+R_d(pb::ParameterBox) = pb.universal_gas_constant / pb.molmass_dryair
 
 name_map = Dict(
-    :gas_constant => :gas_constant,
+    :universal_gas_constant => :universal_gas_constant,
     :molar_mass_dry_air => :molmass_dryair,
     :param_2 => :new_parameter,
 )
@@ -38,9 +38,10 @@ name_map = Dict(
     # from default
     @test param_set.molmass_dryair ≈ 0.02897
     # overridden default
-    @test param_set.gas_constant ≈ 4.0
+    @test param_set.universal_gas_constant ≈ 4.0
     # derived in constructor
-    @test R_d(param_set) ≈ param_set.gas_constant / param_set.molmass_dryair
+    @test R_d(param_set) ≈
+          param_set.universal_gas_constant / param_set.molmass_dryair
     # from toml
     @test param_set.new_parameter ≈ 19.99
 
