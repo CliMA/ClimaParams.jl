@@ -1,24 +1,29 @@
-# The TOML parameter file interface
+# The TOML Parameter File Interface
 
-The complete user interface consists of two files in `TOML` format
-1. A user-defined experiment file - in the local experiment directory
-2. A defaults file - in `src/` directory of `ClimaParams.jl`
+Parameters for CliMA models are defined in `.toml` files. ClimaParams.jl is designed to work with two main sources of parameters, which are merged together:
 
-## Parameter style-guide
+1.  **A default parameter file**: This file is bundled with ClimaParams.jl and contains a comprehensive list of default values for the entire CliMA ecosystem.
+2.  **A user-defined override file**: This file is provided by the user for a specific experiment. It only needs to contain the parameters that deviate from the defaults.
 
-A parameter is determined by its unique name. It has possible attributes
-1. `value`
-2. `type`
-3. `description`
-4. `prior`
-5. `tag`
-6. `transformation`
+## Parameter Format
 
-!!! warn
-    Currently we support types: `float`, `integer`, `string` and `bool`.
-    Array types are designated by the same `type` as singleton types.
+Each parameter is defined by its unique name as a TOML table header (e.g., `[my_parameter_name]`). It can have the following attributes:
 
-### Minimal parameter requirement to run in CliMA
+- `value`: (Required) The value of the parameter. Can be a scalar or an array.
+- `type`: (Required) The data type. Supported types are `"float"`, `"integer"`, `"string"`, and `"bool"`.
+- `description`: (Recommended) A string explaining the parameter's purpose and its physical units.
+- `tag`: An optional array of strings used to group related parameters.
+
+Additional attributes, for example, used by [EnsembleKalmanProcesses.jl](https://github.com/CliMA/EnsembleKalmanProcesses.jl), may include:
+- `prior`: An optional string describing a prior distribution, for use in calibration and data assimilation workflows.
+- `transformation`: An optional string describing a transformation for the parameter, used in calibration.
+
+!!! warn "On Array Types"
+    Array values use the same `type` declaration as their scalar counterparts. For example, a vector of floats is specified with `type = "float"`.
+
+### Basic Parameter Definition
+
+At a minimum, a parameter requires a `value` and a `type`.
 
 ```TOML
 [molar_mass_dry_air]
@@ -26,119 +31,130 @@ value = 0.03
 type = "float"
 ```
 
-### A more informative parameter (e.g. found in the defaults file)
+It is highly recommended to include a `description` with units (CliMA generally uses SI units), as found in the default parameter files.
 
 ```TOML
 [molar_mass_dry_air]
 value = 0.02897
 type = "float"
-description = "Molecular weight dry air (kg/mol)"
+description = "Molecular weight of dry air (kg/mol)"
 ```
 
-### Properly tagged parameter
-To add a tag to a parameter, set the `tag` field with a list of tags.
-Tags are an optional convenience and do not create a namespace. All parameter names must be unique.
+### Tagging Parameters
 
-As an initial convention, parameters will be tagged with the component(s) in which they are used.
-This convention will be changed as we see how packages use tags.
+Tags provide a way to group related parameters. They do not create namespaces, and all parameter names must remain globally unique. To add tags, provide a list of strings to the `tag` field.
+
+A recommended convention is to tag parameters with the model component(s) where they are used.
 
 ```TOML
 [prandtl_number_0_grachev]
 value = 0.98
 type = "float"
-description = "Pr_0 for Grachev universal functions. From Grachev et al, 2007. DOI: 10.1007/s10546-007-9177-6"
+description = "The turbulent Prandtl number in neutral conditions ($Pr_0$) for the Grachev universal functions (unitless). Source: Grachev et al. (2007), DOI: 10.1007/s10546-007-9177-6."
 tag = ["SurfaceFluxes"]
 ```
-If this convention is followed, to obtain the parameters used to build tagged by "surfacefluxes", one could call for example:
+
+Parameters with a specific tag can then be retrieved easily in Julia. Tag matching is case-insensitive and ignores punctuation. For more information, see the API for [`fuzzy_match`](@ref).
+
 ```julia
-surfacefluxes_params = get_tagged_parameter_values(toml_dict, "surfacefluxes")
+# This will retrieve all parameters tagged with "SurfaceFluxes"
+sf_params = get_tagged_parameter_values(toml_dict, "surfacefluxes")
 ```
 
-To match tags, punctuation and capitalization is removed. For more information, see [`fuzzy_match`](@ref Main.fuzzy_match).
+### Advanced: ClimaParams.jl for Calibration
 
-### A more complex parameter for calibration
+For calibration workflows, parameters can include additional metadata to guide the calibration process:
 
 ```TOML
-[neural_net_entrainment]
-value = [0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]
+[entrainment_parameter]
+value = 0.2
 type = "float"
-description = "NN weights to represent the non-dimensional entrainment function"
-prior = "MvNormal(0,I)"
+description = "Entrainment rate parameter for convective plumes"
+tag = ["Convection", "Turbulence"]
+prior = "LogNormal(-1.6, 0.4)"
+transformation = "log"
 ```
 
-### Interaction of the files
+The `prior` and `transformation` fields help guide the calibration process in [EnsembleKalmanProcesses.jl](https://github.com/CliMA/EnsembleKalmanProcesses.jl).
 
-On read an experiment file, the default file is also read and any duplicate parameter attributes are overwritten
-e.g. If the minimal example above was loaded from an experiment file, and the informative example above was in the defaults file, then the loaded parameter would look as follows:
-``` TOML
+## Override Files
+
+When an override file is provided, its values for any given parameter **take precedence** over the default values. Other attributes from the default file (like `description` or `tag`) are merged if they are not present in the override file.
+
+### Override Mechanism
+
+For example, if the user's override file contains:
+```TOML
 [molar_mass_dry_air]
 value = 0.03
 type = "float"
-description = "Molecular weight dry air (kg/mol)"
 ```
-Here, the `value` field has been overwritten by the experiment value.
+The final, merged parameter used in the simulation will be:
+```TOML
+[molar_mass_dry_air]
+value = 0.03  # <-- Overwritten by the user's value
+type = "float"
+description = "Molar mass of dry air (kg mol⁻¹)." # <-- Merged from the default file
+```
 
-## File and parameter interaction with CliMA
+## Interacting with Parameters in Julia
 
-`ClimaParams.jl` provides several methods to parse, merge, and log parameter information.
+ClimaParams.jl provides a clear workflow for using parameters in your code.
 
-### Loading from file
-We provide the following methods to load parameters from file
+### 1. Loading Parameters
+
+The main entry point is [`create_toml_dict`](@ref), which loads, merges, and types the parameters.
+
 ```julia
-create_toml_dict(Float64; override_filepath, default_filepath)
-create_toml_dict(Float64; override_filepath)
+create_toml_dict(FT; override_file=nothing, default_file=...)
 ```
-The `Float64` (or `Float32`) defines the requested precision of the returned parameters.
 
-Typical usage involves passing the local parameter file
+The first argument, `FT`, must be a float type (e.g., `Float64` or `Float32`) and determines the precision of all floating-point parameters.
+
+A typical use case involves providing the path to a local override file:
 ```julia
 import ClimaParams
-local_experiment_file = joinpath(@__DIR__,"local_exp_parameters.toml")
-toml_dict = ClimaParams.create_toml_dict(; override_file = local_experiment_file)
+
+FT = Float64
+local_experiment_file = joinpath(@__DIR__, "local_exp_parameters.toml")
+toml_dict = ClimaParams.create_toml_dict(FT; override_file = local_experiment_file)
 ```
-If no file is passed it will use only the defaults from `ClimaParams.jl` (causing errors if required parameters are not within this list).
 
-You can also pass Julia `Dicts` directly to `override_filepath` and `default_filepath`.
+If `override_file` is omitted, only the default parameters are loaded. You can also pass Julia `Dict`s directly instead of file paths. To combine more than two files, see the API for `merge_toml_files`.
 
-If you want to use more than two TOML files, you can merge them with [`merge_toml_files(filepaths...)`](@ref Main.merge_toml_files). By default, duplicate TOML entries are not allowed, but this can be changed by setting `override = true`.
+### 2. Using and Logging Parameters
 
-The parameter dict is then used to build the codebase (see Parameter Retrieval for usage and examples).
+The returned `toml_dict` is then used to construct parameter structs for different model components.
 
-### Logging parameters
-
-Once the CliMA components are built, it is important to log the parameters. We provide the following method
 ```julia
-log_parameter_information(toml_dict, filepath; strict=false)
+# Retrieve values and construct the component-specific parameter struct
+thermo_params = Thermodynamics.ThermodynamicsParameters(toml_dict)
+
+# ... build the rest of the model components ...
+
+# After all components are built, log the used parameters before running
+log_file = joinpath(@__DIR__, "parameter_log.toml")
+ClimaParams.log_parameter_information(toml_dict, log_file)
+
+# ... run_model(...) ...
 ```
 
-Typical usage will be after building components and before running
-```julia
-import Thermodynamics
-therm_params = Thermodynamics.ThermodynamicsParameters(toml_dict)
-#... build(thermodynamics model,therm_params)
+The function [`log_parameter_information`](@ref) performs two key tasks:
+1.  **Writes a log file**: It saves a complete record of every parameter *actually used* in the simulation to `log_file`.
+2.  **Performs sanity checks**: It verifies that all parameters in your override file were used.
 
-log_file = joinpath(@__DIR__,"parameter_log.toml")
-ClimaParams.log_parameter_information(toml_dict,log_file)
+The log file includes a `used_in` field, which lists every component that requested the parameter. Continuing the example, the log file would contain:
 
-# ... run(thermodynamics_model)
-```
-
-This function performs two tasks
-1. It writes a parameter log file to `log_file`.
-2. It performs parameter sanity checks.
-
-Continuing our previous example, imagine `molar_mass_dry_air` was extracted in `ThermodynamicsParameters`. Then the log file will contain:
-``` TOML
+```TOML
 [molar_mass_dry_air]
 value = 0.03
 type = "float"
-description = "Molecular weight dry air (kg/mol)"
+description = "Molar mass of dry air (kg mol⁻¹)."
 used_in = ["Thermodynamics"]
 ```
-The additional attribute `used_in` displays every CliMA component that used this parameter.
 
-!!! note
-    Log files are written in TOML format, and can be read back into the model.
+!!! note "Reproducibility"
+    The generated log file is a valid TOML parameter file and can be used as an `override_file` to exactly reproduce an experiment.
 
-!!! warn
-    It is assumed that all parameters in the local experiment file should be used, if not a warning is displayed when calling `log_parameter_information`. This is upgraded to an error exception by changing `strict`.
+!!! warn "Unused Parameter Checks"
+    By default, [`log_parameter_information`](@ref) will issue a warning if any parameter in your override file was not requested by any component. To treat this as a fatal error, set its argument `strict=true`.
