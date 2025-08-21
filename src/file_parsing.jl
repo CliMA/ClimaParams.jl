@@ -1,18 +1,8 @@
-"""
-    AbstractTOMLDict{FT <: AbstractFloat}
-
-Abstract supertype for parameter dictionaries.
-
-These objects hold model parameters read from TOML files and are parameterized by a float type
-`FT` to ensure type stability. See concrete implementation [`ParamDict`](@ref).
-"""
-abstract type AbstractTOMLDict{FT <: AbstractFloat} end
-
 const NAMESTYPE =
     Union{AbstractVector{S}, NTuple{N, S} where {N}} where {S <: AbstractString}
 
 """
-    ParamDict{FT} <: AbstractTOMLDict{FT}
+    ParamDict{FT}
 
 A concrete parameter dictionary that stores parameter data from TOML files.
 
@@ -23,7 +13,7 @@ overrides) and tracks which override parameters have been used.
 - `data::Dict`: The main dictionary holding the complete, merged set of parameter values and their metadata.
 - `override_dict::Union{Nothing, Dict}`: A dictionary containing only the parameters from an override file, used for tracking purposes. Is `nothing` if no override file was provided.
 """
-struct ParamDict{FT} <: AbstractTOMLDict{FT}
+struct ParamDict{FT}
     "The main dictionary holding the complete, merged set of parameter values and their metadata."
     data::Dict
     "A dictionary containing only the parameters from an override file, used for tracking purposes. Is `nothing` if no override file was provided."
@@ -31,11 +21,11 @@ struct ParamDict{FT} <: AbstractTOMLDict{FT}
 end
 
 """
-    float_type(pd::AbstractTOMLDict{FT})
+    float_type(pd::ParamDict)
 
 Returns the float type `FT` with which the parameter dictionary `pd` was initialized.
 """
-float_type(::AbstractTOMLDict{FT}) where {FT} = FT
+float_type(::ParamDict{FT}) where {FT} = FT
 
 Base.iterate(pd::ParamDict, state) = Base.iterate(pd.data, state)
 Base.iterate(pd::ParamDict) = Base.iterate(pd.data)
@@ -110,13 +100,13 @@ function log_component!(
 end
 
 """
-    _get_typed_value(pd::AbstractTOMLDict, val, valname, valtype)
+    _get_typed_value(pd::ParamDict, val, valname, valtype)
 
 An internal helper function that converts a raw parameter `val` to the
 correct Julia type based on the `valtype` string from the TOML file.
 
 # Arguments
-- `pd::{AbstractTOMLDict}`: The parameter dictionary, used to get the float type.
+- `pd::ParamDict`: The parameter dictionary, used to get the float type.
 - `val`: The raw value of the parameter.
 - `valname::{AbstractString}`: The name of the parameter (for error messages).
 - `valtype::{AbstractString}`: The type string, e.g., "float", "integer", "string", "bool", "datetime".
@@ -124,12 +114,7 @@ correct Julia type based on the `valtype` string from the TOML file.
 # Returns
 - The value `val` converted to the appropriate type. Throws an error for an unknown `valtype`.
 """
-function _get_typed_value(
-    pd::AbstractTOMLDict,
-    val,
-    valname::AbstractString,
-    valtype,
-)
+function _get_typed_value(pd::ParamDict, val, valname::AbstractString, valtype)
 
     if valtype == "float"
         return float_type(pd)(val)
@@ -166,7 +151,7 @@ This function has two main methods:
 If a `component` string is provided, it also logs the parameters as being used by that component.
 
 # Arguments
-- `pd::{AbstractTOMLDict}`: The parameter dictionary.
+- `pd::ParamDict`: The parameter dictionary.
 - `names::Union{String,Vector{String}}`: A single name or vector of names to retrieve.
 - `name_map`: A `Dict` or other iterable of `Pair`s mapping the parameter name in the TOML file to the desired variable name in the code (e.g., `"long_name_in_toml" => "short_name_in_code"`).
 - `component::Union{AbstractString, Nothing}`: An optional string to log which model component uses these parameters.
@@ -187,7 +172,7 @@ If a `component` string is provided, it also logs the parameters as being used b
 
 """
 function get_parameter_values(
-    pd::AbstractTOMLDict,
+    pd::ParamDict,
     names::AbstractString,
     component = nothing,
 )
@@ -195,7 +180,7 @@ function get_parameter_values(
 end
 
 function get_parameter_values(
-    pd::AbstractTOMLDict,
+    pd::ParamDict,
     names::NAMESTYPE,
     component::Union{AbstractString, Nothing} = nothing,
 )
@@ -208,7 +193,7 @@ end
 
 
 function get_parameter_values(
-    pd::AbstractTOMLDict,
+    pd::ParamDict,
     name_map::Union{AbstractVector{Pair{S, S}}, NTuple{N, Pair}},
     component = nothing,
 ) where {S, N}
@@ -216,7 +201,7 @@ function get_parameter_values(
 end
 
 function get_parameter_values(
-    pd::AbstractTOMLDict,
+    pd::ParamDict,
     name_map::Vararg{Pair};
     component = nothing,
 )
@@ -228,7 +213,7 @@ function get_parameter_values(
 end
 
 function get_parameter_values(
-    pd::AbstractTOMLDict,
+    pd::ParamDict,
     name_map::Dict{S, S},
     component = nothing,
 ) where {S <: AbstractString}
@@ -241,7 +226,7 @@ function get_parameter_values(
 end
 
 function get_parameter_values(
-    pd::AbstractTOMLDict,
+    pd::ParamDict,
     name_map::NamedTuple,
     component = nothing,
 )
@@ -249,7 +234,7 @@ function get_parameter_values(
 end
 
 function get_parameter_values(
-    pd::AbstractTOMLDict,
+    pd::ParamDict,
     name_map::Dict{Symbol, Symbol},
     component = nothing,
 )
@@ -277,7 +262,7 @@ This function makes several assumptions about the parameter struct:
 
 # Arguments
 - `param_struct_type`: The type of the parameter struct to be created (e.g., `MyParams`).
-- `toml_dict::{AbstractTOMLDict}`: The TOML dictionary containing the parameter values.
+- `toml_dict::ParamDict`: The TOML dictionary containing the parameter values.
 - `name_map`: A `Dict` or other iterable of `Pair`s to map TOML names to struct field names.
 - `nested_structs`: A `NamedTuple` of already-constructed nested parameter structs, if any.
 """
@@ -335,14 +320,13 @@ during the simulation by checking for the `"used_in"` log entry.
 - `pd::{ParamDict}`: The parameter dictionary to check.
 - `strict::Bool`: If `true`, throws an error if any override parameter is unused. If `false`, only a warning is issued.
 """
-check_override_parameter_usage(pd::AbstractTOMLDict, strict::Bool) =
+check_override_parameter_usage(pd::ParamDict, strict::Bool) =
     check_override_parameter_usage(pd, strict, pd.override_dict)
 
-check_override_parameter_usage(pd::AbstractTOMLDict, strict::Bool, ::Nothing) =
-    nothing
+check_override_parameter_usage(pd::ParamDict, strict::Bool, ::Nothing) = nothing
 
 function check_override_parameter_usage(
-    pd::AbstractTOMLDict,
+    pd::ParamDict,
     strict::Bool,
     override_dict,
 )
@@ -377,7 +361,7 @@ function check_override_parameter_usage(
 end
 
 """
-    write_log_file(pd::AbstractTOMLDict, filepath::AbstractString)
+    write_log_file(pd::ParamDict, filepath::AbstractString)
 
 Saves all *used* parameters to a TOML file at the specified `filepath`.
 
@@ -386,10 +370,10 @@ logged with [`log_component!`](@ref), creating a file that can be used to
 reproduce an experiment with the exact same parameter set.
 
 # Arguments
-- `pd::{AbstractTOMLDict}`: The parameter dictionary containing usage logs.
+- `pd::ParamDict`: The parameter dictionary containing usage logs.
 - `filepath::{AbstractString}`: The path where the log file will be saved.
 """
-function write_log_file(pd::AbstractTOMLDict, filepath::AbstractString)
+function write_log_file(pd::ParamDict, filepath::AbstractString)
     used_parameters = Dict()
     for (key, val) in pd.data
         if "used_in" in keys(val)
@@ -403,7 +387,7 @@ end
 
 
 """
-    log_parameter_information(pd::AbstractTOMLDict, filepath; strict::Bool = false)
+    log_parameter_information(pd::ParamDict, filepath; strict::Bool = false)
 
 A convenience function that performs end-of-run parameter handling.
 
@@ -412,12 +396,12 @@ It calls [`write_log_file`](@ref) to save used parameters and then
 parameters were used.
 
 # Arguments
-- `pd::{AbstractTOMLDict}`: The parameter dictionary.
+- `pd::ParamDict`: The parameter dictionary.
 - `filepath::{AbstractString}`: The path for the output log file.
 - `strict::Bool`: If `true`, errors if override parameters are unused.
 """
 function log_parameter_information(
-    pd::AbstractTOMLDict,
+    pd::ParamDict,
     filepath::AbstractString;
     strict::Bool = false,
 )
@@ -434,9 +418,9 @@ An internal helper that merges two `ParamDict` objects, with values from the
 `override_toml_dict` taking precedence over the `default_toml_dict`.
 """
 function merge_override_default_values(
-    override_toml_dict::PDT,
-    default_toml_dict::PDT,
-) where {FT, PDT <: AbstractTOMLDict{FT}}
+    override_toml_dict::ParamDict{FT},
+    default_toml_dict::ParamDict{FT},
+) where {FT}
     data = default_toml_dict.data
     override_dict = override_toml_dict.override_dict
     for (key, val) in override_toml_dict.data
@@ -448,7 +432,7 @@ function merge_override_default_values(
             end
         end
     end
-    return PDT(data, override_dict)
+    return ParamDict{FT}(data, override_dict)
 end
 
 """
@@ -493,25 +477,25 @@ function create_toml_dict(
     return merge_override_default_values(override_toml_dict, default_toml_dict)
 end
 
-# Extend Base.print to AbstractTOMLDict
-Base.print(td::AbstractTOMLDict, io = stdout) = TOML.print(io, td.data)
+# Extend Base.print to ParamDict
+Base.print(td::ParamDict, io = stdout) = TOML.print(io, td.data)
 
 
 """
-    get_tagged_parameter_names(pd::AbstractTOMLDict, tag)
+    get_tagged_parameter_names(pd::ParamDict, tag)
 
 Retrieves the names of all parameters associated with a given `tag` or list of `tags`.
 
 Tag matching is case-insensitive and ignores punctuation and whitespace.
 
 # Arguments
-- `pd::{AbstractTOMLDict}`: The parameter dictionary.
+- `pd::ParamDict`: The parameter dictionary.
 - `tag::Union{AbstractString, Vector{<:AbstractString}}`: The tag or vector of tags to search for.
 
 # Returns
 - `Vector{String}`: A list of parameter names that have the specified tag(s).
 """
-function get_tagged_parameter_names(pd::AbstractTOMLDict, tag::AbstractString)
+function get_tagged_parameter_names(pd::ParamDict, tag::AbstractString)
     data = pd.data
     ret_values = String[]
     for (key, val) in data
@@ -523,7 +507,7 @@ function get_tagged_parameter_names(pd::AbstractTOMLDict, tag::AbstractString)
 end
 
 get_tagged_parameter_names(
-    pd::AbstractTOMLDict,
+    pd::ParamDict,
     tags::Vector{S},
 ) where {S <: AbstractString} =
     vcat(map(x -> get_tagged_parameter_names(pd, x), tags)...)
@@ -541,22 +525,22 @@ function fuzzy_match(s1::AbstractString, s2::AbstractString)
 end
 
 """
-    get_tagged_parameter_values(pd::AbstractTOMLDict, tag)
+    get_tagged_parameter_values(pd::ParamDict, tag)
 
 Retrieves the values of all parameters associated with a given `tag` or list of `tags`.
 
 # Arguments
-- `pd::{AbstractTOMLDict}`: The parameter dictionary.
+- `pd::ParamDict`: The parameter dictionary.
 - `tag::Union{AbstractString, Vector{<:AbstractString}}`: The tag or vector of tags to search for.
 
 # Returns
 - A `NamedTuple` of the tagged parameters, where keys are parameter names and values are their typed values.
 """
-get_tagged_parameter_values(pd::AbstractTOMLDict, tag::AbstractString) =
+get_tagged_parameter_values(pd::ParamDict, tag::AbstractString) =
     get_parameter_values(pd, get_tagged_parameter_names(pd, tag))
 
 get_tagged_parameter_values(
-    pd::AbstractTOMLDict,
+    pd::ParamDict,
     tags::Vector{S},
 ) where {S <: AbstractString} =
     merge(map(x -> get_tagged_parameter_values(pd, x), tags)...)
