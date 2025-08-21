@@ -1,6 +1,11 @@
 ClimaParams.jl Release Notes
 ========================
 
+v0.12.0
+--------
+- Change some parameter names ([#242](https://github.com/CliMA/ClimaParams.jl/pull/242))
+- Change epoch_time to string ([#246](https://github.com/CliMA/ClimaParams.jl/pull/246))
+
 v0.11.0
 --------
 - Update the specific heat of ice
