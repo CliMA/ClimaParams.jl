@@ -2,7 +2,12 @@ ClimaParams.jl Release Notes
 ========================
 main
 --------
+
+v0.12.1
+--------
+
 - Log parameter when getindex is called ([#243](https://github.com/CliMA/ClimaParams.jl/pull/243))
+- Change epoch_time to a DateTime ([#248](https://github.com/CliMA/ClimaParams.jl/pull/248))
 
 
 v0.12.0
