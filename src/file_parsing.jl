@@ -68,10 +68,12 @@ function Base.getindex(pd::ParamDict, i)
     isnothing(param_type) && error("No type found for parameter `$i`")
 
     if param_value isa AbstractVector
-        return map(x -> _get_typed_value(pd, x, i, param_type), param_value)
+        val = map(x -> _get_typed_value(pd, x, i, param_type), param_value)
     else
-        return _get_typed_value(pd, param_value, i, param_type)
+        val = _get_typed_value(pd, param_value, i, param_type)
     end
+    log_component!(pd, (i,), "getindex")
+    return val
 end
 
 """

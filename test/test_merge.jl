@@ -25,6 +25,10 @@ import ClimaParams as CP
     @test toml_dict_2["a"] == 2
     @test toml_dict_2["a"] isa Int
 
+    # Test if parameter is logged by getindex
+    @test isnothing(CP.check_override_parameter_usage(toml_dict_1, true))
+    @test isnothing(CP.check_override_parameter_usage(toml_dict_2, true))
+
     # Test merging
     merged_dict = CP.merge_toml_files([toml_1, toml_2]; override = true)
     merged_toml_dict = CP.create_toml_dict(FT, default_file = merged_dict)

@@ -1,5 +1,9 @@
 ClimaParams.jl Release Notes
 ========================
+main
+--------
+- Log parameter when getindex is called ([#243](https://github.com/CliMA/ClimaParams.jl/pull/243))
+
 
 v0.12.0
 --------
