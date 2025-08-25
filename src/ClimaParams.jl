@@ -1,6 +1,7 @@
 module ClimaParams
 
 using TOML
+import Dates: DateTime
 
 export AbstractTOMLDict
 export ParamDict
