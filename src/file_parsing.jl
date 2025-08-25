@@ -119,7 +119,7 @@ correct Julia type based on the `valtype` string from the TOML file.
 - `pd::{AbstractTOMLDict}`: The parameter dictionary, used to get the float type.
 - `val`: The raw value of the parameter.
 - `valname::{AbstractString}`: The name of the parameter (for error messages).
-- `valtype::{AbstractString}`: The type string, e.g., "float", "integer", "string", "bool".
+- `valtype::{AbstractString}`: The type string, e.g., "float", "integer", "string", "bool", "datetime".
 
 # Returns
 - The value `val` converted to the appropriate type. Throws an error for an unknown `valtype`.
@@ -139,6 +139,8 @@ function _get_typed_value(
         return String(val)
     elseif valtype == "bool"
         return Bool(val)
+    elseif valtype == "datetime"
+        return DateTime(val)
     else
         error(
             "For parameter with identifier: \"",

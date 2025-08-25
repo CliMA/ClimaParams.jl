@@ -2333,9 +2333,9 @@ type = "float"
 description = "Total solar irradiance (TSI) at the mean orbital distance (W m⁻²)."
 
 [epoch_time]
-value = "2000-01-01T11:58:56.816"
-type = "string"
-description = "J2000 epoch (Jan 1, 2000 11:58:56.816 UTC) as string"
+value = 2000-01-01T11:58:56.816
+type = "datetime"
+description = "J2000 epoch (Jan 1, 2000 11:58:56.816 UTC) as a DateTime"
 
 [mean_anomaly_at_epoch]
 value = 6.24006014121
