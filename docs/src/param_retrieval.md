@@ -349,10 +349,10 @@ end
 
 ClimaParams supports several parameter types:
 
-- **Float**: Numeric values (default)
-- **Integer**: Whole numbers
-- **String**: Text values  
-- **Bool**: Boolean values
+- **float**: Numeric values (default)
+- **integer**: Whole numbers
+- **string**: Text values
+- **bool**: Boolean values
 - **datetime**: DateTime - an RFC 3339 formatted date-time with the offset omitted or an offset of `z`
 
 The type is specified in the TOML file:
