@@ -353,6 +353,7 @@ ClimaParams supports several parameter types:
 - **Integer**: Whole numbers
 - **String**: Text values  
 - **Bool**: Boolean values
+- **datetime**: DateTime - an RFC 3339 formatted date-time with the offset omitted or an offset of `z`
 
 The type is specified in the TOML file:
 
@@ -361,4 +362,9 @@ The type is specified in the TOML file:
 value = 9.81
 type = "float"
 description = "Gravitational acceleration on the planet (m s⁻²)."
+
+[epoch_time]
+value = 1970-01-01T00:00:00.0
+type = "datetime"
+description = "Unix epoch"
 ```
