@@ -11,7 +11,6 @@ This page documents the functions and types available in ClimaParams.jl. The API
 These are the main types for holding and interacting with parameters.
 
 ```@docs
-AbstractTOMLDict
 ParamDict
 Base.getindex
 float_type
