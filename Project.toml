@@ -10,7 +10,7 @@ TOML = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
 [compat]
 TOML = "1"
 Test = "1"
-Thermodynamics = "0.11.2"
+Thermodynamics = "0.11, 0.12, 0.13, 0.14"
 julia = "1"
 
 [extras]
@@ -18,4 +18,4 @@ Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 Thermodynamics = "b60c26fb-14c3-4610-9d3e-2d17fe7ff00c"
 
 [targets]
-test = ["Test", "Thermodynamics"]
+test = ["Test"]

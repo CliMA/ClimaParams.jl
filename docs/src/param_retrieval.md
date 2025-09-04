@@ -151,24 +151,15 @@ end
 ThermodynamicsParameters(::Type{FT}) = ThermodynamicsParameters(CP.create_toml_dict(FT))
 
 # TOML dictionary constructor
-function ThermodynamicsParameters(toml_dict)
-    name_map = [
-        :temperature_triple_point => :T_triple,
-        :adiabatic_exponent_dry_air => :kappa_d,
-        :pressure_triple_point => :press_triple,
-        :thermodynamics_temperature_reference => :T_0,
-        :temperature_water_freeze => :T_freeze,
-        :isobaric_specific_heat_ice => :cp_i,
-    ]
-
-    parameters = CP.get_parameter_values(
-        toml_dict,
-        name_map,
-        "Thermodynamics",  # Component name for logging
+function ThermodynamicsParameters(toml_dict::ParamDict{FT}) where {FT}
+    return ThermodynamicsParameters{FT}(;
+        temperature_triple_point = toml_dict["T_triple"],
+        adiabatic_exponent_dry_air = toml_dict["kappa_d"],
+        pressure_triple_point = toml_dict["press_triple"],
+        thermodynamics_temperature_reference = toml_dict["T_0"],
+        temperature_water_freeze = toml_dict["T_freeze"],
+        isobaric_specific_heat_ice = toml_dict["cp_i"],
     )
-
-    FT = CP.float_type(toml_dict)
-    return ThermodynamicsParameters{FT}(parameters...)
 end
 nothing # hide
 ```
@@ -180,146 +171,22 @@ parameter sets that maintain parameter relationships:
 
 ```julia
 # Build individual component parameter sets
-param_therm = ThermodynamicsParameters(toml_dict)
-param_0M = CloudMicrophysics.Microphysics_0M_Parameters(toml_dict)
+thermodynamics_params = ThermodynamicsParameters(toml_dict)
+params_0M = CloudMicrophysics.Microphysics_0M_Parameters(toml_dict)
 
 # Combine into a hierarchical parameter set
 parameter_set = CloudMicrophysics.CloudMicrophysicsParameters(
     toml_dict,
-    param_0M,
-    param_therm
+    params_0M,
+    thermodynamics_params
+    thermodynamics_params,
+    microphysics_params
 )
-```
-
-## Advanced Examples from CliMA
-
-### Thermodynamics.jl Example
-
-Here's how [`Thermodynamics.jl`](https://github.com/CliMA/Thermodynamics.jl)
-uses ClimaParams in practice:
-
-#### User-facing driver file
-```julia
-import ClimaParams as CP
-using Thermodynamics
-
-thermo_params = ThermodynamicsParameters(Float64)
-```
-
-#### Source code implementation
-```julia
-Base.@kwdef struct ThermodynamicsParameters{FT}
-    LH_v0::FT
-    LH_s0::FT
-    # ... other parameters
-    # derived parameters
-    LH_f0 = LH_s0 - LH_v0
-end
-
-# Float-type constructor
-ThermodynamicsParameters(::Type{FT}) = ThermodynamicsParameters(CP.create_toml_dict(FT))
-
-# TOML dictionary constructor
-function ThermodynamicsParameters(toml_dict)
-    name_map = [
-        :temperature_triple_point => :T_triple,
-        :adiabatic_exponent_dry_air => :kappa_d,
-        :pressure_triple_point => :press_triple,
-        :thermodynamics_temperature_reference => :T_0,
-        :temperature_water_freeze => :T_freeze,
-        :isobaric_specific_heat_ice => :cp_i,
-        # ... more mappings
-    ]
-
-    parameters = CP.get_parameter_values(
-        toml_dict,
-        name_map,
-        "Thermodynamics",
-    )
-    
-    # Create the parameter struct, preserving parameter relationships
-    FT = CP.float_type(toml_dict)
-    return ThermodynamicsParameters{FT}(parameters...)
-end
-```
-
-### CloudMicrophysics.jl Example
-
-Here's how [`CloudMicrophysics.jl`](https://github.com/CliMA/CloudMicrophysics.jl) builds hierarchical parameter sets:
-
-#### User-facing driver file
-```julia
-import ClimaParams as CP
-import Thermodynamics
-import CloudMicrophysics
-
-# Load defaults
-toml_dict = CP.create_toml_dict(Float64)
-
-# Build the low level parameter sets
-param_therm = Thermodynamics.Parameters.ThermodynamicsParameters(toml_dict)
-param_0M = CloudMicrophysics.Microphysics_0M_Parameters(toml_dict)
-
-# Build the hierarchical parameter set
-parameter_set = CloudMicrophysics.CloudMicrophysicsParameters(
-    toml_dict,
-    param_0M,
-    param_therm
-)
-```
-
-#### Source code implementation
-```julia
-abstract type AbstractMicrophysicsParameters end
-struct NoMicrophysicsParameters <: AbstractMicrophysicsParameters end
-
-Base.@kwdef struct Microphysics_0M_Parameters{FT} <: AbstractMicrophysicsParameters
-    τ_precip::FT
-    qc_0::FT
-    S_0::FT
-end
-
-Base.@kwdef struct CloudMicrophysicsParameters{FT, AMPS <: AbstractMicrophysicsParameters}
-    K_therm::FT
-    # ... other parameters
-    MPS::AMPS
-    TPS::ThermodynamicsParameters{FT}
-end
-
-function CloudMicrophysicsParameters(
-    toml_dict,
-    MPS::AMPS,
-    TPS::ThermodynamicsParameters{FT},
-) where {FT, AMPS <: AbstractMicrophysicsParameters}
-
-    parameter_names = ["K_therm", "other_param", ...]
-
-    parameters = CP.get_parameter_values(
-        toml_dict,
-        parameter_names,
-        "CloudMicrophysics",
-    )
-
-    return CloudMicrophysicsParameters{FT, AMPS}(;
-        parameters...,
-        MPS,  # Nested parameter struct
-        TPS,  # Nested parameter struct
-    )
-end
 ```
 
 ### Parameters-as-functions
 
-When building model components, parameters are extracted by calling `param_set.name`:
-
-```julia
-function example_cloudmicrophysics_func(param_set::CloudMicrophysicsParameters, ...)
-    K_therm = param_set.K_therm
-    # ... use parameters
-end
-```
-
-These parameters can be made into functions for added flexibility:
+Parameters can be accessed as functions for added flexibility:
 
 ```julia
 K_therm(param_set) = param_set.K_therm

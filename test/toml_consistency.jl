@@ -5,6 +5,13 @@ import ClimaParams as CP
 # read parameters needed for tests
 full_parameter_set = CP.create_toml_dict(Float64)
 
+@testset "Test equality" begin
+    @test full_parameter_set == CP.create_toml_dict(Float64)
+    @test full_parameter_set != CP.create_toml_dict(Float32)
+    override_file = pkgdir(CP, "src", "parameters.toml")
+    @test full_parameter_set != CP.create_toml_dict(Float64; override_file)
+end
+
 @testset "Test write / log parameters" begin
 
     for (k, v) in full_parameter_set #iterates over data
