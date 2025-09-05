@@ -3,6 +3,9 @@ ClimaParams.jl Release Notes
 main
 --------
 
+- Breaking: Removed the AbstractTOMLDict type ([#247](https://github.com/CliMA/ClimaParams.jl/pull/247))
+- Added direct indexing `td["gravitational_acceleration"] ([#239](https://github.com/CliMA/ClimaParams.jl/pull/239))
+
 v0.12.1
 --------
 

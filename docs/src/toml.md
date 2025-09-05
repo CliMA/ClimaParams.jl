@@ -10,7 +10,7 @@ Parameters for CliMA models are defined in `.toml` files. ClimaParams.jl is desi
 Each parameter is defined by its unique name as a TOML table header (e.g., `[my_parameter_name]`). It can have the following attributes:
 
 - `value`: (Required) The value of the parameter. Can be a scalar or an array.
-- `type`: (Required) The data type. Supported types are `"float"`, `"integer"`, `"string"`, and `"bool"`.
+- `type`: (Required) The data type. See [supported types](param_retrieval.md#Parameter-Types).
 - `description`: (Recommended) A string explaining the parameter's purpose and its physical units.
 - `tag`: An optional array of strings used to group related parameters.
 

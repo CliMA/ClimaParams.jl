@@ -73,9 +73,9 @@ sf_params = CP.get_tagged_parameter_values(param_dict, "surfacefluxes")
 
 ### Advanced Topics
 
-- **[Parameter Structs](param_retrieval.md#parameter-structs)**: Learn how to create custom parameter structs for your models.
-- **[Component Logging](param_retrieval.md#component-logging)**: Understand how to track parameter usage across model components for logging and validation.
-- **[Override Files](toml.md#override-files)**: See how to customize parameters for specific experiments.
-- **[Tagged Parameters](param_retrieval.md#tagged-parameters)**: Discover how to organize and retrieve related parameters.
+- **[Parameter Structs](param_retrieval.md#Parameter-Structs)**: Learn how to create custom parameter structs for your models.
+- **[Component Logging](param_retrieval.md#Component-Logging)**: Understand how to track parameter usage across model components for logging and validation.
+- **[Override Files](toml.md#Override-Files)**: See how to customize parameters for specific experiments.
+- **[Tagged Parameters](param_retrieval.md#Tagged-Parameters)**: Discover how to organize and retrieve related parameters.
 
 For detailed usage examples and integration into your code, start with the Parameter retrieval guide, then explore the TOML file interface for configuration details.
