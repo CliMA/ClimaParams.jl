@@ -3,6 +3,12 @@ ClimaParams.jl Release Notes
 main
 --------
 
+v1.0.1
+--------
+- Add parameters for cloud top height diagnostic ([#251](https://github.com/CliMA/ClimaParams.jl/pull/251))
+
+v1.0.0
+--------
 - Breaking: Removed the AbstractTOMLDict type ([#247](https://github.com/CliMA/ClimaParams.jl/pull/247))
 - Added direct indexing `td["gravitational_acceleration"] ([#239](https://github.com/CliMA/ClimaParams.jl/pull/239))
 
