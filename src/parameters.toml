@@ -2890,3 +2890,20 @@ description = "Prescribed value of the precipitation fraction (unitless)."
 value = 0.3
 type = "float"
 description = "Minimum allowed precipitation fraction when using the 'cloud_cover' model (unitless)."
+
+# Model diagnostics
+
+[cloud_top_q_threshold]
+value = 1e-8
+type = "float"
+description = "Minimum value for condensate required to calculate top of cloud (kg kg-1)."
+
+[cloud_top_k]
+value = 1e10
+type = "float"
+description = "Parameter controlling steepness of (logistic) transition between cloud and non-cloud for cloud top calculations (unitless)."
+
+[cloud_top_a]
+value = 1e-3
+type = "float"
+description = "Parameter controlling exponential scale of favoring cloud top for cloud top calculations (unitless)."
