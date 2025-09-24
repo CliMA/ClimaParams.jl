@@ -1,5 +1,9 @@
 ClimaParams.jl Release Notes
 ========================
+v1.1.7
+--------
+- Change `temperature_surface_reference` from 290 K to 288 K and `temperature_min_reference` from 220 K to 215 K to match the dycore manuscript ([#253](https://github.com/CliMA/ClimaParams.jl/pull/253))
+
 v1.1.6
 -------
  - Add `ssa_size_bin_divisions` at MERRA-2 size bins to define bin edges and total number
