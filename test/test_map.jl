@@ -85,6 +85,7 @@ import Thermodynamics.Parameters.ThermodynamicsParameters
         :gravitational_acceleration => :grav,
         :temperature_homogenous_nucleation => :T_icenuc,
         :potential_temperature_reference_pressure => :p_ref_theta,
+        :reference_temperature_transition_exponent => :s_ref,
     )
 
     # Example function for thermo params - essentially a specific constuctor of `create_parameter_struct`
