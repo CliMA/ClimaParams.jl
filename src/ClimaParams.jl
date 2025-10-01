@@ -69,6 +69,19 @@ This allows for direct, dictionary-like access to the typed value of a parameter
 
 """
 function Base.getindex(pd::ParamDict, i)
+    val = _getindex(pd, i)
+    log_component!(pd, (i,), "getindex")
+    return val
+end
+
+"""
+    Base.getindex(pd::ParamDict, i)
+
+Retrieves a parameter by its `key`, converting it to the type specified in the TOML file.
+
+This is different from `Base.getindex` as it does not log the parameter.
+"""
+function _getindex(pd::ParamDict, i)
     param_data = getindex(pd.data, i)
     param_value = param_data["value"]
     param_type = get(param_data, "type", nothing)
@@ -79,7 +92,6 @@ function Base.getindex(pd::ParamDict, i)
     else
         val = _get_typed_value(pd, param_value, i, param_type)
     end
-    log_component!(pd, (i,), "getindex")
     return val
 end
 
@@ -204,7 +216,7 @@ function get_parameter_values(
     if !isnothing(component)
         log_component!(pd, names, component)
     end
-    return NamedTuple(map(x -> Symbol(x) => pd[x], names))
+    return NamedTuple(map(x -> Symbol(x) => _getindex(pd, x), names))
 end
 
 
