@@ -2333,9 +2333,9 @@ type = "float"
 description = "Total solar irradiance (TSI) at the mean orbital distance (W m⁻²)."
 
 [epoch_time]
-value = 2000-01-01T11:58:56.816
+value = 2000-01-01T11:58:55.816
 type = "datetime"
-description = "J2000 epoch (Jan 1, 2000 11:58:56.816 UTC) as a DateTime"
+description = "J2000 epoch (Jan 1, 2000 11:58:55.816 UTC) as a DateTime"
 
 [mean_anomaly_at_epoch]
 value = 6.24006014121
@@ -2356,11 +2356,6 @@ description = "Longitude of perihelion at epoch (radians). Corresponds to 282.93
 value = 0.016708634
 type = "float"
 description = "Orbital eccentricity at epoch (unitless)."
-
-[longitude_perihelion]
-value = 4.938188299449
-type = "float"
-description = "Longitude of perihelion (radians). Corresponds to 282.9373°."
 
 # Universal Physical Constants
 
