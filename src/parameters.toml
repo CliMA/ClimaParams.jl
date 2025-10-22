@@ -2601,6 +2601,11 @@ value = 10
 type = "float"
 description = "Exponent for the minimum area limiter in entrainment (unitless)."
 
+[entr_detr_limit_inv_tau]
+value = 0.0001
+type = "float"
+description = "Inverse timescale for entrainment and detrainment for negligible area (s⁻¹)."
+
 [detr_inv_tau]
 value = 0.001
 type = "float"
