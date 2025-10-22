@@ -3,6 +3,12 @@ ClimaParams.jl Release Notes
 main
 --------
 
+v1.1.0
+--------
+- Breaking: Changed the minimum and surface reference temperature to match the Dycore manuscript ([#253](https://github.com/CliMA/ClimaParams.jl/pull/253))
+- Added an exponent for the reference temperature profile `[reference_temperature_transition_exponent]` ([#253](https://github.com/CliMA/ClimaParams.jl/pull/253))
+
+
 v1.0.1
 --------
 - Add parameters for cloud top height diagnostic ([#251](https://github.com/CliMA/ClimaParams.jl/pull/251))
