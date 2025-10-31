@@ -160,7 +160,7 @@ function _get_typed_value(
         return valid_types[valtype](val)
     else
         error(
-            """ For parameter with identifier: $valname, the attribute: type = $valtype, is not recognised, 
+            """ For parameter with identifier: $valname, the attribute: type = $valtype, is not recognised,
             please select from: $(keys(valid_types))
             """,
         )
@@ -483,7 +483,8 @@ Julia `Dict`s.
 
 # Keywords
 - `override_file`: Path to a TOML file or a `Dict` containing override parameters.
-- `default_file`: Path to the default TOML file or a `Dict` containing default parameters. Defaults to the `parameters.toml` file in the package directory.
+- `default_file`: Path to the default TOML file or a `Dict` containing default parameters.
+   Defaults to the `parameters.toml` file in the package directory.
 
 # Returns
 - A `ParamDict{FT}` containing the merged and typed parameters.
@@ -504,6 +505,44 @@ function create_toml_dict(
     override_toml_dict = ParamDict{FT}(override_dict, override_dict)
 
     return merge_override_default_values(override_toml_dict, default_toml_dict)
+end
+
+"""
+    create_toml_dict(
+        ::Type{FT};
+        override_files::Union{Vector{String}, Vector{Dict}} = [],
+        default_file::Union{String, Dict} = joinpath(@__DIR__, "parameters.toml"),
+    )
+
+Creates a `ParamDict{FT}` by reading and merging default and override parameter sources.
+This constructor accepts a vector of override files, which are merged in the order they
+are provided.
+
+# Arguments
+- `FT::{Type{<:AbstractFloat}}`: The floating-point type to be used for all "float" parameters.
+
+# Keywords
+- `override_files`: Vector of paths to TOML files or `Dict`s containing override parameters.
+- `default_file`: Path to the default TOML file or a `Dict` containing default parameters.
+   Defaults to the `parameters.toml` file in the package directory.
+
+# Returns
+- A `ParamDict{FT}` containing the merged and typed parameters.
+"""
+function create_toml_dict(
+    ::Type{FT},
+    override_files::String...;
+    default_file::Union{String, Dict} = joinpath(@__DIR__, "parameters.toml"),
+) where {FT <: AbstractFloat}
+    isempty(override_files) &&
+        return create_toml_dict(FT; override_file = nothing, default_file)
+    all(filepath -> endswith(filepath, ".toml"), override_files) ||
+        error("File paths ($override_files) must be TOML files")
+
+    # Merge the override files in order.
+    override_dict = merge_toml_files(collect(override_files); override = true)
+
+    return create_toml_dict(FT; override_file = override_dict, default_file)
 end
 
 Base.print(td::ParamDict, io = stdout) = TOML.print(io, td.data)

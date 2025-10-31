@@ -46,4 +46,20 @@ import ClimaParams as CP
     @test a isa FT
     @test b == 3.0
     @test b isa FT
+
+    # Test merging in create_toml_dict
+    merged_toml_dict = CP.create_toml_dict(FT, toml_1, toml_2)
+    (; a, b) = CP.get_parameter_values(merged_toml_dict, ["a", "b"])
+    @test a == 2
+    @test a isa Int
+    @test b == 3.0
+    @test b isa FT
+
+    # Test merging in create_toml_dict with swapped order
+    merged_toml_dict = CP.create_toml_dict(FT, toml_2, toml_1)
+    (; a, b) = CP.get_parameter_values(merged_toml_dict, ["a", "b"])
+    @test a == 0.0
+    @test a isa FT
+    @test b == 3.0
+    @test b isa FT
 end

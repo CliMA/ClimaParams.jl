@@ -120,7 +120,9 @@ local_experiment_file = joinpath(@__DIR__, "local_exp_parameters.toml")
 toml_dict = ClimaParams.create_toml_dict(FT; override_file = local_experiment_file)
 ```
 
-If `override_file` is omitted, only the default parameters are loaded. You can also pass Julia `Dict`s directly instead of file paths. To combine more than two files, see the API for `merge_toml_files`.
+If `override_file` is omitted, only the default parameters are loaded. You can also pass Julia `Dict`s directly instead of file paths. To combine more than two files, see the API for `merge_toml_files`
+or pass a vector of filepaths to `create_toml_dict` as the kwarg `override_files`.
+They will be merged in the order they are provided.
 
 ### 2. Using and Logging Parameters
 
