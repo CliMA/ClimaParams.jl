@@ -390,6 +390,35 @@ function check_override_parameter_usage(
 end
 
 """
+    check_override_parameter_usage(
+        pd::ParamDict,
+        params::Iterable{String},
+        strict::Bool
+    )
+
+Verifies that the parameters listed in `params` in the override file were
+actually used during the simulation by checking for the `"used_in"` log entry.
+
+# Arguments
+- `pd::{ParamDict}`: The parameter dictionary to check.
+- `params::Iterable{String}`: An iterable of parameter names.
+- `strict::Bool`: If `true`, throws an error if any override parameter is
+  unused. If `false`, only a warning is issued.
+"""
+function check_override_parameter_usage(pd::ParamDict, params, strict::Bool)
+    isnothing(pd.override_dict) &&
+        error("Override file was not provided when creating ParamDict")
+    params = Set(params)
+    params_not_in_override =
+        filter(param -> param ∉ keys(pd.override_dict), params)
+    isempty(params_not_in_override) || error(
+        "Parameters ($(join(params_not_in_override, ", "))) does not exist in override file",
+    )
+    override_dict = Dict(k => v for (k, v) in pd.override_dict if k in params)
+    return check_override_parameter_usage(pd, strict, override_dict)
+end
+
+"""
     write_log_file(pd::ParamDict, filepath::AbstractString)
 
 Saves all *used* parameters to a TOML file at the specified `filepath`.

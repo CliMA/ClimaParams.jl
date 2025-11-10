@@ -2,6 +2,8 @@ ClimaParams.jl Release Notes
 ========================
 main
 --------
+- Add method for `check_override_parameter_usage` to check if a subset of
+  parameters in override file was used ([#261](https://github.com/CliMA/ClimaParams.jl/pull/261))
 
 v1.0.1
 --------
