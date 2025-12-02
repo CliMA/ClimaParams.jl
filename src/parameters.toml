@@ -2537,6 +2537,11 @@ value = 355
 type = "float"
 description = "Maximum temperature in the lookup table for optical properties in RRTMGP (K)."
 
+[CO2_fixed_value]
+value = 397.547
+type = "float"
+description = "Value to fix CO2 at when using a fixed C02 model (ppm)."
+
 # RCEMIP Benchmark
 
 [SST_mean]
