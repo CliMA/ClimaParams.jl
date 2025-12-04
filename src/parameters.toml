@@ -2921,12 +2921,6 @@ value = 1e-3
 type = "float"
 description = "Parameter controlling exponential scale of favoring cloud top for cloud top calculations (unitless)."
 
-# Non-rographic gravity wave placeholder
-[placeholder]
-value = 0.0
-type = "float"
-description = "placeholder"
-
 # Orographic gravity wave (OGW)
 [ogw_mountain_height_width_exponent]
 value = 0.4
