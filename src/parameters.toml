@@ -400,10 +400,20 @@ value = 1.0
 type = "float"
 description = "A parameter accounting for near-surface gustiness (m s⁻¹)."
 
+[default_momentum_roughness_length]
+value = 2e-4
+type = "float"
+description = "Default momentum roughness length (m)."
+
+[default_scalar_roughness_length]
+value = 2e-5
+type = "float"
+description = "Default scalar roughness length (m)."
+
 [charnock_coefficient]
 value = 0.011
 type = "float"
-description = "Charnock coefficient $\\alpha$ relating roughness length to friction velocity ($z_0 = \\alpha u_*^2 / g$) (unitless)."
+description = "Charnock coefficient $\\alpha$ relating momentum roughness length to friction velocity ($z_0 = \\alpha u_*^2 / g$) (unitless)."
 # Businger
 
 [prandtl_number_0_businger]
