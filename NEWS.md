@@ -1,7 +1,9 @@
 ClimaParams.jl Release Notes
 ========================
-main
+
+v1.0.4
 --------
+- Add parameter for setting a fixed CO2 value ([#262](https://github.com/CliMA/ClimaParams.jl/pull/262))
 - Add method for `check_override_parameter_usage` to check if a subset of
   parameters in override file was used ([#261](https://github.com/CliMA/ClimaParams.jl/pull/261))
 
