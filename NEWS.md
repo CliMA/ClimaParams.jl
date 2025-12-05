@@ -1,6 +1,10 @@
 ClimaParams.jl Release Notes
 ========================
 
+v1.0.5
+--------
+- Add Charnock coefficient ([#264](https://github.com/CliMA/ClimaParams.jl/pull/264))
+
 v1.0.4
 --------
 - Add parameter for setting a fixed CO2 value ([#262](https://github.com/CliMA/ClimaParams.jl/pull/262))
