@@ -400,6 +400,10 @@ value = 1.0
 type = "float"
 description = "A parameter accounting for near-surface gustiness (m s⁻¹)."
 
+[charnock_coefficient]
+value = 0.011
+type = "float"
+description = "Charnock coefficient $\\alpha$ relating roughness length to friction velocity ($z_0 = \\alpha u_*^2 / g$) (unitless)."
 # Businger
 
 [prandtl_number_0_businger]
