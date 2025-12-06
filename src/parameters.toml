@@ -410,10 +410,16 @@ value = 2e-5
 type = "float"
 description = "Default scalar roughness length (m)."
 
-[charnock_coefficient]
+[charnock_parameter_low]
 value = 0.011
 type = "float"
-description = "Charnock coefficient $\\alpha$ relating momentum roughness length to friction velocity ($z_0 = \\alpha u_*^2 / g$) (unitless)."
+description = "Charnock parameter $\\alpha$ for momentum roughness length in low wind ($z_0 = \\alpha u_*^2 / g$) (unitless)."
+
+[charnock_parameter_high]
+value = 0.018
+type = "float"
+description = "Charnock parameter $\\alpha$ for momentum roughness length in high wind ($z_0 = \\alpha u_*^2 / g$) (unitless)."
+
 # Businger
 
 [prandtl_number_0_businger]
