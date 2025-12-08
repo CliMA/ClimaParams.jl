@@ -2419,6 +2419,10 @@ type = "float"
 description = "Avogadro's constant ($N_A$) (mol⁻¹)."
 
 # Diffusion
+[D_horizontal_diffusion]
+value = 5e5
+type = "float"
+description = "Constant horizontal diffusion (m² s⁻¹)."
 
 [tracer_hyperdiffusion_factor]
 value = 0

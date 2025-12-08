@@ -1,6 +1,10 @@
 ClimaParams.jl Release Notes
 ========================
 
+v1.0.6
+--------
+- Add constant horizontal diffusion coefficient ([#266](https://github.com/CliMA/ClimaParams.jl/pull/266))
+
 v1.0.5
 --------
 - Add Charnock coefficient ([#264](https://github.com/CliMA/ClimaParams.jl/pull/264))
