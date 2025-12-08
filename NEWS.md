@@ -1,6 +1,10 @@
 ClimaParams.jl Release Notes
 ========================
 
+v1.0.7
+--------
+- Add global mean molar fraction values for atmospheric gases ([#267](https://github.com/CliMA/ClimaParams.jl/pull/267))
+
 v1.0.6
 --------
 - Add constant horizontal diffusion coefficient ([#266](https://github.com/CliMA/ClimaParams.jl/pull/266))
