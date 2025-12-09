@@ -1,7 +1,21 @@
 ClimaParams.jl Release Notes
 ========================
-main
+
+v1.0.7
 --------
+- Add global mean molar fraction values for atmospheric gases ([#267](https://github.com/CliMA/ClimaParams.jl/pull/267))
+
+v1.0.6
+--------
+- Add constant horizontal diffusion coefficient ([#266](https://github.com/CliMA/ClimaParams.jl/pull/266))
+
+v1.0.5
+--------
+- Add Charnock coefficient ([#264](https://github.com/CliMA/ClimaParams.jl/pull/264))
+
+v1.0.4
+--------
+- Add parameter for setting a fixed CO2 value ([#262](https://github.com/CliMA/ClimaParams.jl/pull/262))
 - Add method for `check_override_parameter_usage` to check if a subset of
   parameters in override file was used ([#261](https://github.com/CliMA/ClimaParams.jl/pull/261))
 
