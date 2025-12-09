@@ -435,6 +435,16 @@ value = 0.018
 type = "float"
 description = "Charnock parameter $\\alpha$ for momentum roughness length in high wind ($z_0 = \\alpha u_*^2 / g$) (unitless)."
 
+[gustiness_coeff]
+value = 1.25
+type = "float"
+description = "Coefficient multiplying Deardorff convective velocity scale in gustiness parameterization (unitless)."
+
+[gustiness_zi]
+value = 1e3
+type = "float"
+description = "Thickness of boundary layer assumed in the gustiness parameterization based on the Deardorff convective velocity scale (m)."
+
 # Businger
 
 [prandtl_number_0_businger]
