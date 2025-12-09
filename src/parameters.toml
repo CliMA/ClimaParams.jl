@@ -400,10 +400,41 @@ value = 1.0
 type = "float"
 description = "A parameter accounting for near-surface gustiness (m s⁻¹)."
 
-[charnock_coefficient]
+[default_momentum_roughness_length]
+value = 2e-4
+type = "float"
+description = "Default momentum roughness length (m)."
+
+[default_scalar_roughness_length]
+value = 2e-5
+type = "float"
+description = "Default scalar roughness length (m)."
+
+[stanton_number]
+value = 0.1
+type = "float"
+description = "Stanton number: ratio of heat to momentum roughness lengths (unitless)."  
+
+[charnock_wind_low]
+value = 10
+type = "float"
+description = "Upper bound of low-wind speed regime for Charnock parameter (m s⁻¹)."
+
+[charnock_parameter_low]
 value = 0.011
 type = "float"
-description = "Charnock coefficient $\\alpha$ relating roughness length to friction velocity ($z_0 = \\alpha u_*^2 / g$) (unitless)."
+description = "Charnock parameter $\\alpha$ for momentum roughness length in low wind ($z_0 = \\alpha u_*^2 / g$) (unitless)."
+
+[charnock_wind_high]
+value = 18
+type = "float"
+description = "Lower bound of high-wind speed regime for Charnock parameter (m s⁻¹)."
+
+[charnock_parameter_high]
+value = 0.018
+type = "float"
+description = "Charnock parameter $\\alpha$ for momentum roughness length in high wind ($z_0 = \\alpha u_*^2 / g$) (unitless)."
+
 # Businger
 
 [prandtl_number_0_businger]
