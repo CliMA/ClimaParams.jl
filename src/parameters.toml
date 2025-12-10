@@ -3113,3 +3113,105 @@ description = "Nonlinear drag coefficient (a1); equation (13)"
 value = 0.7
 type = "float"
 description = "Critical Froude number (Fr_crit) computed from the critical height threshold"
+
+# Non-orographic gravity wave (NOGW)
+
+[nogw_source_pressure]
+value = 31500.0
+type = "float"
+description = "Source level pressure (Pa)"
+
+[nogw_damp_pressure]
+value = 85.0
+type = "float"
+description = "Damping level pressure (Pa)"
+
+[nogw_source_height]
+value = 15000.0
+type = "float"
+description = "Source level height (m)"
+
+[nogw_Bw]
+value = 0.4
+type = "float"
+description = "Westward wave spectral amplitude (m^2/s^2)"
+
+[nogw_Bn]
+value = 0.0
+type = "float"
+description = "Northward wave spectral amplitude (m^2/s^2)"
+
+[nogw_dc]
+value = 0.8
+type = "float"
+description = "Phase speed resolution (m/s)"
+
+[nogw_cmax]
+value = 99.6
+type = "float"
+description = "Maximum phase speed (m/s)"
+
+[nogw_c0]
+value = 0.0
+type = "float"
+description = "Reference phase speed (m/s)"
+
+[nogw_nk]
+value = 1.0
+type = "float"
+description = "Number of wave bands"
+
+[nogw_cw]
+value = 35.0
+type = "float"
+description = "Westward phase speed half-width (m/s)"
+
+[nogw_cw_tropics]
+value = 35.0
+type = "float"
+description = "Tropical westward phase speed half-width (m/s)"
+
+[nogw_cn]
+value = 2.0
+type = "float"
+description = "Northward phase speed half-width (m/s)"
+
+[nogw_Bt_0]
+value = 0.0043
+type = "float"
+description = "Base total source momentum flux (Pa)"
+
+[nogw_Bt_n]
+value = 0.0
+type = "float"
+description = "Northern hemisphere total momentum flux amplitude (Pa)"
+
+[nogw_Bt_s]
+value = 0.0
+type = "float"
+description = "Southern hemisphere total momentum flux amplitude (Pa)"
+
+[nogw_Bt_eq]
+value = 0.0043
+type = "float"
+description = "Equatorial total momentum flux amplitude (Pa)"
+
+[nogw_phi0_n]
+value = 15.0
+type = "float"
+description = "Northern hemisphere latitude center (degrees)"
+
+[nogw_phi0_s]
+value = -15.0
+type = "float"
+description = "Southern hemisphere latitude center (degrees)"
+
+[nogw_dphi_n]
+value = 10.0
+type = "float"
+description = "Northern hemisphere latitude width (degrees)"
+
+[nogw_dphi_s]
+value = -10.0
+type = "float"
+description = "Southern hemisphere latitude width (degrees)"
