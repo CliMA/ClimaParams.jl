@@ -2342,10 +2342,20 @@ value = 6371000
 type = "float"
 description = "Mean radius of the planet (m)."
 
+[hour]
+value = 3600
+type = "float"
+description = "Length of an hour (s)."
+
 [day]
 value = 86400
 type = "float"
 description = "Length of a day (s)."
+
+[week]
+value = 604800
+type = "float"
+description = "Length of a week (s)."
 
 [angular_velocity_planet_rotation]
 value = 7.2921159e-5
