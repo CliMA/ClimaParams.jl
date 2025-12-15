@@ -2587,82 +2587,82 @@ type = "float"
 description = "Maximum temperature in the lookup table for optical properties in RRTMGP (K)."
 
 [CO2_fixed_value]
-value = 397.547e-6
+value = 0.000397547
 type = "float"
 description = "Global mean mole fraction to fix carbon dioxide (CO2) when using a fixed C02 model.  Taken from the first value of 'carbon_dioxide_GM' in RRTMGP (mol mol-1)."
 
 [N2O_fixed_value]
-value = 326.99e-9
+value = 3.269880065917969e-7
 type = "float"
 description = "Global mean mole fraction of nitrous oxide (N2O). Taken from the first value of 'nitrous_oxide_GM' in RRTMGP (mol mol-1)."
 
 [CO_fixed_value]
-value = 1.2e-7
+value = 1.199999957179898e-7
 type = "float"
 description = "Global mean mole fraction of carbon monoxide (CO). Taken from the first value of 'carbon_monoxide_GM' in RRTMGP (mol mol-1)."
 
 [CH4_fixed_value]
-value = 1831.5e-9
+value = 1.8314709472656252e-6
 type = "float"
 description = "Global mean mole fraction of methane (CH4). Taken from the first value of 'methane_GM' in RRTMGP (mol mol-1)."
 
 [O2_fixed_value]
-value = 0.209
+value = 0.20900000631809235
 type = "float"
 description = "Global mean mole fraction of oxygen (O2). Taken from the first value of 'oxygen_GM' in RRTMGP (mol mol-1)."
 
 [N2_fixed_value]
-value = 0.781
+value = 0.781000018119812
 type = "float"
 description = "Global mean mole fraction of nitrogen (N2). Taken from the first value of 'nitrogen_GM' in RRTMGP (mol mol-1)."
 
 [CCL4_fixed_value]
-value = 83.07e-12
+value = 8.306993103027344e-11
 type = "float"
 description = "Global mean mole fraction of carbon tetrachloride (CCL4). Taken from the first value of 'carbon_tetrachloride_GM' in RRTMGP (mol mol-1)."
 
 [CFC11_fixed_value]
-value = 233.08e-12
+value = 2.330798645019531e-10
 type = "float"
 description = "Global mean mole fraction of chlorofluorocarbon CFC11. Taken from the first value of 'cfc11_GM' in RRTMGP (mol mol-1)."
 
 [CFC12_fixed_value]
-value = 520.58e-12
+value = 5.205809936523438e-10
 type = "float"
 description = "Global mean mole fraction of chlorofluorocarbon CFC12. Taken from the first value of 'cfc12_GM' in RRTMGP (mol mol-1)."
 
 [CFC22_fixed_value]
-value = 229.54e-12
+value = 2.295420684814453e-10
 type = "float"
 description = "Global mean mole fraction of hydrochlorofluorocarbon CFC22. Taken from the first value of 'hcfc22_GM' in RRTMGP (mol mol-1)."
 
 [HFC143A_fixed_value]
-value = 15.253e-12
+value = 1.525278091430664e-11
 type = "float"
 description = "Global mean mole fraction of hydroflourocarbon HFC143A. Taken from the first value of 'hfc143a_GM' in RRTMGP (mol mol-1)."
 
 [HFC125_fixed_value]
-value = 15.355e-12
+value = 1.5355008125305177e-11
 type = "float"
 description = "Global mean mole fraction of hydroflourocarbon HFC125. Taken from the first value of 'hfc125_GM' in RRTMGP (mol mol-1)."
 
 [HFC23_fixed_value]
-value = 26.89e-12
+value = 2.6890436172485352e-11
 type = "float"
 description = "Global mean mole fraction of hydroflourocarbon HFC23. Taken from the first value of 'hfc23_GM' in RRTMGP (mol mol-1)."
 
 [HFC32_fixed_value]
-value = 8.337e-12
+value = 8.336969375610351e-12
 type = "float"
 description = "Global mean mole fraction of hydroflourocarbon HFC32. Taken from the first value of 'hfc32_GM' in RRTMGP (mol mol-1)."
 
 [HFC134A_fixed_value]
-value = 80.516e-12
+value = 8.051573181152344e-11
 type = "float"
 description = "Global mean mole fraction of hydroflourocarbon HFC134A. Taken from the first value of 'hfc134a_GM' in RRTMGP (mol mol-1)."
 
 [CF4_fixed_value]
-value = 81.092e-12
+value = 8.109249114990234e-11
 type = "float"
 description = "Global mean mole fraction of carbon tetrafluoride (CF4). Taken from the first value of 'cf4_GM' in RRTMGP (mol mol-1)."
 
