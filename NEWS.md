@@ -1,6 +1,10 @@
 ClimaParams.jl Release Notes
 ========================
 
+v1.0.8
+------
+- Add gustiness parameters ([#269](https://github.com/CliMA/ClimaParams.jl/pull/269))
+
 v1.0.7
 --------
 - Add global mean molar fraction values for atmospheric gases ([#267](https://github.com/CliMA/ClimaParams.jl/pull/267))
