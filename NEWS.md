@@ -1,6 +1,9 @@
 ClimaParams.jl Release Notes
 ========================
 
+v1.0.9
+ - Add ML cloud fraction closure parameter template ([#270](https://github.com/CliMA/ClimaParams.jl/pull/270))
+
 v1.0.8
 ------
 - Add gustiness parameters ([#269](https://github.com/CliMA/ClimaParams.jl/pull/269))
