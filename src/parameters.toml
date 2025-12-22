@@ -3062,12 +3062,6 @@ value = [0.0, 0.0, 0.0, 0.0, 0.0]
 type = "float"
 description = "Data-driven cloud fraction parameter vector (unitless)."
 
-# Non-rographic gravity wave placeholder
-[placeholder]
-value = 0.0
-type = "float"
-description = "placeholder"
-
 # Orographic gravity wave (OGW)
 [ogw_mountain_height_width_exponent]
 value = 0.4
