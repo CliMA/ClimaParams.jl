@@ -3046,3 +3046,8 @@ description = "Parameter controlling steepness of (logistic) transition between 
 value = 1e-3
 type = "float"
 description = "Parameter controlling exponential scale of favoring cloud top for cloud top calculations (unitless)."
+
+[cloud_fraction_param_vec]
+value = [0.0, 0.0, 0.0, 0.0, 0.0]
+type = "float"
+description = "Data-driven cloud fraction parameter vector (unitless)."
