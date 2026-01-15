@@ -884,6 +884,11 @@ value = 0
 type = "float"
 description = "Coefficient $\\delta_v$ in the terminal velocity-size relation for rain in the 1-moment microphysics scheme (unitless)."
 
+[rain_snow_velocity_dispersion_coefficient]
+value = 0.2
+type = "float"
+description = "Velocity dispersion coefficient for rain and snow in the 1-moment microphysics scheme (unitless)."
+
 [cloud_ice_apparent_density]
 value = 500
 type = "float"
@@ -3041,8 +3046,3 @@ description = "Parameter controlling steepness of (logistic) transition between 
 value = 1e-3
 type = "float"
 description = "Parameter controlling exponential scale of favoring cloud top for cloud top calculations (unitless)."
-
-[cloud_fraction_param_vec]
-value = [0.0, 0.0, 0.0, 0.0, 0.0]
-type = "float"
-description = "Data-driven cloud fraction parameter vector (unitless)."
