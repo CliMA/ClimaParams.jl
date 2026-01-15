@@ -889,6 +889,16 @@ value = 0.2
 type = "float"
 description = "Velocity dispersion coefficient for rain and snow in the 1-moment microphysics scheme (unitless)."
 
+[cloud_liquid_sedimentation_number_concentration]
+value = 5.0e8
+type = "float"
+description = "Number concentration of cloud liquid particles for sedimentation (m⁻³)."
+
+[cloud_ice_sedimentation_number_concentration]
+value = 5.0e8
+type = "float"
+description = "Number concentration of cloud ice particles for sedimentation (m⁻³)."
+
 [cloud_ice_apparent_density]
 value = 500
 type = "float"
