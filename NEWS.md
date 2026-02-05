@@ -1,8 +1,13 @@
 ClimaParams.jl Release Notes
 ========================
 
+v1.0.11
+-------
+- Add gravity-wave parameters ([#238](https://github.com/CliMA/ClimaParams.jl/pull/238))
+
 v1.0.9
- - Add ML cloud fraction closure parameter template ([#270](https://github.com/CliMA/ClimaParams.jl/pull/270))
+------
+- Add ML cloud fraction closure parameter template ([#270](https://github.com/CliMA/ClimaParams.jl/pull/270))
 
 v1.0.8
 ------
