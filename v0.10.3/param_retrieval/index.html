@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Parameter retrieval · ClimaParams.jl</title><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.045/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.24/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../">ClimaParams.jl</a></span></div><form class="docs-search" action="../search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../">Home</a></li><li><a class="tocitem" href="../toml/">TOML file interface</a></li><li class="is-active"><a class="tocitem" href>Parameter retrieval</a><ul class="internal"><li><a class="tocitem" href="#Basic-Parameter-Retrieval"><span>Basic Parameter Retrieval</span></a></li><li><a class="tocitem" href="#Name-Maps"><span>Name Maps</span></a></li><li><a class="tocitem" href="#Example-Usage"><span>Example Usage</span></a></li></ul></li><li><a class="tocitem" href="../API/">API</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>Parameter retrieval</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Parameter retrieval</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/CliMA/ClimaParams.jl/blob/main/docs/src/param_retrieval.md" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h2 id="Basic-Parameter-Retrieval"><a class="docs-heading-anchor" href="#Basic-Parameter-Retrieval">Basic Parameter Retrieval</a><a id="Basic-Parameter-Retrieval-1"></a><a class="docs-heading-anchor-permalink" href="#Basic-Parameter-Retrieval" title="Permalink"></a></h2><p>There are two keys functions for parameter retrieval:</p><ul><li><code>create_toml_dict</code> constructs a TOML dictionary which stores parameters,</li><li><code>get_parameter_values</code> retrieves parameters from the TOML dictionary.</li></ul><p>To construct a TOML dictionary, pass in the desired floating point type.  This will source parameter values from the global default list stored in <code>src/parameters.toml</code></p><pre><code class="language-julia hljs">import ClimaParams as CP
+toml_dict = CP.create_toml_dict(Float64)</code></pre><p>To retrieve parameters, pass in the TOML dictionary and the names that match the default parameters.</p><pre><code class="language-julia hljs">params = CP.get_parameter_values(toml_dict, [&quot;gravitational_acceleration&quot;, &quot;gas_constant&quot;])
+params.gravitational_acceleration
+params.gas_constant</code></pre><p>You can also pass in a single parameter name:</p><pre><code class="language-julia hljs">params = CP.get_parameter_values(toml_dict, &quot;gravitational_acceleration&quot;)
+params.gravitational_acceleration</code></pre><h2 id="Name-Maps"><a class="docs-heading-anchor" href="#Name-Maps">Name Maps</a><a id="Name-Maps-1"></a><a class="docs-heading-anchor-permalink" href="#Name-Maps" title="Permalink"></a></h2><p>Name maps are a way to map global descriptive parameter names (indexing the toml_dict)  to local user-defined names. One can define a name with a NamedTuple as follows... It will return a NamedTuple of the parameters with your given variable names.</p><pre><code class="language-julia hljs">name_map = (;
+    :gravitational_acceleration =&gt; :g,
+    :angular_velocity_planet_rotation =&gt; :omega
+)
+params = CP.get_parameter_values(toml_dict, name_map)
+params.g  # gives value field of gravitational_acceleration
+params.omega</code></pre><p>A name map does not strictly need to be a NamedTuple. It can be a Dict, Vector, Tuple, or Varargs of Pairs. The entries in the name map can also be Strings instead of Symbols.</p><pre><code class="language-julia hljs">name_map = Dict(&quot;gravitational_acceleration&quot; =&gt; &quot;g&quot;, &quot;angular_velocity_planet_rotation&quot; =&gt; &quot;omega&quot;)
+params = CP.get_parameter_values(toml_dict, name_map)
+
+params = CP.get_parameter_values(toml_dict, :gravitational_acceleration =&gt; :g,
+                                            :angular_velocity_planet_rotation =&gt; :omega)</code></pre><h2 id="Example-Usage"><a class="docs-heading-anchor" href="#Example-Usage">Example Usage</a><a id="Example-Usage-1"></a><a class="docs-heading-anchor-permalink" href="#Example-Usage" title="Permalink"></a></h2><h3 id="An-example-from-Thermodynamics.jl"><a class="docs-heading-anchor" href="#An-example-from-Thermodynamics.jl">An example from <code>Thermodynamics.jl</code></a><a id="An-example-from-Thermodynamics.jl-1"></a><a class="docs-heading-anchor-permalink" href="#An-example-from-Thermodynamics.jl" title="Permalink"></a></h3><h4 id="In-the-user-facing-driver-file"><a class="docs-heading-anchor" href="#In-the-user-facing-driver-file">In the user-facing driver file</a><a id="In-the-user-facing-driver-file-1"></a><a class="docs-heading-anchor-permalink" href="#In-the-user-facing-driver-file" title="Permalink"></a></h4><pre><code class="language-julia hljs">import ClimaParams
+using Thermodynamics
+
+thermo_params = ThermodynamicsParameters(Float64)</code></pre><h4 id="In-the-source-code-for-Thermodynamics.jl"><a class="docs-heading-anchor" href="#In-the-source-code-for-Thermodynamics.jl">In the source code for <code>Thermodynamics.jl</code></a><a id="In-the-source-code-for-Thermodynamics.jl-1"></a><a class="docs-heading-anchor-permalink" href="#In-the-source-code-for-Thermodynamics.jl" title="Permalink"></a></h4><pre><code class="language-julia hljs">Base.@kwdef struct ThermodynamicsParameters{FT}
+    gas_constant::FT
+    molmass_dryair::FT
+    ...
+    # derived parameters
+    R_d::FT = gas_constant / molmass_dryair
+end</code></pre><ul><li>The struct is parameterized by <code>{FT}</code> which is a user-determined float precision.</li><li>Only relevant parameters used in <code>Thermodynamics</code> are stored here.</li><li>A keyword based constructor is provided so we do not rely on parameter order.</li></ul><p>The constructor is as follows</p><pre><code class="language-julia hljs"># Float-type constructor
+ThermodynamicsParameters(::Type{FT}) = ThermodynamicsParameters(CP.create_toml_dict(FT))
+
+# TOML dictionary constructor
+function ThermodynamicsParameters(toml_dict)
+    name_map = [
+        :temperature_triple_point =&gt; :T_triple,
+        :adiabatic_exponent_dry_air =&gt; :kappa_d,
+        :pressure_triple_point =&gt; :press_triple,
+        :thermodynamics_temperature_reference =&gt; :T_0,
+        :temperature_water_freeze =&gt; :T_freeze,
+        :isobaric_specific_heat_ice =&gt; :cp_i,
+        ...
+    ]
+
+    parameters = ClimaParams.get_parameter_values(
+        toml_dict,
+        name_map,
+        &quot;Thermodynamics&quot;,
+    )
+
+    FT = CP.float_type(toml_dict)
+    return ThermodynamicsParameters{FT}(parameters...)
+end</code></pre><ul><li>The constructor takes in a <code>toml_dict</code> produced from reading the TOML file.</li><li>The name map maps from the globally-defined parameter names to the user-defined names. </li><li>We obtain the NamedTuple parameters from <code>get_parameter_values(toml_dict, name_map, component_name)</code> The <code>component_name</code> is a string used for the parameter log.</li><li>We return the <code>ThermodynamicsParameters{FT}</code>, where FT is an enforced float type (e.g. single or double precision).</li></ul><h3 id="An-example-with-modular-components-from-CloudMicrophysics.jl"><a class="docs-heading-anchor" href="#An-example-with-modular-components-from-CloudMicrophysics.jl">An example with modular components from <code>CloudMicrophysics.jl</code></a><a id="An-example-with-modular-components-from-CloudMicrophysics.jl-1"></a><a class="docs-heading-anchor-permalink" href="#An-example-with-modular-components-from-CloudMicrophysics.jl" title="Permalink"></a></h3><h4 id="In-the-user-facing-driver-file-2"><a class="docs-heading-anchor" href="#In-the-user-facing-driver-file-2">In the user-facing driver file</a><a class="docs-heading-anchor-permalink" href="#In-the-user-facing-driver-file-2" title="Permalink"></a></h4><p>Here we build a <code>CloudMicrophysics</code> parameter set. In this case, the user wishes to use a 0-moment microphysics parameterization scheme.</p><pre><code class="language-julia hljs">import ClimaParams
+import Thermodynamics
+import CloudMicrophysics
+
+#load defaults
+toml_dict = ClimaParams.create_toml_dict(Float64)
+
+#build the low level parameter set
+param_therm = Thermodynamics.Parameters.ThermodynamicsParameters(toml_dict)
+param_0M = CloudMicrophysics.Microphysics_0M_Parameters(toml_dict)
+
+#build the hierarchical parameter set
+parameter_set = CloudMicrophysics.CloudMicrophysicsParameters(
+    toml_dict,
+    param_0M,
+    param_therm
+)</code></pre><div class="admonition is-info"><header class="admonition-header">Note</header><div class="admonition-body"><p>The exact APIs here are subject to change.</p></div></div><h4 id="In-the-source-code-for-CloudMicrophysics.jl"><a class="docs-heading-anchor" href="#In-the-source-code-for-CloudMicrophysics.jl">In the source code for <code>CloudMicrophysics.jl</code></a><a id="In-the-source-code-for-CloudMicrophysics.jl-1"></a><a class="docs-heading-anchor-permalink" href="#In-the-source-code-for-CloudMicrophysics.jl" title="Permalink"></a></h4><p>Build the different options for a Microphysics parameterizations</p><pre><code class="language-julia hljs">abstract type AbstractMicrophysicsParameters end
+struct NoMicrophysicsParameters &lt;: AbstractMicrophysicsParameters end
+Base.@kwdef struct Microphysics_0M_Parameters{FT} &lt;: AbstractMicrophysicsParameters
+    τ_precip::FT
+    qc_0::FT
+    S_0::FT
+end
+Base.@kwdef struct Microphysics_1M_Parameters{FT} &lt;: AbstractMicrophysicsParameters
+    ...
+end</code></pre><p>We omit their constructors (see above). The <code>CloudMicrophysics</code> parameter set is built likewise</p><pre><code class="language-julia hljs">Base.@kwdef struct CloudMicrophysicsParameters{FT, AMPS &lt;: AbstractMicrophysicsParameters}
+    K_therm::FT
+    ...
+    MPS::AMPS
+    TPS::ThermodynamicsParameters{FT}
+end
+
+
+function CloudMicrophysicsParameters(
+    toml_dict,
+    MPS::AMPS,
+    TPS::ThermodynamicsParameters{FT},
+) where {FT, AMPS &lt;: AbstractMicrophysicsParameters}
+
+    parameter_names = [ &quot;K_therm&quot;, ... ]
+
+    parameters  = ClimaParams.get_parameter_values(
+        toml_dict,
+        parameter_names,
+        &quot;CloudMicrophysics&quot;,
+    )
+
+    return CloudMicrophysicsParameters{FT, AMPS}(;
+            parameters...,
+            MPS,  # Nested parameter struct
+            TPS,  # Nested parameter struct
+        )
+end</code></pre><h3 id="Parameters-as-functions"><a class="docs-heading-anchor" href="#Parameters-as-functions">Parameters-as-functions</a><a id="Parameters-as-functions-1"></a><a class="docs-heading-anchor-permalink" href="#Parameters-as-functions" title="Permalink"></a></h3><div class="admonition is-info"><header class="admonition-header">Note</header><div class="admonition-body"><p>The exact APIs here are subject to change.</p></div></div><p>When building the model components, parameters are extracted by calling <code>param_set.name</code></p><pre><code class="language-julia hljs">function example_cloudmicrophysics_func(param_set::CloudMicrophysicsParameters,...)
+    K_therm = param_set.K_therm
+    ...
+end</code></pre><p>These parameters can be made into functions for added flexibility.</p><pre><code class="language-julia hljs">K_therm(param_set) = param_set.K_therm</code></pre><p>This can be useful for derived parameters,</p><pre><code class="language-julia hljs">derived_param(param_set) = param_set.param1 * param_set.param2</code></pre><p>or to forward parameters from nested parameter structs:</p><pre><code class="language-julia hljs">forwarded_param(ps::ParamSet) = ps.nested_params.forwarded_param</code></pre><p>Functions can be autogenerated using <code>@eval</code>:</p><pre><code class="language-julia hljs">for fn in fieldnames(ParamSet)
+    @eval $(fn)(ps::ParamSet) = ps.$(fn)
+end</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../toml/">« TOML file interface</a><a class="docs-footer-nextpage" href="../API/">API »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Tuesday 12 March 2024 18:16">Tuesday 12 March 2024</span>. Using Julia version 1.10.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
