@@ -2985,7 +2985,7 @@ value = 1e-3
 type = "float"
 description = "Regularization epsilon for the denominator in diagnostic covariance calculations (unitless)."
 
-[default_Tq_correlation_coefficient]
+[Tq_correlation_coefficient]
 value = 0.6
 type = "float"
 description = "Default correlation coefficient between T' and q_tot' perturbations, used in SGS quadratures (unitless). Valid range: [-1, 1]."
