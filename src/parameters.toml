@@ -3077,6 +3077,12 @@ value = [0.0, 0.0, 0.0, 0.0, 0.0]
 type = "float"
 description = "Data-driven cloud fraction parameter vector (unitless)."
 
+[cloud_fraction_steepness_scale]
+alias = "cloud_fraction_steepness_scale"
+value = 1.0
+type = "float"
+description = "Scale parameter for the steepness of the cloud fraction/condensate relationship (unitless). Should be 1 for exact Gaussian/lognormal SGS distributions."
+
 # Orographic gravity wave (OGW)
 
 [ogw_mountain_height_width_exponent]
