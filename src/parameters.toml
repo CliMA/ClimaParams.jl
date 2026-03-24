@@ -2250,6 +2250,11 @@ value = 150
 type = "float"
 description = "Minimum temperature for thermodynamic calculations (K)."
 
+[specific_humidity_minimum]
+value = 1e-10
+type = "float"
+description = "Minimum specific humidity threshold (kg kg⁻¹). Used as a lower bound when comparing or regularizing humidity values."
+
 [specific_humidity_maximum]
 value = 0.1
 type = "float"
