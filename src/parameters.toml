@@ -2758,12 +2758,12 @@ description = "Coefficient for the vertical divergence term in the entrainment c
 [min_area_limiter_scale]
 value = 0.001
 type = "float"
-description = "Scaling coefficient for the minimum area limiter in entrainment (unitless)."
+description = "Rate coefficient for the minimum area fraction limiter in entrainment (s⁻¹)."
 
 [min_area_limiter_power]
-value = 10
+value = 1
 type = "float"
-description = "Exponent for the minimum area limiter in entrainment (unitless)."
+description = "Exponent for the minimum area fraction limiter in both entrainment and detrainment (unitless)."
 
 [entr_detr_limit_inv_tau]
 value = 0.0001
@@ -2784,6 +2784,11 @@ description = "Coefficient for the $w$ term in the detrainment closure (unitless
 value = 0.12
 type = "float"
 description = "Coefficient for the $b/w^2$ term in the detrainment closure (unitless). Source: Tan et al. (2018), Eq. 27."
+
+[detr_buoy_inv_tau_max]
+value = 0.01
+type = "float"
+description = "Maximum allowed inverse buoyancy time scale (s⁻¹), used to limit detrainment when velocity differences become small and prevent excessively fast detrainment."
 
 [detr_vertdiv_coeff]
 value = 1
@@ -2806,14 +2811,14 @@ type = "float"
 description = "Factor for calculating the steepness of the sigmoid ramp for the detrainment top limiter. Steepness = factor / (z_end - z_start)."
 
 [max_area_limiter_scale]
-value = 0.1
+value = 0.001
 type = "float"
-description = "Scaling coefficient for the maximum area limiter in detrainment (unitless)."
+description = "Rate coefficient for the maximum area fraction limiter in detrainment (s⁻¹)."
 
 [max_area_limiter_power]
-value = 10
+value = 1
 type = "float"
-description = "Exponent for the maximum area limiter in detrainment (unitless)."
+description = "Exponent for the maximum area fraction limiter in detrainment (unitless)."
 
 [c_smag]
 value = 0.2
