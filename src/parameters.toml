@@ -2183,6 +2183,28 @@ value = 1e-6
 type = "float"
 description = "Normalization factor for cloud liquid water specific humidity in the data-driven CDNC function (kg kg⁻¹)."
 
+# Microphysics — Fixed terminal velocities
+
+[fixed_cloud_liquid_terminal_velocity]
+value = 0.01
+type = "float"
+description = "Fixed terminal velocity of cloud liquid (m s⁻¹)"
+
+[fixed_cloud_ice_terminal_velocity]
+value = 0.01
+type = "float"
+description = "Fixed terminal velocity of cloud ice (m s⁻¹)"
+
+[fixed_rain_terminal_velocity]
+value = 5.0
+type = "float"
+description = "Fixed terminal velocity of rain (m s⁻¹)"
+
+[fixed_snow_terminal_velocity]
+value = 1.0
+type = "float"
+description = "Fixed terminal velocity of snow (m s⁻¹)"
+
 # Thermodynamic Constants
 
 [gas_constant_dry_air]
