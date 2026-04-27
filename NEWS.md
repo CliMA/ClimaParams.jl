@@ -1,6 +1,10 @@
 ClimaParams.jl Release Notes
 ========================
 
+v1.0.17
+-------
+- Add fixed terminal velocity parameters ([#292](https://github.com/CliMA/ClimaParams.jl/pull/292))
+
 v1.0.11
 -------
 - Add gravity-wave parameters ([#238](https://github.com/CliMA/ClimaParams.jl/pull/238))
