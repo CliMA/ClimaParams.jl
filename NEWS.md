@@ -1,6 +1,10 @@
 ClimaParams.jl Release Notes
 ========================
 
+v1.0.18
+-------
+- Normalize units for Barklie Gokhale 1959 parameters for CloudMicrophysics.jl ([#295](https://github.com/CliMA/ClimaParams.jl/pull/295))
+
 v1.0.17
 -------
 - Add fixed terminal velocity parameters ([#292](https://github.com/CliMA/ClimaParams.jl/pull/292))
