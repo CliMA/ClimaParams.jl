@@ -1655,12 +1655,12 @@ description = "Coefficient $c_2$ for calculating P3 deposition nucleation (unitl
 [BarklieGokhale1959_a_parameter]
 value = 0.65
 type = "float"
-description = "Mean of parameter 'a' for determining P3 heterogeneous freezing ($°C⁻¹$). Source: Barklie & Gokhale (1959), see Pruppacher & Klett (1997), p. 350."
+description = "Mean of parameter 'a' for determining P3 heterogeneous freezing ($°K⁻¹$). Source: Barklie & Gokhale (1959), see Pruppacher & Klett (1997), p. 350."
 
 [BarklieGokhale1959_B_parameter]
-value = 2e-4
+value = 200
 type = "float"
-description = "Parameter 'B' for rainwater, used to determine P3 heterogeneous freezing (cm⁻³ s⁻¹). Source: Barklie & Gokhale (1959), see Pruppacher & Klett (1997), p. 350."
+description = "Parameter 'B' for rainwater, used to determine P3 heterogeneous freezing (m⁻³ s⁻¹). Source: Barklie & Gokhale (1959), see Pruppacher & Klett (1997), p. 350."
 
 # Microphysics - P3 Scheme Particle Properties
 
