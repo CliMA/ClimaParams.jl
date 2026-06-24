@@ -1,6 +1,14 @@
 ClimaParams.jl Release Notes
 ========================
 
+v1.1.0
+-------
+- Add EDMF surface mass-flux closure parameters `EDMF_sfc_mass_flux_ustar_coeff`, `EDMF_convective_zi`, and `EDMF_sfc_mass_flux_cap_fraction`.
+- Add cloud-fraction augmented-σ floor parameters `cloud_fraction_eps_rel` and `cloud_fraction_sigma_abs`.
+- Rename `alpha_rayleigh_sgs_tracer` → `alpha_rayleigh_tracer`.
+- Rename `EDMF_surface_area` → `EDMF_max_surface_area`.
+- Change default value of `threshold_smooth_transition_steepness` from 2.0 to 10.0.
+
 v1.0.18
 -------
 - Normalize units for Barklie Gokhale 1959 parameters for CloudMicrophysics.jl ([#295](https://github.com/CliMA/ClimaParams.jl/pull/295))
