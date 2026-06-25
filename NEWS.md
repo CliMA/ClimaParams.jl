@@ -47,6 +47,12 @@ v1.0.4
 - Add method for `check_override_parameter_usage` to check if a subset of
   parameters in override file was used ([#261](https://github.com/CliMA/ClimaParams.jl/pull/261))
 
+v1.1.0
+--------
+- Breaking: Changed the minimum and surface reference temperature to match the Dycore manuscript ([#253](https://github.com/CliMA/ClimaParams.jl/pull/253))
+- Added an exponent for the reference temperature profile `[reference_temperature_transition_exponent]` ([#253](https://github.com/CliMA/ClimaParams.jl/pull/253))
+
+
 v1.0.1
 --------
 - Add parameters for cloud top height diagnostic ([#251](https://github.com/CliMA/ClimaParams.jl/pull/251))
