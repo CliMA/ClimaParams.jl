@@ -1150,7 +1150,7 @@ type = "float"
 description = "Exponent of number density in the function describing the autoconversion timescale (unitless)."
 
 [threshold_smooth_transition_steepness]
-value = 2.0
+value = 10.0
 type = "float"
 description = "A unitless steepness parameter for the smooth transition function used in threshold-based processes."
 
@@ -2559,10 +2559,10 @@ value = 0.0
 type = "float"
 description = "Coefficient $\\alpha_{uh}$ for Rayleigh damping on horizontal velocity (s⁻¹)."
 
-[alpha_rayleigh_sgs_tracer]
+[alpha_rayleigh_tracer]
 value = 0.0
 type = "float"
-description = "Coefficient $\\alpha_{sgs_tracer}$ for Rayleigh damping on subgrid-scale tracer (s⁻¹)"
+description = "Coefficient $\\alpha_{tracer}$ for Rayleigh damping on tracer fields (s⁻¹)."
 
 [zd_rayleigh]
 value = 15000.0
@@ -2847,10 +2847,10 @@ value = 0.2
 type = "float"
 description = "Smagorinsky coefficient (unitless)."
 
-[EDMF_surface_area]
+[EDMF_max_surface_area]
 value = 0.1
 type = "float"
-description = "Combined updraft surface area fraction (unitless). The surface area for each updraft is `surface_area / N_updrafts`. Source: Cohen et al. (2020), Table 2."
+description = "Maximum combined updraft surface-area fraction (unitless), reached in the free-convection limit of the EDMF surface mass-flux closure. The per-updraft cap is `max_surface_area / N_updrafts`. Source: Cohen et al. (2020), Table 2."
 
 [EDMF_max_area]
 value = 0.9
@@ -2861,6 +2861,21 @@ description = "Maximum area fraction per updraft (unitless)."
 value = 1e-5
 type = "float"
 description = "Minimum area fraction per updraft (unitless)."
+
+[EDMF_sfc_mass_flux_ustar_coeff]
+value = 1.0
+type = "float"
+description = "Coefficient $c_u$ weighting the friction-velocity contribution in the EDMF surface mass-flux blend $a_s = a_{s,\\max} \\cdot w_*^3 / (w_*^3 + c_u u_*^3)$ (unitless)."
+
+[EDMF_convective_zi]
+value = 1000.0
+type = "float"
+description = "Prescribed convective boundary-layer depth $z_i$ used in the EDMF surface mass-flux closure $w_*^3 = z_i \\langle w'b' \\rangle_s$ (m)."
+
+[EDMF_sfc_mass_flux_cap_fraction]
+value = 0.5
+type = "float"
+description = "Fraction $\\alpha$ of the surface scalar flux that the EDMF updraft may transport at the surface; caps the updraft mass-flux source so the environment retains at least $(1-\\alpha)$ of every surface scalar flux (unitless)."
 
 [mixing_length_eddy_viscosity_coefficient]
 value = 0.14
@@ -3114,6 +3129,16 @@ alias = "cloud_fraction_steepness_scale"
 value = 1.0
 type = "float"
 description = "Scale parameter for the steepness of the cloud fraction/condensate relationship (unitless). Should be 1 for exact Gaussian/lognormal SGS distributions."
+
+[cloud_fraction_eps_rel]
+value = 0.02
+type = "float"
+description = "Residual fractional saturation variability (unitless) entering the augmented-$\\sigma$ floor in the cloud-fraction closure: $\\sigma_{S,\\text{floor}}^2 = (\\varepsilon_\\text{rel} \\cdot q_\\text{sat})^2 + \\sigma_\\text{abs}^2$. Models intra-environment condensate patchiness that the equilibrium SGS variance does not capture."
+
+[cloud_fraction_sigma_abs]
+value = 1e-7
+type = "float"
+description = "Absolute floor (kg/kg) on the augmented saturation-deficit standard deviation in the cloud-fraction closure $\\sigma_{S,\\text{floor}}^2 = (\\varepsilon_\\text{rel} \\cdot q_\\text{sat})^2 + \\sigma_\\text{abs}^2$, used for numerical robustness as $q_\\text{sat} \\to 0$."
 
 # Orographic gravity wave (OGW)
 
