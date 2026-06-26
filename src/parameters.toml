@@ -3220,9 +3220,9 @@ type = "float"
 description = "Phase speed resolution (m/s). Source: Alexander and Dunkerton (1999), DOI: 10.1175/1520-0469(1999)056<4167:ASPOMF>2.0.CO;2."
 
 [nogw_cmax]
-value = 99.6
+value = 100.0
 type = "float"
-description = "Maximum phase speed (m/s). Source: Alexander and Dunkerton (1999), DOI: 10.1175/1520-0469(1999)056<4167:ASPOMF>2.0.CO;2."
+description = "Maximum phase speed (m/s). The phase-speed grid is c[n] = (n-1)*nogw_dc - nogw_cmax, so an exact c=0 bin exists only when nogw_cmax/nogw_dc is an integer; this is required for the Beres steady (nu=0) convective source, which deposits there (and silently no-ops otherwise). Default 100.0/0.8 = 125 gives a c=0 bin. Source: Alexander and Dunkerton (1999), DOI: 10.1175/1520-0469(1999)056<4167:ASPOMF>2.0.CO;2."
 
 [nogw_c0]
 value = 0.0
@@ -3288,3 +3288,68 @@ description = "Northern hemisphere latitude width (degrees). Source: Alexander a
 value = -10.0
 type = "float"
 description = "Southern hemisphere latitude width (degrees). Source: Alexander and Dunkerton (1999), DOI: 10.1175/1520-0469(1999)056<4167:ASPOMF>2.0.CO;2."
+
+[nogw_beres_Q0_threshold]
+value = 1.0e-5
+type = "float"
+description = "Minimum convective heating rate to activate the Beres (2004) convective gravity-wave source (K/s, ~1 K/day = 1e-5). Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOSTG>2.0.CO;2"
+ 
+[nogw_beres_scale_factor]
+value = 2.0e-6
+type = "float"
+description = "Dimensionless amplitude scaling for the Beres convective momentum flux; folds the rho_0/(L*tau) prefactor, the |Q_t|^2 weight, and empirical tuning into one parameter. Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
+
+[nogw_beres_sigma_x]
+value = 4000.0
+type = "float"
+description = "Convective cell horizontal half-width (m) in the Beres source spectrum (Beres Eq. 7). Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
+
+[nogw_beres_nu_min]
+value = 8.727e-4
+type = "float"
+description = "Minimum angular frequency for the Beres frequency integration (rad/s, period ~120 min). Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
+
+[nogw_beres_nu_max]
+value = 1.047e-2
+type = "float"
+description = "Maximum angular frequency for the Beres frequency integration (rad/s, period ~10 min). Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
+
+[nogw_beres_n_nu]
+value = 9
+type = "integer"
+description = "Number of quadrature points for the Beres frequency integration (must be 4k+1: 5, 9, 13, ... for composite Boole's rule). Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
+
+[nogw_beres_h_heat_min]
+value = 1000.0
+type = "float"
+description = "Minimum heating depth (m) to activate the Beres source; filters out shallow convection. Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
+
+[nogw_beres_n_h_avg]
+value = 1
+type = "integer"
+description = "Number of heating depths h over which to average the Beres spectrum (1 = no averaging; >=3 smooths the resonance peak per Beres 2004 Fig. 4). Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
+
+[nogw_beres_delta_h_frac]
+value = 0.1
+type = "float"
+description = "Fractional half-range for Beres h averaging: h +/- delta_h_frac*h (only used when nogw_beres_n_h_avg > 1). Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
+
+[nogw_beres_z_bot_Q_threshold]
+value = 1.157e-5
+type = "float"
+description = "Minimum Q_conv to count as the bottom of the Beres convective heating envelope (K/s, ~1 K/day = 1.157e-5). Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
+
+[nogw_beres_z_bot_floor]
+value = 2000.0
+type = "float"
+description = "Minimum allowed Beres convective envelope bottom (m); excludes the PBL-turbulence signal in Q_conv. Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
+
+[nogw_beres_steady_dc_frac]
+value = 1.0
+type = "float"
+description = "Steady Beres DC heating weight: Q_t(0)^2 = nogw_beres_steady_dc_frac * nu_min (scales the steady-vs-transient amplitude). Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
+
+[nogw_beres_L_system]
+value = 1.0e6
+type = "float"
+description = "Largest convective-system scale (m) setting k_min = 2*pi/L in the even-folded horizontal constant H of the steady Beres source (steady/transient ratio depends on it only logarithmically). Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."

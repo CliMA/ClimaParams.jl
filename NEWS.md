@@ -1,6 +1,11 @@
 ClimaParams.jl Release Notes
 ========================
 
+v1.1.1
+-------
+- Add Beres convective non-orographic gravity wave source parameters (`nogw_beres_*`).
+- Change default value of `nogw_cmax` to enable the Beres steady source.
+
 v1.1.0
 -------
 - Add EDMF surface mass-flux closure parameters `EDMF_sfc_mass_flux_ustar_coeff`, `EDMF_convective_zi`, and `EDMF_sfc_mass_flux_cap_fraction`.
