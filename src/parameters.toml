@@ -2877,6 +2877,11 @@ value = 0.5
 type = "float"
 description = "Fraction $\\alpha$ of the surface scalar flux that the EDMF updraft may transport at the surface; caps the updraft mass-flux source so the environment retains at least $(1-\\alpha)$ of every surface scalar flux (unitless)."
 
+[EDMF_interface_entr_efficiency]
+value = 0.4
+type = "float"
+description = "Entrainment efficiency $A$ (unitless) in the EDMF interfacial entrainment diffusivity $K_e = \\gamma w_e \\Delta z$, $w_e = A \\sqrt{TKE} / \\max(\\mathrm{Ri}_b, 1)$, which restores finite entrainment across an unresolved inversion represented by the interface-aware stability closure."
+
 [mixing_length_eddy_viscosity_coefficient]
 value = 0.14
 type = "float"
