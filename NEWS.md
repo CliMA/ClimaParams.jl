@@ -1,6 +1,10 @@
 ClimaParams.jl Release Notes
 ========================
 
+v1.1.2
+-------
+- Add `EDMF_interface_entr_efficiency` parameter.
+
 v1.1.1
 -------
 - Add Beres convective non-orographic gravity wave source parameters (`nogw_beres_*`).
