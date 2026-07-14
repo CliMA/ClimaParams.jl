@@ -6,24 +6,29 @@
 
 A centralized parameter management system for climate modeling. ClimaParams.jl supports physical constants, planetary properties, and tunable parameters designed for calibration with data assimilation and machine learning tools. 
 
-|                           |                                                                          |
-|--------------------------:|:-------------------------------------------------------------------------|
-| **Stable Release**        | [![stable][stable-img]][stable-url] [![docs-stable][docs-stable-img]][docs-stable-url] |
-| **Latest Documentation**  | [![dev][docs-latest-img]][docs-latest-url]                                |
-| **Unit Tests**            | [![unit tests][unit-tests-img]][unit-tests-url] [![codecov][codecov-img]][codecov-url] |
-| **Downloads**             | [![Downloads][dlt-img]][dlt-url]                                          |
+|||
+|------------------:|:------------------------------------------------------------|
+| **Documentation** | [![stable][docs-stable-img]][docs-stable-url] [![dev][docs-dev-img]][docs-dev-url] |
+| **Version**       | [![version][version-img]][version-url]                      |
+| **License**       | [![license][license-img]][license-url]                      |
+| **Tests**         | [![gha ci][gha-ci-img]][gha-ci-url]                         |
+| **Code Coverage** | [![codecov][codecov-img]][codecov-url]                      |
+| **Downloads**     | [![Downloads][dlt-img]][dlt-url]                            |
 
-[docs-latest-img]: https://img.shields.io/badge/docs-dev-blue.svg
-[docs-latest-url]: https://CliMA.github.io/ClimaParams.jl/dev/
-
-[stable-img]: https://img.shields.io/github/v/release/CliMA/ClimaParams.jl?label=stable
-[stable-url]: https://github.com/CliMA/ClimaParams.jl/releases/latest
-
-[docs-stable-img]: https://img.shields.io/badge/docs-stable-green.svg
+[docs-stable-img]: https://img.shields.io/badge/docs-stable-blue.svg
 [docs-stable-url]: https://CliMA.github.io/ClimaParams.jl/stable/
 
-[unit-tests-img]: https://github.com/CliMA/ClimaParams.jl/actions/workflows/ci.yml/badge.svg
-[unit-tests-url]: https://github.com/CliMA/ClimaParams.jl/actions/workflows/ci.yml
+[docs-dev-img]: https://img.shields.io/badge/docs-dev-blue.svg
+[docs-dev-url]: https://CliMA.github.io/ClimaParams.jl/dev/
+
+[version-img]: https://juliahub.com/docs/General/ClimaParams/stable/version.svg
+[version-url]: https://juliahub.com/ui/Packages/General/ClimaParams
+
+[license-img]: https://img.shields.io/badge/license-Apache%202.0-blue.svg
+[license-url]: https://github.com/CliMA/ClimaParams.jl/blob/main/LICENSE
+
+[gha-ci-img]: https://github.com/CliMA/ClimaParams.jl/actions/workflows/ci.yml/badge.svg
+[gha-ci-url]: https://github.com/CliMA/ClimaParams.jl/actions/workflows/ci.yml
 
 [codecov-img]: https://codecov.io/gh/CliMA/ClimaParams.jl/branch/main/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/CliMA/ClimaParams.jl
