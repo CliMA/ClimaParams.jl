@@ -2758,12 +2758,12 @@ type = "float"
 description = "Exponent for the multiplicative entrainment limiter of the form $(1 - area)^c$ (unitless)."
 
 [turb_entr_param_vec]
-value = [0.0, 0.0, 0.0]
+value = [0.001, 1e5, 0.0]
 type = "float"
 description = "Data-driven turbulent entrainment parameter vector (unitless)."
 
 [entr_inv_tau]
-value = 0.001
+value = 0
 type = "float"
 description = "Inverse timescale for entrainment (s⁻¹)."
 
@@ -2788,12 +2788,12 @@ type = "float"
 description = "Exponent for the minimum area fraction limiter in both entrainment and detrainment (unitless)."
 
 [entr_detr_limit_inv_tau]
-value = 0.0001
+value = 0
 type = "float"
 description = "Inverse timescale for entrainment and detrainment for negligible area (s⁻¹)."
 
 [detr_inv_tau]
-value = 0.001
+value = 0
 type = "float"
 description = "Inverse timescale for detrainment (s⁻¹)."
 
