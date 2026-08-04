@@ -2415,12 +2415,12 @@ type = "float"
 description = "Gravitational acceleration on the planet (m s⁻²)."
 
 [anomalistic_year_length]
-value = 31558464
+value = 31558433.5
 type = "float"
-description = "Length of an anomalistic year (s). Derived as 365.25 * `day`."
+description = "Length of an anomalistic year (s). Derived as 365.2596 * `day`, from the JPL (Standish) 1800-2050 Earth-Moon barycenter rates: 360 / (35999.37244981 - 0.32327364) °/century."
 
 [length_orbit_semi_major]
-value = 149597870000
+value = 149597870700
 type = "float"
 description = "Semi-major axis of the planetary orbit (m). Derived as 1 * `astronomical_unit`."
 
@@ -2435,24 +2435,24 @@ type = "datetime"
 description = "J2000 epoch (Jan 1, 2000 11:58:55.816 UTC) as a DateTime"
 
 [mean_anomaly_at_epoch]
-value = 6.24006014121
+value = 6.24002139020
 type = "float"
-description = "Mean anomaly at J2000 epoch (radians). Corresponds to 357.52911°."
+description = "Mean anomaly at J2000 epoch (radians). Corresponds to 357.52688973°, from the JPL (Standish) 1800-2050 Earth-Moon barycenter elements as mean longitude minus longitude of perihelion, 100.46457166° - 102.93768193°."
 
 [orbit_obliquity_at_epoch]
-value = 0.40909278483
+value = 0.40909260060
 type = "float"
-description = "Obliquity of the ecliptic at J2000 epoch (radians). Corresponds to 23.43929°."
+description = "Mean obliquity of the ecliptic at J2000 epoch (radians). Corresponds to 23.43927944° = 84381.406\", the IAU 2006 value (Capitaine et al. 2003)."
 
 [longitude_perihelion_at_epoch]
-value = 4.93835675864
+value = 4.93819412764
 type = "float"
-description = "Longitude of perihelion at J2000 epoch (radians). Corresponds to 282.947°."
+description = "Longitude of perihelion of the Sun's apparent orbit at J2000 epoch, measured eastward from the vernal equinox (radians). Corresponds to 282.93768193°, i.e. the JPL (Standish) 1800-2050 Earth-Moon barycenter longitude of perihelion 102.93768193° plus 180°."
 
 [orbit_eccentricity_at_epoch]
-value = 0.016708634
+value = 0.01671123
 type = "float"
-description = "Orbital eccentricity at J2000 epoch (unitless)."
+description = "Orbital eccentricity at J2000 epoch (unitless). JPL (Standish) 1800-2050 Earth-Moon barycenter value."
 
 # Universal Physical Constants
 
@@ -2502,9 +2502,9 @@ type = "float"
 description = "Stefan-Boltzmann constant ($\\sigma$) (W m⁻² K⁻⁴)."
 
 [astronomical_unit]
-value = 149597870000
+value = 149597870700
 type = "float"
-description = "Astronomical unit (AU) (m)."
+description = "Astronomical unit (AU) (m). Exact by the IAU 2012 definition (Resolution B2)."
 
 [avogadro_constant]
 value = 6.02214076e+23
