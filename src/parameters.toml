@@ -2437,22 +2437,22 @@ description = "J2000 epoch (Jan 1, 2000 11:58:55.816 UTC) as a DateTime"
 [mean_anomaly_at_epoch]
 value = 6.24006014121
 type = "float"
-description = "Mean anomaly at epoch (radians). Corresponds to 357.52911°."
+description = "Mean anomaly at J2000 epoch (radians). Corresponds to 357.52911°."
 
 [orbit_obliquity_at_epoch]
-value = 0.408979125113246
+value = 0.40909278483
 type = "float"
-description = "Obliquity of the ecliptic at epoch (radians). Corresponds to 23.43278°."
+description = "Obliquity of the ecliptic at J2000 epoch (radians). Corresponds to 23.43929°."
 
 [longitude_perihelion_at_epoch]
-value = 4.938188299449
+value = 4.93835675864
 type = "float"
-description = "Longitude of perihelion at epoch (radians). Corresponds to 282.9373°."
+description = "Longitude of perihelion at J2000 epoch (radians). Corresponds to 282.947°."
 
 [orbit_eccentricity_at_epoch]
 value = 0.016708634
 type = "float"
-description = "Orbital eccentricity at epoch (unitless)."
+description = "Orbital eccentricity at J2000 epoch (unitless)."
 
 # Universal Physical Constants
 
