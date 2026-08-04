@@ -1,6 +1,14 @@
 ClimaParams.jl Release Notes
 ========================
 
+v1.1.3
+-------
+- Correct Earth's orbital parameters at the J2000 epoch and document their sources.
+  - `orbit_obliquity_at_epoch`: was 23.43278°, the obliquity at ~2050 rather than at J2000. Now 23.43927944° (84381.406″), the IAU 2006 value.
+  - `mean_anomaly_at_epoch`, `longitude_perihelion_at_epoch`, and `orbit_eccentricity_at_epoch` now use the JPL (Standish) 1800-2050 Earth-Moon barycenter elements as a single self-consistent set, replacing a mix of sources.
+  - `anomalistic_year_length`: was 31558464 s, described as 365.25 * `day` (which is 31557600 s). Now 31558433.5 s, derived from the same JPL rates.
+  - `astronomical_unit` and `length_orbit_semi_major`: 149597870000 m -> 149597870700 m, exact by the IAU 2012 definition.
+
 v1.1.2
 -------
 - Add `EDMF_interface_entr_efficiency` parameter.
