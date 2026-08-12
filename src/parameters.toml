@@ -2777,10 +2777,20 @@ value = 0
 type = "float"
 description = "Inverse timescale for entrainment (s⁻¹)."
 
+[entr_inv_length]
+value = 0
+type = "float"
+description = "Inverse length scale for entrainment (m⁻¹)."
+
 [entr_coeff]
 value = 1
 type = "float"
 description = "Coefficient for the $w/z$ term in the entrainment closure (unitless)."
+
+[entr_buoy_coeff]
+value = 0
+type = "float"
+description = "Coefficient for the $b/w^2$ term in the entrainment closure (unitless)."
 
 [entr_vertdiv_coeff]
 value = 1
@@ -2821,6 +2831,11 @@ description = "Coefficient for the $b/w^2$ term in the detrainment closure (unit
 value = 0.01
 type = "float"
 description = "Maximum allowed inverse buoyancy time scale (s⁻¹), used to limit detrainment when velocity differences become small and prevent excessively fast detrainment."
+
+[entr_detr_buoy_inv_tau_max]
+value = 0.01
+type = "float"
+description = "Maximum allowed inverse buoyancy time scale (s⁻¹), used to limit entrainment and detrainment when velocity differences become small and prevent excessively fast entrainment and detrainment."
 
 [detr_vertdiv_coeff]
 value = 1

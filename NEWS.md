@@ -1,9 +1,10 @@
 ClimaParams.jl Release Notes
 ========================
 
-main
-------
-- Add parameters for vertical velocity dependent rain formation
+v1.1.4
+-------
+- Add parameters for vertical velocity dependent rain formation.
+- Add more entrainment parameters.
 
 v1.1.3
 -------
