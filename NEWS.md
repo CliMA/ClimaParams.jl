@@ -1,6 +1,10 @@
 ClimaParams.jl Release Notes
 ========================
 
+main
+------
+- Add parameters for vertical velocity dependent rain formation
+
 v1.1.3
 -------
 - Correct Earth's orbital parameters at the J2000 epoch and document their sources.

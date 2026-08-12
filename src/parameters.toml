@@ -413,7 +413,7 @@ description = "Default scalar roughness length (m)."
 [stanton_number]
 value = 0.1
 type = "float"
-description = "Stanton number: ratio of heat to momentum roughness lengths (unitless)."  
+description = "Stanton number: ratio of heat to momentum roughness lengths (unitless)."
 
 [charnock_wind_low]
 value = 10
@@ -812,7 +812,17 @@ description = "Rain formation threshold in terms of specific humidity for the 1-
 [rain_autoconversion_timescale]
 value = 1000.0
 type = "float"
-description = "Rain formation timescale for the 1-moment microphysics scheme (s)."
+description = "Rain formation timescale for the 1-moment microphysics scheme (s). Also used as the timescale for strong vertical velocities, when using vertical velocity dependent rain formation."
+
+[rain_autoconversion_timescale_stratiform]
+value = 14400
+type = "float"
+description = "Rain formation timescale for weak vertical velocities when using vertical velocity dependent rain formation (s)"
+
+[rain_autoconversion_velocity_scale]
+value = 1.5
+type = "float"
+description = "Blending velocity scale when using vertical velocity dependent rain formation (m/s)"
 
 [rain_ventilation_coefficient_a]
 value = 1.5
@@ -3298,7 +3308,7 @@ description = "Southern hemisphere latitude width (degrees). Source: Alexander a
 value = 1.0e-5
 type = "float"
 description = "Minimum convective heating rate to activate the Beres (2004) convective gravity-wave source (K/s, ~1 K/day = 1e-5). Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOSTG>2.0.CO;2"
- 
+
 [nogw_beres_scale_factor]
 value = 2.0e-6
 type = "float"
