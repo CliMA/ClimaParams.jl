@@ -1,6 +1,10 @@
 ClimaParams.jl Release Notes
 ========================
 
+v1.1.5
+-------
+- Add reference-state shape parameters: `reference_temperature_exponent` (7), `reference_relative_humidity` (0.5), `reference_moisture_cutoff_pressure` (25000 Pa).
+
 v1.1.4
 -------
 - Add parameters for vertical velocity dependent rain formation.

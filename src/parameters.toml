@@ -2486,6 +2486,21 @@ value = 220
 type = "float"
 description = "Minimum temperature in a reference temperature profile (K)."
 
+[reference_temperature_exponent]
+value = 7
+type = "float"
+description = "Exponent s_ref of the Exner function in the hydrostatic reference temperature profile T_r(p) = T_min + (T_sfc - T_min) Π(p)^s_ref [-]."
+
+[reference_relative_humidity]
+value = 0.5
+type = "float"
+description = "Reference relative humidity used to build a reference total moisture specific humidity profile [-]."
+
+[reference_moisture_cutoff_pressure]
+value = 25000
+type = "float"
+description = "Pressure cutoff above which the reference-state total-water specific humidity is clipped to zero [Pa]. Keeps the reference profile confined to the troposphere, avoiding unphysical stratospheric growth."
+
 [universal_gas_constant]
 value = 8.3144598
 type = "float"
