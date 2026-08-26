@@ -1042,7 +1042,7 @@ description = "Prescribed number concentration of cloud droplets (m⁻³)."
 [TC1980_autoconversion_coeff_D]
 value = 3268.0
 type = "float"
-description = "Coefficient $D$ in the Tripoli and Cotton (1980) rain autoconversion parameterization ($m^{3b} s⁻¹$). Source: DOI: 10.1175/JAS3530.1."
+description = "Coefficient $D$ in the Tripoli and Cotton (1980) rain autoconversion parameterization ($m^{3b} s^{-1}$). Source: DOI: 10.1175/JAS3530.1."
 
 [TC1980_autoconversion_coeff_a]
 value = 2.3333333333333333
@@ -1072,7 +1072,7 @@ description = "Coefficient $A$ in the Tripoli and Cotton (1980) accretion parame
 [B1994_autoconversion_coeff_C]
 value = 3e+34
 type = "float"
-description = "Coefficient $C$ in the Beheng (1994) autoconversion parameterization ($m^{3(c+b-1)} s⁻¹ kg^{-(b-1)}$). Source: DOI: 10.1175/JAS3530.1."
+description = "Coefficient $C$ in the Beheng (1994) autoconversion parameterization ($m^{3(c+b-1)} s^{-1} kg^{-(b-1)}$). Source: DOI: 10.1175/JAS3530.1."
 
 [B1994_autoconversion_coeff_a]
 value = -1.7
@@ -1112,7 +1112,7 @@ description = "Coefficient $A$ in the Beheng (1994) accretion parameterization (
 [KK2000_autoconversion_coeff_A]
 value = 7.42e+13
 type = "float"
-description = "Coefficient $A$ in the Khairoutdinov and Kogan (2000) autoconversion parameterization ($m^{3(b+c)} s⁻¹ kg^{-c}$). Source: DOI: 10.1175/JAS3530.1."
+description = "Coefficient $A$ in the Khairoutdinov and Kogan (2000) autoconversion parameterization ($m^{3(b+c)} s^{-1} kg^{-c}$). Source: DOI: 10.1175/JAS3530.1."
 
 [KK2000_autoconversion_coeff_a]
 value = 2.47
@@ -1132,7 +1132,7 @@ description = "Coefficient $c$ in the Khairoutdinov and Kogan (2000) autoconvers
 [KK2000_accretion_coeff_A]
 value = 67.0
 type = "float"
-description = "Coefficient $A$ in the Khairoutdinov and Kogan (2000) accretion parameterization ($m^{3b} kg^{-b} s⁻¹$). Source: DOI: 10.1175/JAS3530.1."
+description = "Coefficient $A$ in the Khairoutdinov and Kogan (2000) accretion parameterization ($m^{3b} kg^{-b} s^{-1}$). Source: DOI: 10.1175/JAS3530.1."
 
 [KK2000_accretion_coeff_a]
 value = 1.15
@@ -1152,7 +1152,7 @@ description = "Coefficient in the Liu and Daum (2004) autoconversion parameteriz
 [LD2004_E_0_coeff]
 value = 1.08e+10
 type = "float"
-description = "Coefficient $E_0$ in the Liu and Daum (2004) autoconversion parameterization ($m^3 kg^{-2} s⁻¹$). Source: DOI: 10.1175/JAS3530.1."
+description = "Coefficient $E_0$ in the Liu and Daum (2004) autoconversion parameterization ($m^3 kg^{-2} s^{-1}$). Source: DOI: 10.1175/JAS3530.1."
 
 [Variable_time_scale_autoconversion_coeff_alpha]
 value = 1.0
@@ -1167,17 +1167,17 @@ description = "A unitless steepness parameter for the smooth transition function
 [SB2006_collection_kernel_coeff_kcc]
 value = 4.44e+09
 type = "float"
-description = "Cloud-cloud collection kernel constant $k_{cc}$ in the Seifert and Beheng (2006) scheme ($m^3 kg⁻² s⁻¹$). Source: DOI: 10.1007/s00703-005-0112-4."
+description = "Cloud-cloud collection kernel constant $k_{cc}$ in the Seifert and Beheng (2006) scheme ($m^3 kg^{-2} s^{-1}$). Source: DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_collection_kernel_coeff_kcr]
 value = 5.25
 type = "float"
-description = "Cloud-rain collection kernel constant $k_{cr}$ in the Seifert and Beheng (2006) scheme ($m^3 kg⁻¹ s⁻¹$). Source: DOI: 10.1007/s00703-005-0112-4."
+description = "Cloud-rain collection kernel constant $k_{cr}$ in the Seifert and Beheng (2006) scheme ($m^3 kg^{-1} s^{-1}$). Source: DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_collection_kernel_coeff_krr]
 value = 7.12
 type = "float"
-description = "Rain-rain collection kernel constant $k_{rr}$ in the Seifert and Beheng (2006) scheme ($m^3 kg⁻¹ s⁻¹$). Source: DOI: 10.1007/s00703-005-0112-4."
+description = "Rain-rain collection kernel constant $k_{rr}$ in the Seifert and Beheng (2006) scheme ($m^3 kg^{-1} s^{-1}$). Source: DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_collection_kernel_coeff_kapparr]
 value = 60.7
@@ -1665,7 +1665,7 @@ description = "Coefficient $c_2$ for calculating P3 deposition nucleation (unitl
 [BarklieGokhale1959_a_parameter]
 value = 0.65
 type = "float"
-description = "Mean of parameter 'a' for determining P3 heterogeneous freezing ($°K⁻¹$). Source: Barklie & Gokhale (1959), see Pruppacher & Klett (1997), p. 350."
+description = "Mean of parameter 'a' for determining P3 heterogeneous freezing (K⁻¹). Source: Barklie & Gokhale (1959), see Pruppacher & Klett (1997), p. 350."
 
 [BarklieGokhale1959_B_parameter]
 value = 200
@@ -1692,7 +1692,7 @@ description = "Exponent $\\sigma$ in the power law for the projected area of var
 [M1996_area_coeff_gamma]
 value = 0.2285
 type = "float"
-description = "Coefficient $\\gamma$ in the power law for the projected area of various ice habits in the P3 scheme ($\\mu m^{2-\\sigma}$). See P3 scheme documentation to adjust units. Source: Mitchell (1996); Morrison and Milbrandt (2015)."
+description = "Coefficient $\\gamma$ in the power law for the projected area of various ice habits in the P3 scheme ($m^{2-\\sigma}$). Source: Mitchell (1996); Morrison and Milbrandt (2015)."
 
 [Heymsfield_mu_coeff1]
 value = 1.91e-3
@@ -2940,7 +2940,7 @@ description = "Static stability coefficient ($c_b$) for the EDMF mixing length c
 [mixing_length_tke_surf_scale]
 value = 3.75
 type = "float"
-description = "Ratio of TKE to squared friction velocity ($\\kappa_*²$) in the surface layer for the EDMF mixing length closure (unitless). Source: Lopez-Gomez et al. (2020), Table 1."
+description = "Ratio of TKE to squared friction velocity ($\\kappa_*^2$) in the surface layer for the EDMF mixing length closure (unitless). Source: Lopez-Gomez et al. (2020), Table 1."
 
 [mixing_length_tke_surf_flux_coeff]
 value = 2.5
