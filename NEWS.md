@@ -1,5 +1,9 @@
 ClimaParams.jl Release Notes
 ========================
+main
+-------
+- Add `ogw_smoothing_scale_fraction` (0.15) for orographic gravity wave topography preprocessing.
+
 v1.1.7
 --------
 - Change `temperature_surface_reference` from 290 K to 288 K and `temperature_min_reference` from 220 K to 215 K to match the dycore manuscript ([#253](https://github.com/CliMA/ClimaParams.jl/pull/253))
