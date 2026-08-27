@@ -3247,6 +3247,11 @@ value = 0.7
 type = "float"
 description = "Critical Froude number (Fr_crit) computed from the critical height threshold. Source: Garner (2005), DOI: 10.1175/JAS3496.1."
 
+[ogw_smoothing_scale_fraction]
+value = 0.15
+type = "float"
+description = "Orographic gravity wave (raw_topo) preprocessing smoothing scale as a fraction of grid spacing: L = α·Δx. Sets the neighborhood over which subgrid mountain statistics (hmax and velocity potential χ / orographic tensor) are computed from raw topography, following Garner (2005) / GFDL topo_drag. α≈1 places L near the grid scale."
+
 # Non-orographic gravity wave (NOGW)
 
 [nogw_source_pressure]
