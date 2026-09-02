@@ -909,6 +909,21 @@ value = 5.0e8
 type = "float"
 description = "Number concentration of cloud ice particles for sedimentation (m⁻³)."
 
+[homogeneous_freezing_timescale]
+value = 1
+type = "float"
+description = "Timescale of the homogeneous freezing of cloud liquid droplets into ice (s)."
+
+[Reisner_et_al_A_parameter]
+value = 0.66
+type = "float"
+description = "Parameter A for Bigg heterogenous freezing of cloud droplets (K⁻¹). Source: Reisner et al 1998 eq. A22, DOI: 10.1002/qj.49712454804."
+
+[Reisner_et_al_B_parameter]
+value = 100
+type = "float"
+description = "Parameter B for Bigg heterogeneous freezing of cloud droplets (m⁻³ s⁻¹). Source: Reisner et al 1998 eq. A22, DOI: 10.1002/qj.49712454804."
+
 [cloud_ice_apparent_density]
 value = 500
 type = "float"
