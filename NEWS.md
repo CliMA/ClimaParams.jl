@@ -7,6 +7,7 @@ v1.1.6
  - Add three modes (`ssa_gong_logfit_mode{1,2,3}`) of lognormal Gong approximation parameters in form (F, r, σg)
  - Add bin flux scales for number and mass moments `ssa_gong_logfit_bin_0M_flux`, `ssa_gong_logfit_bin_3M_flux`
  - Add parameterization constants `ssa_gong_wind_exponent`, `ssa_r80_per_dry`, `ssa_residence`
+ - Add 1-moment microphysics homogeneous and heterogeneous freezing parameters
 
 v1.1.5
 -------
