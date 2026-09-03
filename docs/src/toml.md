@@ -1,24 +1,34 @@
+```@meta
+CurrentModule = ClimaParams
+```
+
 # The TOML Parameter File Interface
 
-Parameters for CliMA models are defined in `.toml` files. ClimaParams.jl is designed to work with two main sources of parameters, which are merged together:
+Parameters for CliMA models are defined in `.toml` files. ClimaParams.jl works with two sources of parameters, which are merged:
 
-1.  **A default parameter file**: This file is bundled with ClimaParams.jl and contains a comprehensive list of default values for the entire CliMA ecosystem.
-2.  **A user-defined override file**: This file is provided by the user for a specific experiment. It only needs to contain the parameters that deviate from the defaults.
+1.  **A default parameter file**: bundled with ClimaParams.jl, containing the values for the entire CliMA ecosystem. See the [Parameter List](@ref).
+2.  **A user-defined override file**: provided for a specific experiment. It only needs to contain the parameters that deviate from the defaults.
 
 ## Parameter Format
 
 Each parameter is defined by its unique name as a TOML table header (e.g., `[my_parameter_name]`). It can have the following attributes:
 
-- `value`: (Required) The value of the parameter. Can be a scalar or an array.
-- `type`: (Required) The data type. See [supported types](param_retrieval.md#Parameter-Types).
-- `description`: (Recommended) A string explaining the parameter's purpose and its physical units.
-- `tag`: An optional array of strings used to group related parameters.
+| Attribute        | Required | Meaning                                                                      |
+|:-----------------|:---------|:------------------------------------------------------------------------------|
+| `value`          | yes      | The value of the parameter; a scalar or an array.                             |
+| `type`           | yes      | The data type. See [Parameter Types](@ref).                                   |
+| `description`    | strongly recommended | Prose explaining the parameter, its units, and its source.        |
+| `tag`            | no       | An array of strings grouping related parameters. See [Parameter tags](@ref).  |
+| `prior`          | no       | A prior distribution for calibration. See [Calibration Metadata](@ref).       |
+| `constraint`     | no       | The transformation to unconstrained space. See [Calibration Metadata](@ref).  |
+| `L1`, `L2`       | no       | A regularization coefficient for calibration.                                 |
 
-Additional attributes, for example, used by [EnsembleKalmanProcesses.jl](https://github.com/CliMA/EnsembleKalmanProcesses.jl), may include:
-- `prior`: An optional string describing a prior distribution, for use in calibration and data assimilation workflows.
-- `transformation`: An optional string describing a transformation for the parameter, used in calibration.
+ClimaParams.jl itself reads only `value`, `type`, `tag`, and the bookkeeping
+field `used_in`. The remaining attributes are carried through untouched for
+[EnsembleKalmanProcesses.jl](https://github.com/CliMA/EnsembleKalmanProcesses.jl)
+to read from the same file.
 
-!!! warn "On Array Types"
+!!! warning "On array types"
     Array values use the same `type` declaration as their scalar counterparts. For example, a vector of floats is specified with `type = "float"`.
 
 ### Basic Parameter Definition
@@ -27,22 +37,28 @@ At a minimum, a parameter requires a `value` and a `type`.
 
 ```TOML
 [molar_mass_dry_air]
-value = 0.03
+value = 0.02897
 type = "float"
 ```
 
-It is highly recommended to include a `description` with units (CliMA generally uses SI units), as found in the default parameter files.
+Include a `description` with units and, for anything that is not a defined
+constant, the source it was taken from. CliMA uses SI units.
 
 ```TOML
 [molar_mass_dry_air]
 value = 0.02897
 type = "float"
-description = "Molecular weight of dry air (kg/mol)"
+description = "Molar mass of dry air (kg mol⁻¹)."
 ```
 
-### Tagging Parameters
+See [Adding and Changing Parameters](@ref) for the full conventions on names,
+descriptions, and units.
 
-Tags provide a way to group related parameters. They do not create namespaces, and all parameter names must remain globally unique. To add tags, provide a list of strings to the `tag` field.
+### Parameter tags
+
+Tags group related parameters so that a whole group can be retrieved in one
+call. They do not create namespaces, and all parameter names must remain
+globally unique. To add tags, provide a list of strings to the `tag` field.
 
 A recommended convention is to tag parameters with the model component(s) where they are used.
 
@@ -54,34 +70,26 @@ description = "The turbulent Prandtl number in neutral conditions ($Pr_0$) for t
 tag = ["SurfaceFluxes"]
 ```
 
-Parameters with a specific tag can then be retrieved easily in Julia. Tag matching is case-insensitive and ignores punctuation. For more information, see the API for [`fuzzy_match`](@ref).
+Parameters with a specific tag can then be retrieved in Julia. Tag matching is case-insensitive and ignores punctuation. For more information, see the API for [`fuzzy_match`](@ref).
 
 ```julia
-# This will retrieve all parameters tagged with "SurfaceFluxes"
+# Retrieves every parameter tagged with "SurfaceFluxes"
 sf_params = get_tagged_parameter_values(toml_dict, "surfacefluxes")
 ```
 
-### Advanced: ClimaParams.jl for Calibration
-
-For calibration workflows, parameters can include additional metadata to guide the calibration process:
-
-```TOML
-[entrainment_parameter]
-value = 0.2
-type = "float"
-description = "Entrainment rate parameter for convective plumes"
-tag = ["Convection", "Turbulence"]
-prior = "LogNormal(-1.6, 0.4)"
-transformation = "log"
-```
-
-The `prior` and `transformation` fields help guide the calibration process in [EnsembleKalmanProcesses.jl](https://github.com/CliMA/EnsembleKalmanProcesses.jl).
+!!! note "The bundled default file is untagged"
+    No parameter in the default `parameters.toml` currently carries a `tag`, so
+    [`get_tagged_parameter_values`](@ref) returns an empty `NamedTuple` unless
+    the tags come from an override file. The default file instead groups related
+    parameters with section comments, which the [Parameter List](@ref) reflects.
+    Tagging the default file is tracked as future work; until then, retrieve
+    default parameters by name.
 
 ## Override Files
 
 When an override file is provided, its values for any given parameter **take precedence** over the default values. Other attributes from the default file (like `description` or `tag`) are merged if they are not present in the override file.
 
-### Override Mechanism
+### Override mechanism
 
 For example, if the user's override file contains:
 ```TOML
@@ -97,16 +105,17 @@ type = "float"
 description = "Molar mass of dry air (kg mol⁻¹)." # <-- Merged from the default file
 ```
 
+An override file may also introduce parameters that are absent from the default
+file, which is how a downstream package adds parameters that are specific to it.
+
 ## Interacting with Parameters in Julia
 
-ClimaParams.jl provides a clear workflow for using parameters in your code.
-
-### 1. Loading Parameters
+### 1. Loading parameters
 
 The main entry point is [`create_toml_dict`](@ref), which loads, merges, and types the parameters.
 
 ```julia
-create_toml_dict(FT; override_file=nothing, default_file=...)
+create_toml_dict(FT; override_file = nothing, default_file = ...)
 ```
 
 The first argument, `FT`, must be a float type (e.g., `Float64` or `Float32`) and determines the precision of all floating-point parameters.
@@ -120,11 +129,21 @@ local_experiment_file = joinpath(@__DIR__, "local_exp_parameters.toml")
 toml_dict = ClimaParams.create_toml_dict(FT; override_file = local_experiment_file)
 ```
 
-If `override_file` is omitted, only the default parameters are loaded. You can also pass Julia `Dict`s directly instead of file paths. To combine more than two files, see the API for `merge_toml_files`
-or pass a vector of filepaths to `create_toml_dict` as the kwarg `override_files`.
-They will be merged in the order they are provided.
+If `override_file` is omitted, only the default parameters are loaded. A Julia
+`Dict` can be passed instead of a file path.
 
-### 2. Using and Logging Parameters
+To combine more than two files, pass the paths as additional positional
+arguments; they are merged in the order given, and the merged result then
+overrides the defaults.
+
+```julia
+toml_dict = ClimaParams.create_toml_dict(FT, "site.toml", "local_exp_parameters.toml")
+```
+
+Alternatively, merge the files yourself with [`merge_toml_files`](@ref) and pass
+the resulting `Dict` as `override_file`.
+
+### 2. Using and logging parameters
 
 The returned `toml_dict` is then used to construct parameter structs for different model components.
 
@@ -141,9 +160,9 @@ ClimaParams.log_parameter_information(toml_dict, log_file)
 # ... run_model(...) ...
 ```
 
-The function [`log_parameter_information`](@ref) performs two key tasks:
-1.  **Writes a log file**: It saves a complete record of every parameter *actually used* in the simulation to `log_file`.
-2.  **Performs sanity checks**: It verifies that all parameters in your override file were used.
+The function [`log_parameter_information`](@ref) performs two tasks:
+1.  **Writes a log file**: it saves a complete record of every parameter *actually used* in the simulation to `log_file`.
+2.  **Performs sanity checks**: it verifies that all parameters in your override file were used.
 
 The log file includes a `used_in` field, which lists every component that requested the parameter. Continuing the example, the log file would contain:
 
@@ -158,5 +177,5 @@ used_in = ["Thermodynamics"]
 !!! note "Reproducibility"
     The generated log file is a valid TOML parameter file and can be used as an `override_file` to exactly reproduce an experiment.
 
-!!! warn "Unused Parameter Checks"
-    By default, [`log_parameter_information`](@ref) will issue a warning if any parameter in your override file was not requested by any component. To treat this as a fatal error, set its argument `strict=true`.
+!!! warning "Unused parameter checks"
+    By default, [`log_parameter_information`](@ref) issues a warning if any parameter in your override file was not requested by any component. This usually means the name is misspelled. To treat it as a fatal error, pass `strict = true`.

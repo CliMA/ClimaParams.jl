@@ -4,7 +4,9 @@
 
 # ClimaParams.jl
 
-A centralized parameter management system for climate modeling. ClimaParams.jl supports physical constants, planetary properties, and tunable parameters designed for calibration with data assimilation and machine learning tools. 
+A centralized parameter management system for climate modeling.
+
+ClimaParams.jl is the single source of truth for the physical constants, planetary properties, and tunable parameters used across the [Climate Modeling Alliance (CliMA)](https://github.com/CliMA) ecosystem. Parameters are declared in TOML files and returned as typed Julia values, with the metadata a calibration needs carried in the same file. It is built on `TOML` from the Julia standard library and has no CliMA dependencies.
 
 |||
 |------------------:|:------------------------------------------------------------|
@@ -27,8 +29,8 @@ A centralized parameter management system for climate modeling. ClimaParams.jl s
 [license-img]: https://img.shields.io/badge/license-Apache%202.0-blue.svg
 [license-url]: https://github.com/CliMA/ClimaParams.jl/blob/main/LICENSE
 
-[gha-ci-img]: https://github.com/CliMA/ClimaParams.jl/actions/workflows/ci.yml/badge.svg
-[gha-ci-url]: https://github.com/CliMA/ClimaParams.jl/actions/workflows/ci.yml
+[gha-ci-img]: https://github.com/CliMA/ClimaParams.jl/actions/workflows/ci.yml/badge.svg?branch=main
+[gha-ci-url]: https://github.com/CliMA/ClimaParams.jl/actions/workflows/ci.yml?query=branch%3Amain
 
 [codecov-img]: https://codecov.io/gh/CliMA/ClimaParams.jl/branch/main/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/CliMA/ClimaParams.jl
@@ -38,22 +40,29 @@ A centralized parameter management system for climate modeling. ClimaParams.jl s
 
 ## Overview
 
-ClimaParams.jl provides a single source of truth for the parameters used in the [Climate Modeling Alliance (CliMA)](https://github.com/CliMA) ecosystem. By centralizing parameters across all model components (atmosphere, ocean, land, etc.), it enables joint calibration of interconnected climate processes through data assimilation and machine learning pipelines. This unified approach ensures that parameters shared between components remain consistent and can be optimized together, leading to more physically coherent model calibration.
+Centralizing parameters across all model components (atmosphere, ocean, land, etc.) keeps values that are shared between components consistent, and lets interconnected processes be calibrated jointly rather than one component at a time.
 
-The package manages two fundamental types of values:
-- Physical and planetary *constants* (e.g., speed of light or planet radius)
-- Tunable model *parameters* that can be calibrated individually or jointly across components
+The package manages two categories of values:
+
+- **Constants**: physical values that are not calibrated, including universal constants (e.g. the speed of light) and planet-specific properties (e.g. gravitational acceleration or planetary radius).
+- **Model parameters**: tunable values subject to calibration by data assimilation or machine learning, spanning atmospheric physics, land surface, turbulence closures, and biogeochemistry.
 
 ## Features
 
-- **Centralized Management**: A single, authoritative source for all model constants and parameters, enabling joint calibration of interconnected processes.
-- **Type-Safe Retrieval**: Guaranteed type-safety with automatic validation and conversion for floating-point, integer, string, and boolean types.
-- **Override System**: Support for parameter overrides with precedence handling for flexible experimentation.
-- **Parameter Tagging**: Logically group values by model component (e.g., atmosphere, land) for easy filtering and retrieval.
-- **Machine Learning Integration**: Seamless integration with data assimilation and ML calibration workflows, including joint parameter optimization across components.
-- **TOML Configuration**: Human-readable TOML files define parameters and their metadata.
-- **Reproducibility**: Automatic logging of parameter sets used in model runs to ensure scientific reproducibility.
-- **Multi-Planet Support**: An extensible framework for simulations of Earth and other planetary bodies.
+- **Centralized management**: one authoritative file of constants and parameters for the whole ecosystem, so shared values cannot drift between components.
+- **Typed retrieval**: each parameter declares its type, and values are converted to `Float32`/`Float64`, `Int`, `String`, `Bool`, or `DateTime` on read, with a float type chosen per simulation.
+- **Calibration metadata**: a parameter entry can carry a `prior` distribution and a `constraint` — the transformation between the physical range and the unconstrained space an ensemble Kalman update works in — which [EnsembleKalmanProcesses.jl](https://github.com/CliMA/EnsembleKalmanProcesses.jl) reads from the same TOML file.
+- **Override system**: layer experiment-specific files over the defaults, with well-defined precedence and per-attribute merging.
+- **Parameter tagging**: group values by model component for bulk retrieval.
+- **Reproducibility**: every read is logged, so a run can write out the exact parameter set it used — itself a valid parameter file that reproduces the run.
+- **Multi-planet capable**: planetary properties are named generically and defaulted to Earth, so another body is an override file away.
+
+## Installation
+
+```julia
+julia> ]
+pkg> add ClimaParams
+```
 
 ## Quick Example
 
@@ -68,39 +77,92 @@ param_dict = create_toml_dict(FT)
 
 # Retrieve a struct of physical constants by name
 constants = get_parameter_values(
-    param_dict, 
+    param_dict,
     ["gravitational_acceleration", "planet_radius", "light_speed"],
 )
-# Access constants, e.g.: 
-constants.gravitational_acceleration
+constants.gravitational_acceleration  # 9.81
 
 # Retrieve parameters and assign them custom names for convenience
 params = get_parameter_values(
     param_dict,
     Dict("universal_gas_constant" => "R", "gravitational_acceleration" => "g"),
 )
-# Access parameters, e.g. 
-params.R
+params.R  # 8.3144598
 
-# Get all parameters associated with a specific tag
-atmospheric_params = get_tagged_parameter_values(param_dict, "atmosphere")
+# Index directly into the dictionary for a single value
+param_dict["planet_radius"]  # 6.371e6
 ```
 
-## Parameter Categories
+## Calibration Metadata
 
-ClimaParams manages two main categories of parameters:
+A parameter entry is not just a value. Alongside `value` and `type`, it can carry
+a prior distribution and the constraint that transforms it to the unconstrained
+space in which an ensemble Kalman update operates:
 
-- **Constants**: Immutable physical values. This includes universal constants (e.g., speed of light) and planet-specific properties (e.g., gravitational acceleration or planetary radius)
-- **Model Parameters**: Tunable values that are subject to calibration via data assimilation or machine learning. These often correspond to specific physical processes, including:
-  - Atmospheric physics 
-  - Land surface 
-  - Turbulence closures
-  - Biogeochemistry
+```toml
+[entr_coeff]
+value = 0.3
+type = "float"
+description = "Entrainment coefficient for the EDMF updraft (unitless)."
+prior = "Parameterized(Normal(-1.2, 0.4))"
+constraint = "bounded_below(0.0)"
+```
+
+Here the prior is a Gaussian over the *unconstrained* variable, and
+`bounded_below(0.0)` maps it back to the physical range, so every ensemble
+member stays positive.
+
+`constrained_gaussian` says the same thing in one line, in the units the
+parameter actually has. Give it a name, a mean, a standard deviation, and the
+lower and upper bounds — in that order — and it fits a distribution whose
+samples respect the bounds. No separate `constraint` is needed, because the
+bounds are already part of the prior:
+
+```toml
+[entr_coeff]
+value = 0.3
+type = "float"
+description = "Entrainment coefficient for the EDMF updraft (unitless)."
+prior = "constrained_gaussian(entr_coeff, 0.3, 0.15, 0.0, Inf)"
+```
+
+ClimaParams.jl carries these fields through untouched;
+[EnsembleKalmanProcesses.jl](https://github.com/CliMA/EnsembleKalmanProcesses.jl)
+reads them from the same file to build the prior. One file therefore defines both
+what a model runs with and what a calibration is allowed to change. See the
+[calibration metadata documentation](https://CliMA.github.io/ClimaParams.jl/dev/calibration/).
+
+## Documentation
+
+- [Stable documentation](https://CliMA.github.io/ClimaParams.jl/stable/) · [dev documentation](https://CliMA.github.io/ClimaParams.jl/dev/)
+- [Parameter retrieval](https://CliMA.github.io/ClimaParams.jl/dev/param_retrieval/): name maps, component logging, and parameter structs
+- [TOML file interface](https://CliMA.github.io/ClimaParams.jl/dev/toml/): file format, override files, and run logging
+- [Calibration metadata](https://CliMA.github.io/ClimaParams.jl/dev/calibration/): priors and constraints for EnsembleKalmanProcesses.jl
+- [Parameter list](https://CliMA.github.io/ClimaParams.jl/dev/parameters/): every parameter in the default file, with value, type, and description
 
 ## Integration with CliMA Models
 
-By providing a centralized source of parameters, ClimaParams.jl is essential for the interoperability and reliability of the CliMA ecosystem. It is designed to:
-- Enable joint calibration of parameters across model components through unified data assimilation and machine learning pipelines
-- Ensure consistent parameter usage across all models (atmosphere, ocean, land, etc.)
-- Facilitate parameter sensitivity analysis and uncertainty quantification studies, jointly across model components
-- Enable reproducible experiments by explicitly logging the exact parameter sets used for each simulation
+Every CliMA package reads its constants from a `ClimaParams` dictionary rather than hard-coding them:
+
+```text
+src/parameters.toml
+        │  create_toml_dict(FT)
+        ▼
+toml_dict :: ParamDict
+        │  ThermodynamicsParameters(toml_dict), CloudMicrophysicsParameters(toml_dict), ...
+        ▼
+Library-specific parameter structs
+        │  bundled by the model
+        ▼
+ClimaAtmosParameters / ClimaLandParameters / ...
+```
+
+Downstream users include [Thermodynamics.jl](https://github.com/CliMA/Thermodynamics.jl), [CloudMicrophysics.jl](https://github.com/CliMA/CloudMicrophysics.jl), [SurfaceFluxes.jl](https://github.com/CliMA/SurfaceFluxes.jl), [ClimaAtmos.jl](https://github.com/CliMA/ClimaAtmos.jl), [ClimaLand.jl](https://github.com/CliMA/ClimaLand.jl), and [ClimaCoupler.jl](https://github.com/CliMA/ClimaCoupler.jl). Calibration workflows are built on [EnsembleKalmanProcesses.jl](https://github.com/CliMA/EnsembleKalmanProcesses.jl) and [ClimaCalibrate.jl](https://github.com/CliMA/ClimaCalibrate.jl).
+
+## Contributing
+
+Most contributions add or correct a parameter in `src/parameters.toml`. See
+[Adding and changing parameters](https://CliMA.github.io/ClimaParams.jl/dev/contributing/)
+for the naming, description, and unit conventions, and for the pull request
+checklist. Broader CliMA conventions live in the
+[CliMA developer guides](https://github.com/CliMA/DeveloperGuides).
