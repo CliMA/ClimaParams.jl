@@ -2492,12 +2492,12 @@ type = "float"
 description = "Mean sea level pressure ($p_{MSL}$) (Pa)."
 
 [temperature_surface_reference]
-value = 290
+value = 288
 type = "float"
 description = "Surface temperature in a reference temperature profile (K)."
 
 [temperature_min_reference]
-value = 220
+value = 215
 type = "float"
 description = "Minimum temperature in a reference temperature profile (K)."
 
