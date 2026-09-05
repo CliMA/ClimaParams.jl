@@ -1,40 +1,5 @@
 ## Universal Physical Constants
 
-[potential_temperature_reference_pressure]
-value = 1e5
-type = "float"
-description = "Reference pressure for potential temperature calculations ($p_0$) (Pa)."
-
-[mean_sea_level_pressure]
-value = 101325
-type = "float"
-description = "Mean sea level pressure ($p_{MSL}$) (Pa)."
-
-[temperature_surface_reference]
-value = 288
-type = "float"
-description = "Surface temperature in a reference temperature profile (K)."
-
-[temperature_min_reference]
-value = 215
-type = "float"
-description = "Minimum temperature in a reference temperature profile (K)."
-
-[reference_temperature_exponent]
-value = 7
-type = "float"
-description = "Exponent $s_\\text{ref}$ of the Exner function in the hydrostatic reference temperature profile $T_r(p) = T_\\text{min} + (T_\\text{sfc} - T_\\text{min})\\,\\Pi(p)^{s_\\text{ref}}$ (unitless)."
-
-[reference_relative_humidity]
-value = 0.5
-type = "float"
-description = "Reference relative humidity used to build a reference total moisture specific humidity profile (unitless)."
-
-[reference_moisture_cutoff_pressure]
-value = 25000
-type = "float"
-description = "Pressure cutoff above which the reference-state total-water specific humidity is clipped to zero (Pa). Keeps the reference profile confined to the troposphere, avoiding unphysical stratospheric growth."
-
 [universal_gas_constant]
 value = 8.3144598
 type = "float"
@@ -239,31 +204,6 @@ value = 1
 type = "float"
 description = "Exponent in the ice nucleation parameterization (unitless)."
 
-[microph_scaling_acnv]
-value = 1.0
-type = "float"
-description = "Scaling factor for autoconversion in microphysics (unitless)."
-
-[microph_scaling_accr]
-value = 1.0
-type = "float"
-description = "Scaling factor for accretion in microphysics (unitless)."
-
-[microph_scaling_evap]
-value = 1.0
-type = "float"
-description = "Scaling factor for evaporation in microphysics (unitless)."
-
-[microph_scaling_dep_sub]
-value = 1.0
-type = "float"
-description = "Scaling factor for deposition/sublimation in microphysics (unitless)."
-
-[microph_scaling_melt]
-value = 1.0
-type = "float"
-description = "Scaling factor for melting in microphysics (unitless)."
-
 [temperature_triple_point]
 value = 273.16
 type = "float"
@@ -309,7 +249,42 @@ value = 298.15
 type = "float"
 description = "Reference temperature for entropy calculations (K)."
 
-# Ocean
+[potential_temperature_reference_pressure]
+value = 1e5
+type = "float"
+description = "Reference pressure for potential temperature calculations ($p_0$) (Pa)."
+
+[mean_sea_level_pressure]
+value = 101325
+type = "float"
+description = "Mean sea level pressure ($p_{MSL}$) (Pa)."
+
+[temperature_surface_reference]
+value = 288
+type = "float"
+description = "Surface temperature in a reference temperature profile (K)."
+
+[temperature_min_reference]
+value = 215
+type = "float"
+description = "Minimum temperature in a reference temperature profile (K)."
+
+[reference_temperature_exponent]
+value = 7
+type = "float"
+description = "Exponent $s_\\text{ref}$ of the Exner function in the hydrostatic reference temperature profile $T_r(p) = T_\\text{min} + (T_\\text{sfc} - T_\\text{min})\\,\\Pi(p)^{s_\\text{ref}}$ (unitless)."
+
+[reference_relative_humidity]
+value = 0.5
+type = "float"
+description = "Reference relative humidity used to build a reference total moisture specific humidity profile (unitless)."
+
+[reference_moisture_cutoff_pressure]
+value = 25000
+type = "float"
+description = "Pressure cutoff above which the reference-state total-water specific humidity is clipped to zero (Pa). Keeps the reference profile confined to the troposphere, avoiding unphysical stratospheric growth."
+
+## Ocean
 
 [density_ocean_reference]
 value = 1035
@@ -813,11 +788,6 @@ description = "Entrainment efficiency $A$ (unitless) in the EDMF interfacial ent
 
 # Mixing Length
 
-[c_smag]
-value = 0.2
-type = "float"
-description = "Smagorinsky coefficient (unitless)."
-
 [mixing_length_eddy_viscosity_coefficient]
 value = 0.14
 type = "float"
@@ -1112,6 +1082,31 @@ type = "float"
 description = "Prescribed number concentration of cloud droplets (m⁻³)."
 
 # 1-Moment Scheme
+
+[microph_scaling_acnv]
+value = 1.0
+type = "float"
+description = "Scaling factor for the 1-moment autoconversion rate (unitless)."
+
+[microph_scaling_accr]
+value = 1.0
+type = "float"
+description = "Scaling factor for the 1-moment accretion rate (unitless)."
+
+[microph_scaling_evap]
+value = 1.0
+type = "float"
+description = "Scaling factor for the 1-moment rain evaporation rate (unitless)."
+
+[microph_scaling_dep_sub]
+value = 1.0
+type = "float"
+description = "Scaling factor for the 1-moment snow deposition/sublimation rate (unitless)."
+
+[microph_scaling_melt]
+value = 1.0
+type = "float"
+description = "Scaling factor for the 1-moment snow melting rate (unitless)."
 
 [rain_drop_drag_coefficient]
 value = 0.55
@@ -2963,6 +2958,11 @@ type = "float"
 description = "Largest convective-system scale (m) setting k_min = 2*pi/L in the even-folded horizontal constant H of the steady Beres source (steady/transient ratio depends on it only logarithmically). Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
 
 ## Diffusion
+
+[c_smag]
+value = 0.2
+type = "float"
+description = "Smagorinsky coefficient (unitless)."
 
 [D_horizontal_diffusion]
 value = 5e5
