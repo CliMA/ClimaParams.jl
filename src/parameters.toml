@@ -1,394 +1,332 @@
-## Land
+## Universal Physical Constants
 
-# Autotrophic Respiration parameters
-
-[N_factor_Vcmax25]
-value = 8e-4
+[potential_temperature_reference_pressure]
+value = 1e5
 type = "float"
-description = "Factor converting Vcmax at 25°C to nitrogen content (mol CO₂ m⁻² s⁻¹ kgC (kgC)⁻¹)."
+description = "Reference pressure for potential temperature calculations ($p_0$) (Pa)."
 
-[live_stem_wood_coeff]
-value = 0.01
+[mean_sea_level_pressure]
+value = 101325
 type = "float"
-description = "Live stem wood coefficient (kg C m⁻³)."
+description = "Mean sea level pressure ($p_{MSL}$) (Pa)."
 
-[specific_leaf_density]
-value = 0.05
-type = "float"
-description = "Specific leaf density (kg C m⁻² leaf)."
-
-[root_leaf_nitrogen_ratio]
-value = 1.0
-type = "float"
-description = "Ratio of root nitrogen to top leaf nitrogen (unitless)."
-
-[stem_leaf_nitrogen_ratio]
-value = 0.1
-type = "float"
-description = "Ratio of stem nitrogen to top leaf nitrogen (unitless)."
-
-[relative_contribution_factor]
-value = 0.25
-type = "float"
-description = "Factor of relative contribution for growth respiration, Rgrowth (unitless)."
-
-# Farquhar model parameters for photosynthesis
-
-[CO2_compensation_point_25c]
-value = 4.275e-5
-type = "float"
-description = "CO₂ compensation point ($\\Gamma^*$) at 25°C (mol mol⁻¹). Source: Bernacchi et al. (2001)."
-
-[CO2_michaelis_menten]
-value = 4.049e-4
-type = "float"
-description = "Michaelis-Menten parameter for CO₂ at 25°C (mol mol⁻¹). Source: Bernacchi et al. (2001)."
-
-[O2_michaelis_menten]
-value = 0.2784
-type = "float"
-description = "Michaelis-Menten parameter for O₂ at 25°C (mol mol⁻¹). Source: Bernacchi et al. (2001)."
-
-[CO2_activation_energy]
-value = 79430.0
-type = "float"
-description = "Energy of activation for CO₂ (J mol⁻¹). Source: Bonan (2019), Table 11.2; Bernacchi et al. (2001, 2003)."
-
-[O2_activation_energy]
-value = 36380.0
-type = "float"
-description = "Energy of activation for oxygen (J mol⁻¹). Source: Bonan (2019), Table 11.2; Bernacchi et al. (2001, 2003)."
-
-[Vcmax_activation_energy]
-value = 65330.0
-type = "float"
-description = "Energy of activation for Vcmax (J mol⁻¹). Source: Bonan (2019), Table 11.2; Bernacchi et al. (2001, 2003)."
-
-["Γstar_activation_energy"]
-value = 37830.0
-type = "float"
-description = "Energy of activation for $\\Gamma^*$ (J mol⁻¹). Source: Bonan (2019), Table 11.2; Bernacchi et al. (2001, 2003)."
-
-[Jmax_activation_energy]
-value = 43540.0
-type = "float"
-description = "Energy of activation for Jmax (J mol⁻¹). Source: Bonan (2019), Table 11.2; Bernacchi et al. (2001, 2003)."
-
-[Rd_activation_energy]
-value = 46390.0
-type = "float"
-description = "Energy of activation for dark respiration, Rd (J mol⁻¹). Source: Bonan (2019), Table 11.2; Bernacchi et al. (2001, 2003)."
-
-[kelvin_25C]
-value = 298.15
-type = "float"
-description = "Reference temperature equal to 25°C (K)."
-
-[intercellular_O2_concentration]
-value = 0.209
-type = "float"
-description = "Intercellular O₂ concentration, assumed constant (mol mol⁻¹)."
-
-[photosystem_II_quantum_yield]
-value = 0.7
-type = "float"
-description = "Quantum yield of photosystem II (unitless). Source: Bonan (2019); Bernacchi (2003)."
-
-[Farquhar_curvature_parameter]
-value = 0.9
-type = "float"
-description = "Curvature parameter for calculating J, a unitless fitting constant. Source: von Caemmerer (2000, 2013); Bernacchi et al. (2003, 2013); von Caemmerer et al. (2009)."
-
-[dark_respiration_factor]
-value = 0.015
-type = "float"
-description = "Constant factor appearing in the dark respiration term (unitless). Source: Bonan (2019)."
-
-[low_water_pressure_sensitivity]
-value = 5e-6
-type = "float"
-description = "Sensitivity of stomatal conductance to low water pressure (Pa⁻¹)."
-
-[moisture_stress_ref_water_pressure]
-value = -2e6
-type = "float"
-description = "Reference water pressure for the moisture stress factor (Pa). Source: Tuzet et al. (2003)."
-
-[electron_transport_maintenance]
-value = 0.05336251
-type = "float"
-description = "Constant describing the cost of maintaining electron transport (unitless)."
-
-# SoilCO2Model
-
-[kg_C_to_mol_CO2_factor]
-value = 83.26
-type = "float"
-description = "Conversion factor from kg C to mol CO₂."
-
-[CO2_diffusion_coefficient]
-value = 1.39e-5
-type = "float"
-description = "Diffusion coefficient for CO₂ in air at standard temperature and pressure (m² s⁻¹). Source: Ryan et al. (2018), DOI: 10.5194/gmd-11-1909-2018."
-
-[oxygen_diffusion_coefficient]
-value = 1.67
-type = "float"
-description = "Diffusion coefficient of oxygen in air (dimensionless). Source: Davidson et al. (2011), DOI: 10.1111/j.1365-2486.2011.02546.x."
-
-[soil_C_substrate_diffusivity]
-value = 3.17
-type = "float"
-description = "Diffusivity of soil C substrate in liquid (unitless). Source: Ryan et al. (2018), DOI: 10.5194/gmd-11-1909-2018."
-
-[soilCO2_pre_exponential_factor]
-value = 194e3
-type = "float"
-description = "Pre-exponential factor for soil CO₂ model (kg C m⁻³ s⁻¹). Source: Davidson et al. (2011), DOI: 10.1111/j.1365-2486.2011.02546.x."
-
-[soilCO2_activation_energy]
-value = 61e3
-type = "float"
-description = "Activation energy for soil CO₂ model (J mol⁻¹). Source: Davidson et al. (2011), DOI: 10.1111/j.1365-2486.2011.02546.x."
-
-[michaelis_constant]
-value = 5e-3
-type = "float"
-description = "Michaelis constant (kg C m⁻³). Source: Davidson et al. (2011), DOI: 10.1111/j.1365-2486.2011.02546.x."
-
-[O2_michaelis_constant]
-value = 4e-3
-type = "float"
-description = "Michaelis constant for O₂ (m³ m⁻³). Source: Davidson et al. (2011), DOI: 10.1111/j.1365-2486.2011.02546.x."
-
-[O2_volume_fraction]
-value = 0.209
-type = "float"
-description = "Volumetric fraction of O₂ in the soil air (dimensionless). Source: Davidson et al. (2011), DOI: 10.1111/j.1365-2486.2011.02546.x."
-
-[soluble_soil_carbon_fraction]
-value = 0.024
-type = "float"
-description = "Fraction of soil carbon that is considered soluble (dimensionless). Source: Davidson et al. (2011), DOI: 10.1111/j.1365-2486.2011.02546.x."
-
-# Soil Model
-
-[thermal_conductivity_of_quartz]
-value = 8.0
-type = "float"
-description = "Thermal conductivity of quartz (W m⁻¹ K⁻¹). Source: Balland and Arp, J. Environ. Eng. Sci. 4: 549-558 (2005)."
-
-[thermal_conductivity_of_soil_minerals]
-value = 2.5
-type = "float"
-description = "Thermal conductivity of soil minerals, excluding quartz (W m⁻¹ K⁻¹). Source: Balland and Arp, J. Environ. Eng. Sci. 4: 549-558 (2005)."
-
-[thermal_conductivity_of_organic_matter]
-value = 0.25
-type = "float"
-description = "Thermal conductivity of organic matter (W m⁻¹ K⁻¹). Source: Balland and Arp, J. Environ. Eng. Sci. 4: 549-558 (2005)."
-
-[thermal_conductivity_of_liquid_water]
-value = 0.57
-type = "float"
-description = "Thermal conductivity of liquid water at 10°C (W m⁻¹ K⁻¹). Source: Balland and Arp, J. Environ. Eng. Sci. 4: 549-558 (2005)."
-
-[thermal_conductivity_of_water_ice]
-value = 2.21
-type = "float"
-description = "Thermal conductivity of water ice at its freezing temperature (W m⁻¹ K⁻¹). Source: Balland and Arp, J. Environ. Eng. Sci. 4: 549-558 (2005)."
-
-[kersten_number_alpha]
-value = 0.24
-type = "float"
-description = "A unitless empirical constant ($\\alpha$) used in computing the Kersten number. Source: Balland and Arp, J. Environ. Eng. Sci. 4: 549-558 (2005)."
-
-[kersten_number_beta]
-value = 18.3
-type = "float"
-description = "A unitless empirical constant ($\\beta$) used in computing the Kersten number. Source: Balland and Arp, J. Environ. Eng. Sci. 4: 549-558 (2005)."
-
-[ice_impedance_omega]
-value = 7.0
-type = "float"
-description = "A unitless impedance parameter ($\\Omega$) used to adjust soil hydraulic conductivity for ice presence. Source: Lundin, J. Hydrol. 118:289-310 (1990)."
-
-[temperature_factor_soil_hydraulic_conductivity]
-value = 0.0264
-type = "float"
-description = "An empirical parameter for adjusting soil hydraulic conductivity based on temperature (K⁻¹)."
-
-[temperature_reference_soil_hydraulic_conductivity]
+[temperature_surface_reference]
 value = 288
 type = "float"
-description = "The reference temperature for adjusting soil hydraulic conductivity (K)."
+description = "Surface temperature in a reference temperature profile (K)."
 
-[maximum_dry_soil_layer_depth]
-value = 0.015
+[temperature_min_reference]
+value = 215
 type = "float"
-description = "Maximum depth of the dry soil layer that can develop under evaporation (m). Source: Shokri and Or (2011), DOI: 10.1029/2010WR010284"
+description = "Minimum temperature in a reference temperature profile (K)."
 
-[emissivity_bare_soil]
-value = 0.96
+[reference_temperature_exponent]
+value = 7
 type = "float"
-description = "Emissivity of bare soil (unitless). Source: CLM5 Technical Note (2020)."
+description = "Exponent $s_\\text{ref}$ of the Exner function in the hydrostatic reference temperature profile $T_r(p) = T_\\text{min} + (T_\\text{sfc} - T_\\text{min})\\,\\Pi(p)^{s_\\text{ref}}$ (unitless)."
 
-# Energy Hydrology Parameters
-
-[soil_momentum_roughness_length]
-value = 0.01
+[reference_relative_humidity]
+value = 0.5
 type = "float"
-description = "Momentum roughness length for soil (m). Source: CLM5 Technical Note."
+description = "Reference relative humidity used to build a reference total moisture specific humidity profile (unitless)."
 
-[soil_scalar_roughness_length]
-value = 7e-3
+[reference_moisture_cutoff_pressure]
+value = 25000
 type = "float"
-description = "Scalar roughness length for soil (m), assuming friction velocity $u_*$ of 5 m s⁻¹. Source: CLM5 Technical Note."
+description = "Pressure cutoff above which the reference-state total-water specific humidity is clipped to zero (Pa). Keeps the reference profile confined to the troposphere, avoiding unphysical stratospheric growth."
 
-[snow_momentum_roughness_length]
-value = 2.4e-3
+[universal_gas_constant]
+value = 8.3144598
 type = "float"
-description = "Momentum roughness length for snow (m). Source: CLM5 Technical Note."
+description = "Universal gas constant ($R$) (J mol⁻¹ K⁻¹)."
 
-[snow_scalar_roughness_length]
-value = 8e-2
+[light_speed]
+value = 299792458
 type = "float"
-description = "Scalar roughness length for snow (m), assuming friction velocity $u_*$ of 5 m s⁻¹. Source: CLM5 Technical Note."
+description = "Speed of light in vacuum ($c$) (m s⁻¹)."
 
-[particle_density_quartz]
-value = 2.66e3
+[planck_constant]
+value = 6.626e-34
 type = "float"
-description = "Particle density of quartz (kg m⁻³). Source: Hillel (1982); De Vries (1966)."
+description = "Planck's constant ($h$) (J s)."
 
-[particle_density_minerals]
-value = 2.65e3
+[boltzmann_constant]
+value = 1.381e-23
 type = "float"
-description = "Particle density of soil minerals (kg m⁻³). Source: Hillel (1982)."
+description = "Boltzmann's constant ($k_B$) (J K⁻¹)."
 
-[particle_density_organic_matter]
-value = 1.3e3
+[stefan_boltzmann_constant]
+value = 5.67e-8
 type = "float"
-description = "Particle density of organic matter (kg m⁻³). Source: Hillel (1982)."
+description = "Stefan-Boltzmann constant ($\\sigma$) (W m⁻² K⁻⁴)."
 
-[vol_heat_capacity_quartz]
-value = 2.01e6
+[astronomical_unit]
+value = 149597870700
 type = "float"
-description = "Volumetric heat capacity of quartz (J m⁻³ K⁻¹). Source: Balland and Arp (2005)."
+description = "Astronomical unit (AU) (m). Exact by the IAU 2012 definition (Resolution B2)."
 
-[vol_heat_capacity_organic_matter]
-value = 2.51e6
+[avogadro_constant]
+value = 6.02214076e+23
 type = "float"
-description = "Volumetric heat capacity of organic matter (J m⁻³ K⁻¹). Source: Balland and Arp (2005)."
+description = "Avogadro's constant ($N_A$) (mol⁻¹)."
 
-[vol_heat_capacity_minerals]
-value = 2.01e6
+## Planetary and Orbital Parameters (Earth Defaults)
+
+[planet_radius]
+value = 6371000
 type = "float"
-description = "Volumetric heat capacity of soil minerals excluding quartz (J m⁻³ K⁻¹). Source: Balland and Arp (2005)."
+description = "Mean radius of the planet (m)."
 
-# Bucket Model
-
-[soil_conductivity]
-value = 1.5
+[day]
+value = 86400
 type = "float"
-description = "Constant conductivity of the soil (W m⁻¹ K⁻¹). Source: SLIM model, Laguë et al. (2019)."
+description = "Length of a day (s)."
 
-[soil_heat_capacity]
-value = 2e6
+[angular_velocity_planet_rotation]
+value = 7.2921159e-5
 type = "float"
-description = "Volumetric heat capacity of the soil (J m⁻³ K⁻¹). Source: SLIM model, Laguë et al. (2019)."
+description = "Angular velocity of planetary rotation ($\\Omega$) (rad s⁻¹)."
 
-[critical_snow_water_equivalent]
-value = 0.05
+[f_plane_coriolis_frequency]
+value = 0
 type = "float"
-description = "Critical snow water equivalent ($\\sigma_{SWE}$) at which the surface transitions to fully snow-covered (m). Source: SLIM model, Laguë et al. (2019)."
+description = "Coriolis frequency on an f-plane (s⁻¹)."
 
-[land_bucket_capacity]
-value = 0.2
+[gravitational_acceleration]
+value = 9.81
 type = "float"
-description = "Water capacity of the land bucket (m). Source: SLIM model, Laguë et al. (2019)."
+description = "Gravitational acceleration on the planet (m s⁻²)."
 
-[critical_snow_fraction]
-value = 0.0
+[anomalistic_year_length]
+value = 31558433.5
 type = "float"
-description = "Fraction of the critical snow amount at which the sublimation factor ($\\beta$) begins to decay to zero (unitless). Source: SLIM model, Laguë et al. (2019)."
+description = "Length of an anomalistic year (s). Derived as 365.2596 * `day`, from the JPL (Standish) 1800-2050 Earth-Moon barycenter rates: 360 / (35999.37244981 - 0.32327364) °/century."
 
-[bucket_capacity_fraction]
-value = 0.75
+[length_orbit_semi_major]
+value = 149597870700
 type = "float"
-description = "Fraction of the bucket capacity at which the evaporation factor ($\\beta$) begins to decay to zero (unitless). Source: SLIM model, Laguë et al. (2019)."
+description = "Semi-major axis of the planetary orbit (m). Derived as 1 * `astronomical_unit`."
 
-[bucket_beta_decay_exponent]
+[total_solar_irradiance]
+value = 1362
+type = "float"
+description = "Total solar irradiance (TSI) at the mean orbital distance (W m⁻²)."
+
+[epoch_time]
+value = 2000-01-01T11:58:55.816
+type = "datetime"
+description = "J2000 epoch (Jan 1, 2000 11:58:55.816 UTC) as a DateTime."
+
+[mean_anomaly_at_epoch]
+value = 6.24002139020
+type = "float"
+description = "Mean anomaly at J2000 epoch (radians). Corresponds to 357.52688973°, from the JPL (Standish) 1800-2050 Earth-Moon barycenter elements as mean longitude minus longitude of perihelion, 100.46457166° - 102.93768193°."
+
+[orbit_obliquity_at_epoch]
+value = 0.40909260060
+type = "float"
+description = "Mean obliquity of the ecliptic at J2000 epoch (radians). Corresponds to 23.43927944° = 84381.406\", the IAU 2006 value. Source: Capitaine et al. (2003), DOI: 10.1051/0004-6361:20020420."
+
+[longitude_perihelion_at_epoch]
+value = 4.93819412764
+type = "float"
+description = "Longitude of perihelion of the Sun's apparent orbit at J2000 epoch, measured eastward from the vernal equinox (radians). Corresponds to 282.93768193°, i.e. the JPL (Standish) 1800-2050 Earth-Moon barycenter longitude of perihelion 102.93768193° plus 180°."
+
+[orbit_eccentricity_at_epoch]
+value = 0.01671123
+type = "float"
+description = "Orbital eccentricity at J2000 epoch (unitless). JPL (Standish) 1800-2050 Earth-Moon barycenter value."
+
+## Thermodynamic Constants
+
+[gas_constant_dry_air]
+value = 287.0
+type = "float"
+description = "Gas constant for dry air (J kg⁻¹ K⁻¹)."
+
+[isobaric_specific_heat_dry_air]
+value = 1004.5
+type = "float"
+description = "Isobaric specific heat of dry air (J kg⁻¹ K⁻¹)."
+
+[molar_mass_dry_air]
+value = 0.02897
+type = "float"
+description = "Molar mass of dry air (kg mol⁻¹)."
+
+[adiabatic_exponent_dry_air]
+value = 0.28571428571
+type = "float"
+description = "Adiabatic exponent for dry air ($\\kappa_d$), derived from $R_d/c_{pd}$ or 2/7 (unitless)."
+
+[density_liquid_water]
+value = 1000
+type = "float"
+description = "Density of liquid water (kg m⁻³)."
+
+[density_ice_water]
+value = 916.7
+type = "float"
+description = "Density of water ice (kg m⁻³)."
+
+[gas_constant_vapor]
+value = 461.5
+type = "float"
+description = "Gas constant for water vapor (J kg⁻¹ K⁻¹)."
+
+[molar_mass_water]
+value = 0.01801528
+type = "float"
+description = "Molar mass of water (kg mol⁻¹)."
+
+[isobaric_specific_heat_vapor]
+value = 1859
+type = "float"
+description = "Isobaric specific heat of water vapor (J kg⁻¹ K⁻¹)."
+
+[isobaric_specific_heat_liquid]
+value = 4181
+type = "float"
+description = "Isobaric specific heat of liquid water (J kg⁻¹ K⁻¹)."
+
+[isobaric_specific_heat_ice]
+value = 2070.0
+type = "float"
+description = "Isobaric specific heat of ice (J kg⁻¹ K⁻¹)."
+
+[temperature_water_freeze]
+value = 273.15
+type = "float"
+description = "Freezing temperature of water (K)."
+
+[temperature_minimum]
+value = 150
+type = "float"
+description = "Minimum temperature for thermodynamic calculations (K)."
+
+[specific_humidity_minimum]
+value = 1e-10
+type = "float"
+description = "Minimum specific humidity threshold (kg kg⁻¹). Used as a lower bound when comparing or regularizing humidity values."
+
+[specific_humidity_maximum]
+value = 0.1
+type = "float"
+description = "Maximum specific humidity for thermodynamic calculations (kg kg⁻¹)."
+
+[temperature_saturation_adjustment_init_min]
+value = 150
+type = "float"
+description = "Minimum temperature for saturation adjustment initialization (K)."
+
+[temperature_saturation_adjustment_min]
 value = 1
 type = "float"
-description = "Exponent used in the decay of the evaporation/sublimation factor ($\\beta$) (unitless). Source: SLIM model, Laguë et al. (2019)."
+description = "Minimum temperature difference for unsaturated case in saturation adjustment (K)."
 
-# Snow
-
-[snow_density]
-value = 200
+[temperature_saturation_adjustment_max]
+value = 1000
 type = "float"
-description = "Density of snow (kg m⁻³)."
+description = "Maximum temperature for saturation adjustment (K)."
 
-[snow_albedo]
-value = 0.8
+[temperature_homogenous_nucleation]
+value = 233
 type = "float"
-description = "Albedo of snow (unitless)."
+description = "Temperature for homogeneous ice nucleation (K)."
 
-[snow_emissivity]
-value = 0.97
+[pow_icenuc]
+value = 1
 type = "float"
-description = "Emissivity of snow (unitless). Source: CLM5 Technical Note."
+description = "Exponent in the ice nucleation parameterization (unitless)."
 
-[holding_capacity_of_water_in_snow]
-value = 0.08
+[microph_scaling_acnv]
+value = 1.0
 type = "float"
-description = "Volumetric holding capacity of liquid water in a snowpack (unitless)."
+description = "Scaling factor for autoconversion in microphysics (unitless)."
 
-[wet_snow_hydraulic_conductivity]
-value = 1e-3
+[microph_scaling_accr]
+value = 1.0
 type = "float"
-description = "Hydraulic conductivity of wet snow (m s⁻¹)."
+description = "Scaling factor for accretion in microphysics (unitless)."
 
-[snow_cover_fraction_crit_threshold]
-value = 0.2
+[microph_scaling_evap]
+value = 1.0
 type = "float"
-description = "Critical threshold for determining snow cover fraction (m)."
+description = "Scaling factor for evaporation in microphysics (unitless)."
 
-# Two Stream/Beer Lambert Parameters
-
-[wavelength_per_PAR_photon]
-value = 5e-7
+[microph_scaling_dep_sub]
+value = 1.0
 type = "float"
-description = "Typical wavelength of a photon in the Photosynthetically Active Radiation (PAR) band (m)."
+description = "Scaling factor for deposition/sublimation in microphysics (unitless)."
 
-[wavelength_per_NIR_photon]
-value = 1.65e-6
+[microph_scaling_melt]
+value = 1.0
 type = "float"
-description = "Typical wavelength of a photon in the Near-Infrared (NIR) band (m)."
+description = "Scaling factor for melting in microphysics (unitless)."
 
-[canopy_emissivity]
-value = 0.97
+[temperature_triple_point]
+value = 273.16
 type = "float"
-description = "Emissivity of the canopy (unitless)."
+description = "Triple point temperature of water (K)."
 
-# Medlyn Conductance
-
-[relative_diffusivity_of_water_vapor]
-value = 1.6
+[thermodynamics_temperature_reference]
+value = 273.16
 type = "float"
-description = "Relative diffusivity of water vapor compared to heat (unitless)."
+description = "Reference temperature for thermodynamics (K)."
 
-[min_stomatal_conductance]
-value = 1e-4
+[latent_heat_vaporization_at_reference]
+value = 2500800
 type = "float"
-description = "Minimum stomatal conductance (mol m⁻² s⁻¹)."
+description = "Latent heat of vaporization at the reference temperature (J kg⁻¹)."
+
+[latent_heat_sublimation_at_reference]
+value = 2834400
+type = "float"
+description = "Latent heat of sublimation at the reference temperature (J kg⁻¹)."
+
+[pressure_triple_point]
+value = 611.657
+type = "float"
+description = "Triple point pressure of water (Pa)."
+
+[surface_tension_water]
+value = 0.072
+type = "float"
+description = "Surface tension of water (N m⁻¹)."
+
+[entropy_dry_air]
+value = 6864.8
+type = "float"
+description = "Specific entropy of dry air at the reference temperature and pressure (J kg⁻¹ K⁻¹)."
+
+[entropy_water_vapor]
+value = 10513.6
+type = "float"
+description = "Specific entropy of water vapor at the reference temperature and pressure (J kg⁻¹ K⁻¹)."
+
+[entropy_reference_temperature]
+value = 298.15
+type = "float"
+description = "Reference temperature for entropy calculations (K)."
+
+# Ocean
+
+[density_ocean_reference]
+value = 1035
+type = "float"
+description = "Reference density of sea water (kg m⁻³)."
+
+[specific_heat_ocean]
+value = 3991.86795711963
+type = "float"
+description = "Specific heat of sea water (J kg⁻¹ K⁻¹)."
 
 ## Surface Fluxes
 
 [richardson_critical]
 value = 1.0
 type = "float"
-description = "The critical Richardson number ($Ri_{crit}$), a unitless parameter defining the cutoff for stable mixing. Source: Frierson et al. (2006), DOI: 10.1175/JAS3753.1."
+description = "Critical Richardson number ($Ri_{crit}$) defining the cutoff for stable mixing (unitless). Source: Frierson et al. (2006), DOI: 10.1175/JAS3753.1."
 
 [surface_layer_fraction]
 value = 0.1
@@ -444,6 +382,11 @@ description = "Coefficient multiplying Deardorff convective velocity scale in gu
 value = 1e3
 type = "float"
 description = "Thickness of boundary layer assumed in the gustiness parameterization based on the Deardorff convective velocity scale (m)."
+
+[von_karman_constant]
+value = 0.4
+type = "float"
+description = "The von Kármán constant ($\\kappa$) describing the logarithmic velocity profile near a boundary (unitless)."
 
 # Businger
 
@@ -712,12 +655,404 @@ value = 2.04
 type = "float"
 description = "The MOST stability exponent ($\\gamma$) for the Beljaars universal functions (unitless). Source: Beljaars et al. (1991), DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2."
 
-[von_karman_constant]
+## EDMF Scheme
+
+# Entrainment and Detrainment
+
+[entr_param_vec]
+value = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+type = "float"
+description = "Data-driven entrainment parameter vector (unitless)."
+
+[entr_mult_limiter_coeff]
+value = 0.0
+type = "float"
+description = "Exponent for the multiplicative entrainment limiter of the form $(1 - area)^c$ (unitless)."
+
+[turb_entr_param_vec]
+value = [0.001, 1e5, 0.0]
+type = "float"
+description = "Data-driven turbulent entrainment parameter vector (unitless)."
+
+[entr_inv_tau]
+value = 0
+type = "float"
+description = "Inverse timescale for entrainment (s⁻¹)."
+
+[entr_inv_length]
+value = 0
+type = "float"
+description = "Inverse length scale for entrainment (m⁻¹)."
+
+[entr_coeff]
+value = 1
+type = "float"
+description = "Coefficient for the $w/z$ term in the entrainment closure (unitless)."
+
+[entr_buoy_coeff]
+value = 0
+type = "float"
+description = "Coefficient for the $b/w^2$ term in the entrainment closure (unitless)."
+
+[entr_vertdiv_coeff]
+value = 1
+type = "float"
+description = "Coefficient for the vertical divergence term in the entrainment closure (unitless)."
+
+[min_area_limiter_scale]
+value = 0.001
+type = "float"
+description = "Rate coefficient for the minimum area fraction limiter in entrainment (s⁻¹)."
+
+[min_area_limiter_power]
+value = 1
+type = "float"
+description = "Exponent for the minimum area fraction limiter in both entrainment and detrainment (unitless)."
+
+[entr_detr_limit_inv_tau]
+value = 0
+type = "float"
+description = "Inverse timescale for entrainment and detrainment for negligible area (s⁻¹)."
+
+[detr_inv_tau]
+value = 0
+type = "float"
+description = "Inverse timescale for detrainment (s⁻¹)."
+
+[detr_coeff]
+value = 0.001
+type = "float"
+description = "Coefficient for the $w$ term in the detrainment closure (unitless)."
+
+[detr_buoy_coeff]
+value = 0.12
+type = "float"
+description = "Coefficient for the $b/w^2$ term in the detrainment closure (unitless). Source: Tan et al. (2018), Eq. (27)."
+
+[detr_buoy_inv_tau_max]
+value = 0.01
+type = "float"
+description = "Maximum allowed inverse buoyancy timescale (s⁻¹), used to limit detrainment when velocity differences become small and prevent excessively fast detrainment."
+
+[entr_detr_buoy_inv_tau_max]
+value = 0.01
+type = "float"
+description = "Maximum allowed inverse buoyancy timescale (s⁻¹), used to limit entrainment and detrainment when velocity differences become small and prevent excessively fast entrainment and detrainment."
+
+[detr_vertdiv_coeff]
+value = 1
+type = "float"
+description = "Coefficient for the vertical divergence term in the detrainment closure (unitless)."
+
+[detr_massflux_vertdiv_coeff]
+value = 1
+type = "float"
+description = "Coefficient for the mass flux vertical divergence term in the detrainment closure (unitless)."
+
+[detr_ramp_z_start]
+value = 20000.0
+type = "float"
+description = "Start height of the sigmoid ramp for the detrainment top limiter (m)."
+
+[detr_ramp_steepness_factor]
+value = 10.0
+type = "float"
+description = "Factor setting the steepness of the sigmoid ramp for the detrainment top limiter (unitless), where the steepness is the factor divided by $(z_\\text{end} - z_\\text{start})$."
+
+[max_area_limiter_scale]
+value = 0.001
+type = "float"
+description = "Rate coefficient for the maximum area fraction limiter in detrainment (s⁻¹)."
+
+[max_area_limiter_power]
+value = 1
+type = "float"
+description = "Exponent for the maximum area fraction limiter in detrainment (unitless)."
+
+# Updraft Number, Area, and Surface Mass Flux
+
+[updraft_number]
+value = 1
+type = "integer"
+description = "Number of updrafts in the EDMF scheme (unitless)."
+
+[EDMF_max_surface_area]
+value = 0.1
+type = "float"
+description = "Maximum combined updraft surface-area fraction (unitless), reached in the free-convection limit of the EDMF surface mass-flux closure. The per-updraft cap is `max_surface_area / N_updrafts`. Source: Cohen et al. (2022), Table 2."
+
+[EDMF_max_area]
+value = 0.9
+type = "float"
+description = "Maximum area fraction per updraft (unitless)."
+
+[EDMF_min_area]
+value = 1e-5
+type = "float"
+description = "Minimum area fraction per updraft (unitless)."
+
+[EDMF_sfc_mass_flux_ustar_coeff]
+value = 1.0
+type = "float"
+description = "Coefficient $c_u$ weighting the friction-velocity contribution in the EDMF surface mass-flux blend $a_s = a_{s,\\max} \\cdot w_*^3 / (w_*^3 + c_u u_*^3)$ (unitless)."
+
+[EDMF_convective_zi]
+value = 1000.0
+type = "float"
+description = "Prescribed convective boundary-layer depth $z_i$ used in the EDMF surface mass-flux closure $w_*^3 = z_i \\langle w'b' \\rangle_s$ (m)."
+
+[EDMF_sfc_mass_flux_cap_fraction]
+value = 0.5
+type = "float"
+description = "Fraction $\\alpha$ of the surface scalar flux that the EDMF updraft may transport at the surface; caps the updraft mass-flux source so the environment retains at least $(1-\\alpha)$ of every surface scalar flux (unitless)."
+
+[EDMF_interface_entr_efficiency]
 value = 0.4
 type = "float"
-description = "The von Kármán constant ($\\kappa$), a dimensionless constant describing the logarithmic velocity profile near a boundary."
+description = "Entrainment efficiency $A$ (unitless) in the EDMF interfacial entrainment diffusivity $K_e = \\gamma w_e \\Delta z$, $w_e = A \\sqrt{TKE} / \\max(\\mathrm{Ri}_b, 1)$, which restores finite entrainment across an unresolved inversion represented by the interface-aware stability closure."
 
-# Microphysics
+# Mixing Length
+
+[c_smag]
+value = 0.2
+type = "float"
+description = "Smagorinsky coefficient (unitless)."
+
+[mixing_length_eddy_viscosity_coefficient]
+value = 0.14
+type = "float"
+description = "TKE diffusivity coefficient ($c_m$) for the EDMF mixing length closure (unitless). Source: Lopez-Gomez et al. (2020), Table 1."
+
+[mixing_length_diss_coeff]
+value = 0.22
+type = "float"
+description = "TKE dissipation coefficient ($c_d$) for the EDMF mixing length closure (unitless). Source: Lopez-Gomez et al. (2020), Table 1."
+
+[mixing_length_static_stab_coeff]
+value = 0.4
+type = "float"
+description = "Static stability coefficient ($c_b$) for the EDMF mixing length closure (unitless). Source: Lopez-Gomez et al. (2020), Table 1."
+
+[mixing_length_tke_surf_scale]
+value = 3.75
+type = "float"
+description = "Ratio of TKE to squared friction velocity ($\\kappa_*^2$) in the surface layer for the EDMF mixing length closure (unitless). Source: Lopez-Gomez et al. (2020), Table 1."
+
+[mixing_length_tke_surf_flux_coeff]
+value = 2.5
+type = "float"
+description = "Coefficient multiplying flux in the $u_*^3$ surface flux formulation of TKE ($C_{flux}$) (unitless)."
+
+[mixing_length_Prandtl_number_scale]
+value = 4.076923076923077
+type = "float"
+description = "Cospectral budget factor for turbulent Prandtl number ($\\omega_{pr}$) for the EDMF mixing length closure (unitless). Source: Lopez-Gomez et al. (2020), Eq. (36)."
+
+[mixing_length_Prandtl_number_0]
+value = 0.74
+type = "float"
+description = "Turbulent Prandtl number in neutral conditions ($Pr_{t,0}$) (unitless). Source: Lopez-Gomez et al. (2020), Table 1."
+
+[mixing_length_Prandtl_maximum]
+value = 10
+type = "float"
+description = "Maximum allowed turbulent Prandtl number (unitless)."
+
+[mixing_length_Ri_crit]
+value = 0.25
+type = "float"
+description = "Critical gradient Richardson number ($Ri_{crit}$) (unitless). Source: Li (2019), Section 6.2."
+
+[mixing_length_smin_ub]
+value = 0.1
+type = "float"
+description = "Lower limit for the smooth minimum function in the mixing length closure (unitless). Source: Lopez-Gomez et al. (2020), Eq. (40)."
+
+[mixing_length_smin_rm]
+value = 1.5
+type = "float"
+description = "Upper ratio limit for the smooth minimum function in the mixing length closure (unitless). Source: Lopez-Gomez et al. (2020), Eq. (40)."
+
+[mixing_length_l_max]
+value = 1e6
+type = "float"
+description = "Upper limit for the length scale in the mixing length closure (m). Source: Lopez-Gomez et al. (2020)."
+
+[mixing_length_l_min]
+value = 10
+type = "float"
+description = "Lower limit for the mixing length (m)."
+
+[mixing_length_param_vec]
+value = [0.0, 0.0, 0.0, 0.0, 0.0]
+type = "float"
+description = "Data-driven mixing length parameter vector (unitless)."
+
+# Entrainment and Detrainment Scaling Constants
+
+[entrainment_factor]
+value = 0.13
+type = "float"
+description = "Scaling constant for entrainment rate (unitless). Source: Cohen et al. (2022), Table 2."
+
+[detrainment_factor]
+value = 0.51
+type = "float"
+description = "Scaling constant for detrainment rate (unitless). Source: Cohen et al. (2022), Table 2."
+
+[turbulent_entrainment_factor]
+value = 0.075
+type = "float"
+description = "Scaling constant for turbulent entrainment rate (unitless). Source: Cohen et al. (2022), Table 2."
+
+[entrainment_smin_tke_coeff]
+value = 0.3
+type = "float"
+description = "Scaling constant of the TKE term in the entrainment/detrainment inverse timescale smooth minimum (unitless). Source: Cohen et al. (2022), Table 2."
+
+[updraft_mixing_frac]
+value = 0.25
+type = "float"
+description = "Fraction of updraft air used for buoyancy mixing in the entrainment/detrainment formulation (unitless). Source: Cohen et al. (2022), Table 2."
+
+[entrainment_area_limiter_scale]
+value = 4.0
+type = "float"
+description = "Scaling factor (amplitude) of the exponential detrainment area limiter (unitless)."
+
+[entrainment_area_limiter_power]
+value = 10.0
+type = "float"
+description = "Exponential decay constant in the detrainment area limiter (unitless)."
+
+[entrainment_scale]
+value = 0.0004
+type = "float"
+description = "Dimensional constant scaling the logistic function argument in the entrainment/detrainment dry term (s⁻¹). Source: Cohen et al. (2022), Table 2."
+
+[entrainment_sorting_power]
+value = 2.0
+type = "float"
+description = "Sorting power for the moisture term in the entrainment/detrainment formulation (unitless). Source: Cohen et al. (2022), Table 2."
+
+# Updraft Limiters
+
+[minimum_updraft_velocity]
+value = 0.001
+type = "float"
+description = "Minimum updraft-environment vertical velocity difference (m s⁻¹)."
+
+[minimum_updraft_top]
+value = 500.0
+type = "float"
+description = "Minimum updraft height limiter (m)."
+
+# Perturbation Pressure
+
+[pressure_normalmode_buoy_coeff1]
+value = 0.12
+type = "float"
+description = "Pressure buoyancy coefficient in the perturbation pressure closure (unitless). Source: He et al. (2022), Eq. (34)."
+
+[pressure_normalmode_adv_coeff]
+value = 0.1
+type = "float"
+description = "Pressure advection (damping) coefficient in the perturbation pressure closure (unitless). Source: He et al. (2022), Eq. (34)."
+
+[pressure_normalmode_drag_coeff]
+value = 10.0
+type = "float"
+description = "Updraft pressure drag coefficient in the perturbation pressure closure (unitless). Source: He et al. (2022), Eq. (34)."
+
+[pressure_normalmode_param_vec]
+value = [0.0, 0.0, 0.0, 0.0, 0.0]
+type = "float"
+description = "Data-driven perturbation pressure parameter vector (unitless)."
+
+# Subgrid-Scale Thermodynamics
+
+[EDMF_thermodynamics_moisture_model]
+value = "equilibrium"
+type = "string"
+description = "Moisture model for EDMF thermodynamics. Options: 'equilibrium' (default), 'nonequilibrium'."
+
+[EDMF_thermodynamics_covariance_model]
+value = "diagnostic"
+type = "string"
+description = "Covariance model for EDMF thermodynamics. Options: 'diagnostic' (default), 'prognostic'."
+
+[diagnostic_covariance_coeff]
+value = 2.1
+type = "float"
+description = "Prefactor in the turbulent production term of the EDMF covariance equation (unitless)."
+
+[EDMF_thermodynamics_diagnostic_covar_limiter]
+value = 1e-3
+type = "float"
+description = "Regularization epsilon for the denominator in diagnostic covariance calculations (unitless)."
+
+[Tq_correlation_coefficient]
+value = 0.6
+type = "float"
+description = "Default correlation coefficient between T' and q_tot' perturbations, used in SGS quadratures (unitless). Valid range: [-1, 1]."
+
+[EDMF_thermodynamics_sgs]
+value = "mean"
+type = "string"
+description = "Environmental sub-grid scale model for EDMF. Options: 'mean' (default), 'quadrature'."
+
+[EDMF_thermodynamics_quadrature_order]
+value = 3
+type = "integer"
+description = "Number of 1D quadrature points for SGS sampling in EDMF (unitless)."
+
+[EDMF_thermodynamics_quadrature_type]
+value = "log-normal"
+type = "string"
+description = "Assumed PDF shape for environmental variables ($q_{tot}, \\theta_{liq_ice}$) with SGS quadrature. Options: 'log-normal' (default), 'gaussian'."
+
+# GCM-Driven Single-Column Forcing
+
+[gcmdriven_momentum_relaxation_timescale]
+value = 21600.0
+type = "float"
+description = "Relaxation timescale for horizontal winds toward the forcing profile in Single Column Model (SCM) cases (s). Source: Shen et al. (2022)."
+
+[gcmdriven_scalar_relaxation_timescale]
+value = 86400.0
+type = "float"
+description = "Relaxation timescale for scalars (temperature, humidity) toward the forcing profile in SCM cases (s). Source: Shen et al. (2022)."
+
+[gcmdriven_relaxation_minimum_height]
+value = 3000.0
+type = "float"
+description = "Start height for relaxation toward the forcing profile in SCM cases (m). Source: Shen et al. (2022)."
+
+[gcmdriven_relaxation_maximum_height]
+value = 3500.0
+type = "float"
+description = "Height at which the relaxation coefficient becomes 1 in SCM cases (m). Source: Shen et al. (2022)."
+
+# Precipitation Fraction
+
+[microphysics_model_precipitation_fraction]
+value = "prescribed"
+type = "string"
+description = "Precipitation fraction model choice for 1-moment microphysics with EDMF. Options: 'prescribed' (default), 'cloud_cover'."
+
+[microphysics_prescribed_precipitation_fraction]
+value = 1.0
+type = "float"
+description = "Prescribed value of the precipitation fraction (unitless)."
+
+[microphysics_precipitation_fraction_limiter]
+value = 0.3
+type = "float"
+description = "Minimum allowed precipitation fraction when using the 'cloud_cover' model (unitless)."
+
+## Microphysics
+
+# 0-Moment Scheme
 
 [precipitation_timescale]
 value = 1000
@@ -734,10 +1069,7 @@ value = 0.02
 type = "float"
 description = "Precipitation formation threshold in terms of supersaturation for the 0-moment microphysics scheme (unitless)."
 
-[rain_drop_drag_coefficient]
-value = 0.55
-type = "float"
-description = "Rain drop drag coefficient for the 1-moment microphysics scheme (unitless)."
+# Air and Cloud Properties
 
 [thermal_conductivity_of_air]
 value = 0.024
@@ -773,6 +1105,18 @@ description = "Assumed constant effective radius for ice cloud particles (m)."
 value = 10.0
 type = "float"
 description = "Deposition/sublimation timescale for non-equilibrium microphysics (s)."
+
+[prescribed_cloud_droplet_number_concentration]
+value = 1e8
+type = "float"
+description = "Prescribed number concentration of cloud droplets (m⁻³)."
+
+# 1-Moment Scheme
+
+[rain_drop_drag_coefficient]
+value = 0.55
+type = "float"
+description = "Rain drop drag coefficient for the 1-moment microphysics scheme (unitless)."
 
 [ice_snow_threshold_radius]
 value = 6.25e-5
@@ -817,22 +1161,22 @@ description = "Rain formation timescale for the 1-moment microphysics scheme (s)
 [rain_autoconversion_timescale_stratiform]
 value = 14400
 type = "float"
-description = "Rain formation timescale for weak vertical velocities when using vertical velocity dependent rain formation (s)"
+description = "Rain formation timescale for weak vertical velocities when using vertical velocity dependent rain formation (s)."
 
 [rain_autoconversion_velocity_scale]
 value = 1.5
 type = "float"
-description = "Blending velocity scale when using vertical velocity dependent rain formation (m/s)"
+description = "Blending velocity scale when using vertical velocity dependent rain formation (m s⁻¹)."
 
 [rain_ventilation_coefficient_a]
 value = 1.5
 type = "float"
-description = "Rain ventilation coefficient 'a' for the 1-moment microphysics scheme (unitless)."
+description = "Rain ventilation coefficient $a$ for the 1-moment microphysics scheme (unitless)."
 
 [rain_ventilation_coefficient_b]
 value = 0.53
 type = "float"
-description = "Rain ventilation coefficient 'b' for the 1-moment microphysics scheme (unitless)."
+description = "Rain ventilation coefficient $b$ for the 1-moment microphysics scheme (unitless)."
 
 [rain_drop_size_distribution_coefficient_n0]
 value = 1.6e7
@@ -917,22 +1261,22 @@ description = "Timescale of the homogeneous freezing of cloud liquid droplets in
 [Reisner_et_al_A_parameter]
 value = 0.66
 type = "float"
-description = "Parameter A for Bigg heterogenous freezing of cloud droplets (K⁻¹). Source: Reisner et al 1998 eq. A22, DOI: 10.1002/qj.49712454804."
+description = "Parameter $A$ for Bigg heterogeneous freezing of cloud droplets (K⁻¹). Source: Reisner et al. (1998), Eq. (A22), DOI: 10.1002/qj.49712454804."
 
 [Reisner_et_al_B_parameter]
 value = 100
 type = "float"
-description = "Parameter B for Bigg heterogeneous freezing of cloud droplets (m⁻³ s⁻¹). Source: Reisner et al 1998 eq. A22, DOI: 10.1002/qj.49712454804."
+description = "Parameter $B$ for Bigg heterogeneous freezing of cloud droplets (m⁻³ s⁻¹). Source: Reisner et al. (1998), Eq. (A22), DOI: 10.1002/qj.49712454804."
 
 [cloud_ice_apparent_density]
 value = 500
 type = "float"
-description = "The apparent density of cloud ice particles (kg m⁻³). Source: DOI: 10.1029/2020JD034157."
+description = "The apparent density of cloud ice particles (kg m⁻³). Source: Lin et al. (2021), DOI: 10.1029/2020JD034157."
 
 [snow_apparent_density]
 value = 100
 type = "float"
-description = "The apparent density of snow particles (kg m⁻³). Source: DOI: 10.1029/2020JD034157."
+description = "The apparent density of snow particles (kg m⁻³). Source: Lin et al. (2021), DOI: 10.1029/2020JD034157."
 
 [cloud_ice_specific_humidity_autoconversion_threshold]
 value = 1e-6
@@ -947,12 +1291,12 @@ description = "Snow autoconversion timescale for the 1-moment microphysics schem
 [snow_ventilation_coefficient_a]
 value = 0.65
 type = "float"
-description = "Snow ventilation coefficient 'a' for the 1-moment microphysics scheme (unitless)."
+description = "Snow ventilation coefficient $a$ for the 1-moment microphysics scheme (unitless)."
 
 [snow_ventilation_coefficient_b]
 value = 0.44
 type = "float"
-description = "Snow ventilation coefficient 'b' for the 1-moment microphysics scheme (unitless)."
+description = "Snow ventilation coefficient $b$ for the 1-moment microphysics scheme (unitless)."
 
 [snow_flake_size_distribution_coefficient_mu]
 value = 4.36e9
@@ -1022,7 +1366,7 @@ description = "Assumed aspect ratio for snow in the 1-moment microphysics scheme
 [snow_aspect_ratio_coefficient]
 value = 0.3333333333333333
 type = "float"
-description = "Power law coefficient for terminal velocity dependence on snow aspect ratio (unitless). Source: Chen et al. (2022)."
+description = "Power law coefficient for terminal velocity dependence on snow aspect ratio (unitless). Source: Chen et al. (2022), DOI: 10.1016/j.atmosres.2022.106171."
 
 [cloud_liquid_rain_collision_efficiency]
 value = 0.8
@@ -1049,125 +1393,122 @@ value = 1
 type = "float"
 description = "Collision efficiency between rain and snow for the 1-moment scheme (unitless)."
 
-[prescribed_cloud_droplet_number_concentration]
-value = 1e8
-type = "float"
-description = "Prescribed number concentration of cloud droplets (m⁻³)."
+# Autoconversion and Accretion Schemes
 
 [TC1980_autoconversion_coeff_D]
 value = 3268.0
 type = "float"
-description = "Coefficient $D$ in the Tripoli and Cotton (1980) rain autoconversion parameterization ($m^{3b} s^{-1}$). Source: DOI: 10.1175/JAS3530.1."
+description = "Coefficient $D$ in the Tripoli and Cotton (1980) rain autoconversion parameterization ($m^{3b} s^{-1}$). Source: Wood (2005), DOI: 10.1175/JAS3530.1."
 
 [TC1980_autoconversion_coeff_a]
 value = 2.3333333333333333
 type = "float"
-description = "Coefficient $a$ (default 7/3) in the Tripoli and Cotton (1980) rain autoconversion parameterization (unitless). Source: DOI: 10.1175/JAS3530.1."
+description = "Coefficient $a$ (default 7/3) in the Tripoli and Cotton (1980) rain autoconversion parameterization (unitless). Source: Wood (2005), DOI: 10.1175/JAS3530.1."
 
 [TC1980_autoconversion_coeff_b]
 value = -0.3333333333333333
 type = "float"
-description = "Coefficient $b$ (default -1/3) in the Tripoli and Cotton (1980) rain autoconversion parameterization (unitless). Source: DOI: 10.1175/JAS3530.1."
+description = "Coefficient $b$ (default -1/3) in the Tripoli and Cotton (1980) rain autoconversion parameterization (unitless). Source: Wood (2005), DOI: 10.1175/JAS3530.1."
 
 [TC1980_autoconversion_coeff_r_0]
 value = 7e-6
 type = "float"
-description = "Threshold size $r_0$ in the Tripoli and Cotton (1980) rain autoconversion parameterization (m). Source: DOI: 10.1175/JAS3530.1."
+description = "Threshold size $r_0$ in the Tripoli and Cotton (1980) rain autoconversion parameterization (m). Source: Wood (2005), DOI: 10.1175/JAS3530.1."
 
 [TC1980_autoconversion_coeff_me_liq]
 value = 3.0
 type = "float"
-description = "Mass-size relation exponent $m_e$ in the Tripoli and Cotton (1980) scheme (unitless). Source: DOI: 10.1175/JAS3530.1."
+description = "Mass-size relation exponent $m_e$ in the Tripoli and Cotton (1980) scheme (unitless). Source: Wood (2005), DOI: 10.1175/JAS3530.1."
 
 [TC1980_accretion_coeff_A]
 value = 4.7
 type = "float"
-description = "Coefficient $A$ in the Tripoli and Cotton (1980) accretion parameterization (s⁻¹). Source: DOI: 10.1175/JAS3530.1."
+description = "Coefficient $A$ in the Tripoli and Cotton (1980) accretion parameterization (s⁻¹). Source: Wood (2005), DOI: 10.1175/JAS3530.1."
 
 [B1994_autoconversion_coeff_C]
 value = 3e+34
 type = "float"
-description = "Coefficient $C$ in the Beheng (1994) autoconversion parameterization ($m^{3(c+b-1)} s^{-1} kg^{-(b-1)}$). Source: DOI: 10.1175/JAS3530.1."
+description = "Coefficient $C$ in the Beheng (1994) autoconversion parameterization ($m^{3(c+b-1)} s^{-1} kg^{-(b-1)}$). Source: Wood (2005), DOI: 10.1175/JAS3530.1."
 
 [B1994_autoconversion_coeff_a]
 value = -1.7
 type = "float"
-description = "Coefficient $a$ in the Beheng (1994) autoconversion parameterization (unitless). Source: DOI: 10.1175/JAS3530.1."
+description = "Coefficient $a$ in the Beheng (1994) autoconversion parameterization (unitless). Source: Wood (2005), DOI: 10.1175/JAS3530.1."
 
 [B1994_autoconversion_coeff_b]
 value = 4.7
 type = "float"
-description = "Coefficient $b$ in the Beheng (1994) autoconversion parameterization (unitless). Source: DOI: 10.1175/JAS3530.1."
+description = "Coefficient $b$ in the Beheng (1994) autoconversion parameterization (unitless). Source: Wood (2005), DOI: 10.1175/JAS3530.1."
 
 [B1994_autoconversion_coeff_c]
 value = -3.3
 type = "float"
-description = "Coefficient $c$ in the Beheng (1994) autoconversion parameterization (unitless). Source: DOI: 10.1175/JAS3530.1."
+description = "Coefficient $c$ in the Beheng (1994) autoconversion parameterization (unitless). Source: Wood (2005), DOI: 10.1175/JAS3530.1."
 
 [B1994_autoconversion_coeff_d_low]
 value = 3.9
 type = "float"
-description = "Coefficient $d_{low}$ in the Beheng (1994) autoconversion parameterization (unitless). Source: DOI: 10.1175/JAS3530.1."
+description = "Coefficient $d_{low}$ in the Beheng (1994) autoconversion parameterization (unitless). Source: Wood (2005), DOI: 10.1175/JAS3530.1."
 
 [B1994_autoconversion_coeff_d_high]
 value = 9.9
 type = "float"
-description = "Coefficient $d_{high}$ in the Beheng (1994) autoconversion parameterization (unitless). Source: DOI: 10.1175/JAS3530.1."
+description = "Coefficient $d_{high}$ in the Beheng (1994) autoconversion parameterization (unitless). Source: Wood (2005), DOI: 10.1175/JAS3530.1."
 
 [B1994_autoconversion_coeff_N_0]
 value = 2e+08
 type = "float"
-description = "Coefficient $N_0$ in the Beheng (1994) autoconversion parameterization (m⁻³). Source: DOI: 10.1175/JAS3530.1."
+description = "Coefficient $N_0$ in the Beheng (1994) autoconversion parameterization (m⁻³). Source: Wood (2005), DOI: 10.1175/JAS3530.1."
 
 [B1994_accretion_coeff_A]
 value = 6.0
 type = "float"
-description = "Coefficient $A$ in the Beheng (1994) accretion parameterization (s⁻¹). Source: DOI: 10.1175/JAS3530.1."
+description = "Coefficient $A$ in the Beheng (1994) accretion parameterization (s⁻¹). Source: Wood (2005), DOI: 10.1175/JAS3530.1."
 
 [KK2000_autoconversion_coeff_A]
 value = 7.42e+13
 type = "float"
-description = "Coefficient $A$ in the Khairoutdinov and Kogan (2000) autoconversion parameterization ($m^{3(b+c)} s^{-1} kg^{-c}$). Source: DOI: 10.1175/JAS3530.1."
+description = "Coefficient $A$ in the Khairoutdinov and Kogan (2000) autoconversion parameterization ($m^{3(b+c)} s^{-1} kg^{-c}$). Source: Wood (2005), DOI: 10.1175/JAS3530.1."
 
 [KK2000_autoconversion_coeff_a]
 value = 2.47
 type = "float"
-description = "Coefficient $a$ in the Khairoutdinov and Kogan (2000) autoconversion parameterization (unitless). Source: DOI: 10.1175/JAS3530.1."
+description = "Coefficient $a$ in the Khairoutdinov and Kogan (2000) autoconversion parameterization (unitless). Source: Wood (2005), DOI: 10.1175/JAS3530.1."
 
 [KK2000_autoconversion_coeff_b]
 value = -1.79
 type = "float"
-description = "Coefficient $b$ in the Khairoutdinov and Kogan (2000) autoconversion parameterization (unitless). Source: DOI: 10.1175/JAS3530.1."
+description = "Coefficient $b$ in the Khairoutdinov and Kogan (2000) autoconversion parameterization (unitless). Source: Wood (2005), DOI: 10.1175/JAS3530.1."
 
 [KK2000_autoconversion_coeff_c]
 value = -1.47
 type = "float"
-description = "Coefficient $c$ in the Khairoutdinov and Kogan (2000) autoconversion parameterization (unitless). Source: DOI: 10.1175/JAS3530.1."
+description = "Coefficient $c$ in the Khairoutdinov and Kogan (2000) autoconversion parameterization (unitless). Source: Wood (2005), DOI: 10.1175/JAS3530.1."
 
 [KK2000_accretion_coeff_A]
 value = 67.0
 type = "float"
-description = "Coefficient $A$ in the Khairoutdinov and Kogan (2000) accretion parameterization ($m^{3b} kg^{-b} s^{-1}$). Source: DOI: 10.1175/JAS3530.1."
+description = "Coefficient $A$ in the Khairoutdinov and Kogan (2000) accretion parameterization ($m^{3b} kg^{-b} s^{-1}$). Source: Wood (2005), DOI: 10.1175/JAS3530.1."
 
 [KK2000_accretion_coeff_a]
 value = 1.15
 type = "float"
-description = "Coefficient $a$ in the Khairoutdinov and Kogan (2000) accretion parameterization (unitless). Source: DOI: 10.1175/JAS3530.1."
+description = "Coefficient $a$ in the Khairoutdinov and Kogan (2000) accretion parameterization (unitless). Source: Wood (2005), DOI: 10.1175/JAS3530.1."
 
 [KK2000_accretion_coeff_b]
 value = -1.3
 type = "float"
-description = "Coefficient $b$ in the Khairoutdinov and Kogan (2000) accretion parameterization (unitless). Source: DOI: 10.1175/JAS3530.1."
+description = "Coefficient $b$ in the Khairoutdinov and Kogan (2000) accretion parameterization (unitless). Source: Wood (2005), DOI: 10.1175/JAS3530.1."
 
 [LD2004_R_6C_coeff]
 value = 7.5
 type = "float"
-description = "Coefficient in the Liu and Daum (2004) autoconversion parameterization ($\\mu m^{3/2} kg^{1/6} m^{-1/2}$). Source: DOI: 10.1175/JAS3530.1."
+description = "Coefficient in the Liu and Daum (2004) autoconversion parameterization ($\\mu m^{3/2} kg^{1/6} m^{-1/2}$). Source: Wood (2005), DOI: 10.1175/JAS3530.1."
 
 [LD2004_E_0_coeff]
 value = 1.08e+10
 type = "float"
-description = "Coefficient $E_0$ in the Liu and Daum (2004) autoconversion parameterization ($m^3 kg^{-2} s^{-1}$). Source: DOI: 10.1175/JAS3530.1."
+description = "Coefficient $E_0$ in the Liu and Daum (2004) autoconversion parameterization ($m^3 kg^{-2} s^{-1}$). Source: Wood (2005), DOI: 10.1175/JAS3530.1."
 
 [Variable_time_scale_autoconversion_coeff_alpha]
 value = 1.0
@@ -1177,42 +1518,44 @@ description = "Exponent of number density in the function describing the autocon
 [threshold_smooth_transition_steepness]
 value = 10.0
 type = "float"
-description = "A unitless steepness parameter for the smooth transition function used in threshold-based processes."
+description = "Steepness parameter for the smooth transition function used in threshold-based processes (unitless)."
+
+# 2-Moment Scheme (Seifert and Beheng, 2006)
 
 [SB2006_collection_kernel_coeff_kcc]
 value = 4.44e+09
 type = "float"
-description = "Cloud-cloud collection kernel constant $k_{cc}$ in the Seifert and Beheng (2006) scheme ($m^3 kg^{-2} s^{-1}$). Source: DOI: 10.1007/s00703-005-0112-4."
+description = "Cloud-cloud collection kernel constant $k_{cc}$ in the Seifert and Beheng (2006) scheme ($m^3 kg^{-2} s^{-1}$). Source: Seifert and Beheng (2006), DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_collection_kernel_coeff_kcr]
 value = 5.25
 type = "float"
-description = "Cloud-rain collection kernel constant $k_{cr}$ in the Seifert and Beheng (2006) scheme ($m^3 kg^{-1} s^{-1}$). Source: DOI: 10.1007/s00703-005-0112-4."
+description = "Cloud-rain collection kernel constant $k_{cr}$ in the Seifert and Beheng (2006) scheme ($m^3 kg^{-1} s^{-1}$). Source: Seifert and Beheng (2006), DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_collection_kernel_coeff_krr]
 value = 7.12
 type = "float"
-description = "Rain-rain collection kernel constant $k_{rr}$ in the Seifert and Beheng (2006) scheme ($m^3 kg^{-1} s^{-1}$). Source: DOI: 10.1007/s00703-005-0112-4."
+description = "Rain-rain collection kernel constant $k_{rr}$ in the Seifert and Beheng (2006) scheme ($m^3 kg^{-1} s^{-1}$). Source: Seifert and Beheng (2006), DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_collection_kernel_coeff_kapparr]
 value = 60.7
 type = "float"
-description = "Collection kernel constant $\\kappa_{rr}$ in the Seifert and Beheng (2006) scheme ($kg^{-1/3}$). Source: DOI: 10.1007/s00703-005-0112-4."
+description = "Collection kernel constant $\\kappa_{rr}$ in the Seifert and Beheng (2006) scheme ($kg^{-1/3}$). Source: Seifert and Beheng (2006), DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_cloud_droplets_min_mass]
 value = 4.2e-15
 type = "float"
-description = "Minimum mass of cloud droplets in the Seifert and Beheng (2006) scheme (kg). Source: DOI: 10.1007/s00703-005-0112-4."
+description = "Minimum mass of cloud droplets in the Seifert and Beheng (2006) scheme (kg). Source: Seifert and Beheng (2006), DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_raindrops_min_mass]
 value = 2.6e-10
 type = "float"
-description = "Minimum mass of raindrops in the Seifert and Beheng (2006) scheme (kg). Source: DOI: 10.1007/s00703-005-0112-4."
+description = "Minimum mass of raindrops in the Seifert and Beheng (2006) scheme (kg). Source: Seifert and Beheng (2006), DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_raindrops_max_mass]
 value = 5e-6
 type = "float"
-description = "Maximum mass of raindrops in the Seifert and Beheng (2006) scheme (kg). Source: DOI: 10.1007/s00703-005-0112-4."
+description = "Maximum mass of raindrops in the Seifert and Beheng (2006) scheme (kg). Source: Seifert and Beheng (2006), DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_cloud_gamma_distribution_coeff_nu]
 value = 1.0
@@ -1257,7 +1600,7 @@ description = "Coefficient $b$ in the universal function correcting the autoconv
 [SB2006_accretion_correcting_function_coeff_tau0]
 value = 5e-5
 type = "float"
-description = "Coefficient $\tau_0$ in the universal function correcting the accretion rate (unitless). Source: Seifert and Beheng (2006), DOI: 10.1007/s00703-005-0112-4."
+description = "Coefficient $\\tau_0$ in the universal function correcting the accretion rate (unitless). Source: Seifert and Beheng (2006), DOI: 10.1007/s00703-005-0112-4."
 
 [SB2006_accretion_correcting_function_coeff_c]
 value = 4
@@ -1349,439 +1692,352 @@ value = 100
 type = "float"
 description = "Timescale for 2-moment number concentration adjustment (s). Source: Horn (2012), DOI: 10.5194/gmd-5-345-2012."
 
+# Terminal Velocities (Chen et al., 2022)
+
 [Chen2022_table_B1_q_coeff]
 value = 0.115231
 type = "float"
-description = "Coefficient $q$ for raindrop terminal velocity parameterization (unitless). Source: Table B1 in Chen et al. (2022), DOI: 10.1016/j.atmosres.2022.106171."
+description = "Coefficient $q$ for raindrop terminal velocity parameterization (unitless). Source: Chen et al. (2022), Table B1, DOI: 10.1016/j.atmosres.2022.106171."
 
 [Chen2022_table_B1_ai]
 value = [0.044612, -0.263166, 4.7178]
 type = "float"
-description = "Coefficients $a_i$ for raindrop terminal velocity parameterization ($mm^{-b_i}$). Source: Table B1 in Chen et al. (2022), DOI: 10.1016/j.atmosres.2022.106171."
+description = "Coefficients $a_i$ for raindrop terminal velocity parameterization ($mm^{-b_i}$). Source: Chen et al. (2022), Table B1, DOI: 10.1016/j.atmosres.2022.106171."
 
 [Chen2022_table_B1_a3_pow_coeff]
 value = -0.47335
 type = "float"
-description = "Power coefficient for $a_3$ in raindrop terminal velocity parameterization (unitless). Source: Table B1 in Chen et al. (2022), DOI: 10.1016/j.atmosres.2022.106171."
+description = "Power coefficient for $a_3$ in raindrop terminal velocity parameterization (unitless). Source: Chen et al. (2022), Table B1, DOI: 10.1016/j.atmosres.2022.106171."
 
 [Chen2022_table_B1_bi]
 value = [2.2955, 2.2955, 1.1451]
 type = "float"
-description = "Coefficients $b_i$ for raindrop terminal velocity parameterization (unitless). Source: Table B1 in Chen et al. (2022), DOI: 10.1016/j.atmosres.2022.106171."
+description = "Coefficients $b_i$ for raindrop terminal velocity parameterization (unitless). Source: Chen et al. (2022), Table B1, DOI: 10.1016/j.atmosres.2022.106171."
 
 [Chen2022_table_B1_b_rho_coeff]
 value = 0.038465
 type = "float"
-description = "Density coefficient $b_{\\rho}$ for raindrop terminal velocity parameterization (m³ kg⁻¹). Source: Table B1 in Chen et al. (2022), DOI: 10.1016/j.atmosres.2022.106171."
+description = "Density coefficient $b_{\\rho}$ for raindrop terminal velocity parameterization (m³ kg⁻¹). Source: Chen et al. (2022), Table B1, DOI: 10.1016/j.atmosres.2022.106171."
 
 [Chen2022_table_B1_ci]
 value = [0.0, 0.184325, 0.184325]
 type = "float"
-description = "Coefficients $c_i$ for raindrop terminal velocity parameterization (mm⁻¹). Source: Table B1 in Chen et al. (2022), DOI: 10.1016/j.atmosres.2022.106171."
+description = "Coefficients $c_i$ for raindrop terminal velocity parameterization (mm⁻¹). Source: Chen et al. (2022), Table B1, DOI: 10.1016/j.atmosres.2022.106171."
 
 [Chen2022_table_B3_As]
 value = [-0.263503, 0.00174079, 0.0378769]
 type = "float"
-description = "Coefficients $A_s$ for ice terminal velocity parameterization. Source: Table B3 in Chen et al. (2022), DOI: 10.1016/j.atmosres.2022.106171."
+description = "Coefficients $A_s$ for ice terminal velocity parameterization. Source: Chen et al. (2022), Table B3, DOI: 10.1016/j.atmosres.2022.106171."
 
 [Chen2022_table_B3_Bs]
 value = [0.575231, 0.0909307, 0.515579]
 type = "float"
-description = "Coefficients $B_s$ for ice terminal velocity parameterization. Source: Table B3 in Chen et al. (2022), DOI: 10.1016/j.atmosres.2022.106171."
+description = "Coefficients $B_s$ for ice terminal velocity parameterization. Source: Chen et al. (2022), Table B3, DOI: 10.1016/j.atmosres.2022.106171."
 
 [Chen2022_table_B3_Cs]
 value = [-0.345387, 0.177362, -0.000427794, 0.00419647]
 type = "float"
-description = "Coefficients $C_s$ for ice terminal velocity parameterization. Source: Table B3 in Chen et al. (2022), DOI: 10.1016/j.atmosres.2022.106171."
+description = "Coefficients $C_s$ for ice terminal velocity parameterization. Source: Chen et al. (2022), Table B3, DOI: 10.1016/j.atmosres.2022.106171."
 
 [Chen2022_table_B3_Es]
 value = [-0.156593, 0.0189334, 0.1377817]
 type = "float"
-description = "Coefficients $E_s$ for ice terminal velocity parameterization. Source: Table B3 in Chen et al. (2022), DOI: 10.1016/j.atmosres.2022.106171."
+description = "Coefficients $E_s$ for ice terminal velocity parameterization. Source: Chen et al. (2022), Table B3, DOI: 10.1016/j.atmosres.2022.106171."
 
 [Chen2022_table_B3_Fs]
 value = [-3.35641, 0.0156199, 0.765337]
 type = "float"
-description = "Coefficients $F_s$ for ice terminal velocity parameterization. Source: Table B3 in Chen et al. (2022), DOI: 10.1016/j.atmosres.2022.106171."
+description = "Coefficients $F_s$ for ice terminal velocity parameterization. Source: Chen et al. (2022), Table B3, DOI: 10.1016/j.atmosres.2022.106171."
 
 [Chen2022_table_B3_Gs]
 value = [-0.0309715, 1.55054, 0.518349]
 type = "float"
-description = "Coefficients $G_s$ for ice terminal velocity parameterization. Source: Table B3 in Chen et al. (2022), DOI: 10.1016/j.atmosres.2022.106171."
+description = "Coefficients $G_s$ for ice terminal velocity parameterization. Source: Chen et al. (2022), Table B3, DOI: 10.1016/j.atmosres.2022.106171."
 
 [Chen2022_table_B5_Al]
 value = [-0.475897, -0.0023127, 1.12293]
 type = "float"
-description = "Coefficients $A_l$ for ice terminal velocity parameterization. Source: Table B5 in Chen et al. (2022), DOI: 10.1016/j.atmosres.2022.106171."
+description = "Coefficients $A_l$ for ice terminal velocity parameterization. Source: Chen et al. (2022), Table B5, DOI: 10.1016/j.atmosres.2022.106171."
 
 [Chen2022_table_B5_Bl]
 value = [-2.56289, -0.00513504, 0.608459]
 type = "float"
-description = "Coefficients $B_l$ for ice terminal velocity parameterization. Source: Table B5 in Chen et al. (2022), DOI: 10.1016/j.atmosres.2022.106171."
+description = "Coefficients $B_l$ for ice terminal velocity parameterization. Source: Chen et al. (2022), Table B5, DOI: 10.1016/j.atmosres.2022.106171."
 
 [Chen2022_table_B5_Cl]
 value = [-0.756064, 0.935922, -1.70952]
 type = "float"
-description = "Coefficients $C_l$ for ice terminal velocity parameterization. Source: Table B5 in Chen et al. (2022), DOI: 10.1016/j.atmosres.2022.106171."
+description = "Coefficients $C_l$ for ice terminal velocity parameterization. Source: Chen et al. (2022), Table B5, DOI: 10.1016/j.atmosres.2022.106171."
 
 [Chen2022_table_B5_El]
 value = [0.00639847, 0.00906454, -0.108232]
 type = "float"
-description = "Coefficients $E_l$ for ice terminal velocity parameterization. Source: Table B5 in Chen et al. (2022), DOI: 10.1016/j.atmosres.2022.106171."
+description = "Coefficients $E_l$ for ice terminal velocity parameterization. Source: Chen et al. (2022), Table B5, DOI: 10.1016/j.atmosres.2022.106171."
 
 [Chen2022_table_B5_Fl]
 value = [0.515453, -0.0725042, -1.8681e+19]
 type = "float"
-description = "Coefficients $F_l$ for ice terminal velocity parameterization. Source: Table B5 in Chen et al. (2022), DOI: 10.1016/j.atmosres.2022.106171."
+description = "Coefficients $F_l$ for ice terminal velocity parameterization. Source: Chen et al. (2022), Table B5, DOI: 10.1016/j.atmosres.2022.106171."
 
 [Chen2022_table_B5_Gl]
 value = [2.65236, 0.00158269, 259.935]
 type = "float"
-description = "Coefficients $G_l$ for ice terminal velocity parameterization. Source: Table B5 in Chen et al. (2022), DOI: 10.1016/j.atmosres.2022.106171."
+description = "Coefficients $G_l$ for ice terminal velocity parameterization. Source: Chen et al. (2022), Table B5, DOI: 10.1016/j.atmosres.2022.106171."
 
 [Chen2022_table_B5_Hl]
 value = [-0.346044, -7.17829e-11, -1.24394e+20]
 type = "float"
-description = "Coefficients $H_l$ for ice terminal velocity parameterization. Source: Table B5 in Chen et al. (2022), DOI: 10.1016/j.atmosres.2022.106171."
+description = "Coefficients $H_l$ for ice terminal velocity parameterization. Source: Chen et al. (2022), Table B5, DOI: 10.1016/j.atmosres.2022.106171."
 
 [Chen2022_ice_cutoff]
 value = 0.000625
 type = "float"
-description = "Cutoff diameter between small and large ice particles in the Chen et al. (2022) parameterization (m)."
+description = "Cutoff diameter between small and large ice particles in the Chen et al. (2022) parameterization (m). Source: Chen et al. (2022), DOI: 10.1016/j.atmosres.2022.106171."
 
-# Microphysics - Ice Deposition on Dust (Mohler et al., 2006)
+# Ice Deposition on Dust (Möhler et al., 2006)
 
 [Mohler2006_maximum_allowed_Si]
 value = 1.35
 type = "float"
-description = "Maximum allowed supersaturation over ice, $S_{i,max}$ (unitless). Source: Mohler et al. (2006), DOI: 10.5194/acp-6-3007-2006."
+description = "Maximum allowed supersaturation over ice, $S_{i,max}$ (unitless). Source: Möhler et al. (2006), DOI: 10.5194/acp-6-3007-2006."
 
 [Mohler2006_threshold_T]
 value = 220
 type = "float"
-description = "Threshold temperature, $T_{thr}$, separating two deposition regimes (K). Source: Mohler et al. (2006), DOI: 10.5194/acp-6-3007-2006."
+description = "Threshold temperature, $T_{thr}$, separating two deposition regimes (K). Source: Möhler et al. (2006), DOI: 10.5194/acp-6-3007-2006."
 
 [Mohler2006_S0_warm_ArizonaTestDust]
 value = 1.03
 type = "float"
-description = "Onset saturation ratio $S_0$ for temperatures > $T_{thr}$ for Arizona Test Dust (unitless). Source: Mohler et al. (2006), DOI: 10.5194/acp-6-3007-2006."
+description = "Onset saturation ratio $S_0$ for temperatures > $T_{thr}$ for Arizona Test Dust (unitless). Source: Möhler et al. (2006), DOI: 10.5194/acp-6-3007-2006."
 
 [Mohler2006_S0_cold_ArizonaTestDust]
 value = 1.07
 type = "float"
-description = "Onset saturation ratio $S_0$ for temperatures < $T_{thr}$ for Arizona Test Dust (unitless). Source: Mohler et al. (2006), DOI: 10.5194/acp-6-3007-2006."
+description = "Onset saturation ratio $S_0$ for temperatures < $T_{thr}$ for Arizona Test Dust (unitless). Source: Möhler et al. (2006), DOI: 10.5194/acp-6-3007-2006."
 
 [Mohler2006_a_warm_ArizonaTestDust]
 value = 4.7
 type = "float"
-description = "Coefficient 'a' for temperatures > $T_{thr}$ for Arizona Test Dust (unitless). Source: Mohler et al. (2006), DOI: 10.5194/acp-6-3007-2006."
+description = "Coefficient $a$ for temperatures > $T_{thr}$ for Arizona Test Dust (unitless). Source: Möhler et al. (2006), DOI: 10.5194/acp-6-3007-2006."
 
 [Mohler2006_a_cold_ArizonaTestDust]
 value = 9.2
 type = "float"
-description = "Coefficient 'a' for temperatures < $T_{thr}$ for Arizona Test Dust (unitless). Source: Mohler et al. (2006), DOI: 10.5194/acp-6-3007-2006."
+description = "Coefficient $a$ for temperatures < $T_{thr}$ for Arizona Test Dust (unitless). Source: Möhler et al. (2006), DOI: 10.5194/acp-6-3007-2006."
 
 [Mohler2006_S0_warm_DesertDust]
 value = 1.17
 type = "float"
-description = "Onset saturation ratio $S_0$ for temperatures > $T_{thr}$ for Desert Dust (unitless). Source: Mohler et al. (2006), DOI: 10.5194/acp-6-3007-2006."
+description = "Onset saturation ratio $S_0$ for temperatures > $T_{thr}$ for Desert Dust (unitless). Source: Möhler et al. (2006), DOI: 10.5194/acp-6-3007-2006."
 
 [Mohler2006_S0_cold_DesertDust]
 value = 1.03
 type = "float"
-description = "Onset saturation ratio $S_0$ for temperatures < $T_{thr}$ for Desert Dust (unitless). Source: Mohler et al. (2006), DOI: 10.5194/acp-6-3007-2006."
+description = "Onset saturation ratio $S_0$ for temperatures < $T_{thr}$ for Desert Dust (unitless). Source: Möhler et al. (2006), DOI: 10.5194/acp-6-3007-2006."
 
 [Mohler2006_a_warm_DesertDust]
 value = 0.43
 type = "float"
-description = "Coefficient 'a' for temperatures > $T_{thr}$ for Desert Dust (unitless). Source: Mohler et al. (2006), DOI: 10.5194/acp-6-3007-2006."
+description = "Coefficient $a$ for temperatures > $T_{thr}$ for Desert Dust (unitless). Source: Möhler et al. (2006), DOI: 10.5194/acp-6-3007-2006."
 
 [Mohler2006_a_cold_DesertDust]
 value = 2.35
 type = "float"
-description = "Coefficient 'a' for temperatures < $T_{thr}$ for Desert Dust (unitless). Source: Mohler et al. (2006), DOI: 10.5194/acp-6-3007-2006."
+description = "Coefficient $a$ for temperatures < $T_{thr}$ for Desert Dust (unitless). Source: Möhler et al. (2006), DOI: 10.5194/acp-6-3007-2006."
 
-# Microphysics - Water-Activity-Based Deposition Nucleation (ABDINM)
+# Water-Activity-Based Deposition Nucleation (ABDINM)
 
 [J_ABDINM_m_Dust]
 value = 13.2251
 type = "float"
-description = "Default empirical coefficient 'm' for the water-activity-based deposition nucleation rate ($J_{het}$) parameterization for dust (unitless)."
+description = "Default empirical coefficient $m$ for the water-activity-based deposition nucleation rate ($J_{het}$) parameterization for dust (unitless)."
 
 [J_ABDINM_c_Dust]
 value = 0.7716
 type = "float"
-description = "Default empirical coefficient 'c' for the water-activity-based deposition nucleation rate ($J_{het}$) parameterization for dust (unitless)."
+description = "Default empirical coefficient $c$ for the water-activity-based deposition nucleation rate ($J_{het}$) parameterization for dust (unitless)."
 
 [J_ABDINM_m_Illite]
 value = 13.2251
 type = "float"
-description = "Empirical coefficient 'm' for the deposition nucleation rate ($J_{het}$) of Illite (unitless)."
+description = "Empirical coefficient $m$ for the deposition nucleation rate ($J_{het}$) of Illite (unitless)."
 
 [J_ABDINM_c_Illite]
 value = 0.7716
 type = "float"
-description = "Empirical coefficient 'c' for the deposition nucleation rate ($J_{het}$) of Illite (unitless)."
+description = "Empirical coefficient $c$ for the deposition nucleation rate ($J_{het}$) of Illite (unitless)."
 
 [J_ABDINM_m_SaharanDust]
 value = 13.2251
 type = "float"
-description = "Empirical coefficient 'm' for the deposition nucleation rate ($J_{het}$) of Saharan Dust (unitless)."
+description = "Empirical coefficient $m$ for the deposition nucleation rate ($J_{het}$) of Saharan Dust (unitless)."
 
 [J_ABDINM_c_SaharanDust]
 value = 0.7716
 type = "float"
-description = "Empirical coefficient 'c' for the deposition nucleation rate ($J_{het}$) of Saharan Dust (unitless)."
+description = "Empirical coefficient $c$ for the deposition nucleation rate ($J_{het}$) of Saharan Dust (unitless)."
 
 [J_ABDINM_m_AsianDust]
 value = 13.2251
 type = "float"
-description = "Empirical coefficient 'm' for the deposition nucleation rate ($J_{het}$) of Asian Dust (unitless)."
+description = "Empirical coefficient $m$ for the deposition nucleation rate ($J_{het}$) of Asian Dust (unitless)."
 
 [J_ABDINM_c_AsianDust]
 value = 0.7716
 type = "float"
-description = "Empirical coefficient 'c' for the deposition nucleation rate ($J_{het}$) of Asian Dust (unitless)."
+description = "Empirical coefficient $c$ for the deposition nucleation rate ($J_{het}$) of Asian Dust (unitless)."
 
 [J_ABDINM_m_ArizonaTestDust]
 value = 13.2251
 type = "float"
-description = "Empirical coefficient 'm' for the deposition nucleation rate ($J_{het}$) of Arizona Test Dust (unitless)."
+description = "Empirical coefficient $m$ for the deposition nucleation rate ($J_{het}$) of Arizona Test Dust (unitless)."
 
 [J_ABDINM_c_ArizonaTestDust]
 value = 0.7716
 type = "float"
-description = "Empirical coefficient 'c' for the deposition nucleation rate ($J_{het}$) of Arizona Test Dust (unitless)."
+description = "Empirical coefficient $c$ for the deposition nucleation rate ($J_{het}$) of Arizona Test Dust (unitless)."
 
 [Alpert2022_J_deposition_m_Feldspar]
 value = 13.2251
 type = "float"
-description = "Coefficient 'm' for deposition nucleation rate $J_{het}$ of Feldspar (unitless). Source: Alpert et al. (2022), DOI: 10.1039/D1EA00077B."
+description = "Coefficient $m$ for deposition nucleation rate $J_{het}$ of Feldspar (unitless). Source: Alpert et al. (2022), DOI: 10.1039/D1EA00077B."
 
 [Alpert2022_J_deposition_c_Feldspar]
 value = 0.7716
 type = "float"
-description = "Coefficient 'c' for deposition nucleation rate $J_{het}$ of Feldspar (unitless). Source: Alpert et al. (2022), DOI: 10.1039/D1EA00077B."
+description = "Coefficient $c$ for deposition nucleation rate $J_{het}$ of Feldspar (unitless). Source: Alpert et al. (2022), DOI: 10.1039/D1EA00077B."
 
 [Alpert2022_J_deposition_m_Ferrihydrite]
 value = 12.3525
 type = "float"
-description = "Coefficient 'm' for deposition nucleation rate $J_{het}$ of Ferrihydrite (unitless). Source: Alpert et al. (2022), DOI: 10.1039/D1EA00077B."
+description = "Coefficient $m$ for deposition nucleation rate $J_{het}$ of Ferrihydrite (unitless). Source: Alpert et al. (2022), DOI: 10.1039/D1EA00077B."
 
 [Alpert2022_J_deposition_c_Ferrihydrite]
 value = 0.0516
 type = "float"
-description = "Coefficient 'c' for deposition nucleation rate $J_{het}$ of Ferrihydrite (unitless). Source: Alpert et al. (2022), DOI: 10.1039/D1EA00077B."
+description = "Coefficient $c$ for deposition nucleation rate $J_{het}$ of Ferrihydrite (unitless). Source: Alpert et al. (2022), DOI: 10.1039/D1EA00077B."
 
 [China2017_J_deposition_m_Kaolinite]
 value = 27.551
 type = "float"
-description = "Coefficient 'm' for deposition nucleation rate $J_{het}$ of Kaolinite (unitless). Source: China et al. (2017), DOI: 10.1002/2016JD025817."
+description = "Coefficient $m$ for deposition nucleation rate $J_{het}$ of Kaolinite (unitless). Source: China et al. (2017), DOI: 10.1002/2016JD025817."
 
 [China2017_J_deposition_c_Kaolinite]
 value = -2.2209
 type = "float"
-description = "Coefficient 'c' for deposition nucleation rate $J_{het}$ of Kaolinite (unitless). Source: China et al. (2017), DOI: 10.1002/2016JD025817."
+description = "Coefficient $c$ for deposition nucleation rate $J_{het}$ of Kaolinite (unitless). Source: China et al. (2017), DOI: 10.1002/2016JD025817."
 
-# Microphysics - Water-Activity-Based Immersion Freezing (ABIFM)
+# Water-Activity-Based Immersion Freezing (ABIFM)
 
 [J_ABIFM_m_Dust]
 value = 22.62
 type = "float"
-description = "Default empirical coefficient 'm' for the water-activity-based immersion freezing rate ($J_{het}$) parameterization for dust (unitless)."
+description = "Default empirical coefficient $m$ for the water-activity-based immersion freezing rate ($J_{het}$) parameterization for dust (unitless)."
 
 [J_ABIFM_c_Dust]
 value = -1.35
 type = "float"
-description = "Default empirical coefficient 'c' for the water-activity-based immersion freezing rate ($J_{het}$) parameterization for dust (unitless)."
+description = "Default empirical coefficient $c$ for the water-activity-based immersion freezing rate ($J_{het}$) parameterization for dust (unitless)."
 
 [J_ABIFM_m_ArizonaTestDust]
 value = 22.62
 type = "float"
-description = "Empirical coefficient 'm' for the immersion freezing rate ($J_{het}$) of Arizona Test Dust (unitless)."
+description = "Empirical coefficient $m$ for the immersion freezing rate ($J_{het}$) of Arizona Test Dust (unitless)."
 
 [J_ABIFM_c_ArizonaTestDust]
 value = -1.35
 type = "float"
-description = "Empirical coefficient 'c' for the immersion freezing rate ($J_{het}$) of Arizona Test Dust (unitless)."
+description = "Empirical coefficient $c$ for the immersion freezing rate ($J_{het}$) of Arizona Test Dust (unitless)."
 
 [J_ABIFM_m_SaharanDust]
 value = 22.62
 type = "float"
-description = "Empirical coefficient 'm' for the immersion freezing rate ($J_{het}$) of Saharan Dust (unitless)."
+description = "Empirical coefficient $m$ for the immersion freezing rate ($J_{het}$) of Saharan Dust (unitless)."
 
 [J_ABIFM_c_SaharanDust]
 value = -1.35
 type = "float"
-description = "Empirical coefficient 'c' for the immersion freezing rate ($J_{het}$) of Saharan Dust (unitless)."
+description = "Empirical coefficient $c$ for the immersion freezing rate ($J_{het}$) of Saharan Dust (unitless)."
 
 [J_ABIFM_m_AsianDust]
 value = 22.62
 type = "float"
-description = "Empirical coefficient 'm' for the immersion freezing rate ($J_{het}$) of Asian Dust (unitless)."
+description = "Empirical coefficient $m$ for the immersion freezing rate ($J_{het}$) of Asian Dust (unitless)."
 
 [J_ABIFM_c_AsianDust]
 value = -1.35
 type = "float"
-description = "Empirical coefficient 'c' for the immersion freezing rate ($J_{het}$) of Asian Dust (unitless)."
+description = "Empirical coefficient $c$ for the immersion freezing rate ($J_{het}$) of Asian Dust (unitless)."
 
 [J_ABIFM_m_MiddleEasternDust]
 value = 22.62
 type = "float"
-description = "Empirical coefficient 'm' for the immersion freezing rate ($J_{het}$) of Middle Eastern Dust (unitless)."
+description = "Empirical coefficient $m$ for the immersion freezing rate ($J_{het}$) of Middle Eastern Dust (unitless)."
 
 [J_ABIFM_c_MiddleEasternDust]
 value = -1.35
 type = "float"
-description = "Empirical coefficient 'c' for the immersion freezing rate ($J_{het}$) of Middle Eastern Dust (unitless)."
+description = "Empirical coefficient $c$ for the immersion freezing rate ($J_{het}$) of Middle Eastern Dust (unitless)."
 
 [AlpertKnopf2016_J_ABIFM_m_DesertDust]
 value = 22.62
 type = "float"
-description = "Coefficient 'm' for immersion freezing rate $J_{het}$ of Desert Dust (unitless). Source: Alpert and Knopf (2016), DOI: 10.5194/acp-16-2083-2016."
+description = "Coefficient $m$ for immersion freezing rate $J_{het}$ of Desert Dust (unitless). Source: Alpert and Knopf (2016), DOI: 10.5194/acp-16-2083-2016."
 
 [AlpertKnopf2016_J_ABIFM_c_DesertDust]
 value = -1.35
 type = "float"
-description = "Coefficient 'c' for immersion freezing rate $J_{het}$ of Desert Dust (unitless). Source: Alpert and Knopf (2016), DOI: 10.5194/acp-16-2083-2016."
+description = "Coefficient $c$ for immersion freezing rate $J_{het}$ of Desert Dust (unitless). Source: Alpert and Knopf (2016), DOI: 10.5194/acp-16-2083-2016."
 
 [KnopfAlpert2013_J_ABIFM_m_Kaolinite]
 value = 54.58834
 type = "float"
-description = "Coefficient 'm' for immersion freezing rate $J_{het}$ of Kaolinite (unitless). Source: Knopf and Alpert (2013), DOI: 10.1039/C3FD00035D."
+description = "Coefficient $m$ for immersion freezing rate $J_{het}$ of Kaolinite (unitless). Source: Knopf and Alpert (2013), DOI: 10.1039/C3FD00035D."
 
 [KnopfAlpert2013_J_ABIFM_c_Kaolinite]
 value = -10.54758
 type = "float"
-description = "Coefficient 'c' for immersion freezing rate $J_{het}$ of Kaolinite (unitless). Source: Knopf and Alpert (2013), DOI: 10.1039/C3FD00035D."
+description = "Coefficient $c$ for immersion freezing rate $J_{het}$ of Kaolinite (unitless). Source: Knopf and Alpert (2013), DOI: 10.1039/C3FD00035D."
 
 [KnopfAlpert2013_J_ABIFM_m_Illite]
 value = 54.48075
 type = "float"
-description = "Coefficient 'm' for immersion freezing rate $J_{het}$ of Illite (unitless). Source: Knopf and Alpert (2013), DOI: 10.1039/C3FD00035D."
+description = "Coefficient $m$ for immersion freezing rate $J_{het}$ of Illite (unitless). Source: Knopf and Alpert (2013), DOI: 10.1039/C3FD00035D."
 
 [KnopfAlpert2013_J_ABIFM_c_Illite]
 value = -10.66873
 type = "float"
-description = "Coefficient 'c' for immersion freezing rate $J_{het}$ of Illite (unitless). Source: Knopf and Alpert (2013), DOI: 10.1039/C3FD00035D."
+description = "Coefficient $c$ for immersion freezing rate $J_{het}$ of Illite (unitless). Source: Knopf and Alpert (2013), DOI: 10.1039/C3FD00035D."
 
-# Microphysics - P3 Scheme Ice Nucleation
-
-[Thompson2004_c1_Cooper]
-value = 5e-3
-type = "float"
-description = "Coefficient $c_1$ for calculating P3 deposition nucleation (unitless). Source: Thompson et al. (2004), DOI: 10.1175/1520-0493(2004)132<0519:EFOWPU>2.0.CO;2."
-
-[Thompson2004_c2_Cooper]
-value = 0.304
-type = "float"
-description = "Coefficient $c_2$ for calculating P3 deposition nucleation (unitless). Source: Thompson et al. (2004), DOI: 10.1175/1520-0493(2004)132<0519:EFOWPU>2.0.CO;2."
-
-[BarklieGokhale1959_a_parameter]
-value = 0.65
-type = "float"
-description = "Mean of parameter 'a' for determining P3 heterogeneous freezing (K⁻¹). Source: Barklie & Gokhale (1959), see Pruppacher & Klett (1997), p. 350."
-
-[BarklieGokhale1959_B_parameter]
-value = 200
-type = "float"
-description = "Parameter 'B' for rainwater, used to determine P3 heterogeneous freezing (m⁻³ s⁻¹). Source: Barklie & Gokhale (1959), see Pruppacher & Klett (1997), p. 350."
-
-# Microphysics - P3 Scheme Particle Properties
-
-[BF1995_mass_exponent_beta]
-value = 1.9
-type = "float"
-description = "Exponent $\\beta_{va}$ in the power law for mass from vapor diffusion/aggregation in the P3 scheme (unitless). Source: Brown and Francis (1995); Morrison and Milbrandt (2015)."
-
-[BF1995_mass_coeff_alpha]
-value = 7.38e-11
-type = "float"
-description = "Coefficient $\\alpha_{va}$ in the power law for mass from vapor diffusion/aggregation in the P3 scheme ($g \\mu m^{-\\beta_{va}}$). See P3 scheme documentation to adjust units. Source: Brown and Francis (1995); Morrison and Milbrandt (2015)."
-
-[M1996_area_exponent_sigma]
-value = 1.88
-type = "float"
-description = "Exponent $\\sigma$ in the power law for the projected area of various ice habits in the P3 scheme (unitless). Source: Mitchell (1996); Morrison and Milbrandt (2015)."
-
-[M1996_area_coeff_gamma]
-value = 0.2285
-type = "float"
-description = "Coefficient $\\gamma$ in the power law for the projected area of various ice habits in the P3 scheme ($m^{2-\\sigma}$). Source: Mitchell (1996); Morrison and Milbrandt (2015)."
-
-[Heymsfield_mu_coeff1]
-value = 1.91e-3
-type = "float"
-description = "Coefficient for shape parameter $\\mu$ for ice in the P3 scheme ($m^{0.8}$). Source: Eq. (3) in Morrison and Milbrandt (2015)."
-
-[Heymsfield_mu_coeff2]
-value = 0.8
-type = "float"
-description = "Coefficient for shape parameter $\\mu$ for ice in the P3 scheme (unitless). Source: Eq. (3) in Morrison and Milbrandt (2015)."
-
-[Heymsfield_mu_coeff3]
-value = 2
-type = "float"
-description = "Coefficient for shape parameter $\\mu$ for ice in the P3 scheme (unitless). Source: Eq. (3) in Morrison and Milbrandt (2015)."
-
-[Heymsfield_mu_cutoff]
-value = 6
-type = "float"
-description = "Limiter for shape parameter $\\mu$ for ice in the P3 scheme (unitless). Source: Eq. (3) in Morrison and Milbrandt (2015)."
-
-[P3_constant_slope_parameterization_value]
-value = 3.0
-type = "float"
-description = "Value of $\\mu$ for the constant slope parameterization in the P3 scheme (unitless)."
-
-[CL1993_local_rime_density_constant_coeff]
-value = 51
-type = "float"
-description = "Constant coefficient for local rime density in the P3 scheme (kg m⁻³). Source: Cober and List (1993), DOI: 10.1175/1520-0469(1993)050<1591:MOTHAM>2.0.CO;2."
-
-[CL1993_local_rime_density_linear_coeff]
-value = 114
-type = "float"
-description = "Linear coefficient for local rime density in the P3 scheme (kg m⁻³ (m² s⁻¹ °C⁻¹)⁻¹). Source: Cober and List (1993), DOI: 10.1175/1520-0469(1993)050<1591:MOTHAM>2.0.CO;2."
-
-[CL1993_local_rime_density_quadratic_coeff]
-value = -5.5
-type = "float"
-description = "Quadratic coefficient for local rime density in the P3 scheme (kg m⁻³ (m² s⁻¹ °C⁻¹)⁻²). Source: Cober and List (1993), DOI: 10.1175/1520-0469(1993)050<1591:MOTHAM>2.0.CO;2."
-
-[P3_wet_growth_timescale]
-value = 100
-type = "float"
-description = "Timescale for densification due to wet growth in the P3 scheme (s)."
-
-# Microphysics - Temperature-Dependent Immersion Freezing
+# Temperature-Dependent Immersion Freezing
 
 [Frostenberg2023_standard_deviation]
 value = 1.37
 type = "float"
-description = "Standard deviation of the log of the ice-nucleating particle concentration (unitless). Source: Eq. (1) in Frostenberg et al. (2023), DOI: 10.5194/acp-23-10883-2023."
+description = "Standard deviation of the log of the ice-nucleating particle concentration (unitless). Source: Frostenberg et al. (2023), Eq. (1), DOI: 10.5194/acp-23-10883-2023."
 
 [Frostenberg2023_a_coefficient]
 value = 1
 type = "float"
-description = "Coefficient 'a' for the ice-nucleating particle concentration (m³). Source: Eq. (1) in Frostenberg et al. (2023), DOI: 10.5194/acp-23-10883-2023."
+description = "Coefficient $a$ for the ice-nucleating particle concentration (m³). Source: Frostenberg et al. (2023), Eq. (1), DOI: 10.5194/acp-23-10883-2023."
 
 [Frostenberg2023_b_coefficient]
 value = 1
 type = "float"
-description = "Coefficient 'b' for the ice-nucleating particle concentration (°C⁻¹). Source: Eq. (1) in Frostenberg et al. (2023), DOI: 10.5194/acp-23-10883-2023."
+description = "Coefficient $b$ for the ice-nucleating particle concentration (°C⁻¹). Source: Frostenberg et al. (2023), Eq. (1), DOI: 10.5194/acp-23-10883-2023."
 
-# Microphysics - Water-Activity-Based Homogeneous Freezing
+# Water-Activity-Based Homogeneous Freezing
 
 [Koop2000_min_delta_aw]
 value = 0.26
 type = "float"
-description = "Minimum valid water activity difference $\\Delta a_w$ for the Koop (2000) homogeneous nucleation parameterization (unitless). Source: DOI: 10.1038/35020537."
+description = "Minimum valid water activity difference $\\Delta a_w$ for the Koop et al. (2000) homogeneous nucleation parameterization (unitless). Source: Koop et al. (2000), DOI: 10.1038/35020537."
 
 [Koop2000_max_delta_aw]
 value = 0.34
 type = "float"
-description = "Maximum valid water activity difference $\\Delta a_w$ for the Koop (2000) homogeneous nucleation parameterization (unitless). Source: DOI: 10.1038/35020537."
+description = "Maximum valid water activity difference $\\Delta a_w$ for the Koop et al. (2000) homogeneous nucleation parameterization (unitless). Source: Koop et al. (2000), DOI: 10.1038/35020537."
 
 [Koop2000_J_hom_coeff1]
 value = -906.7
@@ -1806,14 +2062,14 @@ description = "Coefficient for calculating the homogeneous nucleation rate $J_{h
 [Linear_J_hom_coeff1]
 value = -68.5532830403637
 type = "float"
-description = "Intercept coefficient for a linear fit to the Koop (2000) $J_{hom}$ parameterization (unitless). Source: DOI: 10.1038/35020537."
+description = "Intercept coefficient for a linear fit to the Koop et al. (2000) $J_{hom}$ parameterization (unitless). Source: Koop et al. (2000), DOI: 10.1038/35020537."
 
 [Linear_J_hom_coeff2]
 value = 255.9271249999972
 type = "float"
-description = "Slope coefficient for a linear fit to the Koop (2000) $J_{hom}$ parameterization (unitless). Source: DOI: 10.1038/35020537."
+description = "Slope coefficient for a linear fit to the Koop et al. (2000) $J_{hom}$ parameterization (unitless). Source: Koop et al. (2000), DOI: 10.1038/35020537."
 
-# Microphysics - H2SO4 Vapor Pressure (Luo et al., 1995)
+# H₂SO₄ Vapor Pressure (Luo et al., 1995)
 
 [p_over_sulphuric_acid_solution_T_max]
 value = 235
@@ -1865,7 +2121,120 @@ value = 1876.7
 type = "float"
 description = "Coefficient $c_7$ for the H₂SO₄ solution vapor pressure parameterization (unitless). Source: Luo et al. (1995), DOI: 10.1029/94GL02988."
 
-# Microphysics - Aerosol Activation
+# P3 Scheme Ice Nucleation
+
+[Thompson2004_c1_Cooper]
+value = 5e-3
+type = "float"
+description = "Coefficient $c_1$ for calculating P3 deposition nucleation (unitless). Source: Thompson et al. (2004), DOI: 10.1175/1520-0493(2004)132<0519:EFOWPU>2.0.CO;2."
+
+[Thompson2004_c2_Cooper]
+value = 0.304
+type = "float"
+description = "Coefficient $c_2$ for calculating P3 deposition nucleation (unitless). Source: Thompson et al. (2004), DOI: 10.1175/1520-0493(2004)132<0519:EFOWPU>2.0.CO;2."
+
+[BarklieGokhale1959_a_parameter]
+value = 0.65
+type = "float"
+description = "Mean of parameter $a$ for determining P3 heterogeneous freezing (K⁻¹). Source: Barklie and Gokhale (1959), see Pruppacher and Klett (1997), p. 350."
+
+[BarklieGokhale1959_B_parameter]
+value = 200
+type = "float"
+description = "Parameter $B$ for rainwater, used to determine P3 heterogeneous freezing (m⁻³ s⁻¹). Source: Barklie and Gokhale (1959), see Pruppacher and Klett (1997), p. 350."
+
+# P3 Scheme Particle Properties
+
+[BF1995_mass_exponent_beta]
+value = 1.9
+type = "float"
+description = "Exponent $\\beta_{va}$ in the power law for mass from vapor diffusion/aggregation in the P3 scheme (unitless). Source: Brown and Francis (1995); Morrison and Milbrandt (2015)."
+
+[BF1995_mass_coeff_alpha]
+value = 7.38e-11
+type = "float"
+description = "Coefficient $\\alpha_{va}$ in the power law for mass from vapor diffusion/aggregation in the P3 scheme ($g \\mu m^{-\\beta_{va}}$). See P3 scheme documentation to adjust units. Source: Brown and Francis (1995); Morrison and Milbrandt (2015)."
+
+[M1996_area_exponent_sigma]
+value = 1.88
+type = "float"
+description = "Exponent $\\sigma$ in the power law for the projected area of various ice habits in the P3 scheme (unitless). Source: Mitchell (1996); Morrison and Milbrandt (2015)."
+
+[M1996_area_coeff_gamma]
+value = 0.2285
+type = "float"
+description = "Coefficient $\\gamma$ in the power law for the projected area of various ice habits in the P3 scheme ($m^{2-\\sigma}$). Source: Mitchell (1996); Morrison and Milbrandt (2015)."
+
+[Heymsfield_mu_coeff1]
+value = 1.91e-3
+type = "float"
+description = "Coefficient for shape parameter $\\mu$ for ice in the P3 scheme ($m^{0.8}$). Source: Morrison and Milbrandt (2015), Eq. (3)."
+
+[Heymsfield_mu_coeff2]
+value = 0.8
+type = "float"
+description = "Coefficient for shape parameter $\\mu$ for ice in the P3 scheme (unitless). Source: Morrison and Milbrandt (2015), Eq. (3)."
+
+[Heymsfield_mu_coeff3]
+value = 2
+type = "float"
+description = "Coefficient for shape parameter $\\mu$ for ice in the P3 scheme (unitless). Source: Morrison and Milbrandt (2015), Eq. (3)."
+
+[Heymsfield_mu_cutoff]
+value = 6
+type = "float"
+description = "Limiter for shape parameter $\\mu$ for ice in the P3 scheme (unitless). Source: Morrison and Milbrandt (2015), Eq. (3)."
+
+[P3_constant_slope_parameterization_value]
+value = 3.0
+type = "float"
+description = "Value of $\\mu$ for the constant slope parameterization in the P3 scheme (unitless)."
+
+[CL1993_local_rime_density_constant_coeff]
+value = 51
+type = "float"
+description = "Constant coefficient for local rime density in the P3 scheme (kg m⁻³). Source: Cober and List (1993), DOI: 10.1175/1520-0469(1993)050<1591:MOTHAM>2.0.CO;2."
+
+[CL1993_local_rime_density_linear_coeff]
+value = 114
+type = "float"
+description = "Linear coefficient for local rime density in the P3 scheme (kg m⁻³ (m² s⁻¹ °C⁻¹)⁻¹). Source: Cober and List (1993), DOI: 10.1175/1520-0469(1993)050<1591:MOTHAM>2.0.CO;2."
+
+[CL1993_local_rime_density_quadratic_coeff]
+value = -5.5
+type = "float"
+description = "Quadratic coefficient for local rime density in the P3 scheme (kg m⁻³ (m² s⁻¹ °C⁻¹)⁻²). Source: Cober and List (1993), DOI: 10.1175/1520-0469(1993)050<1591:MOTHAM>2.0.CO;2."
+
+[P3_wet_growth_timescale]
+value = 100
+type = "float"
+description = "Timescale for densification due to wet growth in the P3 scheme (s)."
+
+# Fixed Terminal Velocities
+
+[fixed_cloud_liquid_terminal_velocity]
+value = 0.01
+type = "float"
+description = "Fixed terminal velocity of cloud liquid (m s⁻¹)."
+
+[fixed_cloud_ice_terminal_velocity]
+value = 0.01
+type = "float"
+description = "Fixed terminal velocity of cloud ice (m s⁻¹)."
+
+[fixed_rain_terminal_velocity]
+value = 5.0
+type = "float"
+description = "Fixed terminal velocity of rain (m s⁻¹)."
+
+[fixed_snow_terminal_velocity]
+value = 1.0
+type = "float"
+description = "Fixed terminal velocity of snow (m s⁻¹)."
+
+## Aerosols
+
+# Aerosol Activation
 
 [seasalt_aerosol_molar_mass]
 value = 0.058443
@@ -1895,32 +2264,32 @@ description = "Mass fraction of water-soluble material for sea salt aerosol (uni
 [seasalt_aerosol_kappa]
 value = 1.12
 type = "float"
-description = "Hygroscopicity parameter $\\kappa$ for sea salt aerosol (unitless). Source: DOI: 10.5194/acp-7-1961-2007."
+description = "Hygroscopicity parameter $\\kappa$ for sea salt aerosol (unitless). Source: Petters and Kreidenweis (2007), DOI: 10.5194/acp-7-1961-2007."
 
 [MERRA2_seasalt_aerosol_bin01_radius]
 value = 7.9e-8
 type = "float"
-description = "Dry particle radius for sea salt aerosol in bin 01 of the MERRA-2 dataset (m). Source: DOI: 10.5067/LTVB4GPCOTK2."
+description = "Dry particle radius for sea salt aerosol in bin 01 of the MERRA-2 dataset (m). Source: Global Modeling and Assimilation Office (2015), DOI: 10.5067/LTVB4GPCOTK2."
 
 [MERRA2_seasalt_aerosol_bin02_radius]
 value = 3.16e-7
 type = "float"
-description = "Dry particle radius for sea salt aerosol in bin 02 of the MERRA-2 dataset (m). Source: DOI: 10.5067/LTVB4GPCOTK2."
+description = "Dry particle radius for sea salt aerosol in bin 02 of the MERRA-2 dataset (m). Source: Global Modeling and Assimilation Office (2015), DOI: 10.5067/LTVB4GPCOTK2."
 
 [MERRA2_seasalt_aerosol_bin03_radius]
 value = 1.119e-6
 type = "float"
-description = "Dry particle radius for sea salt aerosol in bin 03 of the MERRA-2 dataset (m). Source: DOI: 10.5067/LTVB4GPCOTK2."
+description = "Dry particle radius for sea salt aerosol in bin 03 of the MERRA-2 dataset (m). Source: Global Modeling and Assimilation Office (2015), DOI: 10.5067/LTVB4GPCOTK2."
 
 [MERRA2_seasalt_aerosol_bin04_radius]
 value = 2.818e-6
 type = "float"
-description = "Dry particle radius for sea salt aerosol in bin 04 of the MERRA-2 dataset (m). Source: DOI: 10.5067/LTVB4GPCOTK2."
+description = "Dry particle radius for sea salt aerosol in bin 04 of the MERRA-2 dataset (m). Source: Global Modeling and Assimilation Office (2015), DOI: 10.5067/LTVB4GPCOTK2."
 
 [MERRA2_seasalt_aerosol_bin05_radius]
 value = 7.772e-6
 type = "float"
-description = "Dry particle radius for sea salt aerosol in bin 05 of the MERRA-2 dataset (m). Source: DOI: 10.5067/LTVB4GPCOTK2."
+description = "Dry particle radius for sea salt aerosol in bin 05 of the MERRA-2 dataset (m). Source: Global Modeling and Assimilation Office (2015), DOI: 10.5067/LTVB4GPCOTK2."
 
 [sulfate_aerosol_molar_mass]
 value = 0.132
@@ -1950,44 +2319,101 @@ description = "Mass fraction of water-soluble material for sulfate aerosol (unit
 [sulfate_aerosol_kappa]
 value = 0.53
 type = "float"
-description = "Hygroscopicity parameter $\\kappa$ for sulfate aerosol (unitless). Source: DOI: 10.5194/acp-7-1961-2007."
+description = "Hygroscopicity parameter $\\kappa$ for sulfate aerosol (unitless). Source: Petters and Kreidenweis (2007), DOI: 10.5194/acp-7-1961-2007."
 
 [MERRA2_sulfate_aerosol_radius]
 value = 3.5e-7
 type = "float"
-description = "Dry particle radius for sulfate aerosol in the MERRA-2 dataset (m). Source: DOI: 10.5067/LTVB4GPCOTK2."
+description = "Dry particle radius for sulfate aerosol in the MERRA-2 dataset (m). Source: Global Modeling and Assimilation Office (2015), DOI: 10.5067/LTVB4GPCOTK2."
 
 [ARG2000_f_coeff_1]
 value = 0.5
 type = "float"
-description = "Scaling coefficient for an empirical function in Abdul-Razzak and Ghan (2000) (unitless). Source: DOI: 10.1029/1999JD901161."
+description = "Scaling coefficient for an empirical function in the aerosol activation parameterization (unitless). Source: Abdul-Razzak and Ghan (2000), DOI: 10.1029/1999JD901161."
 
 [ARG2000_f_coeff_2]
 value = 2.5
 type = "float"
-description = "Scaling coefficient for an empirical function in Abdul-Razzak and Ghan (2000) (unitless). Source: DOI: 10.1029/1999JD901161."
+description = "Scaling coefficient for an empirical function in the aerosol activation parameterization (unitless). Source: Abdul-Razzak and Ghan (2000), DOI: 10.1029/1999JD901161."
 
 [ARG2000_g_coeff_1]
 value = 1.0
 type = "float"
-description = "Scaling coefficient for an empirical function in Abdul-Razzak and Ghan (2000) (unitless). Source: DOI: 10.1029/1999JD901161."
+description = "Scaling coefficient for an empirical function in the aerosol activation parameterization (unitless). Source: Abdul-Razzak and Ghan (2000), DOI: 10.1029/1999JD901161."
 
 [ARG2000_g_coeff_2]
 value = 0.25
 type = "float"
-description = "Scaling coefficient for an empirical function in Abdul-Razzak and Ghan (2000) (unitless). Source: DOI: 10.1029/1999JD901161."
+description = "Scaling coefficient for an empirical function in the aerosol activation parameterization (unitless). Source: Abdul-Razzak and Ghan (2000), DOI: 10.1029/1999JD901161."
 
 [ARG2000_pow_1]
 value = 1.5
 type = "float"
-description = "Exponent for the term ($\\zeta / \\eta$) in an empirical function from Abdul-Razzak and Ghan (2000) (unitless). Source: DOI: 10.1029/1999JD901161."
+description = "Exponent for the term $\\zeta / \\eta$ in an empirical function in the aerosol activation parameterization (unitless). Source: Abdul-Razzak and Ghan (2000), DOI: 10.1029/1999JD901161."
 
 [ARG2000_pow_2]
 value = 0.75
 type = "float"
-description = "Exponent for the term ($S_m^2 / (\\zeta + 3 \\eta)$) in an empirical function from Abdul-Razzak and Ghan (2000) (unitless). Source: DOI: 10.1029/1999JD901161."
+description = "Exponent for the term $S_m^2 / (\\zeta + 3 \\eta)$ in an empirical function in the aerosol activation parameterization (unitless). Source: Abdul-Razzak and Ghan (2000), DOI: 10.1029/1999JD901161."
 
-# Microphysics - Modal Aerosol Model (MAM3)
+# Sea Salt Aerosol Emission
+
+[ssa_residence]
+value = 47520.0
+type = "float"
+description = "Average residence time (s) of sea salt aerosol mass in the AeroCOM3 ensemble. Source: Gliss et al. (2021), DOI: 10.5194/acp-21-87-2021."
+
+[ssa_size_bin_divisions]
+value = [0.03e-6, 0.1e-6, 0.5e-6, 1.5e-6, 5.0e-6, 10.0e-6]
+type = "float"
+description = "Double-sided sea salt aerosol dry-radius bin edges (m) from the five-bin MERRA-2 scheme, ascending, i.e. bin1 (0.03e-6, 0.1e-6), bin2 (0.1e-6, 0.5e-6)."
+
+[ssa_r_ref]
+value = 1.0e-6
+type = "float"
+description = "Sea salt aerosol reference radius (m) used to non-dimensionalize the Gong parameterization."
+
+[ssa_u_ref]
+value = 1.0
+type = "float"
+description = "Reference wind speed (m s⁻¹) used to non-dimensionalize the Gong parameterization."
+
+[ssa_r80_per_dry]
+value = 2.0
+type = "float"
+description = "Ratio of the sea salt aerosol radius at 80% relative humidity to the dry radius (unitless). Source: Lewis and Schwartz (2004)."
+
+[ssa_gong_wind_exponent]
+value = 3.41
+type = "float"
+description = "Exponent on the 10 m wind speed in the Gong source function (unitless). Source: Gong (2003), DOI: 10.1029/2003GB002079."
+
+[ssa_gong_logfit_mode1]
+value = [0.2157, 0.05545, 17.02]
+type = "float"
+description = "Lognormal mode #1 parameters: flux scale ($F$) (m⁻² s⁻¹), dry mode radius ($r$) (μm), and lognormal standard deviation ($\\sigma_g$) (unitless), fit to the Gong (2003) spectrum at $u_{10}$ = `ssa_u_ref`."
+
+[ssa_gong_logfit_mode2]
+value = [60.93, 0.0914, 1.813]
+type = "float"
+description = "Lognormal mode #2 parameters: flux scale ($F$) (m⁻² s⁻¹), dry mode radius ($r$) (μm), and lognormal standard deviation ($\\sigma_g$) (unitless), fit to the Gong (2003) spectrum at $u_{10}$ = `ssa_u_ref`."
+
+[ssa_gong_logfit_mode3]
+value = [5.949, 0.776, 1.759]
+type = "float"
+description = "Lognormal mode #3 parameters: flux scale ($F$) (m⁻² s⁻¹), dry mode radius ($r$) (μm), and lognormal standard deviation ($\\sigma_g$) (unitless), fit to the Gong (2003) spectrum at $u_{10}$ = `ssa_u_ref`."
+
+[ssa_gong_logfit_bin_0M_flux]
+value = [48.37, 41.92, 5.903, 1.122, 0.03885]
+type = "float"
+description = "Per-bin number flux scale (m⁻² s⁻¹) of the lognormal fit to the Gong (2003) spectrum at $u_{10}$ = `ssa_u_ref`. Precomputed offline in ClimaAtmos.jl/docs/sea_salt_emission_fit.jl."
+
+[ssa_gong_logfit_bin_3M_flux]
+value = [1.589e-16, 3.575e-15, 4.557e-14, 1.238e-13, 1.32e-13]
+type = "float"
+description = "Per-bin dry-mass flux scale (kg m⁻² s⁻¹) of the lognormal fit to the Gong (2003) spectrum at $u_{10}$ = `ssa_u_ref`. Precomputed offline in ClimaAtmos.jl/docs/sea_salt_emission_fit.jl."
+
+# Modal Aerosol Model (MAM3)
 
 [mam3_stdev_coarse]
 value = 1.8
@@ -2004,7 +2430,7 @@ value = 1.6
 type = "float"
 description = "Geometric standard deviation for the Aitken mode in the MAM3 scheme (unitless). Source: Liu et al. (2012), DOI: 10.5194/gmd-5-709-2012."
 
-# Microphysics - Nucleation Constants (MAM3, Dunne et al., 2016)
+# Nucleation Constants (MAM3, Dunne et al., 2016)
 
 [mam3_nucleation_p_b_n_neutral]
 value = 3.95451
@@ -2166,7 +2592,7 @@ value = 3.27e-21
 type = "float"
 description = "Temperature-dependent factor for mixed organic-sulfuric acid nucleation. Assumes [H₂SO₄] is in 10⁶ cm⁻³ and [BioOxOrg] is in cm⁻³. Source: Riccobono et al. (2014), DOI: 10.1126/science.1243527."
 
-# Microphysics - ML Parameters for Cloud Droplet Number Concentration
+# Machine-Learned Cloud Droplet Number Concentration
 
 [dust_calibration_coefficient]
 value = 0
@@ -2208,455 +2634,7 @@ value = 1e-6
 type = "float"
 description = "Normalization factor for cloud liquid water specific humidity in the data-driven CDNC function (kg kg⁻¹)."
 
-# Microphysics — Fixed terminal velocities
-
-[fixed_cloud_liquid_terminal_velocity]
-value = 0.01
-type = "float"
-description = "Fixed terminal velocity of cloud liquid (m s⁻¹)"
-
-[fixed_cloud_ice_terminal_velocity]
-value = 0.01
-type = "float"
-description = "Fixed terminal velocity of cloud ice (m s⁻¹)"
-
-[fixed_rain_terminal_velocity]
-value = 5.0
-type = "float"
-description = "Fixed terminal velocity of rain (m s⁻¹)"
-
-[fixed_snow_terminal_velocity]
-value = 1.0
-type = "float"
-description = "Fixed terminal velocity of snow (m s⁻¹)"
-
-# Thermodynamic Constants
-
-[gas_constant_dry_air]
-value = 287.0
-type = "float"
-description = "Gas constant for dry air (J kg⁻¹ K⁻¹)."
-
-[isobaric_specific_heat_dry_air]
-value = 1004.5
-type = "float"
-description = "Isobaric specific heat of dry air (J kg⁻¹ K⁻¹)."
-
-[molar_mass_dry_air]
-value = 0.02897
-type = "float"
-description = "Molar mass of dry air (kg mol⁻¹)."
-
-[adiabatic_exponent_dry_air]
-value = 0.28571428571
-type = "float"
-description = "Adiabatic exponent for dry air ($\\kappa_d$), derived from $R_d/c_{pd}$ or 2/7 (unitless)."
-
-[density_liquid_water]
-value = 1000
-type = "float"
-description = "Density of liquid water (kg m⁻³)."
-
-[density_ice_water]
-value = 916.7
-type = "float"
-description = "Density of water ice (kg m⁻³)."
-
-[gas_constant_vapor]
-value = 461.5
-type = "float"
-description = "Gas constant for water vapor (J kg⁻¹ K⁻¹)."
-
-[molar_mass_water]
-value = 0.01801528
-type = "float"
-description = "Molar mass of water (kg mol⁻¹)."
-
-[isobaric_specific_heat_vapor]
-value = 1859
-type = "float"
-description = "Isobaric specific heat of water vapor (J kg⁻¹ K⁻¹)."
-
-[isobaric_specific_heat_liquid]
-value = 4181
-type = "float"
-description = "Isobaric specific heat of liquid water (J kg⁻¹ K⁻¹)."
-
-[isobaric_specific_heat_ice]
-value = 2070.0
-type = "float"
-description = "Isobaric specific heat of ice (J kg⁻¹ K⁻¹)."
-
-[temperature_water_freeze]
-value = 273.15
-type = "float"
-description = "Freezing temperature of water (K)."
-
-[temperature_minimum]
-value = 150
-type = "float"
-description = "Minimum temperature for thermodynamic calculations (K)."
-
-[specific_humidity_minimum]
-value = 1e-10
-type = "float"
-description = "Minimum specific humidity threshold (kg kg⁻¹). Used as a lower bound when comparing or regularizing humidity values."
-
-[specific_humidity_maximum]
-value = 0.1
-type = "float"
-description = "Maximum specific humidity for thermodynamic calculations (kg kg⁻¹)."
-
-[temperature_saturation_adjustment_init_min]
-value = 150
-type = "float"
-description = "Minimum temperature for saturation adjustment initialization (K)."
-
-[temperature_saturation_adjustment_min]
-value = 1
-type = "float"
-description = "Minimum temperature difference for unsaturated case in saturation adjustment (K)."
-
-[temperature_saturation_adjustment_max]
-value = 1000
-type = "float"
-description = "Maximum temperature for saturation adjustment (K)."
-
-[temperature_homogenous_nucleation]
-value = 233
-type = "float"
-description = "Temperature for homogeneous ice nucleation (K)."
-
-[pow_icenuc]
-value = 1
-type = "float"
-description = "Exponent in the ice nucleation parameterization (unitless)."
-
-[microph_scaling_acnv]
-value = 1.0
-type = "float"
-description = "Scaling factor for autoconversion in microphysics (unitless)."
-
-[microph_scaling_accr]
-value = 1.0
-type = "float"
-description = "Scaling factor for accretion in microphysics (unitless)."
-
-[microph_scaling_evap]
-value = 1.0
-type = "float"
-description = "Scaling factor for evaporation in microphysics (unitless)."
-
-[microph_scaling_dep_sub]
-value = 1.0
-type = "float"
-description = "Scaling factor for deposition/sublimation in microphysics (unitless)."
-
-[microph_scaling_melt]
-value = 1.0
-type = "float"
-description = "Scaling factor for melting in microphysics (unitless)."
-
-[temperature_triple_point]
-value = 273.16
-type = "float"
-description = "Triple point temperature of water (K)."
-
-[thermodynamics_temperature_reference]
-value = 273.16
-type = "float"
-description = "Reference temperature for thermodynamics (K)."
-
-[latent_heat_vaporization_at_reference]
-value = 2500800
-type = "float"
-description = "Latent heat of vaporization at the reference temperature (J kg⁻¹)."
-
-[latent_heat_sublimation_at_reference]
-value = 2834400
-type = "float"
-description = "Latent heat of sublimation at the reference temperature (J kg⁻¹)."
-
-[pressure_triple_point]
-value = 611.657
-type = "float"
-description = "Triple point pressure of water (Pa)."
-
-[surface_tension_water]
-value = 0.072
-type = "float"
-description = "Surface tension of water (N m⁻¹)."
-
-[entropy_dry_air]
-value = 6864.8
-type = "float"
-description = "Specific entropy of dry air at the reference temperature and pressure (J kg⁻¹ K⁻¹)."
-
-[entropy_water_vapor]
-value = 10513.6
-type = "float"
-description = "Specific entropy of water vapor at the reference temperature and pressure (J kg⁻¹ K⁻¹)."
-
-[entropy_reference_temperature]
-value = 298.15
-type = "float"
-description = "Reference temperature for entropy calculations (K)."
-
-[density_ocean_reference]
-value = 1035
-type = "float"
-description = "Reference density of sea water (kg m⁻³)."
-
-[specific_heat_ocean]
-value = 3991.86795711963
-type = "float"
-description = "Specific heat of sea water (J kg⁻¹ K⁻¹)."
-
-# Planetary and Orbital Parameters (Earth Defaults)
-
-[planet_radius]
-value = 6371000
-type = "float"
-description = "Mean radius of the planet (m)."
-
-[day]
-value = 86400
-type = "float"
-description = "Length of a day (s)."
-
-[angular_velocity_planet_rotation]
-value = 7.2921159e-5
-type = "float"
-description = "Angular velocity of planetary rotation ($\\Omega$) (rad s⁻¹)."
-
-[f_plane_coriolis_frequency]
-value = 0
-type = "float"
-description = "Coriolis frequency on an f-plane (s⁻¹)."
-
-[gravitational_acceleration]
-value = 9.81
-type = "float"
-description = "Gravitational acceleration on the planet (m s⁻²)."
-
-[anomalistic_year_length]
-value = 31558433.5
-type = "float"
-description = "Length of an anomalistic year (s). Derived as 365.2596 * `day`, from the JPL (Standish) 1800-2050 Earth-Moon barycenter rates: 360 / (35999.37244981 - 0.32327364) °/century."
-
-[length_orbit_semi_major]
-value = 149597870700
-type = "float"
-description = "Semi-major axis of the planetary orbit (m). Derived as 1 * `astronomical_unit`."
-
-[total_solar_irradiance]
-value = 1362
-type = "float"
-description = "Total solar irradiance (TSI) at the mean orbital distance (W m⁻²)."
-
-[epoch_time]
-value = 2000-01-01T11:58:55.816
-type = "datetime"
-description = "J2000 epoch (Jan 1, 2000 11:58:55.816 UTC) as a DateTime"
-
-[mean_anomaly_at_epoch]
-value = 6.24002139020
-type = "float"
-description = "Mean anomaly at J2000 epoch (radians). Corresponds to 357.52688973°, from the JPL (Standish) 1800-2050 Earth-Moon barycenter elements as mean longitude minus longitude of perihelion, 100.46457166° - 102.93768193°."
-
-[orbit_obliquity_at_epoch]
-value = 0.40909260060
-type = "float"
-description = "Mean obliquity of the ecliptic at J2000 epoch (radians). Corresponds to 23.43927944° = 84381.406\", the IAU 2006 value (Capitaine et al. 2003)."
-
-[longitude_perihelion_at_epoch]
-value = 4.93819412764
-type = "float"
-description = "Longitude of perihelion of the Sun's apparent orbit at J2000 epoch, measured eastward from the vernal equinox (radians). Corresponds to 282.93768193°, i.e. the JPL (Standish) 1800-2050 Earth-Moon barycenter longitude of perihelion 102.93768193° plus 180°."
-
-[orbit_eccentricity_at_epoch]
-value = 0.01671123
-type = "float"
-description = "Orbital eccentricity at J2000 epoch (unitless). JPL (Standish) 1800-2050 Earth-Moon barycenter value."
-
-# Universal Physical Constants
-
-[potential_temperature_reference_pressure]
-value = 1e5
-type = "float"
-description = "Reference pressure for potential temperature calculations ($p_0$) (Pa)."
-
-[mean_sea_level_pressure]
-value = 101325
-type = "float"
-description = "Mean sea level pressure ($p_{MSL}$) (Pa)."
-
-[temperature_surface_reference]
-value = 288
-type = "float"
-description = "Surface temperature in a reference temperature profile (K)."
-
-[temperature_min_reference]
-value = 215
-type = "float"
-description = "Minimum temperature in a reference temperature profile (K)."
-
-[reference_temperature_exponent]
-value = 7
-type = "float"
-description = "Exponent s_ref of the Exner function in the hydrostatic reference temperature profile T_r(p) = T_min + (T_sfc - T_min) Π(p)^s_ref [-]."
-
-[reference_relative_humidity]
-value = 0.5
-type = "float"
-description = "Reference relative humidity used to build a reference total moisture specific humidity profile [-]."
-
-[reference_moisture_cutoff_pressure]
-value = 25000
-type = "float"
-description = "Pressure cutoff above which the reference-state total-water specific humidity is clipped to zero [Pa]. Keeps the reference profile confined to the troposphere, avoiding unphysical stratospheric growth."
-
-[universal_gas_constant]
-value = 8.3144598
-type = "float"
-description = "Universal gas constant (R) (J mol⁻¹ K⁻¹)."
-
-[light_speed]
-value = 299792458
-type = "float"
-description = "Speed of light in vacuum (c) (m s⁻¹)."
-
-[planck_constant]
-value = 6.626e-34
-type = "float"
-description = "Planck's constant (h) (J s)."
-
-[boltzmann_constant]
-value = 1.381e-23
-type = "float"
-description = "Boltzmann's constant ($k_B$) (J K⁻¹)."
-
-[stefan_boltzmann_constant]
-value = 5.67e-8
-type = "float"
-description = "Stefan-Boltzmann constant ($\\sigma$) (W m⁻² K⁻⁴)."
-
-[astronomical_unit]
-value = 149597870700
-type = "float"
-description = "Astronomical unit (AU) (m). Exact by the IAU 2012 definition (Resolution B2)."
-
-[avogadro_constant]
-value = 6.02214076e+23
-type = "float"
-description = "Avogadro's constant ($N_A$) (mol⁻¹)."
-
-# Diffusion
-[D_horizontal_diffusion]
-value = 5e5
-type = "float"
-description = "Constant horizontal diffusion (m² s⁻¹)."
-
-[tracer_hyperdiffusion_factor]
-value = 0
-type = "float"
-description = "Scaling factor for hyperdiffusion of tracers with strong gradients, e.g., precipitation (unitless)."
-
-[C_E]
-value = 0.0044
-type = "float"
-description = "Coefficient used in the simple vertical diffusion scheme ($C_E$) (unitless)."
-
-[C_H]
-value = 0.0044
-type = "float"
-description = "Bulk transfer coefficient for sensible heat ($C_H$) (unitless)."
-
-[D_0_diffusion]
-value = 5
-type = "float"
-description = "Coefficient $D_0$ in the DecayWithHeightDiffusion vertical diffusion scheme (m² s⁻¹)."
-
-[H_diffusion]
-value = 8000
-type = "float"
-description = "Height scale $H$ in the DecayWithHeightDiffusion vertical diffusion scheme (m)."
-
-[tracer_vertical_diffusion_factor]
-value = 1
-type = "float"
-description = "Scaling factor for vertical diffusion of tracers with strong gradients, e.g., precipitation (unitless)."
-
-# Rayleigh Damping
-
-[alpha_rayleigh_w]
-value = 1.0
-type = "float"
-description = "Coefficient $\\alpha_w$ for Rayleigh damping on vertical velocity (s⁻¹)."
-
-[alpha_rayleigh_uh]
-value = 0.0
-type = "float"
-description = "Coefficient $\\alpha_{uh}$ for Rayleigh damping on horizontal velocity (s⁻¹)."
-
-[alpha_rayleigh_tracer]
-value = 0.0
-type = "float"
-description = "Coefficient $\\alpha_{tracer}$ for Rayleigh damping on tracer fields (s⁻¹)."
-
-[zd_rayleigh]
-value = 15000.0
-type = "float"
-description = "Height at which Rayleigh damping begins in the sponge layer ($z_d$) (m)."
-
-[zd_viscous]
-value = 15000.0
-type = "float"
-description = "Height at which viscous damping begins in the sponge layer (m)."
-
-[kappa_2_sponge]
-value = 1e6
-type = "float"
-description = "Viscous sponge coefficient ($\\kappa_2$) (m² s⁻¹)."
-
-# Held-Suarez Benchmark
-
-[held_suarez_T_equator_dry]
-value = 315
-type = "float"
-description = "Equatorial temperature for the dry Held-Suarez benchmark (K). Source: Held and Suarez (1994), DOI: 10.1175/1520-0477(1994)075<1825:APFTIO>2.0.CO;2."
-
-[held_suarez_T_equator_wet]
-value = 294
-type = "float"
-description = "Equatorial temperature for the moist Held-Suarez benchmark (K). Source: Held and Suarez (1994), DOI: 10.1175/1520-0477(1994)075<1825:APFTIO>2.0.CO;2."
-
-[potential_temp_vertical_gradient]
-value = 10
-type = "float"
-description = "Vertical gradient of potential temperature with height (K m⁻¹). Source: Held and Suarez (1994), DOI: 10.1175/1520-0477(1994)075<1825:APFTIO>2.0.CO;2."
-
-[drag_layer_vertical_extent]
-value = 0.7
-type = "float"
-description = "Vertical extent of the drag layer as a fraction of total pressure depth (unitless). Source: Held and Suarez (1994), DOI: 10.1175/1520-0477(1994)075<1825:APFTIO>2.0.CO;2."
-
-[held_suarez_minimum_temperature]
-value = 200
-type = "float"
-description = "Minimum temperature allowed in the benchmark (K). Source: Held and Suarez (1994), DOI: 10.1175/1520-0477(1994)075<1825:APFTIO>2.0.CO;2."
-
-[equator_pole_temperature_gradient_dry]
-value = 60
-type = "float"
-description = "Equator-to-pole temperature gradient for the dry benchmark (K). Source: Held and Suarez (1994), DOI: 10.1175/1520-0477(1994)075<1825:APFTIO>2.0.CO;2."
-
-[equator_pole_temperature_gradient_wet]
-value = 65
-type = "float"
-description = "Equator-to-pole temperature gradient for the moist benchmark (K). Source: Held and Suarez (1994), DOI: 10.1175/1520-0477(1994)075<1825:APFTIO>2.0.CO;2."
-
-# Radiation
+## Radiation
 
 [idealized_ocean_albedo]
 value = 0.38
@@ -2681,578 +2659,143 @@ description = "Maximum temperature in the lookup table for optical properties in
 [CO2_fixed_value]
 value = 397.547e-6
 type = "float"
-description = "Global mean mole fraction to fix carbon dioxide (CO2) when using a fixed C02 model.  Taken from the first value of 'carbon_dioxide_GM' in RRTMGP (mol mol-1)."
+description = "Global mean mole fraction to fix carbon dioxide (CO₂) when using a fixed CO₂ model. Taken from the first value of 'carbon_dioxide_GM' in RRTMGP (mol mol⁻¹)."
 
 [N2O_fixed_value]
 value = 326.99e-9
 type = "float"
-description = "Global mean mole fraction of nitrous oxide (N2O). Taken from the first value of 'nitrous_oxide_GM' in RRTMGP (mol mol-1)."
+description = "Global mean mole fraction of nitrous oxide (N₂O). Taken from the first value of 'nitrous_oxide_GM' in RRTMGP (mol mol⁻¹)."
 
 [CO_fixed_value]
 value = 1.2e-7
 type = "float"
-description = "Global mean mole fraction of carbon monoxide (CO). Taken from the first value of 'carbon_monoxide_GM' in RRTMGP (mol mol-1)."
+description = "Global mean mole fraction of carbon monoxide (CO). Taken from the first value of 'carbon_monoxide_GM' in RRTMGP (mol mol⁻¹)."
 
 [CH4_fixed_value]
 value = 1831.5e-9
 type = "float"
-description = "Global mean mole fraction of methane (CH4). Taken from the first value of 'methane_GM' in RRTMGP (mol mol-1)."
+description = "Global mean mole fraction of methane (CH₄). Taken from the first value of 'methane_GM' in RRTMGP (mol mol⁻¹)."
 
 [O2_fixed_value]
 value = 0.209
 type = "float"
-description = "Global mean mole fraction of oxygen (O2). Taken from the first value of 'oxygen_GM' in RRTMGP (mol mol-1)."
+description = "Global mean mole fraction of oxygen (O₂). Taken from the first value of 'oxygen_GM' in RRTMGP (mol mol⁻¹)."
 
 [N2_fixed_value]
 value = 0.781
 type = "float"
-description = "Global mean mole fraction of nitrogen (N2). Taken from the first value of 'nitrogen_GM' in RRTMGP (mol mol-1)."
+description = "Global mean mole fraction of nitrogen (N₂). Taken from the first value of 'nitrogen_GM' in RRTMGP (mol mol⁻¹)."
 
 [CCL4_fixed_value]
 value = 83.07e-12
 type = "float"
-description = "Global mean mole fraction of carbon tetrachloride (CCL4). Taken from the first value of 'carbon_tetrachloride_GM' in RRTMGP (mol mol-1)."
+description = "Global mean mole fraction of carbon tetrachloride (CCl₄). Taken from the first value of 'carbon_tetrachloride_GM' in RRTMGP (mol mol⁻¹)."
 
 [CFC11_fixed_value]
 value = 233.08e-12
 type = "float"
-description = "Global mean mole fraction of chlorofluorocarbon CFC11. Taken from the first value of 'cfc11_GM' in RRTMGP (mol mol-1)."
+description = "Global mean mole fraction of chlorofluorocarbon CFC11. Taken from the first value of 'cfc11_GM' in RRTMGP (mol mol⁻¹)."
 
 [CFC12_fixed_value]
 value = 520.58e-12
 type = "float"
-description = "Global mean mole fraction of chlorofluorocarbon CFC12. Taken from the first value of 'cfc12_GM' in RRTMGP (mol mol-1)."
+description = "Global mean mole fraction of chlorofluorocarbon CFC12. Taken from the first value of 'cfc12_GM' in RRTMGP (mol mol⁻¹)."
 
 [CFC22_fixed_value]
 value = 229.54e-12
 type = "float"
-description = "Global mean mole fraction of hydrochlorofluorocarbon CFC22. Taken from the first value of 'hcfc22_GM' in RRTMGP (mol mol-1)."
+description = "Global mean mole fraction of hydrochlorofluorocarbon CFC22. Taken from the first value of 'hcfc22_GM' in RRTMGP (mol mol⁻¹)."
 
 [HFC143A_fixed_value]
 value = 15.253e-12
 type = "float"
-description = "Global mean mole fraction of hydroflourocarbon HFC143A. Taken from the first value of 'hfc143a_GM' in RRTMGP (mol mol-1)."
+description = "Global mean mole fraction of hydrofluorocarbon HFC143A. Taken from the first value of 'hfc143a_GM' in RRTMGP (mol mol⁻¹)."
 
 [HFC125_fixed_value]
 value = 15.355e-12
 type = "float"
-description = "Global mean mole fraction of hydroflourocarbon HFC125. Taken from the first value of 'hfc125_GM' in RRTMGP (mol mol-1)."
+description = "Global mean mole fraction of hydrofluorocarbon HFC125. Taken from the first value of 'hfc125_GM' in RRTMGP (mol mol⁻¹)."
 
 [HFC23_fixed_value]
 value = 26.89e-12
 type = "float"
-description = "Global mean mole fraction of hydroflourocarbon HFC23. Taken from the first value of 'hfc23_GM' in RRTMGP (mol mol-1)."
+description = "Global mean mole fraction of hydrofluorocarbon HFC23. Taken from the first value of 'hfc23_GM' in RRTMGP (mol mol⁻¹)."
 
 [HFC32_fixed_value]
 value = 8.337e-12
 type = "float"
-description = "Global mean mole fraction of hydroflourocarbon HFC32. Taken from the first value of 'hfc32_GM' in RRTMGP (mol mol-1)."
+description = "Global mean mole fraction of hydrofluorocarbon HFC32. Taken from the first value of 'hfc32_GM' in RRTMGP (mol mol⁻¹)."
 
 [HFC134A_fixed_value]
 value = 80.516e-12
 type = "float"
-description = "Global mean mole fraction of hydroflourocarbon HFC134A. Taken from the first value of 'hfc134a_GM' in RRTMGP (mol mol-1)."
+description = "Global mean mole fraction of hydrofluorocarbon HFC134A. Taken from the first value of 'hfc134a_GM' in RRTMGP (mol mol⁻¹)."
 
 [CF4_fixed_value]
 value = 81.092e-12
 type = "float"
-description = "Global mean mole fraction of carbon tetrafluoride (CF4). Taken from the first value of 'cf4_GM' in RRTMGP (mol mol-1)."
+description = "Global mean mole fraction of carbon tetrafluoride (CF₄). Taken from the first value of 'cf4_GM' in RRTMGP (mol mol⁻¹)."
 
 [NO2_fixed_value]
 value = 0
 type = "float"
-description = "Global mean mole fraction of nitrogen dioxide (NO2) (mol mol-1)."
+description = "Global mean mole fraction of nitrogen dioxide (NO₂) (mol mol⁻¹)."
 
-# RCEMIP Benchmark
+## Gravity Waves
 
-[SST_mean]
-value = 300
-type = "float"
-description = "Mean sea surface temperature (SST) for RCEMIP surface conditions (K). Source: Wing et al. (2018)."
-
-[SST_delta]
-value = 1.25
-type = "float"
-description = "Amplitude of the SST sinusoid for RCEMIP surface conditions (K). Note: value is $2 \times$ amplitude. Source: Wing et al. (2018)."
-
-[SST_wavelength]
-value = 6e6
-type = "float"
-description = "Wavelength of the SST sinusoid for RCEMIP box models (m). Source: Wing et al. (2018)."
-
-[SST_wavelength_latitude]
-value = 54
-type = "float"
-description = "Wavelength of the SST sinusoid for RCEMIP sphere models (degrees latitude). Source: Wing et al. (2018)."
-
-# EDMF Scheme
-
-[entr_param_vec]
-value = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
-type = "float"
-description = "Data-driven entrainment parameter vector (unitless)."
-
-[entr_mult_limiter_coeff]
-value = 0.0
-type = "float"
-description = "Exponent for the multiplicative entrainment limiter of the form $(1 - area)^c$ (unitless)."
-
-[turb_entr_param_vec]
-value = [0.001, 1e5, 0.0]
-type = "float"
-description = "Data-driven turbulent entrainment parameter vector (unitless)."
-
-[entr_inv_tau]
-value = 0
-type = "float"
-description = "Inverse timescale for entrainment (s⁻¹)."
-
-[entr_inv_length]
-value = 0
-type = "float"
-description = "Inverse length scale for entrainment (m⁻¹)."
-
-[entr_coeff]
-value = 1
-type = "float"
-description = "Coefficient for the $w/z$ term in the entrainment closure (unitless)."
-
-[entr_buoy_coeff]
-value = 0
-type = "float"
-description = "Coefficient for the $b/w^2$ term in the entrainment closure (unitless)."
-
-[entr_vertdiv_coeff]
-value = 1
-type = "float"
-description = "Coefficient for the vertical divergence term in the entrainment closure (unitless)."
-
-[min_area_limiter_scale]
-value = 0.001
-type = "float"
-description = "Rate coefficient for the minimum area fraction limiter in entrainment (s⁻¹)."
-
-[min_area_limiter_power]
-value = 1
-type = "float"
-description = "Exponent for the minimum area fraction limiter in both entrainment and detrainment (unitless)."
-
-[entr_detr_limit_inv_tau]
-value = 0
-type = "float"
-description = "Inverse timescale for entrainment and detrainment for negligible area (s⁻¹)."
-
-[detr_inv_tau]
-value = 0
-type = "float"
-description = "Inverse timescale for detrainment (s⁻¹)."
-
-[detr_coeff]
-value = 0.001
-type = "float"
-description = "Coefficient for the $w$ term in the detrainment closure (unitless)."
-
-[detr_buoy_coeff]
-value = 0.12
-type = "float"
-description = "Coefficient for the $b/w^2$ term in the detrainment closure (unitless). Source: Tan et al. (2018), Eq. 27."
-
-[detr_buoy_inv_tau_max]
-value = 0.01
-type = "float"
-description = "Maximum allowed inverse buoyancy time scale (s⁻¹), used to limit detrainment when velocity differences become small and prevent excessively fast detrainment."
-
-[entr_detr_buoy_inv_tau_max]
-value = 0.01
-type = "float"
-description = "Maximum allowed inverse buoyancy time scale (s⁻¹), used to limit entrainment and detrainment when velocity differences become small and prevent excessively fast entrainment and detrainment."
-
-[detr_vertdiv_coeff]
-value = 1
-type = "float"
-description = "Coefficient for the vertical divergence term in the detrainment closure (unitless)."
-
-[detr_massflux_vertdiv_coeff]
-value = 1
-type = "float"
-description = "Coefficient for the mass flux vertical divergence term in the detrainment closure (unitless)."
-
-[detr_ramp_z_start]
-value = 20000.0
-type = "float"
-description = "Start height of the sigmoid ramp for the detrainment top limiter (m)."
-
-[detr_ramp_steepness_factor]
-value = 10.0
-type = "float"
-description = "Factor for calculating the steepness of the sigmoid ramp for the detrainment top limiter. Steepness = factor / (z_end - z_start)."
-
-[max_area_limiter_scale]
-value = 0.001
-type = "float"
-description = "Rate coefficient for the maximum area fraction limiter in detrainment (s⁻¹)."
-
-[max_area_limiter_power]
-value = 1
-type = "float"
-description = "Exponent for the maximum area fraction limiter in detrainment (unitless)."
-
-[c_smag]
-value = 0.2
-type = "float"
-description = "Smagorinsky coefficient (unitless)."
-
-[EDMF_max_surface_area]
-value = 0.1
-type = "float"
-description = "Maximum combined updraft surface-area fraction (unitless), reached in the free-convection limit of the EDMF surface mass-flux closure. The per-updraft cap is `max_surface_area / N_updrafts`. Source: Cohen et al. (2020), Table 2."
-
-[EDMF_max_area]
-value = 0.9
-type = "float"
-description = "Maximum area fraction per updraft (unitless)."
-
-[EDMF_min_area]
-value = 1e-5
-type = "float"
-description = "Minimum area fraction per updraft (unitless)."
-
-[EDMF_sfc_mass_flux_ustar_coeff]
-value = 1.0
-type = "float"
-description = "Coefficient $c_u$ weighting the friction-velocity contribution in the EDMF surface mass-flux blend $a_s = a_{s,\\max} \\cdot w_*^3 / (w_*^3 + c_u u_*^3)$ (unitless)."
-
-[EDMF_convective_zi]
-value = 1000.0
-type = "float"
-description = "Prescribed convective boundary-layer depth $z_i$ used in the EDMF surface mass-flux closure $w_*^3 = z_i \\langle w'b' \\rangle_s$ (m)."
-
-[EDMF_sfc_mass_flux_cap_fraction]
-value = 0.5
-type = "float"
-description = "Fraction $\\alpha$ of the surface scalar flux that the EDMF updraft may transport at the surface; caps the updraft mass-flux source so the environment retains at least $(1-\\alpha)$ of every surface scalar flux (unitless)."
-
-[EDMF_interface_entr_efficiency]
-value = 0.4
-type = "float"
-description = "Entrainment efficiency $A$ (unitless) in the EDMF interfacial entrainment diffusivity $K_e = \\gamma w_e \\Delta z$, $w_e = A \\sqrt{TKE} / \\max(\\mathrm{Ri}_b, 1)$, which restores finite entrainment across an unresolved inversion represented by the interface-aware stability closure."
-
-[mixing_length_eddy_viscosity_coefficient]
-value = 0.14
-type = "float"
-description = "TKE diffusivity coefficient ($c_m$) for the EDMF mixing length closure (unitless). Source: Lopez-Gomez et al. (2020), Table 1."
-
-[mixing_length_diss_coeff]
-value = 0.22
-type = "float"
-description = "TKE dissipation coefficient ($c_d$) for the EDMF mixing length closure (unitless). Source: Lopez-Gomez et al. (2020), Table 1."
-
-[mixing_length_static_stab_coeff]
-value = 0.4
-type = "float"
-description = "Static stability coefficient ($c_b$) for the EDMF mixing length closure (unitless). Source: Lopez-Gomez et al. (2020), Table 1."
-
-[mixing_length_tke_surf_scale]
-value = 3.75
-type = "float"
-description = "Ratio of TKE to squared friction velocity ($\\kappa_*^2$) in the surface layer for the EDMF mixing length closure (unitless). Source: Lopez-Gomez et al. (2020), Table 1."
-
-[mixing_length_tke_surf_flux_coeff]
-value = 2.5
-type = "float"
-description = "Coefficient multiplying flux in the $u_*^3$ surface flux formulation of TKE ($C_{flux}$) (unitless)."
-
-[mixing_length_Prandtl_number_scale]
-value = 4.076923076923077
-type = "float"
-description = "Cospectral budget factor for turbulent Prandtl number ($\\omega_{pr}$) for the EDMF mixing length closure (unitless). Source: Lopez-Gomez et al. (2020), Eq. 36."
-
-[mixing_length_Prandtl_number_0]
-value = 0.74
-type = "float"
-description = "Turbulent Prandtl number in neutral conditions ($Pr_{t,0}$) (unitless). Source: Lopez-Gomez et al. (2020), Table 1."
-
-[mixing_length_Prandtl_maximum]
-value = 10
-type = "float"
-description = "Maximum allowed turbulent Prandtl number (unitless)."
-
-[mixing_length_Ri_crit]
-value = 0.25
-type = "float"
-description = "Critical gradient Richardson number ($Ri_{crit}$) (unitless). Source: Li (2019), Section 6.2."
-
-[mixing_length_smin_ub]
-value = 0.1
-type = "float"
-description = "Lower limit for the smooth minimum function in the mixing length closure (unitless). Source: Lopez-Gomez et al. (2020), Eq. 40."
-
-[mixing_length_smin_rm]
-value = 1.5
-type = "float"
-description = "Upper ratio limit for the smooth minimum function in the mixing length closure (unitless). Source: Lopez-Gomez et al. (2020), Eq. 40."
-
-[mixing_length_l_max]
-value = 1e6
-type = "float"
-description = "Upper limit for the length scale in the mixing length closure (m). Source: Lopez-Gomez et al. (2020)."
-
-[mixing_length_l_min]
-value = 10
-type = "float"
-description = "Lower limit for the mixing length (m)."
-
-[mixing_length_param_vec]
-value = [0.0, 0.0, 0.0, 0.0, 0.0]
-type = "float"
-description = "Data-driven mixing length parameter vector (unitless)."
-
-[entrainment_factor]
-value = 0.13
-type = "float"
-description = "Scaling constant for entrainment rate (unitless). Source: Cohen et al. (2022), Table 2."
-
-[detrainment_factor]
-value = 0.51
-type = "float"
-description = "Scaling constant for detrainment rate (unitless). Source: Cohen et al. (2022), Table 2."
-
-[turbulent_entrainment_factor]
-value = 0.075
-type = "float"
-description = "Scaling constant for turbulent entrainment rate (unitless). Source: Cohen et al. (2022), Table 2."
-
-[entrainment_smin_tke_coeff]
-value = 0.3
-type = "float"
-description = "Scaling constant of the TKE term in the entrainment/detrainment inverse timescale smooth minimum (unitless). Source: Cohen et al. (2022), Table 2."
-
-[updraft_mixing_frac]
-value = 0.25
-type = "float"
-description = "Fraction of updraft air used for buoyancy mixing in the entrainment/detrainment formulation (unitless). Source: Cohen et al. (2022), Table 2."
-
-[entrainment_area_limiter_scale]
-value = 4.0
-type = "float"
-description = "Scaling factor (amplitude) of the exponential detrainment area limiter (unitless)."
-
-[entrainment_area_limiter_power]
-value = 10.0
-type = "float"
-description = "Exponential decay constant in the detrainment area limiter (unitless)."
-
-[entrainment_scale]
-value = 0.0004
-type = "float"
-description = "Dimensional constant scaling the logistic function argument in the entrainment/detrainment dry term. Source: Cohen et al. (2022), Table 2."
-
-[entrainment_sorting_power]
-value = 2.0
-type = "float"
-description = "Sorting power for the moisture term in the entrainment/detrainment formulation (unitless). Source: Cohen et al. (2022), Table 2."
-
-[minimum_updraft_velocity]
-value = 0.001
-type = "float"
-description = "Minimum updraft-environment vertical velocity difference (m s⁻¹)."
-
-[minimum_updraft_top]
-value = 500.0
-type = "float"
-description = "Minimum updraft height limiter (m)."
-
-[pressure_normalmode_buoy_coeff1]
-value = 0.12
-type = "float"
-description = "Pressure buoyancy coefficient in the perturbation pressure closure (unitless). Source: He et al. (2022), Eq. 34."
-
-[pressure_normalmode_adv_coeff]
-value = 0.1
-type = "float"
-description = "Pressure advection (damping) coefficient in the perturbation pressure closure (unitless). Source: He et al. (2022), Eq. 34."
-
-[pressure_normalmode_drag_coeff]
-value = 10.0
-type = "float"
-description = "Updraft pressure drag coefficient in the perturbation pressure closure (unitless). Source: He et al. (2022), Eq. 34."
-
-[pressure_normalmode_param_vec]
-value = [0.0, 0.0, 0.0, 0.0, 0.0]
-type = "float"
-description = "Data-driven perturbation pressure parameter vector (unitless)."
-
-[EDMF_thermodynamics_moisture_model]
-value = "equilibrium"
-type = "string"
-description = "Moisture model for EDMF thermodynamics. Options: 'equilibrium' (default), 'nonequilibrium'."
-
-[EDMF_thermodynamics_covariance_model]
-value = "diagnostic"
-type = "string"
-description = "Covariance model for EDMF thermodynamics. Options: 'diagnostic' (default), 'prognostic'."
-
-[diagnostic_covariance_coeff]
-value = 2.1
-type = "float"
-description = "Prefactor in the turbulent production term of the EDMF covariance equation (unitless)."
-
-[EDMF_thermodynamics_diagnostic_covar_limiter]
-value = 1e-3
-type = "float"
-description = "Regularization epsilon for the denominator in diagnostic covariance calculations (unitless)."
-
-[Tq_correlation_coefficient]
-value = 0.6
-type = "float"
-description = "Default correlation coefficient between T' and q_tot' perturbations, used in SGS quadratures (unitless). Valid range: [-1, 1]."
-
-[EDMF_thermodynamics_sgs]
-value = "mean"
-type = "string"
-description = "Environmental sub-grid scale model for EDMF. Options: 'mean' (default), 'quadrature'."
-
-[EDMF_thermodynamics_quadrature_order]
-value = 3
-type = "integer"
-description = "Number of 1D quadrature points for SGS sampling in EDMF."
-
-[EDMF_thermodynamics_quadrature_type]
-value = "log-normal"
-type = "string"
-description = "Assumed PDF shape for environmental variables ($q_{tot}, \\theta_{liq_ice}$) with SGS quadrature. Options: 'log-normal' (default), 'gaussian'."
-
-[updraft_number]
-value = 1
-type = "integer"
-description = "Number of updrafts in the EDMF scheme."
-
-[gcmdriven_momentum_relaxation_timescale]
-value = 21600.0
-type = "float"
-description = "Relaxation timescale for horizontal winds toward the forcing profile in Single Column Model (SCM) cases (s). Source: Shen et al. (2022)."
-
-[gcmdriven_scalar_relaxation_timescale]
-value = 86400.0
-type = "float"
-description = "Relaxation timescale for scalars (temperature, humidity) toward the forcing profile in SCM cases (s). Source: Shen et al. (2022)."
-
-[gcmdriven_relaxation_minimum_height]
-value = 3000.0
-type = "float"
-description = "Start height for relaxation toward the forcing profile in SCM cases (m). Source: Shen et al. (2022)."
-
-[gcmdriven_relaxation_maximum_height]
-value = 3500.0
-type = "float"
-description = "Height at which the relaxation coefficient becomes 1 in SCM cases (m). Source: Shen et al. (2022)."
-
-[microphysics_model_precipitation_fraction]
-value = "prescribed"
-type = "string"
-description = "Precipitation fraction model choice for 1-moment microphysics with EDMF. Options: 'prescribed' (default), 'cloud_cover'."
-
-[microphysics_prescribed_precipitation_fraction]
-value = 1.0
-type = "float"
-description = "Prescribed value of the precipitation fraction (unitless)."
-
-[microphysics_precipitation_fraction_limiter]
-value = 0.3
-type = "float"
-description = "Minimum allowed precipitation fraction when using the 'cloud_cover' model (unitless)."
-
-# Model diagnostics
-
-[cloud_top_q_threshold]
-value = 1e-8
-type = "float"
-description = "Minimum value for condensate required to calculate top of cloud (kg kg-1)."
-
-[cloud_top_k]
-value = 1e10
-type = "float"
-description = "Parameter controlling steepness of (logistic) transition between cloud and non-cloud for cloud top calculations (unitless)."
-
-[cloud_top_a]
-value = 1e-3
-type = "float"
-description = "Parameter controlling exponential scale of favoring cloud top for cloud top calculations (unitless)."
-
-[cloud_fraction_param_vec]
-value = [0.0, 0.0, 0.0, 0.0, 0.0]
-type = "float"
-description = "Data-driven cloud fraction parameter vector (unitless)."
-
-[cloud_fraction_steepness_scale]
-alias = "cloud_fraction_steepness_scale"
-value = 1.0
-type = "float"
-description = "Scale parameter for the steepness of the cloud fraction/condensate relationship (unitless). Should be 1 for exact Gaussian/lognormal SGS distributions."
-
-[cloud_fraction_eps_rel]
-value = 0.02
-type = "float"
-description = "Residual fractional saturation variability (unitless) entering the augmented-$\\sigma$ floor in the cloud-fraction closure: $\\sigma_{S,\\text{floor}}^2 = (\\varepsilon_\\text{rel} \\cdot q_\\text{sat})^2 + \\sigma_\\text{abs}^2$. Models intra-environment condensate patchiness that the equilibrium SGS variance does not capture."
-
-[cloud_fraction_sigma_abs]
-value = 1e-7
-type = "float"
-description = "Absolute floor (kg/kg) on the augmented saturation-deficit standard deviation in the cloud-fraction closure $\\sigma_{S,\\text{floor}}^2 = (\\varepsilon_\\text{rel} \\cdot q_\\text{sat})^2 + \\sigma_\\text{abs}^2$, used for numerical robustness as $q_\\text{sat} \\to 0$."
-
-# Orographic gravity wave (OGW)
+# Orographic (OGW)
 
 [ogw_mountain_height_width_exponent]
 value = 0.4
 type = "float"
-description = "Mountain height width exponent (γ), L ∝ h^γ (equation 14, paper suggests γ ≈ 0.4). Source: Garner (2005), DOI: 10.1175/JAS3496.1."
+description = "Mountain height-width exponent $\\gamma$ in $L \\propto h^\\gamma$ (unitless); the paper suggests $\\gamma \\approx 0.4$. Source: Garner (2005), Eq. (14), DOI: 10.1175/JAS3496.1."
 
 [ogw_number_density_exponent]
 value = 0.0
 type = "float"
-description = "Number density exponent (ϵ), where number density of orography in a grid cell is n(h) ∝ h^(-ε). Source: Garner (2005), DOI: 10.1175/JAS3496.1."
+description = "Number density exponent $\\epsilon$, where the number density of orography in a grid cell is $n(h) \\propto h^{-\\epsilon}$ (unitless). Source: Garner (2005), DOI: 10.1175/JAS3496.1."
 
 [ogw_mountain_shape_parameter]
 value = 0.5
 type = "float"
-description = "Mountain shape parameter (β), L(z) = L_b(1 - z/h)^β (equation 12), β=1 for triangular mountains and β<1 for blunt mountains, β>1 for pointy mountains. Source: Garner (2005), DOI: 10.1175/JAS3496.1."
+description = "Mountain shape parameter $\\beta$ (unitless) in $L(z) = L_b (1 - z/h)^\\beta$: $\\beta = 1$ for triangular mountains, $\\beta < 1$ for blunt mountains, and $\\beta > 1$ for pointy mountains. Source: Garner (2005), Eq. (12), DOI: 10.1175/JAS3496.1."
 
 [ogw_critical_height_threshold]
 value = 0.1
 type = "float"
-description = "h_crit = h_frac * (V / N), demarcating the split between propagating and non-propagating orographic gravity waves. Source: Garner (2005), DOI: 10.1175/JAS3496.1."
+description = "Fractional height threshold $h_\\text{frac}$ in $h_\\text{crit} = h_\\text{frac} (V / N)$, demarcating the split between propagating and non-propagating orographic gravity waves (unitless). Source: Garner (2005), DOI: 10.1175/JAS3496.1."
 
 [ogw_density_scale_factor]
 value = 1.2
 type = "float"
-description = "Density scale factor (ρscale). Source: Garner (2005), DOI: 10.1175/JAS3496.1."
+description = "Density scale factor $\\rho_\\text{scale}$. Source: Garner (2005), DOI: 10.1175/JAS3496.1."
 
 [ogw_reference_mountain_width]
 value = 80000.0
 type = "float"
-description = "Reference mountain width (L0) in meters. Source: Garner (2005), DOI: 10.1175/JAS3496.1."
+description = "Reference mountain width $L_0$ (m). Source: Garner (2005), DOI: 10.1175/JAS3496.1."
 
 [ogw_linear_drag_coefficient]
 value = 0.9
 type = "float"
-description = "Linear drag coefficient (a0); (equation 13). Source: Garner (2005), DOI: 10.1175/JAS3496.1."
+description = "Linear drag coefficient $a_0$ (unitless). Source: Garner (2005), Eq. (13), DOI: 10.1175/JAS3496.1."
 
 [ogw_nonlinear_drag_coefficient]
 value = 3.0
 type = "float"
-description = "Nonlinear drag coefficient (a1); equation (13). Source: Garner (2005), DOI: 10.1175/JAS3496.1."
+description = "Nonlinear drag coefficient $a_1$ (unitless). Source: Garner (2005), Eq. (13), DOI: 10.1175/JAS3496.1."
 
 [ogw_critical_froude_number]
 value = 0.7
 type = "float"
-description = "Critical Froude number (Fr_crit) computed from the critical height threshold. Source: Garner (2005), DOI: 10.1175/JAS3496.1."
+description = "Critical Froude number $Fr_\\text{crit}$, computed from the critical height threshold (unitless). Source: Garner (2005), DOI: 10.1175/JAS3496.1."
 
 [ogw_smoothing_scale_fraction]
 value = 0.15
 type = "float"
 description = "Orographic gravity wave (raw_topo) preprocessing smoothing scale as a fraction of grid spacing: L = α·Δx. Sets the neighborhood over which subgrid mountain statistics (hmax and velocity potential χ / orographic tensor) are computed from raw topography, following Garner (2005) / GFDL topo_drag. α≈1 places L near the grid scale."
 
-# Non-orographic gravity wave (NOGW)
+# Non-Orographic (NOGW)
 
 [nogw_source_pressure]
 value = 31500.0
@@ -3272,47 +2815,47 @@ description = "Source level height (m). Source: Alexander and Dunkerton (1999), 
 [nogw_Bw]
 value = 0.4
 type = "float"
-description = "Westward wave spectral amplitude (m^2/s^2). Source: Alexander and Dunkerton (1999), DOI: 10.1175/1520-0469(1999)056<4167:ASPOMF>2.0.CO;2."
+description = "Westward wave spectral amplitude (m² s⁻²). Source: Alexander and Dunkerton (1999), DOI: 10.1175/1520-0469(1999)056<4167:ASPOMF>2.0.CO;2."
 
 [nogw_Bn]
 value = 0.0
 type = "float"
-description = "Northward wave spectral amplitude (m^2/s^2). Source: Alexander and Dunkerton (1999), DOI: 10.1175/1520-0469(1999)056<4167:ASPOMF>2.0.CO;2."
+description = "Northward wave spectral amplitude (m² s⁻²). Source: Alexander and Dunkerton (1999), DOI: 10.1175/1520-0469(1999)056<4167:ASPOMF>2.0.CO;2."
 
 [nogw_dc]
 value = 0.8
 type = "float"
-description = "Phase speed resolution (m/s). Source: Alexander and Dunkerton (1999), DOI: 10.1175/1520-0469(1999)056<4167:ASPOMF>2.0.CO;2."
+description = "Phase speed resolution (m s⁻¹). Source: Alexander and Dunkerton (1999), DOI: 10.1175/1520-0469(1999)056<4167:ASPOMF>2.0.CO;2."
 
 [nogw_cmax]
 value = 100.0
 type = "float"
-description = "Maximum phase speed (m/s). The phase-speed grid is c[n] = (n-1)*nogw_dc - nogw_cmax, so an exact c=0 bin exists only when nogw_cmax/nogw_dc is an integer; this is required for the Beres steady (nu=0) convective source, which deposits there (and silently no-ops otherwise). Default 100.0/0.8 = 125 gives a c=0 bin. Source: Alexander and Dunkerton (1999), DOI: 10.1175/1520-0469(1999)056<4167:ASPOMF>2.0.CO;2."
+description = "Maximum phase speed (m s⁻¹). The phase-speed grid is $c[n] = (n-1)\\,\\Delta c - c_\\text{max}$, so an exact $c = 0$ bin exists only when `nogw_cmax` divided by `nogw_dc` is an integer; this is required for the Beres steady ($\\nu = 0$) convective source, which deposits there and silently no-ops otherwise. The default, 100.0 / 0.8 = 125, gives a $c = 0$ bin. Source: Alexander and Dunkerton (1999), DOI: 10.1175/1520-0469(1999)056<4167:ASPOMF>2.0.CO;2."
 
 [nogw_c0]
 value = 0.0
 type = "float"
-description = "Reference phase speed (m/s). Source: Alexander and Dunkerton (1999), DOI: 10.1175/1520-0469(1999)056<4167:ASPOMF>2.0.CO;2."
+description = "Reference phase speed (m s⁻¹). Source: Alexander and Dunkerton (1999), DOI: 10.1175/1520-0469(1999)056<4167:ASPOMF>2.0.CO;2."
 
 [nogw_nk]
 value = 1.0
 type = "float"
-description = "Number of wave bands. Source: Alexander and Dunkerton (1999), DOI: 10.1175/1520-0469(1999)056<4167:ASPOMF>2.0.CO;2."
+description = "Number of wave bands (unitless). Source: Alexander and Dunkerton (1999), DOI: 10.1175/1520-0469(1999)056<4167:ASPOMF>2.0.CO;2."
 
 [nogw_cw]
 value = 35.0
 type = "float"
-description = "Westward phase speed half-width (m/s). Source: Alexander and Dunkerton (1999), DOI: 10.1175/1520-0469(1999)056<4167:ASPOMF>2.0.CO;2."
+description = "Westward phase speed half-width (m s⁻¹). Source: Alexander and Dunkerton (1999), DOI: 10.1175/1520-0469(1999)056<4167:ASPOMF>2.0.CO;2."
 
 [nogw_cw_tropics]
 value = 35.0
 type = "float"
-description = "Tropical westward phase speed half-width (m/s). Source: Alexander and Dunkerton (1999), DOI: 10.1175/1520-0469(1999)056<4167:ASPOMF>2.0.CO;2."
+description = "Tropical westward phase speed half-width (m s⁻¹). Source: Alexander and Dunkerton (1999), DOI: 10.1175/1520-0469(1999)056<4167:ASPOMF>2.0.CO;2."
 
 [nogw_cn]
 value = 2.0
 type = "float"
-description = "Northward phase speed half-width (m/s). Source: Alexander and Dunkerton (1999), DOI: 10.1175/1520-0469(1999)056<4167:ASPOMF>2.0.CO;2."
+description = "Northward phase speed half-width (m s⁻¹). Source: Alexander and Dunkerton (1999), DOI: 10.1175/1520-0469(1999)056<4167:ASPOMF>2.0.CO;2."
 
 [nogw_Bt_0]
 value = 0.0043
@@ -3357,32 +2900,32 @@ description = "Southern hemisphere latitude width (degrees). Source: Alexander a
 [nogw_beres_Q0_threshold]
 value = 1.0e-5
 type = "float"
-description = "Minimum convective heating rate to activate the Beres (2004) convective gravity-wave source (K/s, ~1 K/day = 1e-5). Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOSTG>2.0.CO;2"
+description = "Minimum convective heating rate to activate the Beres et al. (2004) convective gravity-wave source (K s⁻¹, ~1 K day⁻¹ = 1e-5). Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOSTG>2.0.CO;2."
 
 [nogw_beres_scale_factor]
 value = 2.0e-6
 type = "float"
-description = "Dimensionless amplitude scaling for the Beres convective momentum flux; folds the rho_0/(L*tau) prefactor, the |Q_t|^2 weight, and empirical tuning into one parameter. Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
+description = "Amplitude scaling for the Beres convective momentum flux (unitless); folds the rho_0/(L*tau) prefactor, the |Q_t|^2 weight, and empirical tuning into one parameter. Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
 
 [nogw_beres_sigma_x]
 value = 4000.0
 type = "float"
-description = "Convective cell horizontal half-width (m) in the Beres source spectrum (Beres Eq. 7). Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
+description = "Convective cell horizontal half-width (m) in the Beres source spectrum (Eq. 7). Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
 
 [nogw_beres_nu_min]
 value = 8.727e-4
 type = "float"
-description = "Minimum angular frequency for the Beres frequency integration (rad/s, period ~120 min). Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
+description = "Minimum angular frequency for the Beres frequency integration (rad s⁻¹, period ~120 min). Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
 
 [nogw_beres_nu_max]
 value = 1.047e-2
 type = "float"
-description = "Maximum angular frequency for the Beres frequency integration (rad/s, period ~10 min). Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
+description = "Maximum angular frequency for the Beres frequency integration (rad s⁻¹, period ~10 min). Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
 
 [nogw_beres_n_nu]
 value = 9
 type = "integer"
-description = "Number of quadrature points for the Beres frequency integration (must be 4k+1: 5, 9, 13, ... for composite Boole's rule). Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
+description = "Number of quadrature points for the Beres frequency integration (unitless; must be 4k+1: 5, 9, 13, ... for composite Boole's rule). Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
 
 [nogw_beres_h_heat_min]
 value = 1000.0
@@ -3392,17 +2935,17 @@ description = "Minimum heating depth (m) to activate the Beres source; filters o
 [nogw_beres_n_h_avg]
 value = 1
 type = "integer"
-description = "Number of heating depths h over which to average the Beres spectrum (1 = no averaging; >=3 smooths the resonance peak per Beres 2004 Fig. 4). Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
+description = "Number of heating depths h over which to average the Beres spectrum (unitless; 1 = no averaging, >=3 smooths the resonance peak, see Fig. 4 of the source). Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
 
 [nogw_beres_delta_h_frac]
 value = 0.1
 type = "float"
-description = "Fractional half-range for Beres h averaging: h +/- delta_h_frac*h (only used when nogw_beres_n_h_avg > 1). Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
+description = "Fractional half-range for Beres $h$ averaging, $h \\pm$ `nogw_beres_delta_h_frac` $\\cdot h$ (unitless); only used when `nogw_beres_n_h_avg` > 1. Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
 
 [nogw_beres_z_bot_Q_threshold]
 value = 1.157e-5
 type = "float"
-description = "Minimum Q_conv to count as the bottom of the Beres convective heating envelope (K/s, ~1 K/day = 1.157e-5). Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
+description = "Minimum Q_conv to count as the bottom of the Beres convective heating envelope (K s⁻¹, ~1 K day⁻¹ = 1.157e-5). Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
 
 [nogw_beres_z_bot_floor]
 value = 2000.0
@@ -3412,64 +2955,561 @@ description = "Minimum allowed Beres convective envelope bottom (m); excludes th
 [nogw_beres_steady_dc_frac]
 value = 1.0
 type = "float"
-description = "Steady Beres DC heating weight: Q_t(0)^2 = nogw_beres_steady_dc_frac * nu_min (scales the steady-vs-transient amplitude). Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
+description = "Steady Beres DC heating weight (unitless) in $Q_t(0)^2 = $ `nogw_beres_steady_dc_frac` $\\cdot \\nu_\\text{min}$; scales the steady-vs-transient amplitude. Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
 
 [nogw_beres_L_system]
 value = 1.0e6
 type = "float"
 description = "Largest convective-system scale (m) setting k_min = 2*pi/L in the even-folded horizontal constant H of the steady Beres source (steady/transient ratio depends on it only logarithmically). Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
 
-[ssa_residence]
-value = 47520.0
-type = "float"
-description = "Average residence time (sec) of sea salt aerosol mass in AeroCOM3 ensemble. Source: Gliss et al. (2021). DOI:10.5194/acp-21-87-2021"
+## Diffusion
 
-[ssa_size_bin_divisions]
-value = [0.03e-6, 0.1e-6, 0.5e-6, 1.5e-6, 5.0e-6, 10.0e-6]
+[D_horizontal_diffusion]
+value = 5e5
 type = "float"
-description = "Double-sided sea salt aerosol dry-radius bin edges (m) from five-bin MERRA-2 scheme, ascending. i.e. bin1 (0.03e-6, 0.1e-6), bin2 (0.1e-6, 0.5e-6)"
+description = "Constant horizontal diffusion (m² s⁻¹)."
 
-[ssa_r_ref]
-value = 1.0e-6
+[tracer_hyperdiffusion_factor]
+value = 0
 type = "float"
-description = "Sea salt aerosol reference radius (m) to make Gong parameterization dimensionless."
+description = "Scaling factor for hyperdiffusion of tracers with strong gradients, e.g., precipitation (unitless)."
 
-[ssa_u_ref]
+[C_E]
+value = 0.0044
+type = "float"
+description = "Coefficient used in the simple vertical diffusion scheme ($C_E$) (unitless)."
+
+[C_H]
+value = 0.0044
+type = "float"
+description = "Bulk transfer coefficient for sensible heat ($C_H$) (unitless)."
+
+[D_0_diffusion]
+value = 5
+type = "float"
+description = "Coefficient $D_0$ in the DecayWithHeightDiffusion vertical diffusion scheme (m² s⁻¹)."
+
+[H_diffusion]
+value = 8000
+type = "float"
+description = "Height scale $H$ in the DecayWithHeightDiffusion vertical diffusion scheme (m)."
+
+[tracer_vertical_diffusion_factor]
+value = 1
+type = "float"
+description = "Scaling factor for vertical diffusion of tracers with strong gradients, e.g., precipitation (unitless)."
+
+## Rayleigh Damping
+
+[alpha_rayleigh_w]
 value = 1.0
 type = "float"
-description = "Wind reference speed (m/s) to make Gong parameterization dimensionless."
+description = "Coefficient $\\alpha_w$ for Rayleigh damping on vertical velocity (s⁻¹)."
 
-[ssa_r80_per_dry]
-value = 2.0
+[alpha_rayleigh_uh]
+value = 0.0
 type = "float"
-description = "Dimensionless ratio of RH80% SSA to dry sea salt radius. Source: Lewis and Schwartz (2004)."
+description = "Coefficient $\\alpha_{uh}$ for Rayleigh damping on horizontal velocity (s⁻¹)."
 
-[ssa_gong_wind_exponent]
-value = 3.41
+[alpha_rayleigh_tracer]
+value = 0.0
 type = "float"
-description = "Dimensionless exponent on the 10m wind speed in the Gong source function (dimensionless). Source: Gong (2003). DOI: agupubs.onlinelibrary.wiley.com/doi/10.1029/2003GB002079"
+description = "Coefficient $\\alpha_{tracer}$ for Rayleigh damping on tracer fields (s⁻¹)."
 
-[ssa_gong_logfit_mode1]
-value = [0.2157, 0.05545, 17.02]
+[zd_rayleigh]
+value = 15000.0
 type = "float"
-description = "Lognormal mode #1 parameters [flux scale (F) (m⁻² s⁻¹), dry mode radius (r) (μm), lognormal STD (σg) (-)] fit to Gong (2003) spectrum at u_10 = ssa_u_ref."
+description = "Height at which Rayleigh damping begins in the sponge layer ($z_d$) (m)."
 
-[ssa_gong_logfit_mode2]
-value = [60.93, 0.0914, 1.813]
+[zd_viscous]
+value = 15000.0
 type = "float"
-description = "Lognormal mode #2 parameters [flux scale (F) (m⁻² s⁻¹), dry mode radius (r) (μm), lognormal STD (σg) (-)] fit to Gong (2003) spectrum at u_10 = ssa_u_ref."
+description = "Height at which viscous damping begins in the sponge layer (m)."
 
-[ssa_gong_logfit_mode3]
-value = [5.949, 0.776, 1.759]
+[kappa_2_sponge]
+value = 1e6
 type = "float"
-description = "Lognormal mode #3 parameters [flux scale (F) (m⁻² s⁻¹), dry mode radius (r) (μm), lognormal STD (σg) (-)] fit to Gong (2003) spectrum at u_10 = ssa_u_ref."
+description = "Viscous sponge coefficient ($\\kappa_2$) (m² s⁻¹)."
 
-[ssa_gong_logfit_bin_0M_flux]
-value = [48.37, 41.92, 5.903, 1.122, 0.03885]
-type = "float"
-description = "Per-bin number flux scale (m⁻² s⁻¹) of the lognormal fit to Gong (2003) spectrum at u_10 = ssa_u_ref; Precomputed offine in ClimaAtmos.jl/docs/sea_salt_emission_fit.jl"
+## Land
 
-[ssa_gong_logfit_bin_3M_flux]
-value = [1.589e-16, 3.575e-15, 4.557e-14, 1.238e-13, 1.32e-13]
+# Autotrophic Respiration
+
+[N_factor_Vcmax25]
+value = 8e-4
 type = "float"
-description = "Per-bin dry-mass flux scale (kg m⁻² s⁻¹) of the lognormal fit to Gong (2003) spectrum at u_10 = ssa_u_ref; Precomputed offine in ClimaAtmos.jl/docs/sea_salt_emission_fit.jl"
+description = "Factor converting Vcmax at 25°C to nitrogen content (mol CO₂ m⁻² s⁻¹ kgC (kgC)⁻¹)."
+
+[live_stem_wood_coeff]
+value = 0.01
+type = "float"
+description = "Live stem wood coefficient (kg C m⁻³)."
+
+[specific_leaf_density]
+value = 0.05
+type = "float"
+description = "Specific leaf density (kg C m⁻² leaf)."
+
+[root_leaf_nitrogen_ratio]
+value = 1.0
+type = "float"
+description = "Ratio of root nitrogen to top leaf nitrogen (unitless)."
+
+[stem_leaf_nitrogen_ratio]
+value = 0.1
+type = "float"
+description = "Ratio of stem nitrogen to top leaf nitrogen (unitless)."
+
+[relative_contribution_factor]
+value = 0.25
+type = "float"
+description = "Factor of relative contribution for growth respiration, Rgrowth (unitless)."
+
+# Farquhar Photosynthesis Model
+
+[CO2_compensation_point_25c]
+value = 4.275e-5
+type = "float"
+description = "CO₂ compensation point ($\\Gamma^*$) at 25°C (mol mol⁻¹). Source: Bernacchi et al. (2001)."
+
+[CO2_michaelis_menten]
+value = 4.049e-4
+type = "float"
+description = "Michaelis-Menten parameter for CO₂ at 25°C (mol mol⁻¹). Source: Bernacchi et al. (2001)."
+
+[O2_michaelis_menten]
+value = 0.2784
+type = "float"
+description = "Michaelis-Menten parameter for O₂ at 25°C (mol mol⁻¹). Source: Bernacchi et al. (2001)."
+
+[CO2_activation_energy]
+value = 79430.0
+type = "float"
+description = "Energy of activation for CO₂ (J mol⁻¹). Source: Bonan (2019), Table 11.2; Bernacchi et al. (2001, 2003)."
+
+[O2_activation_energy]
+value = 36380.0
+type = "float"
+description = "Energy of activation for oxygen (J mol⁻¹). Source: Bonan (2019), Table 11.2; Bernacchi et al. (2001, 2003)."
+
+[Vcmax_activation_energy]
+value = 65330.0
+type = "float"
+description = "Energy of activation for Vcmax (J mol⁻¹). Source: Bonan (2019), Table 11.2; Bernacchi et al. (2001, 2003)."
+
+["Γstar_activation_energy"]
+value = 37830.0
+type = "float"
+description = "Energy of activation for $\\Gamma^*$ (J mol⁻¹). Source: Bonan (2019), Table 11.2; Bernacchi et al. (2001, 2003)."
+
+[Jmax_activation_energy]
+value = 43540.0
+type = "float"
+description = "Energy of activation for Jmax (J mol⁻¹). Source: Bonan (2019), Table 11.2; Bernacchi et al. (2001, 2003)."
+
+[Rd_activation_energy]
+value = 46390.0
+type = "float"
+description = "Energy of activation for dark respiration, Rd (J mol⁻¹). Source: Bonan (2019), Table 11.2; Bernacchi et al. (2001, 2003)."
+
+[kelvin_25C]
+value = 298.15
+type = "float"
+description = "Reference temperature equal to 25°C (K)."
+
+[intercellular_O2_concentration]
+value = 0.209
+type = "float"
+description = "Intercellular O₂ concentration, assumed constant (mol mol⁻¹)."
+
+[photosystem_II_quantum_yield]
+value = 0.7
+type = "float"
+description = "Quantum yield of photosystem II (unitless). Source: Bonan (2019); Bernacchi et al. (2003)."
+
+[Farquhar_curvature_parameter]
+value = 0.9
+type = "float"
+description = "Curvature parameter for calculating $J$, a fitting constant (unitless). Source: von Caemmerer (2000, 2013); Bernacchi et al. (2003, 2013); von Caemmerer et al. (2009)."
+
+[dark_respiration_factor]
+value = 0.015
+type = "float"
+description = "Constant factor appearing in the dark respiration term (unitless). Source: Bonan (2019)."
+
+[low_water_pressure_sensitivity]
+value = 5e-6
+type = "float"
+description = "Sensitivity of stomatal conductance to low water pressure (Pa⁻¹)."
+
+[moisture_stress_ref_water_pressure]
+value = -2e6
+type = "float"
+description = "Reference water pressure for the moisture stress factor (Pa). Source: Tuzet et al. (2003)."
+
+[electron_transport_maintenance]
+value = 0.05336251
+type = "float"
+description = "Constant describing the cost of maintaining electron transport (unitless)."
+
+# Soil CO₂ Model
+
+[kg_C_to_mol_CO2_factor]
+value = 83.26
+type = "float"
+description = "Conversion factor from kg C to mol CO₂ (mol kg⁻¹)."
+
+[CO2_diffusion_coefficient]
+value = 1.39e-5
+type = "float"
+description = "Diffusion coefficient for CO₂ in air at standard temperature and pressure (m² s⁻¹). Source: Ryan et al. (2018), DOI: 10.5194/gmd-11-1909-2018."
+
+[oxygen_diffusion_coefficient]
+value = 1.67
+type = "float"
+description = "Diffusion coefficient of oxygen in air (unitless). Source: Davidson et al. (2011), DOI: 10.1111/j.1365-2486.2011.02546.x."
+
+[soil_C_substrate_diffusivity]
+value = 3.17
+type = "float"
+description = "Diffusivity of soil C substrate in liquid (unitless). Source: Ryan et al. (2018), DOI: 10.5194/gmd-11-1909-2018."
+
+[soilCO2_pre_exponential_factor]
+value = 194e3
+type = "float"
+description = "Pre-exponential factor for soil CO₂ model (kg C m⁻³ s⁻¹). Source: Davidson et al. (2011), DOI: 10.1111/j.1365-2486.2011.02546.x."
+
+[soilCO2_activation_energy]
+value = 61e3
+type = "float"
+description = "Activation energy for soil CO₂ model (J mol⁻¹). Source: Davidson et al. (2011), DOI: 10.1111/j.1365-2486.2011.02546.x."
+
+[michaelis_constant]
+value = 5e-3
+type = "float"
+description = "Michaelis constant (kg C m⁻³). Source: Davidson et al. (2011), DOI: 10.1111/j.1365-2486.2011.02546.x."
+
+[O2_michaelis_constant]
+value = 4e-3
+type = "float"
+description = "Michaelis constant for O₂ (m³ m⁻³). Source: Davidson et al. (2011), DOI: 10.1111/j.1365-2486.2011.02546.x."
+
+[O2_volume_fraction]
+value = 0.209
+type = "float"
+description = "Volumetric fraction of O₂ in the soil air (unitless). Source: Davidson et al. (2011), DOI: 10.1111/j.1365-2486.2011.02546.x."
+
+[soluble_soil_carbon_fraction]
+value = 0.024
+type = "float"
+description = "Fraction of soil carbon that is considered soluble (unitless). Source: Davidson et al. (2011), DOI: 10.1111/j.1365-2486.2011.02546.x."
+
+# Soil Model
+
+[thermal_conductivity_of_quartz]
+value = 8.0
+type = "float"
+description = "Thermal conductivity of quartz (W m⁻¹ K⁻¹). Source: Balland and Arp (2005), DOI: 10.1139/s05-007."
+
+[thermal_conductivity_of_soil_minerals]
+value = 2.5
+type = "float"
+description = "Thermal conductivity of soil minerals, excluding quartz (W m⁻¹ K⁻¹). Source: Balland and Arp (2005), DOI: 10.1139/s05-007."
+
+[thermal_conductivity_of_organic_matter]
+value = 0.25
+type = "float"
+description = "Thermal conductivity of organic matter (W m⁻¹ K⁻¹). Source: Balland and Arp (2005), DOI: 10.1139/s05-007."
+
+[thermal_conductivity_of_liquid_water]
+value = 0.57
+type = "float"
+description = "Thermal conductivity of liquid water at 10°C (W m⁻¹ K⁻¹). Source: Balland and Arp (2005), DOI: 10.1139/s05-007."
+
+[thermal_conductivity_of_water_ice]
+value = 2.21
+type = "float"
+description = "Thermal conductivity of water ice at its freezing temperature (W m⁻¹ K⁻¹). Source: Balland and Arp (2005), DOI: 10.1139/s05-007."
+
+[kersten_number_alpha]
+value = 0.24
+type = "float"
+description = "Empirical constant $\\alpha$ used in computing the Kersten number (unitless). Source: Balland and Arp (2005), DOI: 10.1139/s05-007."
+
+[kersten_number_beta]
+value = 18.3
+type = "float"
+description = "Empirical constant $\\beta$ used in computing the Kersten number (unitless). Source: Balland and Arp (2005), DOI: 10.1139/s05-007."
+
+[ice_impedance_omega]
+value = 7.0
+type = "float"
+description = "Impedance parameter $\\Omega$ used to adjust soil hydraulic conductivity for ice presence (unitless). Source: Lundin (1990), DOI: 10.1016/0022-1694(90)90264-X."
+
+[temperature_factor_soil_hydraulic_conductivity]
+value = 0.0264
+type = "float"
+description = "An empirical parameter for adjusting soil hydraulic conductivity based on temperature (K⁻¹)."
+
+[temperature_reference_soil_hydraulic_conductivity]
+value = 288
+type = "float"
+description = "The reference temperature for adjusting soil hydraulic conductivity (K)."
+
+[maximum_dry_soil_layer_depth]
+value = 0.015
+type = "float"
+description = "Maximum depth of the dry soil layer that can develop under evaporation (m). Source: Shokri and Or (2011), DOI: 10.1029/2010WR010284."
+
+[emissivity_bare_soil]
+value = 0.96
+type = "float"
+description = "Emissivity of bare soil (unitless). Source: CLM5 Technical Note (2020)."
+
+# Energy Hydrology
+
+[soil_momentum_roughness_length]
+value = 0.01
+type = "float"
+description = "Momentum roughness length for soil (m). Source: CLM5 Technical Note (2020)."
+
+[soil_scalar_roughness_length]
+value = 7e-3
+type = "float"
+description = "Scalar roughness length for soil (m), assuming friction velocity $u_*$ of 5 m s⁻¹. Source: CLM5 Technical Note (2020)."
+
+[snow_momentum_roughness_length]
+value = 2.4e-3
+type = "float"
+description = "Momentum roughness length for snow (m). Source: CLM5 Technical Note (2020)."
+
+[snow_scalar_roughness_length]
+value = 8e-2
+type = "float"
+description = "Scalar roughness length for snow (m), assuming friction velocity $u_*$ of 5 m s⁻¹. Source: CLM5 Technical Note (2020)."
+
+[particle_density_quartz]
+value = 2.66e3
+type = "float"
+description = "Particle density of quartz (kg m⁻³). Source: Hillel (1982); De Vries (1966)."
+
+[particle_density_minerals]
+value = 2.65e3
+type = "float"
+description = "Particle density of soil minerals (kg m⁻³). Source: Hillel (1982)."
+
+[particle_density_organic_matter]
+value = 1.3e3
+type = "float"
+description = "Particle density of organic matter (kg m⁻³). Source: Hillel (1982)."
+
+[vol_heat_capacity_quartz]
+value = 2.01e6
+type = "float"
+description = "Volumetric heat capacity of quartz (J m⁻³ K⁻¹). Source: Balland and Arp (2005), DOI: 10.1139/s05-007."
+
+[vol_heat_capacity_organic_matter]
+value = 2.51e6
+type = "float"
+description = "Volumetric heat capacity of organic matter (J m⁻³ K⁻¹). Source: Balland and Arp (2005), DOI: 10.1139/s05-007."
+
+[vol_heat_capacity_minerals]
+value = 2.01e6
+type = "float"
+description = "Volumetric heat capacity of soil minerals excluding quartz (J m⁻³ K⁻¹). Source: Balland and Arp (2005), DOI: 10.1139/s05-007."
+
+# Bucket Model
+
+[soil_conductivity]
+value = 1.5
+type = "float"
+description = "Constant conductivity of the soil (W m⁻¹ K⁻¹). Source: SLIM model, Laguë et al. (2019)."
+
+[soil_heat_capacity]
+value = 2e6
+type = "float"
+description = "Volumetric heat capacity of the soil (J m⁻³ K⁻¹). Source: SLIM model, Laguë et al. (2019)."
+
+[critical_snow_water_equivalent]
+value = 0.05
+type = "float"
+description = "Critical snow water equivalent ($\\sigma_{SWE}$) at which the surface transitions to fully snow-covered (m). Source: SLIM model, Laguë et al. (2019)."
+
+[land_bucket_capacity]
+value = 0.2
+type = "float"
+description = "Water capacity of the land bucket (m). Source: SLIM model, Laguë et al. (2019)."
+
+[critical_snow_fraction]
+value = 0.0
+type = "float"
+description = "Fraction of the critical snow amount at which the sublimation factor ($\\beta$) begins to decay to zero (unitless). Source: SLIM model, Laguë et al. (2019)."
+
+[bucket_capacity_fraction]
+value = 0.75
+type = "float"
+description = "Fraction of the bucket capacity at which the evaporation factor ($\\beta$) begins to decay to zero (unitless). Source: SLIM model, Laguë et al. (2019)."
+
+[bucket_beta_decay_exponent]
+value = 1
+type = "float"
+description = "Exponent used in the decay of the evaporation/sublimation factor ($\\beta$) (unitless). Source: SLIM model, Laguë et al. (2019)."
+
+# Snow
+
+[snow_density]
+value = 200
+type = "float"
+description = "Density of snow (kg m⁻³)."
+
+[snow_albedo]
+value = 0.8
+type = "float"
+description = "Albedo of snow (unitless)."
+
+[snow_emissivity]
+value = 0.97
+type = "float"
+description = "Emissivity of snow (unitless). Source: CLM5 Technical Note (2020)."
+
+[holding_capacity_of_water_in_snow]
+value = 0.08
+type = "float"
+description = "Volumetric holding capacity of liquid water in a snowpack (unitless)."
+
+[wet_snow_hydraulic_conductivity]
+value = 1e-3
+type = "float"
+description = "Hydraulic conductivity of wet snow (m s⁻¹)."
+
+[snow_cover_fraction_crit_threshold]
+value = 0.2
+type = "float"
+description = "Critical threshold for determining snow cover fraction (m)."
+
+# Two-Stream and Beer-Lambert
+
+[wavelength_per_PAR_photon]
+value = 5e-7
+type = "float"
+description = "Typical wavelength of a photon in the Photosynthetically Active Radiation (PAR) band (m)."
+
+[wavelength_per_NIR_photon]
+value = 1.65e-6
+type = "float"
+description = "Typical wavelength of a photon in the Near-Infrared (NIR) band (m)."
+
+[canopy_emissivity]
+value = 0.97
+type = "float"
+description = "Emissivity of the canopy (unitless)."
+
+# Medlyn Conductance
+
+[relative_diffusivity_of_water_vapor]
+value = 1.6
+type = "float"
+description = "Relative diffusivity of water vapor compared to heat (unitless)."
+
+[min_stomatal_conductance]
+value = 1e-4
+type = "float"
+description = "Minimum stomatal conductance (mol m⁻² s⁻¹)."
+
+## Model Diagnostics
+
+[cloud_top_q_threshold]
+value = 1e-8
+type = "float"
+description = "Minimum value for condensate required to calculate top of cloud (kg kg⁻¹)."
+
+[cloud_top_k]
+value = 1e10
+type = "float"
+description = "Parameter controlling steepness of (logistic) transition between cloud and non-cloud for cloud top calculations (unitless)."
+
+[cloud_top_a]
+value = 1e-3
+type = "float"
+description = "Parameter controlling exponential scale of favoring cloud top for cloud top calculations (unitless)."
+
+[cloud_fraction_param_vec]
+value = [0.0, 0.0, 0.0, 0.0, 0.0]
+type = "float"
+description = "Data-driven cloud fraction parameter vector (unitless)."
+
+[cloud_fraction_steepness_scale]
+value = 1.0
+type = "float"
+description = "Scale parameter for the steepness of the cloud fraction/condensate relationship (unitless). Should be 1 for exact Gaussian/lognormal SGS distributions."
+
+[cloud_fraction_eps_rel]
+value = 0.02
+type = "float"
+description = "Residual fractional saturation variability (unitless) entering the augmented-$\\sigma$ floor in the cloud-fraction closure: $\\sigma_{S,\\text{floor}}^2 = (\\varepsilon_\\text{rel} \\cdot q_\\text{sat})^2 + \\sigma_\\text{abs}^2$. Models intra-environment condensate patchiness that the equilibrium SGS variance does not capture."
+
+[cloud_fraction_sigma_abs]
+value = 1e-7
+type = "float"
+description = "Absolute floor (kg kg⁻¹) on the augmented saturation-deficit standard deviation in the cloud-fraction closure $\\sigma_{S,\\text{floor}}^2 = (\\varepsilon_\\text{rel} \\cdot q_\\text{sat})^2 + \\sigma_\\text{abs}^2$, used for numerical robustness as $q_\\text{sat} \\to 0$."
+
+## Idealized Benchmarks
+
+# Held-Suarez
+
+[held_suarez_T_equator_dry]
+value = 315
+type = "float"
+description = "Equatorial temperature for the dry Held-Suarez benchmark (K). Source: Held and Suarez (1994), DOI: 10.1175/1520-0477(1994)075<1825:APFTIO>2.0.CO;2."
+
+[held_suarez_T_equator_wet]
+value = 294
+type = "float"
+description = "Equatorial temperature for the moist Held-Suarez benchmark (K). Source: Held and Suarez (1994), DOI: 10.1175/1520-0477(1994)075<1825:APFTIO>2.0.CO;2."
+
+[potential_temp_vertical_gradient]
+value = 10
+type = "float"
+description = "Vertical gradient of potential temperature with height (K m⁻¹). Source: Held and Suarez (1994), DOI: 10.1175/1520-0477(1994)075<1825:APFTIO>2.0.CO;2."
+
+[drag_layer_vertical_extent]
+value = 0.7
+type = "float"
+description = "Vertical extent of the drag layer as a fraction of total pressure depth (unitless). Source: Held and Suarez (1994), DOI: 10.1175/1520-0477(1994)075<1825:APFTIO>2.0.CO;2."
+
+[held_suarez_minimum_temperature]
+value = 200
+type = "float"
+description = "Minimum temperature allowed in the benchmark (K). Source: Held and Suarez (1994), DOI: 10.1175/1520-0477(1994)075<1825:APFTIO>2.0.CO;2."
+
+[equator_pole_temperature_gradient_dry]
+value = 60
+type = "float"
+description = "Equator-to-pole temperature gradient for the dry benchmark (K). Source: Held and Suarez (1994), DOI: 10.1175/1520-0477(1994)075<1825:APFTIO>2.0.CO;2."
+
+[equator_pole_temperature_gradient_wet]
+value = 65
+type = "float"
+description = "Equator-to-pole temperature gradient for the moist benchmark (K). Source: Held and Suarez (1994), DOI: 10.1175/1520-0477(1994)075<1825:APFTIO>2.0.CO;2."
+
+# RCEMIP
+
+[SST_mean]
+value = 300
+type = "float"
+description = "Mean sea surface temperature (SST) for RCEMIP surface conditions (K). Source: Wing et al. (2018)."
+
+[SST_delta]
+value = 1.25
+type = "float"
+description = "Amplitude of the SST sinusoid for RCEMIP surface conditions (K). Note: value is $2 \\times$ amplitude. Source: Wing et al. (2018)."
+
+[SST_wavelength]
+value = 6e6
+type = "float"
+description = "Wavelength of the SST sinusoid for RCEMIP box models (m). Source: Wing et al. (2018)."
+
+[SST_wavelength_latitude]
+value = 54
+type = "float"
+description = "Wavelength of the SST sinusoid for RCEMIP sphere models (degrees latitude). Source: Wing et al. (2018)."

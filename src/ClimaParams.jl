@@ -1,3 +1,28 @@
+"""
+    ClimaParams
+
+Centralized parameter management for the CliMA ecosystem.
+
+`ClimaParams` reads physical constants and tunable model parameters from TOML
+files and returns them as typed Julia values. A default file bundled with the
+package (`src/parameters.toml`) holds the ecosystem-wide values; experiments
+layer override files on top of it.
+
+The entry point is [`create_toml_dict`](@ref), which returns a
+[`ParamDict`](@ref). Values are read out with [`get_parameter_values`](@ref) or
+by indexing. Every read is recorded, so [`log_parameter_information`](@ref) can
+write a reproducible record of the parameters a simulation used.
+
+# Examples
+
+```julia
+import ClimaParams as CP
+
+toml_dict = CP.create_toml_dict(Float64)
+params = CP.get_parameter_values(toml_dict, ["gravitational_acceleration"])
+params.gravitational_acceleration
+```
+"""
 module ClimaParams
 
 using TOML
@@ -21,10 +46,15 @@ const NAMESTYPE =
 """
     ParamDict{FT}
 
-A concrete parameter dictionary that stores parameter data from TOML files.
+A parameter dictionary holding the effective set of parameters read from TOML
+files: the defaults merged with any overrides.
 
-This struct holds the effective set of parameters (defaults merged with any
-overrides) and tracks which override parameters have been used.
+`FT` is the floating-point type that `"float"` parameters are converted to. The
+dictionary also tracks which override parameters have been read, which
+[`log_parameter_information`](@ref) uses to catch typos in override files.
+
+Construct one with [`create_toml_dict`](@ref) rather than calling the inner
+constructor directly.
 
 # Fields
 - `data::Dict`: The main dictionary holding the complete, merged set of parameter values and their metadata.
@@ -40,33 +70,58 @@ end
 """
     float_type(pd::ParamDict)
 
-Returns the float type `FT` with which the parameter dictionary `pd` was initialized.
+Return the float type `FT` with which the parameter dictionary `pd` was initialized.
+
+Downstream constructors should derive `FT` from this function rather than
+hard-coding a float type.
+
+# Examples
+
+```julia
+toml_dict = CP.create_toml_dict(Float32)
+CP.float_type(toml_dict)  # Float32
+```
 """
 float_type(::ParamDict{FT}) where {FT} = FT
 
+"""
+    iterate(pd::ParamDict, [state])
+
+Iterate over the underlying `name => metadata` pairs of `pd`.
+
+The second element of each pair is the raw metadata `Dict` read from the TOML
+file (`"value"`, `"type"`, `"description"`, ...), *not* the typed value.
+Use [`Base.getindex`](@ref) or [`get_parameter_values`](@ref) to obtain typed
+values.
+"""
 Base.iterate(pd::ParamDict, state) = Base.iterate(pd.data, state)
 Base.iterate(pd::ParamDict) = Base.iterate(pd.data)
 
 
 """
-    Base.getindex(pd::ParamDict, key)
+    getindex(pd::ParamDict, name)
 
-Retrieves a parameter by its `key`, converting it to the type specified in the TOML file.
+Retrieve the parameter `name`, converted to the type declared in the TOML file.
 
-This allows for direct, dictionary-like access to the typed value of a parameter.
+The parameter is logged as used by the component `"getindex"`, so values read
+this way still appear in the file written by [`write_log_file`](@ref).
 
 # Arguments
-- `pd::ParamDict`: The parameter dictionary.
-- `key`: The name of the parameter to retrieve.
+- `name`: The name of the parameter to retrieve.
 
 # Returns
-- The parameter's value, cast to the type defined in its metadata (e.g., `Float64`, `Int`, `Bool`).
+The parameter's value, cast to the type given by its `type` metadata (e.g.
+`FT`, `Int`, `String`, `Bool`, `DateTime`). Array-valued parameters return a
+`Vector` of that type.
 
 # Examples
 
-    toml_dict = CP.create_toml_dict(Float64)
-    param_value = toml_dict["planet_radius"]  # Returns the value, e.g., 6.371e6
+```julia
+toml_dict = CP.create_toml_dict(Float64)
+toml_dict["planet_radius"]  # 6.371e6
+```
 
+See also [`get_parameter_values`](@ref).
 """
 function Base.getindex(pd::ParamDict, i)
     val = _getindex(pd, i)
@@ -75,11 +130,13 @@ function Base.getindex(pd::ParamDict, i)
 end
 
 """
-    Base.getindex(pd::ParamDict, i)
+    _getindex(pd::ParamDict, name)
 
-Retrieves a parameter by its `key`, converting it to the type specified in the TOML file.
+Retrieve the parameter `name`, converted to the type declared in the TOML file,
+without logging it as used.
 
-This is different from `Base.getindex` as it does not log the parameter.
+Called from [`Base.getindex`](@ref) and [`get_parameter_values`](@ref), which
+handle logging themselves.
 """
 function _getindex(pd::ParamDict, i)
     param_data = getindex(pd.data, i)
@@ -98,16 +155,16 @@ end
 """
     log_component!(pd::ParamDict, names::NAMESTYPE, component::AbstractString)
 
-Logs that a set of parameters are used by a specific model `component`.
+Log that a set of parameters is used by the model `component`.
 
 This function modifies the parameter dictionary in-place by adding or appending
 the `component` string to a `"used_in"` entry for each parameter specified in `names`.
 This is crucial for tracking which parameters are active in a simulation.
 
 # Arguments
-- `pd::{ParamDict}`: The parameter dictionary to be modified.
+- `pd`: The parameter dictionary to be modified.
 - `names`: A vector or tuple of strings with the names of parameters to log.
-- `component::{AbstractString}`: The name of the model component using the parameters.
+- `component`: The name of the model component using the parameters.
 """
 function log_component!(
     pd::ParamDict,
@@ -131,17 +188,20 @@ end
 """
     _get_typed_value(pd::ParamDict, val, valname, valtype)
 
-An internal helper function that converts a raw parameter `val` to the
-correct Julia type based on the `valtype` string from the TOML file.
+Convert a raw parameter `val` to the Julia type named by the `valtype` string
+from the TOML file.
+
+Called from [`_getindex`](@ref).
 
 # Arguments
-- `pd::ParamDict`: The parameter dictionary, used to get the float type.
+- `pd`: The parameter dictionary, used to get the float type.
 - `val`: The raw value of the parameter.
-- `valname::{AbstractString}`: The name of the parameter (for error messages).
-- `valtype::{AbstractString}`: The type string, e.g., "float", "integer", "string", "bool", "datetime".
+- `valname`: The name of the parameter, used in error messages.
+- `valtype`: The type string: `"float"`, `"integer"`, `"string"`, `"bool"`, or `"datetime"`.
 
 # Returns
-- The value `val` converted to the appropriate type. Throws an error for an unknown `valtype`.
+The value `val` converted to the corresponding type. Throws an error for an
+unrecognized `valtype`.
 """
 function _get_typed_value(
     pd::ParamDict{FT},
@@ -168,37 +228,71 @@ function _get_typed_value(
 end
 
 """
+    get_parameter_values(pd, name, [component])
     get_parameter_values(pd, names, [component])
     get_parameter_values(pd, name_map, [component])
+    get_parameter_values(pd, name_map...; component = nothing)
 
-Retrieves parameter values from the dictionary `pd`, returning them in a `NamedTuple`.
-This function has two main methods:
+Retrieve parameter values from `pd` as a `NamedTuple`, converted to the types
+declared in the TOML file.
 
-1.  Retrieve parameters by a list of `names`.
-2.  Retrieve and rename parameters using a `name_map`.
+Parameters can be requested either by name, in which case the TOML names become
+the `NamedTuple` keys, or through a `name_map`, which renames them to shorter
+local names.
 
-If a `component` string is provided, it also logs the parameters as being used by that component.
+If `component` is given, the parameters are also logged as used by that
+component, so they appear with a `used_in` entry in the file written by
+[`write_log_file`](@ref).
 
 # Arguments
-- `pd::ParamDict`: The parameter dictionary.
-- `names::Union{String,Vector{String}}`: A single name or vector of names to retrieve.
-- `name_map`: A `Dict` or other iterable of `Pair`s mapping the parameter name in the TOML file to the desired variable name in the code (e.g., `"long_name_in_toml" => "short_name_in_code"`).
-- `component::Union{AbstractString, Nothing}`: An optional string to log which model component uses these parameters.
+- `name::AbstractString`: A single parameter name.
+- `names`: A `Vector` or `Tuple` of parameter names.
+- `name_map`: A `Dict`, `NamedTuple`, or iterable of `Pair`s mapping the TOML
+  parameter name to the desired local name, e.g.
+  `"gravitational_acceleration" => "g"`. Keys and values may be `String`s or
+  `Symbol`s.
+- `component`: The name of the model component reading these parameters. In the
+  varargs method it is a keyword argument; in all others it is the third
+  positional argument.
 
 # Returns
-- A `NamedTuple` where keys are the parameter names (or the renamed variable names) and values are the corresponding typed parameter values.
+A `NamedTuple` keyed by the parameter names, or by the local names when a
+`name_map` is used.
+
+!!! note "Field order"
+    With a `name_map`, the fields of the returned `NamedTuple` follow the
+    iteration order of the underlying `Dict`, not the order in which the pairs
+    were written. Splat the result into keyword arguments, as
+    [`create_parameter_struct`](@ref) does, rather than into positional ones.
 
 # Examples
 
-    # Method 1: Retrieve by name
-    params = get_parameter_values(toml_dict, ["gravitational_acceleration", "planet_radius"])
-    # params.gravitational_acceleration = 9.81
+```julia
+# Retrieve by name
+params = CP.get_parameter_values(
+    toml_dict,
+    ["gravitational_acceleration", "planet_radius"],
+)
+params.gravitational_acceleration  # 9.81
 
-    # Method 2: Retrieve and rename
-    name_map = Dict("gravitational_acceleration" => "g", "planet_radius" => "R_p")
-    params_renamed = get_parameter_values(toml_dict, name_map)
-    # params_renamed.g = 9.81
+# Retrieve, rename, and log the use
+params = CP.get_parameter_values(
+    toml_dict,
+    Dict("gravitational_acceleration" => "g"),
+    "Thermodynamics",
+)
+params.g  # 9.81
 
+# Varargs form; `component` is a keyword argument here
+params = CP.get_parameter_values(
+    toml_dict,
+    :gravitational_acceleration => :g,
+    :planet_radius => :R_p;
+    component = "Thermodynamics",
+)
+```
+
+See also [`get_tagged_parameter_values`](@ref) and [`create_parameter_struct`](@ref).
 """
 function get_parameter_values(
     pd::ParamDict,
@@ -279,10 +373,10 @@ end
 """
     create_parameter_struct(param_struct_type, toml_dict, name_map, [nested_structs])
 
-Constructs an instance of a parameter struct from a TOML dictionary.
+Construct an instance of a parameter struct from a TOML dictionary.
 
-This function retrieves all necessary parameter values using a `name_map` and
-instantiates the `param_struct_type`, including any `nested_structs`.
+Retrieve all required parameter values using `name_map` and instantiate
+`param_struct_type`, including any `nested_structs`.
 
 This function makes several assumptions about the parameter struct:
 - It has a constructor that accepts keyword arguments for its fields.
@@ -294,6 +388,18 @@ This function makes several assumptions about the parameter struct:
 - `toml_dict::ParamDict`: The TOML dictionary containing the parameter values.
 - `name_map`: A `Dict` or other iterable of `Pair`s to map TOML names to struct field names.
 - `nested_structs`: A `NamedTuple` of already-constructed nested parameter structs, if any.
+
+# Examples
+
+```julia
+Base.@kwdef struct GravityParameters{FT}
+    g::FT
+    planet_radius::FT
+end
+
+name_map = Dict("gravitational_acceleration" => "g", "planet_radius" => "planet_radius")
+params = CP.create_parameter_struct(GravityParameters, toml_dict, name_map)
+```
 """
 function create_parameter_struct(
     param_struct_type,
@@ -312,7 +418,7 @@ end
 """
     merge_toml_files(filepaths; override::Bool=false)
 
-Parses and merges multiple TOML files into a single dictionary.
+Parse and merge multiple TOML files into a single dictionary.
 
 # Arguments
 - `filepaths`: An iterable of strings, where each string is a path to a TOML file.
@@ -342,12 +448,14 @@ end
 """
     check_override_parameter_usage(pd::ParamDict, strict::Bool)
 
-Verifies that all parameters supplied in an override file were actually used
-during the simulation by checking for the `"used_in"` log entry.
+Verify that every parameter supplied in an override file was used during the
+simulation, by checking for the `"used_in"` log entry.
+
+Does nothing when `pd` was created without an override file.
 
 # Arguments
-- `pd::{ParamDict}`: The parameter dictionary to check.
-- `strict::Bool`: If `true`, throws an error if any override parameter is unused. If `false`, only a warning is issued.
+- `strict`: If `true`, throw an error when any override parameter is unused. If
+  `false`, only warn.
 """
 check_override_parameter_usage(pd::ParamDict, strict::Bool) =
     check_override_parameter_usage(pd, strict, pd.override_dict)
@@ -390,20 +498,19 @@ function check_override_parameter_usage(
 end
 
 """
-    check_override_parameter_usage(
-        pd::ParamDict,
-        params::Iterable{String},
-        strict::Bool
-    )
+    check_override_parameter_usage(pd::ParamDict, params, strict::Bool)
 
-Verifies that the parameters listed in `params` in the override file were
-actually used during the simulation by checking for the `"used_in"` log entry.
+Verify that the subset of override parameters listed in `params` was used during
+the simulation, by checking for the `"used_in"` log entry.
+
+Throws an error if `pd` was created without an override file, or if any name in
+`params` is absent from it.
 
 # Arguments
-- `pd::{ParamDict}`: The parameter dictionary to check.
-- `params::Iterable{String}`: An iterable of parameter names.
-- `strict::Bool`: If `true`, throws an error if any override parameter is
-  unused. If `false`, only a warning is issued.
+- `params`: An iterable of parameter names, each of which must appear in the
+  override file.
+- `strict`: If `true`, throw an error when any of these parameters is unused. If
+  `false`, only warn.
 """
 function check_override_parameter_usage(pd::ParamDict, params, strict::Bool)
     isnothing(pd.override_dict) &&
@@ -421,15 +528,16 @@ end
 """
     write_log_file(pd::ParamDict, filepath::AbstractString)
 
-Saves all *used* parameters to a TOML file at the specified `filepath`.
+Save all *used* parameters to a TOML file at `filepath`.
 
-This function filters the dictionary to include only parameters that have been
-logged with [`log_component!`](@ref), creating a file that can be used to
-reproduce an experiment with the exact same parameter set.
+Only parameters that have been logged with [`log_component!`](@ref) are written,
+so the result is a record of the parameters an experiment read. The
+file is itself a valid parameter file and can be passed back as an
+`override_file` to reproduce the run.
 
 # Arguments
-- `pd::ParamDict`: The parameter dictionary containing usage logs.
-- `filepath::{AbstractString}`: The path where the log file will be saved.
+- `pd`: The parameter dictionary containing usage logs.
+- `filepath`: The path where the log file will be saved.
 """
 function write_log_file(pd::ParamDict, filepath::AbstractString)
     used_parameters = Dict()
@@ -447,16 +555,28 @@ end
 """
     log_parameter_information(pd::ParamDict, filepath; strict::Bool = false)
 
-A convenience function that performs end-of-run parameter handling.
+Perform end-of-setup parameter handling: write the log file and check the
+override file for unused entries.
 
-It calls [`write_log_file`](@ref) to save used parameters and then
-[`check_override_parameter_usage`](@ref) to validate that all override
-parameters were used.
+Calls [`write_log_file`](@ref) to save the used parameters, then
+[`check_override_parameter_usage`](@ref) to verify that every override parameter
+was read by some component. Call it after all parameter structs have been
+constructed and before the run starts.
 
 # Arguments
-- `pd::ParamDict`: The parameter dictionary.
-- `filepath::{AbstractString}`: The path for the output log file.
-- `strict::Bool`: If `true`, errors if override parameters are unused.
+- `filepath`: The path for the output log file.
+
+# Keyword Arguments
+- `strict = false`: If `true`, error when override parameters are unused;
+  otherwise warn.
+
+# Examples
+
+```julia
+toml_dict = CP.create_toml_dict(Float64; override_file = "my_experiment.toml")
+# ... construct parameter structs ...
+CP.log_parameter_information(toml_dict, "parameter_log.toml")
+```
 """
 function log_parameter_information(
     pd::ParamDict,
@@ -472,8 +592,13 @@ end
 """
     merge_override_default_values(override_toml_dict, default_toml_dict)
 
-An internal helper that merges two `ParamDict` objects, with values from the
-`override_toml_dict` taking precedence over the `default_toml_dict`.
+Merge two `ParamDict` objects, with entries from `override_toml_dict` taking
+precedence over those in `default_toml_dict`.
+
+Merging is per-attribute: an override that sets only `value` keeps the
+`description` and any other metadata from the default entry.
+
+Called from [`create_toml_dict`](@ref).
 """
 function merge_override_default_values(
     override_toml_dict::ParamDict{FT},
@@ -500,23 +625,35 @@ end
         default_file::Union{String, Dict}="parameters.toml",
     )
 
-Creates a `ParamDict{FT}` by reading and merging default and override parameter sources.
+Create a `ParamDict{FT}` by reading and merging default and override parameter
+sources.
 
-This is the main entry point for constructing a parameter dictionary. It reads a
-`default_file` and optionally an `override_file`, with parameters from the
-override file taking precedence. The sources can be file paths or already-parsed
-Julia `Dict`s.
+This is the main entry point for constructing a parameter dictionary. It reads
+`default_file` and, optionally, `override_file`, with parameters from the
+override file taking precedence. Either source may be a file path or an
+already-parsed Julia `Dict`.
 
 # Arguments
-- `FT::{Type{<:AbstractFloat}}`: The floating-point type to be used for all "float" parameters.
+- `FT`: The floating-point type used for all `"float"` parameters.
 
-# Keywords
-- `override_file`: Path to a TOML file or a `Dict` containing override parameters.
-- `default_file`: Path to the default TOML file or a `Dict` containing default parameters.
-   Defaults to the `parameters.toml` file in the package directory.
+# Keyword Arguments
+- `override_file = nothing`: Path to a TOML file, or a `Dict`, of override parameters.
+- `default_file`: Path to the default TOML file, or a `Dict`, of default
+  parameters. Defaults to the `parameters.toml` file bundled with the package.
 
 # Returns
-- A `ParamDict{FT}` containing the merged and typed parameters.
+A `ParamDict{FT}` containing the merged and typed parameters.
+
+# Examples
+
+```julia
+toml_dict = CP.create_toml_dict(Float64)
+
+toml_dict = CP.create_toml_dict(
+    Float32;
+    override_file = joinpath(@__DIR__, "my_experiment.toml"),
+)
+```
 """
 function create_toml_dict(
     ::Type{FT};
@@ -538,25 +675,38 @@ end
 
 """
     create_toml_dict(
-        ::Type{FT};
-        override_files::Union{Vector{String}, Vector{Dict}} = [],
+        ::Type{FT},
+        override_files::String...;
         default_file::Union{String, Dict} = joinpath(@__DIR__, "parameters.toml"),
     )
 
-Creates a `ParamDict{FT}` by reading and merging default and override parameter sources.
-This constructor accepts a vector of override files, which are merged in the order they
-are provided.
+Create a `ParamDict{FT}` from the default file and any number of override files,
+given as positional arguments.
+
+The override files are merged in the order given, so a parameter set in more
+than one file takes its value from the last file that defines it; each such
+duplicate raises a warning. The merged result then overrides `default_file`.
 
 # Arguments
-- `FT::{Type{<:AbstractFloat}}`: The floating-point type to be used for all "float" parameters.
+- `FT`: The floating-point type used for all `"float"` parameters.
+- `override_files`: Paths to TOML files. Each path must end in `.toml`. Unlike
+  the single-file method, this method does not accept `Dict`s; merge them
+  yourself and pass the result as `override_file`.
 
-# Keywords
-- `override_files`: Vector of paths to TOML files or `Dict`s containing override parameters.
-- `default_file`: Path to the default TOML file or a `Dict` containing default parameters.
-   Defaults to the `parameters.toml` file in the package directory.
+# Keyword Arguments
+- `default_file`: Path to the default TOML file, or a `Dict`, of default
+  parameters. Defaults to the `parameters.toml` file bundled with the package.
 
 # Returns
-- A `ParamDict{FT}` containing the merged and typed parameters.
+A `ParamDict{FT}` containing the merged and typed parameters.
+
+# Examples
+
+```julia
+toml_dict = CP.create_toml_dict(Float64, "site_parameters.toml", "experiment.toml")
+```
+
+See also [`merge_toml_files`](@ref).
 """
 function create_toml_dict(
     ::Type{FT},
@@ -574,13 +724,41 @@ function create_toml_dict(
     return create_toml_dict(FT; override_file = override_dict, default_file)
 end
 
+"""
+    print(pd::ParamDict, io = stdout)
+
+Print the full contents of `pd`, including all metadata, as TOML.
+
+The arguments are in the opposite order to the Julia convention. There is
+deliberately no `print(io::IO, pd)` method: defining one would also capture
+`println(pd)`, `string(pd)`, and string interpolation, which fall through to
+`show` and give a one-line summary.
+
+Use [`write_log_file`](@ref) to write only the parameters that were used.
+"""
 Base.print(td::ParamDict, io = stdout) = TOML.print(io, td.data)
 
+"""
+    show(io::IO, pd::ParamDict)
+
+Show a one-line summary of `pd`: its float type and the number of parameters it
+holds.
+"""
 function Base.show(io::IO, d::ClimaParams.ParamDict{FT}) where {FT}
     n = length(d.data)
     print(io, "ParamDict{$FT} with $n parameters")
 end
 
+"""
+    ==(pd1::ParamDict, pd2::ParamDict)
+
+Compare two parameter dictionaries.
+
+Two `ParamDict`s are equal when they share a float type and hold identical
+parameter data and override data. Because usage logging writes a `used_in` entry
+into the data, two dictionaries built from the same files compare unequal once
+different parameters have been read from them.
+"""
 function Base.:(==)(pd1::ParamDict{FT1}, pd2::ParamDict{FT2}) where {FT1, FT2}
     return FT1 == FT2 &&
            pd1.data == pd2.data &&
@@ -590,16 +768,23 @@ end
 """
     get_tagged_parameter_names(pd::ParamDict, tag)
 
-Retrieves the names of all parameters associated with a given `tag` or list of `tags`.
+Return the names of all parameters carrying the given `tag`, or any of the given
+`tags`.
 
-Tag matching is case-insensitive and ignores punctuation and whitespace.
+Tag matching is case-insensitive and ignores punctuation and whitespace; see
+[`fuzzy_match`](@ref).
 
 # Arguments
-- `pd::ParamDict`: The parameter dictionary.
-- `tag::Union{AbstractString, Vector{<:AbstractString}}`: The tag or vector of tags to search for.
+- `tag::Union{AbstractString, Vector{<:AbstractString}}`: The tag, or vector of tags, to search for.
 
 # Returns
-- `Vector{String}`: A list of parameter names that have the specified tag(s).
+`Vector{String}`: the names of the parameters carrying the tag(s), in
+unspecified order. Empty if no parameter carries the tag.
+
+!!! note "The default file is untagged"
+    No parameter in the bundled `parameters.toml` currently carries a `tag`, so
+    these functions only return entries supplied through an override file. See
+    the [Parameter tags](@ref) section of the TOML file interface.
 """
 function get_tagged_parameter_names(pd::ParamDict, tag::AbstractString)
     data = pd.data
@@ -621,7 +806,7 @@ get_tagged_parameter_names(
 """
     fuzzy_match(s1::AbstractString, s2::AbstractString)
 
-Compares two strings for equality, ignoring case and select punctuation.
+Compare two strings for equality, ignoring case and select punctuation.
 
 The characters `[' ', '_', '*', '.', ',', '-', '(', ')']` are stripped from both strings before comparison.
 """
@@ -633,14 +818,23 @@ end
 """
     get_tagged_parameter_values(pd::ParamDict, tag)
 
-Retrieves the values of all parameters associated with a given `tag` or list of `tags`.
+Return the values of all parameters carrying the given `tag`, or any of the given
+`tags`.
 
 # Arguments
-- `pd::ParamDict`: The parameter dictionary.
-- `tag::Union{AbstractString, Vector{<:AbstractString}}`: The tag or vector of tags to search for.
+- `tag::Union{AbstractString, Vector{<:AbstractString}}`: The tag, or vector of tags, to search for.
 
 # Returns
-- A `NamedTuple` of the tagged parameters, where keys are parameter names and values are their typed values.
+A `NamedTuple` keyed by parameter name. Empty if no parameter carries the tag.
+
+# Examples
+
+```julia
+toml_dict = CP.create_toml_dict(Float64; override_file = "tagged_parameters.toml")
+CP.get_tagged_parameter_values(toml_dict, "SurfaceFluxes")
+```
+
+See also [`get_tagged_parameter_names`](@ref).
 """
 get_tagged_parameter_values(pd::ParamDict, tag::AbstractString) =
     get_parameter_values(pd, get_tagged_parameter_names(pd, tag))

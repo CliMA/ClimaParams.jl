@@ -2,7 +2,32 @@ ClimaParams.jl Release Notes
 ========================
 main
 -------
+
+v1.1.8
+-------
 - Add `ogw_smoothing_scale_fraction` (0.15) for orographic gravity wave topography preprocessing.
+- Documentation overhaul: corrected the `create_toml_dict` multi-file
+  signature, replaced the parameter-struct examples with runnable ones, and
+  fixed docstring type annotations throughout.
+- Add a generated [Parameter list](https://CliMA.github.io/ClimaParams.jl/dev/parameters/)
+  page covering every parameter in the default file.
+- Add a [Calibration metadata](https://CliMA.github.io/ClimaParams.jl/dev/calibration/)
+  page documenting the `prior` and `constraint` fields read by
+  EnsembleKalmanProcesses.jl.
+- Add an [Adding and changing parameters](https://CliMA.github.io/ClimaParams.jl/dev/contributing/)
+  page and a `test/toml_format.jl` test enforcing the `parameters.toml`
+  conventions.
+- Proofread and standardize the `parameters.toml` descriptions: spelling,
+  units, symbols, and citations. Values are unchanged.
+- Group `parameters.toml` with `##` for top-level sections and `#` for
+  subsections, and give the sea salt aerosol parameters their own section.
+- Remove the unused `alias` field from `cloud_fraction_steepness_scale`.
+- Reorder `parameters.toml` so the universal physical constants and planetary
+  parameters come first, group the aerosol parameters (including sea salt
+  emission) under their own heading, and add subsections to the microphysics
+  and EDMF blocks. The [Parameter List](https://CliMA.github.io/ClimaParams.jl/dev/parameters/)
+  page follows the file order. Values are unchanged.
+- Upgrade the documentation build to Documenter 1.
 
 v1.1.7
 --------
