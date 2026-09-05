@@ -3,6 +3,18 @@ ClimaParams.jl Release Notes
 main
 -------
 
+v1.1.9
+-------
+- Reorder `parameters.toml` so each parameter sits with its primary consumer:
+  move the Earth reference/thermodynamic parameters (`potential_temperature_reference_pressure`,
+  `mean_sea_level_pressure`, `temperature_surface_reference`, `temperature_min_reference`,
+  `reference_temperature_exponent`, `reference_relative_humidity`,
+  `reference_moisture_cutoff_pressure`) into Thermodynamic Constants, move the
+  1-moment rate scalings (`microph_scaling_acnv`, `microph_scaling_accr`,
+  `microph_scaling_evap`, `microph_scaling_dep_sub`, `microph_scaling_melt`) into
+  the 1-Moment microphysics scheme, move `c_smag` into Diffusion, and promote
+  Ocean to its own top-level section. Values are unchanged.
+
 v1.1.8
 -------
 - Add `ogw_smoothing_scale_fraction` (0.15) for orographic gravity wave topography preprocessing.
