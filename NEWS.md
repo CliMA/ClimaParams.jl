@@ -2,6 +2,9 @@ ClimaParams.jl Release Notes
 ========================
 main
 -------
+
+v1.1.8
+-------
 - Add `ogw_smoothing_scale_fraction` (0.15) for orographic gravity wave topography preprocessing.
 - Documentation overhaul: corrected the `create_toml_dict` multi-file
   signature, replaced the parameter-struct examples with runnable ones, and
