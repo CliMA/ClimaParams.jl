@@ -3,6 +3,24 @@ ClimaParams.jl Release Notes
 main
 -------
 
+v1.1.10
+-------
+- Add P3 related parameters ([#317](https://github.com/CliMA/ClimaParams.jl/pull/317)):
+  `P3_ice_nucleation_diameter`,
+  `P3_cooper_deposition_max_concentration`,
+  `P3_cooper_deposition_temperature_threshold`,
+  `P3_cooper_deposition_ice_supersaturation_threshold`,
+  `P3_cooper_deposition_prefactor`,
+  `P3_cooper_deposition_exponent_coefficient`,
+  `P3_mu_smoothing_sharpness`,
+  `P3_ice_sticking_efficiency_cold`,
+  `P3_ice_sticking_efficiency_warm`,
+  `P3_ice_sticking_efficiency_T_cold`,
+  `P3_ice_collection_rime_shutoff_start`,
+  `P3_ice_collection_rime_shutoff_end`,
+  `P3_ice_number_adjustment_timescale`.
+  Considered experimental and may be removed or renamed in future minor releases.
+
 v1.1.9
 -------
 - Reorder `parameters.toml` so each parameter sits with its primary consumer:
