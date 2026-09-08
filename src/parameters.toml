@@ -1056,6 +1056,26 @@ value = 1.6e-5
 type = "float"
 description = "Kinematic viscosity of air (m² s⁻¹)."
 
+[air_viscosity_sutherland_reference]
+value = 1.716e-5
+type = "float"
+description = "Reference dynamic viscosity of air ($\\mu_0$) (Pa s) at `air_viscosity_sutherland_temperature` in the Sutherland law $\\mu(T) = \\mu_0 (T/T_0)^{3/2} (T_0 + S)/(T + S)$, used for aerosol Stokes settling and Brownian diffusivity. Source: Sutherland (1893), DOI: 10.1080/14786449308620508."
+
+[air_viscosity_sutherland_temperature]
+value = 273.15
+type = "float"
+description = "Reference temperature ($T_0$) (K) of the Sutherland dynamic-viscosity law for air. Source: Sutherland (1893), DOI: 10.1080/14786449308620508."
+
+[air_viscosity_sutherland_constant]
+value = 110.4
+type = "float"
+description = "Sutherland constant ($S$) (K) of the dynamic-viscosity law for air. Source: Sutherland (1893), DOI: 10.1080/14786449308620508."
+
+[cunningham_slip_coefficients]
+value = [1.257, 0.4, 1.1]
+type = "float"
+description = "Cunningham slip-correction coefficients $[A, B, C]$ in $C_c(\\mathrm{Kn}) = 1 + \\mathrm{Kn}\\,(A + B \\exp(-C/\\mathrm{Kn}))$, with $\\mathrm{Kn}$ the Knudsen number of an aerosol particle in air (unitless). Source: Davies (1945), DOI: 10.1088/0959-5309/57/4/301."
+
 [condensation_evaporation_timescale]
 value = 10.0
 type = "float"
@@ -2407,6 +2427,53 @@ description = "Per-bin number flux scale (m⁻² s⁻¹) of the lognormal fit to
 value = [1.589e-16, 3.575e-15, 4.557e-14, 1.238e-13, 1.32e-13]
 type = "float"
 description = "Per-bin dry-mass flux scale (kg m⁻² s⁻¹) of the lognormal fit to the Gong (2003) spectrum at $u_{10}$ = `ssa_u_ref`. Precomputed offline in ClimaAtmos.jl/docs/sea_salt_emission_fit.jl."
+
+# Sea Salt Aerosol Deposition
+
+[ssa_rh_cap]
+value = 0.99
+type = "float"
+description = "Relative-humidity cap on the water activity in the $\\kappa$-Köhler hygroscopic growth factor of sea salt aerosol (unitless). Keeps the deliquesced radius finite as RH approaches saturation."
+
+[ssa_settling_courant_max]
+value = 0.5
+type = "float"
+description = "Maximum vertical Courant number allowed for the explicit gravitational settling and turbulent dry-deposition sinks of sea salt aerosol (unitless)."
+
+[ssa_collection_efficiency]
+value = [5.2e-4, 5.2e-4, 0.42, 0.42, 0.94]
+type = "float"
+description = "Per-bin raindrop collection efficiency ($E$) of sea salt aerosol for below-cloud washout at the swept-volume collection rate of the model rain size distribution, on the `ssa_size_bin_divisions` bins (unitless). Slinn-type values for the accumulation (Greenfield gap), coarse-a, and coarse-b modes of Feng (2007). Source: Feng (2007), DOI: 10.1016/j.atmosenv.2007.04.046."
+
+[ssa_washout_prefactor]
+value = [2.75e-7, 2.75e-7, 2.22e-4, 2.22e-4, 5.03e-4]
+type = "float"
+description = "Per-bin prefactor ($a$) of the empirical below-cloud scavenging coefficient $\\Lambda = a R^b$ of sea salt aerosol, with $R$ the rain rate in mm h⁻¹, on the `ssa_size_bin_divisions` bins (s⁻¹). Used where no rain size distribution exists, i.e. under 0-moment microphysics. Source: Feng (2007), DOI: 10.1016/j.atmosenv.2007.04.046."
+
+[ssa_washout_exponent]
+value = [0.61, 0.61, 0.79, 0.79, 0.80]
+type = "float"
+description = "Per-bin exponent ($b$) on the rain rate in the empirical below-cloud scavenging coefficient $\\Lambda = a R^b$ of sea salt aerosol, on the `ssa_size_bin_divisions` bins (unitless). Source: Feng (2007), DOI: 10.1016/j.atmosenv.2007.04.046."
+
+[zhang_collection_prefactor]
+value = 3.0
+type = "float"
+description = "Empirical prefactor ($\\varepsilon_0$) of the aerosol surface resistance $R_s = 1 / (\\varepsilon_0 u_* (E_B + E_{IM} + E_{IN}))$ in the size-segregated dry deposition scheme (unitless). Source: Zhang et al. (2001), DOI: 10.1016/S1352-2310(00)00326-5."
+
+[zhang_impaction_exponent]
+value = 2.0
+type = "float"
+description = "Exponent ($\\beta$) of the impaction collection efficiency $E_{IM} = (\\mathrm{St} / (\\alpha + \\mathrm{St}))^\\beta$ in the size-segregated dry deposition scheme (unitless). Source: Zhang et al. (2001), DOI: 10.1016/S1352-2310(00)00326-5."
+
+[zhang_impaction_alpha_water]
+value = 100.0
+type = "float"
+description = "Impaction parameter ($\\alpha$) for the water-surface land-use category in the size-segregated dry deposition scheme (unitless). Source: Zhang et al. (2001), DOI: 10.1016/S1352-2310(00)00326-5."
+
+[zhang_brownian_gamma_water]
+value = 0.56
+type = "float"
+description = "Brownian-collection exponent ($\\gamma$) for the water-surface land-use category, $E_B = \\mathrm{Sc}^{-\\gamma}$, in the size-segregated dry deposition scheme (unitless). Source: Zhang et al. (2001), DOI: 10.1016/S1352-2310(00)00326-5."
 
 # Modal Aerosol Model (MAM3)
 

@@ -3,6 +3,18 @@ ClimaParams.jl Release Notes
 main
 -------
 
+v1.1.10
+-------
+- Add the sea salt aerosol deposition parameters read by the prognostic sea salt
+  stack in ClimaAtmos.jl: `ssa_rh_cap` and `ssa_settling_courant_max` (hygroscopic
+  growth and explicit settling), `ssa_collection_efficiency`, `ssa_washout_prefactor`,
+  and `ssa_washout_exponent` (below-cloud washout, Feng 2007), and the Zhang et al.
+  (2001) dry-deposition constants `zhang_collection_prefactor`,
+  `zhang_impaction_exponent`, `zhang_impaction_alpha_water`, `zhang_brownian_gamma_water`.
+- Add shared air properties for aerosol settling and Brownian diffusion:
+  `air_viscosity_sutherland_reference`, `air_viscosity_sutherland_temperature`,
+  `air_viscosity_sutherland_constant`, and `cunningham_slip_coefficients`.
+
 v1.1.9
 -------
 - Reorder `parameters.toml` so each parameter sits with its primary consumer:
