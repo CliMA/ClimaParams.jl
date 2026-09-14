@@ -2205,6 +2205,71 @@ value = 100
 type = "float"
 description = "Timescale for densification due to wet growth in the P3 scheme (s)."
 
+[P3_ice_nucleation_diameter]
+value = 2e-6
+type = "float"
+description = "Diameter of a newly nucleated ice particle in the P3 scheme (m). Sets the mass added to ice by deposition nucleation and the reference particle size for the ice number-adjustment bounds. Experimental (may change at any time)."
+
+[P3_cooper_deposition_max_concentration]
+value = 1.0e5
+type = "float"
+description = "Maximum ice number concentration target for deposition nucleation in the P3 scheme (m⁻³). Bounds the Cooper (1986) exponential-in-supercooling target from above. Experimental (may change at any time)."
+
+[P3_cooper_deposition_temperature_threshold]
+value = 258.15
+type = "float"
+description = "Temperature above which deposition nucleation in the P3 scheme is inactive (K). Experimental (may change at any time)."
+
+[P3_cooper_deposition_ice_supersaturation_threshold]
+value = 0.05
+type = "float"
+description = "Ice supersaturation below which deposition nucleation in the P3 scheme is inactive (unitless). Experimental (may change at any time)."
+
+[P3_cooper_deposition_prefactor]
+value = 5
+type = "float"
+description = "Prefactor $a$ in the Cooper (1986) exponential-in-supercooling target ice number concentration $N_t(T) = \\min(a \\exp(b (T_0 - T)), N_{max})$ for P3 deposition nucleation (m⁻³). Source: Thompson et al. (2004) form of Cooper (1986), DOI: 10.1175/1520-0493(2004)132<0519:EFOWPU>2.0.CO;2. Experimental (may change at any time)."
+
+[P3_cooper_deposition_exponent_coefficient]
+value = 0.304
+type = "float"
+description = "Exponent coefficient $b$ in the Cooper (1986) exponential-in-supercooling target ice number concentration $N_t(T) = \\min(a \\exp(b (T_0 - T)), N_{max})$ for P3 deposition nucleation (K⁻¹). Source: Thompson et al. (2004) form of Cooper (1986), DOI: 10.1175/1520-0493(2004)132<0519:EFOWPU>2.0.CO;2. Experimental (may change at any time)."
+
+[P3_mu_smoothing_sharpness]
+value = 2.68
+type = "float"
+description = "Corner sharpness $\\kappa$ of the smooth $0 \\le \\mu \\le \\mu_{max}$ limiters in the P3 SmoothSlopePowerLaw slope parameterization (unitless). Larger $\\kappa$ approaches the clamped SlopePowerLaw; the default is set below the critical sharpness at which $\\log(L/N)$ loses strict monotonicity in $\\lambda$, with a safety margin, in both Float32 and Float64. The binding corner is the lower ($\\mu = 0$) kink of unrimed ice. Experimental (may change at any time)."
+
+[P3_ice_sticking_efficiency_cold]
+value = 0.001
+type = "float"
+description = "Ice aggregation sticking efficiency at and below P3_ice_sticking_efficiency_T_cold in the P3 scheme (unitless). Collisions between cold ice crystals almost never result in sticking; without this factor the scheme collects every geometric encounter. Value from the P3 fortran implementation, adopted for consistency with it. Not documented in any published P3 papers. Experimental (may change at any time)."
+
+[P3_ice_sticking_efficiency_warm]
+value = 0.3
+type = "float"
+description = "Ice aggregation sticking efficiency at and above the freezing point in the P3 scheme (unitless), the warm end of a linear ramp from P3_ice_sticking_efficiency_cold. Value from the P3 fortran implementation, adopted for consistency with it. Not documented in any published P3 papers. Experimental (may change at any time)."
+
+[P3_ice_sticking_efficiency_T_cold]
+value = 253.15
+type = "float"
+description = "Temperature at and below which the ice aggregation sticking efficiency in the P3 scheme saturates at P3_ice_sticking_efficiency_cold (K); between here and the freezing point the efficiency ramps linearly.  Value from the P3 fortran implementation, adopted for consistency with it. Not documented in any published P3 papers. Experimental (may change at any time)."
+
+[P3_ice_collection_rime_shutoff_start]
+value = 0.6
+type = "float"
+description = "Rime mass fraction at and below which ice self-collection in the P3 scheme is unreduced (unitless). Above it the collection efficiency falls linearly to zero at P3_ice_collection_rime_shutoff_end, because heavily rimed ice is smooth and dense and does not aggregate. Value from the P3 fortran implementation, adopted for consistency with it. Not documented in any published P3 papers. Experimental (may change at any time)."
+
+[P3_ice_collection_rime_shutoff_end]
+value = 0.9
+type = "float"
+description = "Rime mass fraction at and above which ice self-collection in the P3 scheme is shut off entirely (unitless). Value from the P3 fortran implementation, adopted for consistency with it. Not documented in any published P3 papers. Experimental (may change at any time)."
+
+[P3_ice_number_adjustment_timescale]
+value = 100
+type = "float"
+description = "Timescale for the ice number-concentration adjustment toward the bounds on mean ice particle mass in the P3 scheme (s). Independent of Horn2012_number_concentration_adjustment_timescale, the equivalent warm-phase key. Experimental (may change at any time)."
+
 # Fixed Terminal Velocities
 
 [fixed_cloud_liquid_terminal_velocity]
