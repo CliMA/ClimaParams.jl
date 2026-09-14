@@ -1057,19 +1057,19 @@ type = "float"
 description = "Kinematic viscosity of air (m² s⁻¹)."
 
 [air_viscosity_sutherland_reference]
-value = 1.716e-5
+value = 1.8325e-5
 type = "float"
-description = "Reference dynamic viscosity of air ($\\mu_0$) (Pa s) at `air_viscosity_sutherland_temperature` in the Sutherland law $\\mu(T) = \\mu_0 (T/T_0)^{3/2} (T_0 + S)/(T + S)$, used for aerosol Stokes settling and Brownian diffusivity. Source: Sutherland (1893), DOI: 10.1080/14786449308620508."
+description = "Reference dynamic viscosity of air ($\\mu_0$) (Pa s) at `air_viscosity_sutherland_temperature` in the Sutherland-form law $\\mu(T) = \\mu_0 (T/T_0)^{3/2} (T_0 + S)/(T + S)$, used for aerosol Stokes settling and Brownian diffusivity. Source: Seinfeld & Pandis (2006), Atmospheric Chemistry and Physics, 2nd ed., Eq. 9.7."
 
 [air_viscosity_sutherland_temperature]
-value = 273.15
+value = 296.16
 type = "float"
-description = "Reference temperature ($T_0$) (K) of the Sutherland dynamic-viscosity law for air. Source: Sutherland (1893), DOI: 10.1080/14786449308620508."
+description = "Reference temperature ($T_0$) (K) of the Sutherland-form dynamic-viscosity law for air. Source: Seinfeld & Pandis (2006), Atmospheric Chemistry and Physics, 2nd ed., Eq. 9.7."
 
 [air_viscosity_sutherland_constant]
-value = 110.4
+value = 120.0
 type = "float"
-description = "Sutherland constant ($S$) (K) of the dynamic-viscosity law for air. Source: Sutherland (1893), DOI: 10.1080/14786449308620508."
+description = "Sutherland constant ($S$) (K) of the dynamic-viscosity law for air. Source: Seinfeld & Pandis (2006), Atmospheric Chemistry and Physics, 2nd ed., Eq. 9.7."
 
 [cunningham_slip_coefficients]
 value = [1.257, 0.4, 1.1]
@@ -2428,6 +2428,31 @@ value = [1.589e-16, 3.575e-15, 4.557e-14, 1.238e-13, 1.32e-13]
 type = "float"
 description = "Per-bin dry-mass flux scale (kg m⁻² s⁻¹) of the lognormal fit to the Gong (2003) spectrum at $u_{10}$ = `ssa_u_ref`. Precomputed offline in ClimaAtmos.jl/docs/sea_salt_emission_fit.jl."
 
+[ssa_deike_air_flux_coefficient]
+value = 1.8e-7
+type = "float"
+description = "Coefficient ($a$) (m s⁻¹) of the wind-only closure $V_A = a ((u_{10} - u_0)/u_\\mathrm{ref})^b$ for the air volume flux entrained by breaking waves per unit ocean area, the mean power-law fit of Deike et al. (2022) to their wave-model output; $u_\\mathrm{ref}$ = `ssa_u_ref`. Source: Deike, Reichl & Paulot (2022), DOI: 10.1029/2022AV000750."
+
+[ssa_deike_wind_offset]
+value = 5.0
+type = "float"
+description = "Wind speed offset ($u_0$) (m s⁻¹) of the wind-only air entrainment closure $V_A = a ((u_{10} - u_0)/u_\\mathrm{ref})^b$; no air is entrained below it. Source: Deike, Reichl & Paulot (2022), DOI: 10.1029/2022AV000750."
+
+[ssa_deike_wind_exponent]
+value = 2.5
+type = "float"
+description = "Exponent ($b$) on the 10 m wind speed in the wind-only air entrainment closure $V_A = a ((u_{10} - u_0)/u_\\mathrm{ref})^b$ (unitless). Source: Deike, Reichl & Paulot (2022), DOI: 10.1029/2022AV000750."
+
+[ssa_deike_bin_0M_flux_per_air_flux]
+value = [1.251e11, 9.220e9, 7.508e8, 8.532e8, 2.552e8]
+type = "float"
+description = "Per-bin number emission of sea salt aerosol per unit entrained air volume flux $V_A$ (m⁻³), on the `ssa_size_bin_divisions` bins, from the bubble-bursting sea spray generation function of Deike et al. (2022) at 20°C seawater properties. Precomputed offline in ClimaAtmos.jl/docs/src/sea_salt_deike_precompute.jl. Source: Deike, Reichl & Paulot (2022), DOI: 10.1029/2022AV000750."
+
+[ssa_deike_bin_3M_flux_per_air_flux]
+value = [3.260e-7, 2.773e-7, 8.573e-6, 2.117e-4, 9.030e-4]
+type = "float"
+description = "Per-bin dry-mass emission of sea salt aerosol per unit entrained air volume flux $V_A$ (kg m⁻³), on the `ssa_size_bin_divisions` bins, from the bubble-bursting sea spray generation function of Deike et al. (2022) at 20°C seawater properties and `seasalt_aerosol_density`. Precomputed offline in ClimaAtmos.jl/docs/src/sea_salt_deike_precompute.jl. Source: Deike, Reichl & Paulot (2022), DOI: 10.1029/2022AV000750."
+
 # Sea Salt Aerosol Deposition
 
 [ssa_rh_cap]
@@ -2455,25 +2480,65 @@ value = [0.61, 0.61, 0.79, 0.79, 0.80]
 type = "float"
 description = "Per-bin exponent ($b$) on the rain rate in the empirical below-cloud scavenging coefficient $\\Lambda = a R^b$ of sea salt aerosol, on the `ssa_size_bin_divisions` bins (unitless). Source: Feng (2007), DOI: 10.1016/j.atmosenv.2007.04.046."
 
+[emerson_collection_prefactor]
+value = 3.0
+type = "float"
+description = "Empirical prefactor ($\\varepsilon_0$) of the aerosol surface resistance $R_s = 1 / (\\varepsilon_0 u_* (E_B + E_{IM} + E_{IN}) R_1)$ in the size-segregated dry deposition scheme (unitless). Unchanged from Zhang et al. (2001); the revised collection efficiencies were fit with it held fixed. Source: Emerson et al. (2020), DOI: 10.1073/pnas.2014761117."
+
+[emerson_brownian_prefactor]
+value = 0.2
+type = "float"
+description = "Prefactor ($C_B$) of the Brownian collection efficiency $E_B = C_B \\mathrm{Sc}^{-\\gamma}$ in the size-segregated dry deposition scheme (unitless). Source: Emerson et al. (2020), DOI: 10.1073/pnas.2014761117."
+
+[emerson_brownian_gamma]
+value = 0.6666666666666666
+type = "float"
+description = "Brownian-collection exponent ($\\gamma = 2/3$) of $E_B = C_B \\mathrm{Sc}^{-\\gamma}$ in the size-segregated dry deposition scheme, one value for all land-use categories (unitless). Source: Emerson et al. (2020), DOI: 10.1073/pnas.2014761117."
+
+[emerson_impaction_prefactor]
+value = 0.4
+type = "float"
+description = "Prefactor ($C_{Im}$) of the impaction collection efficiency $E_{IM} = C_{Im} (\\mathrm{St} / (\\alpha + \\mathrm{St}))^\\beta$ in the size-segregated dry deposition scheme (unitless). Source: Emerson et al. (2020), DOI: 10.1073/pnas.2014761117."
+
+[emerson_impaction_exponent]
+value = 1.7
+type = "float"
+description = "Exponent ($\\beta$) of the impaction collection efficiency $E_{IM} = C_{Im} (\\mathrm{St} / (\\alpha + \\mathrm{St}))^\\beta$ in the size-segregated dry deposition scheme (unitless). Source: Emerson et al. (2020), DOI: 10.1073/pnas.2014761117."
+
+[emerson_impaction_alpha_water]
+value = 100.0
+type = "float"
+description = "Impaction parameter ($\\alpha$) for the water-surface land-use category in the size-segregated dry deposition scheme (unitless). Taken unchanged from the Zhang et al. (2001) land-use table, as in the revised parameterization. Source: Emerson et al. (2020), DOI: 10.1073/pnas.2014761117."
+
+[emerson_interception_prefactor]
+value = 2.5
+type = "float"
+description = "Prefactor ($C_{In}$) of the interception collection efficiency $E_{IN} = C_{In} (d_p / A)^\\upsilon$ in the size-segregated dry deposition scheme (unitless). Only used over surfaces with a characteristic collector radius $A$, i.e. not over water. Source: Emerson et al. (2020), DOI: 10.1073/pnas.2014761117."
+
+[emerson_interception_exponent]
+value = 0.8
+type = "float"
+description = "Exponent ($\\upsilon$) of the interception collection efficiency $E_{IN} = C_{In} (d_p / A)^\\upsilon$ in the size-segregated dry deposition scheme (unitless). Only used over surfaces with a characteristic collector radius $A$, i.e. not over water. Source: Emerson et al. (2020), DOI: 10.1073/pnas.2014761117."
+
 [zhang_collection_prefactor]
 value = 3.0
 type = "float"
-description = "Empirical prefactor ($\\varepsilon_0$) of the aerosol surface resistance $R_s = 1 / (\\varepsilon_0 u_* (E_B + E_{IM} + E_{IN}))$ in the size-segregated dry deposition scheme (unitless). Source: Zhang et al. (2001), DOI: 10.1016/S1352-2310(00)00326-5."
+description = "DEPRECATED: superseded by the `emerson_*` revision of the same scheme; retained for reproducing published Zhang-parameter results. Empirical prefactor ($\\varepsilon_0$) of the aerosol surface resistance $R_s = 1 / (\\varepsilon_0 u_* (E_B + E_{IM} + E_{IN}))$ in the size-segregated dry deposition scheme (unitless). Source: Zhang et al. (2001), DOI: 10.1016/S1352-2310(00)00326-5."
 
 [zhang_impaction_exponent]
 value = 2.0
 type = "float"
-description = "Exponent ($\\beta$) of the impaction collection efficiency $E_{IM} = (\\mathrm{St} / (\\alpha + \\mathrm{St}))^\\beta$ in the size-segregated dry deposition scheme (unitless). Source: Zhang et al. (2001), DOI: 10.1016/S1352-2310(00)00326-5."
+description = "DEPRECATED: superseded by the `emerson_*` revision of the same scheme; retained for reproducing published Zhang-parameter results. Exponent ($\\beta$) of the impaction collection efficiency $E_{IM} = (\\mathrm{St} / (\\alpha + \\mathrm{St}))^\\beta$ in the size-segregated dry deposition scheme (unitless). Source: Zhang et al. (2001), DOI: 10.1016/S1352-2310(00)00326-5."
 
 [zhang_impaction_alpha_water]
 value = 100.0
 type = "float"
-description = "Impaction parameter ($\\alpha$) for the water-surface land-use category in the size-segregated dry deposition scheme (unitless). Source: Zhang et al. (2001), DOI: 10.1016/S1352-2310(00)00326-5."
+description = "DEPRECATED: superseded by the `emerson_*` revision of the same scheme; retained for reproducing published Zhang-parameter results. Impaction parameter ($\\alpha$) for the water-surface land-use category in the size-segregated dry deposition scheme (unitless). Source: Zhang et al. (2001), DOI: 10.1016/S1352-2310(00)00326-5."
 
 [zhang_brownian_gamma_water]
 value = 0.56
 type = "float"
-description = "Brownian-collection exponent ($\\gamma$) for the water-surface land-use category, $E_B = \\mathrm{Sc}^{-\\gamma}$, in the size-segregated dry deposition scheme (unitless). Source: Zhang et al. (2001), DOI: 10.1016/S1352-2310(00)00326-5."
+description = "DEPRECATED: superseded by the `emerson_*` revision of the same scheme; retained for reproducing published Zhang-parameter results. Brownian-collection exponent ($\\gamma$) for the water-surface land-use category, $E_B = \\mathrm{Sc}^{-\\gamma}$, in the size-segregated dry deposition scheme (unitless). Source: Zhang et al. (2001), DOI: 10.1016/S1352-2310(00)00326-5."
 
 # Modal Aerosol Model (MAM3)
 
