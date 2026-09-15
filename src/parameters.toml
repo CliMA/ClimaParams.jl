@@ -1248,6 +1248,26 @@ value = 5.0e8
 type = "float"
 description = "Number concentration of cloud ice particles for sedimentation (m⁻³)."
 
+[cloud_ice_number_temperature_fit_prefactor]
+value = 1000.0
+type = "float"
+description = "Prefactor N_ref of the temperature-dependent cloud ice number concentration (m⁻³). Converts the fit from per liter to per m³. Meyers et.al. 1992 doi.org/10.1175/1520-0450(1992)031⟨0708:Npinpi⟩2.0.Co;2."
+
+[cloud_ice_number_temperature_fit_intercept]
+value = -2.80
+type = "float"
+description = "Intercept a of the exponential temperature fit of the cloud ice number concentration (unitless). doi.org/10.1175/1520-0450(1992)031⟨0708:Npinpi⟩2.0.Co;2."
+
+[cloud_ice_number_temperature_fit_slope]
+value = 0.262
+type = "float"
+description = "Slope b of the exponential temperature fit of the cloud ice number concentration (K⁻¹). Meyers et.al. 1992 doi.org/10.1175/1520-0450(1992)031⟨0708:Npinpi⟩2.0.Co;2."
+
+[cloud_ice_number_max]
+value = 1.0e7
+type = "float"
+description = "Upper bound on the temperature-dependent cloud ice number concentration (m⁻³). Meyers et.al. 1992 doi.org/10.1175/1520-0450(1992)031⟨0708:Npinpi⟩2.0.Co;2."
+
 [homogeneous_freezing_timescale]
 value = 1
 type = "float"
