@@ -2460,8 +2460,23 @@ value = 0.99
 type = "float"
 description = "Relative-humidity cap on the water activity in the $\\kappa$-Köhler hygroscopic growth factor of sea salt aerosol (unitless). Keeps the deliquesced radius finite as RH approaches saturation."
 
+[ssa_lewis_a]
+value = 1.08
+type = "float"
+description = "Prefactor $a$ of the Lewis (2008) Eqs. 33-34 fit to the equilibrium radius ratio of a sea salt aerosol particle, $\\xi = a (b + 1 / (1 - h))^{1/3}$ (unitless). Source: Lewis (2008), doi:10.1029/2008JD009833."
+
+[ssa_lewis_b]
+value = 1.10
+type = "float"
+description = "Offset $b$ of the Lewis (2008) Eqs. 33-34 fit to the equilibrium radius ratio of a sea salt aerosol particle, $\\xi = a (b + 1 / (1 - h))^{1/3}$ (unitless). Source: Lewis (2008), doi:10.1029/2008JD009833."
+
+[ssa_rh_efflorescence]
+value = 0.45
+type = "float"
+description = "Relative humidity below which a deliquesced sea salt aerosol particle crystallizes and its growth factor returns to unity (unitless). Source: efflorescence branch of the NaCl hysteresis loop, Tang and Munkelwitz (1994)."
+
 [ssa_settling_courant_max]
-value = 0.5
+value = 0.1
 type = "float"
 description = "Maximum vertical Courant number allowed for the explicit gravitational settling and turbulent dry-deposition sinks of sea salt aerosol (unitless)."
 
