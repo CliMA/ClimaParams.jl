@@ -1156,7 +1156,12 @@ description = "Rain formation timescale for the 1-moment microphysics scheme (s)
 [rain_autoconversion_timescale_stratiform]
 value = 14400
 type = "float"
-description = "Rain formation timescale for weak vertical velocities when using vertical velocity dependent rain formation (s)."
+description = "Rain formation timescale for weak vertical velocities when using vertical velocity dependent timescale for rain formation (s)."
+
+[cloud_liquid_water_specific_humidity_autoconversion_threshold_stratiform]
+value = 1e-3
+type = "float"
+description = "Rain formation threshold for weak vertical velocities when using vertical velocity dependent threshold for rain formation (s)."
 
 [rain_autoconversion_velocity_scale]
 value = 1.5
