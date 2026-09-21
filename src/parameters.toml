@@ -1161,7 +1161,7 @@ description = "Rain formation timescale for weak vertical velocities when using 
 [cloud_liquid_water_specific_humidity_autoconversion_threshold_stratiform]
 value = 1e-3
 type = "float"
-description = "Rain formation threshold for weak vertical velocities when using vertical velocity dependent threshold for rain formation (s)."
+description = "Rain formation threshold for weak vertical velocities when using vertical velocity dependent threshold for rain formation (unitless)."
 
 [rain_autoconversion_velocity_scale]
 value = 1.5
