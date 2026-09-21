@@ -3,6 +3,14 @@ ClimaParams.jl Release Notes
 main
 -------
 
+v.1.1.12
+-------
+- Update ice number for cloud microphysics vapor - ice
+
+v.1.1.11
+--------
+- No news
+
 v1.1.10
 -------
 - Add P3 related parameters ([#317](https://github.com/CliMA/ClimaParams.jl/pull/317)):
