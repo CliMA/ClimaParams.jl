@@ -1244,7 +1244,7 @@ type = "float"
 description = "Number concentration of cloud liquid particles for sedimentation (m⁻³)."
 
 [cloud_ice_sedimentation_number_concentration]
-value = 5.0e8
+value = 1e5
 type = "float"
 description = "Number concentration of cloud ice particles for sedimentation (m⁻³)."
 
