@@ -6,6 +6,7 @@ main
 v.1.1.12
 -------
 - Update ice number for cloud microphysics vapor - ice
+- Add threshold for stratiform rain formation
 
 v.1.1.11
 --------
