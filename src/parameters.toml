@@ -1146,22 +1146,22 @@ description = "Coefficient $\\delta_m$ in the mass-size relation for cloud ice i
 [cloud_liquid_water_specific_humidity_autoconversion_threshold]
 value = 5e-4
 type = "float"
-description = "Rain formation threshold in terms of specific humidity for the 1-moment microphysics scheme (unitless)."
+description = "Rain formation threshold in terms of specific humidity for the 1-moment microphysics scheme (unitless). Also used as the threshold for strong vertical velocities (convective regime) in the vertical velocity dependent Kessler rain formation."
+
+[cloud_liquid_water_specific_humidity_autoconversion_threshold_stratiform]
+value = 5e-4
+type = "float"
+description = "Rain formation threshold in terms of specific humidity for weak vertical velocities (stratiform regime) in the vertical velocity dependent Kessler rain formation (unitless). Equal to cloud_liquid_water_specific_humidity_autoconversion_threshold by default, which gives the classic velocity-independent Kessler scheme."
 
 [rain_autoconversion_timescale]
 value = 1000.0
 type = "float"
-description = "Rain formation timescale for the 1-moment microphysics scheme (s). Also used as the timescale for strong vertical velocities, when using vertical velocity dependent rain formation."
+description = "Rain formation timescale for the 1-moment microphysics scheme (s). Also used as the timescale for strong vertical velocities (convective regime) in the vertical velocity dependent Kessler rain formation."
 
 [rain_autoconversion_timescale_stratiform]
-value = 14400
+value = 1000.0
 type = "float"
-description = "Rain formation timescale for weak vertical velocities when using vertical velocity dependent timescale for rain formation (s)."
-
-[cloud_liquid_water_specific_humidity_autoconversion_threshold_stratiform]
-value = 1e-3
-type = "float"
-description = "Rain formation threshold for weak vertical velocities when using vertical velocity dependent threshold for rain formation (unitless)."
+description = "Rain formation timescale for weak vertical velocities (stratiform regime) in the vertical velocity dependent Kessler rain formation (s). Equal to rain_autoconversion_timescale by default, which gives the classic velocity-independent Kessler scheme."
 
 [rain_autoconversion_velocity_scale]
 value = 1.5

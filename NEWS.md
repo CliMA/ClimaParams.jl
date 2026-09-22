@@ -3,6 +3,10 @@ ClimaParams.jl Release Notes
 main
 -------
 
+v1.1.13
+-------
+- Set the stratiform rain formation defaults equal to the convective ones
+
 v.1.1.12
 -------
 - Update ice number for cloud microphysics vapor - ice
