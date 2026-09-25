@@ -3,6 +3,11 @@ ClimaParams.jl Release Notes
 main
 -------
 
+v1.1.15
+-------
+- Add `microphysics_max_latent_heating_rate` (default 2K/60min)
+- Add `microphysics_pool_exhaustion_newton_iterations` (default 2)
+
 v1.1.14
 -------
 - Add EDMF mixing-length closure parameters for the empirical `l_TKE`

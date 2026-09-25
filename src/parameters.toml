@@ -1293,6 +1293,16 @@ value = 1.0e7
 type = "float"
 description = "Upper bound on the temperature-dependent cloud ice number concentration (m⁻³). Meyers et.al. 1992 doi.org/10.1175/1520-0450(1992)031⟨0708:Npinpi⟩2.0.Co;2."
 
+[microphysics_max_latent_heating_rate]
+value = 0.03333333333333333
+type = "float"
+description = "Upper bound on the latent heating or cooling rate of the 1-moment microphysics phase changes within a substep, applied by scaling all phase-change transfers (K s⁻¹). inf disables the limiter."
+
+[microphysics_pool_exhaustion_newton_iterations]
+value = 2
+type = "integer"
+description = "Number of Newton iterations used by the 1-moment joint vapor relaxation to locate the time within a substep at which an evaporating or sublimating pool is exhausted (unitless). Fixed count for GPU performance. 2 gives ~0.1 % accuracy of the exhausting transfer in 90 % of stiff cases, 3 gives ~0.5 % at the 99th percentile."
+
 [homogeneous_freezing_timescale]
 value = 1
 type = "float"
