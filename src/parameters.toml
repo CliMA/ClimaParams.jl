@@ -849,29 +849,25 @@ type = "float"
 description = "Upper limit for the length scale in the mixing length closure (m). Source: Lopez-Gomez et al. (2020)."
 
 [mixing_length_l_min]
-value = 10
+value = 1.0
 type = "float"
-description = "Lower limit for the mixing length (m)."
+description = "Minimum mixing length (m) applied to the master `l_final` in the SGS closure to prevent division-by-zero in the dissipation rate ε = c_d · tke^{3/2} / l_mix."
 
 [mixing_length_alpha]
 value = 1.05
 type = "float"
 description = "Non-equilibrium correction factor α_kε on the balance-derived l_TKE in the mixing-length closure, accounting for the ε/ω-lag (dε/dt = 0 rather than dTKE/dt = 0) — unitless. Order 1; larger values increase the mixing length under local shear/buoyancy balance."
 
-[mixing_length_l_0]
+[mixing_length_tke_0]
 value = 100.0
 type = "float"
-description = "Base BL mixing length (m) in the empirical `l_TKE` ceiling `l_empirical_CC = l_0 · (1 + x) · exp(−x)`, with `x = tke / tke_max`. The ceiling equals `l_0` at tke = 0 and decays exponentially for tke ≫ tke_max."
+description = "Base BL mixing length (m) in the empirical `l_TKE` ceiling `l_TKE_empirical = tke_0 · (1 + x) · exp(−x)`, with `x = tke / mixing_length_tke_max`. The ceiling equals `tke_0` at tke = 0 and decays exponentially for tke ≫ tke_max."
 
 [mixing_length_tke_max]
 value = 5.0
 type = "float"
-description = "Characteristic TKE magnitude (m²/s²) in the empirical `l_TKE` ceiling `l_0 · (1 + x) · exp(−x)`; larger values relax the cap."
+description = "Characteristic TKE magnitude (m²/s²) in the empirical `l_TKE` ceiling `tke_0 · (1 + x) · exp(−x)`; larger values relax the cap."
 
-[mixing_length_min]
-value = 1.0
-type = "float"
-description = "Minimum mixing length (m) applied to the master `l_final` in the SGS closure to prevent division-by-zero in the dissipation rate ε = c_d · tke^{3/2} / l_mix."
 
 [mixing_length_param_vec]
 value = [0.0, 0.0, 0.0, 0.0, 0.0]
