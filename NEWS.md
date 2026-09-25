@@ -12,7 +12,10 @@ v1.1.14
 -------
 - Add EDMF mixing-length closure parameters for the empirical `l_TKE`
   ceiling and its `α_kε` correction: `mixing_length_alpha`,
-  `mixing_length_l_0`, `mixing_length_tke_max`, `mixing_length_min`.
+  `mixing_length_tke_0`, `mixing_length_tke_max`.
+- Change default of `mixing_length_l_min` from `10` to `1.0` (m); this
+  parameter now controls the floor on the SGS master `l_final` in
+  ClimaAtmos.
 - Change default of `EDMF_interface_entr_efficiency` from `0.4` to `0.0`
   (interfacial cloud-top entrainment closure disabled by default).
 
