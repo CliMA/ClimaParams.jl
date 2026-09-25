@@ -8,7 +8,8 @@ Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
 TOML = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
 
 [compat]
-TOML = "1"
+Dates = "< 0.0.1, 1"
+TOML = "1, < 0.0.1"
 Test = "1"
 julia = "1"
 
