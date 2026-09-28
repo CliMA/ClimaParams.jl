@@ -1001,6 +1001,36 @@ value = "log-normal"
 type = "string"
 description = "Assumed PDF shape for environmental variables ($q_{tot}, \\theta_{liq_ice}$) with SGS quadrature. Options: 'log-normal' (default), 'gaussian'."
 
+[sgs_variance_geometric_coeff]
+value = 0.08333333333333333
+type = "float"
+description = "Coefficient $c_g$ of the horizontal resolved-gradient (geometric) SGS variance term in ClimaAtmos (unitless). $1/12$ is the variance of a linear field over a uniform cell."
+
+[sgs_variance_horizontal_scale_factor]
+value = 3.0
+type = "float"
+description = "Multiplier $c_{\\Delta x}$ on the horizontal grid scale $\\Delta x_h$ in the geometric SGS variance term (unitless)."
+
+[sgs_variance_max_rel_std]
+value = 0.5
+type = "float"
+description = "Upper bound on the SGS total-water standard deviation relative to the grid-mean total water, applied to the diagnosed $q'q'$ whatever closure produced it (unitless). 0.5 keeps every quadrature node at non-negative total water."
+
+[sgs_variance_geometric_Ri_factor]
+value = 1.0
+type = "float"
+description = "Factor $k$ in $\\mathrm{Ri}_0 = k \\mathrm{Ri}_{crit}$, the scale of the Richardson-number weight on the geometric SGS variance term (unitless)."
+
+[sgs_liquid_uniform_fraction]
+value = 1.0
+type = "float"
+description = "Fraction of cloud liquid that is uniform over the SGS quadrature nodes (unitless). Valid range: [0, 1]."
+
+[sgs_ice_uniform_fraction]
+value = 1.0
+type = "float"
+description = "Fraction of cloud ice that is uniform over the SGS quadrature nodes (unitless). Valid range: [0, 1]."
+
 # GCM-Driven Single-Column Forcing
 
 [gcmdriven_momentum_relaxation_timescale]
