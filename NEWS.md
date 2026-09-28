@@ -3,6 +3,19 @@ ClimaParams.jl Release Notes
 main
 -------
 
+v1.1.17
+-------
+- Rework the EDMF empirical `l_TKE` closure parameters:
+  - Rename `mixing_length_alpha` → `mixing_length_tke_coeff` (now a
+    dimensionless prefactor on the Lopez-Gomez balance timescale).
+  - Rename `mixing_length_l_0` → `mixing_length_tke_l_inf`; default
+    changed from `100.0` to `200.0` (m).
+  - Remove `mixing_length_tke_max` (obsolete; TKE reference scale is now
+    adaptive via `(l_inf/τ_ε)²`).
+  - Add `mixing_length_tke_tau_max` (600 s), the upper cap on the eddy
+    turnover timescale `τ_ε = c_tke·√(c_d/a_pd)`.
+  - Change default of `EDMF_interface_entr_efficiency` back to `0.4`
+
 v1.1.16
 -------
 - Add the ClimaAtmos SGS-variance parameters `sgs_variance_geometric_coeff`
@@ -20,7 +33,10 @@ v1.1.14
 -------
 - Add EDMF mixing-length closure parameters for the empirical `l_TKE`
   ceiling and its `α_kε` correction: `mixing_length_alpha`,
-  `mixing_length_l_0`, `mixing_length_tke_max`, `mixing_length_min`.
+  `mixing_length_tke_0`, `mixing_length_tke_max`.
+- Change default of `mixing_length_l_min` from `10` to `1.0` (m); this
+  parameter now controls the floor on the SGS master `l_final` in
+  ClimaAtmos.
 - Change default of `EDMF_interface_entr_efficiency` from `0.4` to `0.0`
   (interfacial cloud-top entrainment closure disabled by default).
 
