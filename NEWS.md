@@ -3,6 +3,14 @@ ClimaParams.jl Release Notes
 main
 -------
 
+v1.1.16
+-------
+- Add the ClimaAtmos SGS-variance parameters `sgs_variance_geometric_coeff`
+  (1/12), `sgs_variance_horizontal_scale_factor` (3.0),
+  `sgs_variance_max_rel_std` (0.5), `sgs_variance_geometric_Ri_factor` (1.0)
+  and the SGS-quadrature condensate parameters `sgs_liquid_uniform_fraction`
+  (1.0), `sgs_ice_uniform_fraction` (1.0).
+
 v1.1.15
 -------
 - Add `microphysics_max_latent_heating_rate` (default 2K/60min)
