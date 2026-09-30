@@ -3,6 +3,20 @@ ClimaParams.jl Release Notes
 main
 -------
 
+v1.2.0
+-------
+- Rename the stratiform Kessler autoconversion parameters to dimensionless
+  scale factors on their convective counterparts, both with default `1.0`
+  (so the classic velocity-independent Kessler scheme is recovered by default):
+  - `rain_autoconversion_timescale_stratiform` (was 1000.0 s) →
+    `rain_autoconversion_timescale_stratiform_scale` (1.0, unitless);
+    stratiform timescale is `rain_autoconversion_timescale` times this.
+  - `cloud_liquid_water_specific_humidity_autoconversion_threshold_stratiform`
+    (was 5e-4) →
+    `cloud_liquid_water_specific_humidity_autoconversion_threshold_stratiform_scale`
+    (1.0, unitless); stratiform threshold is
+    `cloud_liquid_water_specific_humidity_autoconversion_threshold` times this.
+
 v1.1.17
 -------
 - Rework the EDMF empirical `l_TKE` closure parameters:
