@@ -3,6 +3,15 @@ ClimaParams.jl Release Notes
 main
 -------
 
+v1.2.1
+-------
+- Restore the parameters removed or renamed in v1.1.17 and v1.2.0, which broke
+  downstream packages. They are deprecated and will be removed in v2.0:
+  - `mixing_length_alpha`, `mixing_length_l_0`, `mixing_length_tke_max`,
+    `mixing_length_min`
+  - `rain_autoconversion_timescale_stratiform`,
+    `cloud_liquid_water_specific_humidity_autoconversion_threshold_stratiform`
+
 v1.2.0
 -------
 - Rename the stratiform Kessler autoconversion parameters to dimensionless
