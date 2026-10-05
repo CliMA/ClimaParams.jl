@@ -479,157 +479,6 @@ value = 2.92
 type = "float"
 description = "The MOST stability exponent ($\\gamma$) for the Grachev universal functions (unitless). Source: Grachev et al. (2007), DOI: 10.1007/s10546-007-9177-6."
 
-# Cheng
-
-[prandtl_number_0_cheng]
-value = 1.0
-type = "float"
-description = "The turbulent Prandtl number in neutral conditions ($Pr_0$) for the Cheng universal functions (unitless). Source: Cheng et al. (2005), DOI: 10.1007/s10546-004-1425-4."
-
-[coefficient_a_m_cheng]
-value = 6.1
-type = "float"
-description = "Coefficient $a_m$ for the Cheng momentum universal function (unitless). Source: Cheng et al. (2005), DOI: 10.1007/s10546-004-1425-4."
-
-[coefficient_a_h_cheng]
-value = 5.3
-type = "float"
-description = "Coefficient $a_h$ for the Cheng heat universal function (unitless). Source: Cheng et al. (2005), DOI: 10.1007/s10546-004-1425-4."
-
-[coefficient_b_m_cheng]
-value = 2.5
-type = "float"
-description = "Coefficient $b_m$ for the Cheng momentum universal function (unitless). Source: Cheng et al. (2005), DOI: 10.1007/s10546-004-1425-4."
-
-[coefficient_b_h_cheng]
-value = 1.1
-type = "float"
-description = "Coefficient $b_h$ for the Cheng heat universal function (unitless). Source: Cheng et al. (2005), DOI: 10.1007/s10546-004-1425-4."
-
-[most_stability_parameter_cheng]
-value = 4.5
-type = "float"
-description = "The MOST stability parameter ($\\zeta$) for the Cheng universal functions (unitless). Source: Cheng et al. (2005), DOI: 10.1007/s10546-004-1425-4."
-
-[most_stability_exponent_cheng]
-value = 2.28
-type = "float"
-description = "The MOST stability exponent ($\\gamma$) for the Cheng universal functions (unitless). Source: Cheng et al. (2005), DOI: 10.1007/s10546-004-1425-4."
-
-# Holtslag
-
-[prandtl_number_0_holtslag]
-value = 1.0
-type = "float"
-description = "The turbulent Prandtl number in neutral conditions ($Pr_0$) for the Holtslag universal functions (unitless). Source: Holtslag et al. (1988), DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2."
-
-[coefficient_a_m_holtslag]
-value = 0.7
-type = "float"
-description = "Coefficient $a_m$ for the Holtslag momentum universal function (unitless). Source: Holtslag et al. (1988), DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2."
-
-[coefficient_a_h_holtslag]
-value = 0.7
-type = "float"
-description = "Coefficient $a_h$ for the Holtslag heat universal function (unitless). Source: Holtslag et al. (1988), DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2."
-
-[coefficient_b_m_holtslag]
-value = 0.75
-type = "float"
-description = "Coefficient $b_m$ for the Holtslag momentum universal function (unitless). Source: Holtslag et al. (1988), DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2."
-
-[coefficient_b_h_holtslag]
-value = 0.75
-type = "float"
-description = "Coefficient $b_h$ for the Holtslag heat universal function (unitless). Source: Holtslag et al. (1988), DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2."
-
-[coefficient_c_m_holtslag]
-value = 5.0
-type = "float"
-description = "Coefficient $c_m$ for the Holtslag momentum universal function (unitless). Source: Holtslag et al. (1988), DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2."
-
-[coefficient_c_h_holtslag]
-value = 5.0
-type = "float"
-description = "Coefficient $c_h$ for the Holtslag heat universal function (unitless). Source: Holtslag et al. (1988), DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2."
-
-[coefficient_d_m_holtslag]
-value = 0.35
-type = "float"
-description = "Coefficient $d_m$ for the Holtslag momentum universal function (unitless). Source: Holtslag et al. (1988), DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2."
-
-[coefficient_d_h_holtslag]
-value = 0.35
-type = "float"
-description = "Coefficient $d_h$ for the Holtslag heat universal function (unitless). Source: Holtslag et al. (1988), DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2."
-
-[most_stability_parameter_holtslag]
-value = 4.0
-type = "float"
-description = "The MOST stability parameter ($\\zeta_a$) for the Holtslag universal functions (unitless). Source: Holtslag et al. (1988), DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2."
-
-[most_stability_exponent_holtslag]
-value = 2.14
-type = "float"
-description = "The MOST stability exponent ($\\gamma$) for the Holtslag universal functions (unitless). Source: Holtslag et al. (1988), DOI: 10.1175/1520-0450(1988)027<0689:AMOTNS>2.0.CO;2."
-
-# Beljaars
-
-[prandtl_number_0_beljaars]
-value = 1.0
-type = "float"
-description = "The turbulent Prandtl number in neutral conditions ($Pr_0$) for the Beljaars universal functions (unitless). Source: Beljaars et al. (1991), DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2."
-
-[coefficient_a_m_beljaars]
-value = 1.0
-type = "float"
-description = "Coefficient $a_m$ for the Beljaars momentum universal function (unitless). Source: Beljaars et al. (1991), DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2."
-
-[coefficient_a_h_beljaars]
-value = 1.0
-type = "float"
-description = "Coefficient $a_h$ for the Beljaars heat universal function (unitless). Source: Beljaars et al. (1991), DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2."
-
-[coefficient_b_m_beljaars]
-value = 0.667
-type = "float"
-description = "Coefficient $b_m$ for the Beljaars momentum universal function (unitless). Source: Beljaars et al. (1991), DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2."
-
-[coefficient_b_h_beljaars]
-value = 0.667
-type = "float"
-description = "Coefficient $b_h$ for the Beljaars heat universal function (unitless). Source: Beljaars et al. (1991), DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2."
-
-[coefficient_c_m_beljaars]
-value = 5.0
-type = "float"
-description = "Coefficient $c_m$ for the Beljaars momentum universal function (unitless). Source: Beljaars et al. (1991), DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2."
-
-[coefficient_c_h_beljaars]
-value = 5.0
-type = "float"
-description = "Coefficient $c_h$ for the Beljaars heat universal function (unitless). Source: Beljaars et al. (1991), DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2."
-
-[coefficient_d_m_beljaars]
-value = 0.35
-type = "float"
-description = "Coefficient $d_m$ for the Beljaars momentum universal function (unitless). Source: Beljaars et al. (1991), DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2."
-
-[coefficient_d_h_beljaars]
-value = 0.35
-type = "float"
-description = "Coefficient $d_h$ for the Beljaars heat universal function (unitless). Source: Beljaars et al. (1991), DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2."
-
-[most_stability_parameter_beljaars]
-value = 3.4
-type = "float"
-description = "The MOST stability parameter ($\\zeta_a$) for the Beljaars universal functions (unitless). Source: Beljaars et al. (1991), DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2."
-
-[most_stability_exponent_beljaars]
-value = 2.04
-type = "float"
-description = "The MOST stability exponent ($\\gamma$) for the Beljaars universal functions (unitless). Source: Beljaars et al. (1991), DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2."
-
 ## EDMF Scheme
 
 # Entrainment and Detrainment
@@ -684,11 +533,6 @@ value = 1
 type = "float"
 description = "Exponent for the minimum area fraction limiter in both entrainment and detrainment (unitless)."
 
-[entr_detr_limit_inv_tau]
-value = 0
-type = "float"
-description = "Inverse timescale for entrainment and detrainment for negligible area (s⁻¹)."
-
 [detr_inv_tau]
 value = 0
 type = "float"
@@ -704,11 +548,6 @@ value = 0.12
 type = "float"
 description = "Coefficient for the $b/w^2$ term in the detrainment closure (unitless). Source: Tan et al. (2018), Eq. (27)."
 
-[detr_buoy_inv_tau_max]
-value = 0.01
-type = "float"
-description = "Maximum allowed inverse buoyancy timescale (s⁻¹), used to limit detrainment when velocity differences become small and prevent excessively fast detrainment."
-
 [entr_detr_buoy_inv_tau_max]
 value = 0.01
 type = "float"
@@ -723,16 +562,6 @@ description = "Coefficient for the vertical divergence term in the detrainment c
 value = 1
 type = "float"
 description = "Coefficient for the mass flux vertical divergence term in the detrainment closure (unitless)."
-
-[detr_ramp_z_start]
-value = 20000.0
-type = "float"
-description = "Start height of the sigmoid ramp for the detrainment top limiter (m)."
-
-[detr_ramp_steepness_factor]
-value = 10.0
-type = "float"
-description = "Factor setting the steepness of the sigmoid ramp for the detrainment top limiter (unitless), where the steepness is the factor divided by $(z_\\text{end} - z_\\text{start})$."
 
 [max_area_limiter_scale]
 value = 0.001
@@ -781,22 +610,12 @@ value = 0.5
 type = "float"
 description = "Fraction $\\alpha$ of the surface scalar flux that the EDMF updraft may transport at the surface; caps the updraft mass-flux source so the environment retains at least $(1-\\alpha)$ of every surface scalar flux (unitless)."
 
-[EDMF_interface_entr_efficiency]
-value = 0.4
-type = "float"
-description = "Entrainment efficiency $A$ (unitless) in the EDMF interfacial entrainment diffusivity $K_e = \\gamma w_e \\Delta z$, $w_e = A \\sqrt{TKE} / \\max(\\mathrm{Ri}_b, 1)$, which restores finite entrainment across an unresolved inversion represented by the interface-aware stability closure."
-
 # Mixing Length
 
 [mixing_length_eddy_viscosity_coefficient]
 value = 0.14
 type = "float"
 description = "TKE diffusivity coefficient ($c_m$) for the EDMF mixing length closure (unitless). Source: Lopez-Gomez et al. (2020), Table 1."
-
-[mixing_length_diss_coeff]
-value = 0.22
-type = "float"
-description = "TKE dissipation coefficient ($c_d$) for the EDMF mixing length closure (unitless). Source: Lopez-Gomez et al. (2020), Table 1."
 
 [mixing_length_static_stab_coeff]
 value = 0.4
@@ -843,16 +662,6 @@ value = 1.5
 type = "float"
 description = "Upper ratio limit for the smooth minimum function in the mixing length closure (unitless). Source: Lopez-Gomez et al. (2020), Eq. (40)."
 
-[mixing_length_l_max]
-value = 1e6
-type = "float"
-description = "Upper limit for the length scale in the mixing length closure (m). Source: Lopez-Gomez et al. (2020)."
-
-[mixing_length_l_min]
-value = 10
-type = "float"
-description = "Lower limit for the mixing length (m)."
-
 [mixing_length_tke_coeff]
 value = 1.05
 type = "float"
@@ -868,37 +677,7 @@ value = 600.0
 type = "float"
 description = "Upper cap on the eddy turnover timescale `τ_ε = c_tke · √(c_d / a_pd)` (s) in the empirical `l_TKE`, representing the residual eddy turnover time from background processes. The cap is inert wherever local shear/buoyancy production is strong."
 
-[mixing_length_alpha]
-value = 1.05
-type = "float"
-description = "Non-equilibrium correction factor α_kε on the balance-derived l_TKE in the mixing-length closure, accounting for the ε/ω-lag (dε/dt = 0 rather than dTKE/dt = 0) — unitless. Order 1; larger values increase the mixing length under local shear/buoyancy balance. Deprecated, will be removed in v2.0."
-
-[mixing_length_l_0]
-value = 100.0
-type = "float"
-description = "Base BL mixing length (m) in the empirical `l_TKE` ceiling `l_empirical_CC = l_0 · (1 + x) · exp(−x)`, with `x = tke / tke_max`. The ceiling equals `l_0` at tke = 0 and decays exponentially for tke ≫ tke_max. Deprecated, will be removed in v2.0."
-
-[mixing_length_tke_max]
-value = 5.0
-type = "float"
-description = "Characteristic TKE magnitude (m²/s²) in the empirical `l_TKE` ceiling `l_0 · (1 + x) · exp(−x)`; larger values relax the cap. Deprecated, will be removed in v2.0."
-
-[mixing_length_min]
-value = 1.0
-type = "float"
-description = "Minimum mixing length (m) applied to the master `l_final` in the SGS closure to prevent division-by-zero in the dissipation rate ε = c_d · tke^{3/2} / l_mix. Deprecated, will be removed in v2.0."
-
-[mixing_length_param_vec]
-value = [0.0, 0.0, 0.0, 0.0, 0.0]
-type = "float"
-description = "Data-driven mixing length parameter vector (unitless)."
-
 # Entrainment and Detrainment Scaling Constants
-
-[entrainment_factor]
-value = 0.13
-type = "float"
-description = "Scaling constant for entrainment rate (unitless). Source: Cohen et al. (2022), Table 2."
 
 [detrainment_factor]
 value = 0.51
@@ -910,35 +689,10 @@ value = 0.075
 type = "float"
 description = "Scaling constant for turbulent entrainment rate (unitless). Source: Cohen et al. (2022), Table 2."
 
-[entrainment_smin_tke_coeff]
-value = 0.3
-type = "float"
-description = "Scaling constant of the TKE term in the entrainment/detrainment inverse timescale smooth minimum (unitless). Source: Cohen et al. (2022), Table 2."
-
 [updraft_mixing_frac]
 value = 0.25
 type = "float"
 description = "Fraction of updraft air used for buoyancy mixing in the entrainment/detrainment formulation (unitless). Source: Cohen et al. (2022), Table 2."
-
-[entrainment_area_limiter_scale]
-value = 4.0
-type = "float"
-description = "Scaling factor (amplitude) of the exponential detrainment area limiter (unitless)."
-
-[entrainment_area_limiter_power]
-value = 10.0
-type = "float"
-description = "Exponential decay constant in the detrainment area limiter (unitless)."
-
-[entrainment_scale]
-value = 0.0004
-type = "float"
-description = "Dimensional constant scaling the logistic function argument in the entrainment/detrainment dry term (s⁻¹). Source: Cohen et al. (2022), Table 2."
-
-[entrainment_sorting_power]
-value = 2.0
-type = "float"
-description = "Sorting power for the moisture term in the entrainment/detrainment formulation (unitless). Source: Cohen et al. (2022), Table 2."
 
 # Updraft Limiters
 
@@ -969,52 +723,17 @@ value = 10.0
 type = "float"
 description = "Updraft pressure drag coefficient in the perturbation pressure closure (unitless). Source: He et al. (2022), Eq. (34)."
 
-[pressure_normalmode_param_vec]
-value = [0.0, 0.0, 0.0, 0.0, 0.0]
-type = "float"
-description = "Data-driven perturbation pressure parameter vector (unitless)."
-
 # Subgrid-Scale Thermodynamics
-
-[EDMF_thermodynamics_moisture_model]
-value = "equilibrium"
-type = "string"
-description = "Moisture model for EDMF thermodynamics. Options: 'equilibrium' (default), 'nonequilibrium'."
-
-[EDMF_thermodynamics_covariance_model]
-value = "diagnostic"
-type = "string"
-description = "Covariance model for EDMF thermodynamics. Options: 'diagnostic' (default), 'prognostic'."
 
 [diagnostic_covariance_coeff]
 value = 2.1
 type = "float"
 description = "Prefactor in the turbulent production term of the EDMF covariance equation (unitless)."
 
-[EDMF_thermodynamics_diagnostic_covar_limiter]
-value = 1e-3
-type = "float"
-description = "Regularization epsilon for the denominator in diagnostic covariance calculations (unitless)."
-
 [Tq_correlation_coefficient]
 value = 0.6
 type = "float"
 description = "Default correlation coefficient between T' and q_tot' perturbations, used in SGS quadratures (unitless). Valid range: [-1, 1]."
-
-[EDMF_thermodynamics_sgs]
-value = "mean"
-type = "string"
-description = "Environmental sub-grid scale model for EDMF. Options: 'mean' (default), 'quadrature'."
-
-[EDMF_thermodynamics_quadrature_order]
-value = 3
-type = "integer"
-description = "Number of 1D quadrature points for SGS sampling in EDMF (unitless)."
-
-[EDMF_thermodynamics_quadrature_type]
-value = "log-normal"
-type = "string"
-description = "Assumed PDF shape for environmental variables ($q_{tot}, \\theta_{liq_ice}$) with SGS quadrature. Options: 'log-normal' (default), 'gaussian'."
 
 [sgs_variance_geometric_coeff]
 value = 0.08333333333333333
@@ -1218,11 +937,6 @@ value = 1.0
 type = "float"
 description = "Multiplicative scale factor applied to cloud_liquid_water_specific_humidity_autoconversion_threshold to get the stratiform-regime (weak vertical velocities) threshold in the vertical-velocity-dependent Kessler rain formation (unitless). Default 1.0 (stratiform threshold equals the convective one, giving the classic velocity-independent Kessler scheme)."
 
-[cloud_liquid_water_specific_humidity_autoconversion_threshold_stratiform]
-value = 5e-4
-type = "float"
-description = "Rain formation threshold in terms of specific humidity for weak vertical velocities (stratiform regime) in the vertical velocity dependent Kessler rain formation (unitless). Equal to cloud_liquid_water_specific_humidity_autoconversion_threshold by default, which gives the classic velocity-independent Kessler scheme. Deprecated, will be removed in v2.0."
-
 [rain_autoconversion_timescale]
 value = 1000.0
 type = "float"
@@ -1232,11 +946,6 @@ description = "Rain formation timescale for the 1-moment microphysics scheme (s)
 value = 1.0
 type = "float"
 description = "Multiplicative scale factor applied to rain_autoconversion_timescale to get the stratiform-regime (weak vertical velocities) timescale in the vertical-velocity-dependent Kessler rain formation (unitless). Default 1.0 (stratiform timescale equals the convective one, giving the classic velocity-independent Kessler scheme)."
-
-[rain_autoconversion_timescale_stratiform]
-value = 1000.0
-type = "float"
-description = "Rain formation timescale for weak vertical velocities (stratiform regime) in the vertical velocity dependent Kessler rain formation (s). Equal to rain_autoconversion_timescale by default, which gives the classic velocity-independent Kessler scheme. Deprecated, will be removed in v2.0."
 
 [rain_autoconversion_velocity_scale]
 value = 1.5
@@ -2816,16 +2525,6 @@ value = 1.34
 type = "float"
 description = "Relative refractive index of water and air for broadband ocean surface albedo calculation (unitless). Source: Jin et al. (2011)."
 
-[optics_lookup_temperature_min]
-value = 160
-type = "float"
-description = "Minimum temperature in the lookup table for optical properties in RRTMGP (K)."
-
-[optics_lookup_temperature_max]
-value = 355
-type = "float"
-description = "Maximum temperature in the lookup table for optical properties in RRTMGP (K)."
-
 [CO2_fixed_value]
 value = 397.547e-6
 type = "float"
@@ -3112,11 +2811,6 @@ value = 0.1
 type = "float"
 description = "Fractional half-range for Beres $h$ averaging, $h \\pm$ `nogw_beres_delta_h_frac` $\\cdot h$ (unitless); only used when `nogw_beres_n_h_avg` > 1. Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
 
-[nogw_beres_z_bot_Q_threshold]
-value = 1.157e-5
-type = "float"
-description = "Minimum Q_conv to count as the bottom of the Beres convective heating envelope (K s⁻¹, ~1 K day⁻¹ = 1.157e-5). Source: Beres et al. (2004), DOI: 10.1175/1520-0469(2004)061<0324:AMOICG>2.0.CO;2."
-
 [nogw_beres_z_bot_floor]
 value = 2000.0
 type = "float"
@@ -3209,11 +2903,6 @@ description = "Viscous sponge coefficient ($\\kappa_2$) (m² s⁻¹)."
 ## Land
 
 # Autotrophic Respiration
-
-[N_factor_Vcmax25]
-value = 8e-4
-type = "float"
-description = "Factor converting Vcmax at 25°C to nitrogen content (mol CO₂ m⁻² s⁻¹ kgC (kgC)⁻¹)."
 
 [live_stem_wood_coeff]
 value = 0.01
