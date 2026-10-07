@@ -1022,9 +1022,14 @@ type = "float"
 description = "Coefficient $c_g$ of the horizontal resolved-gradient (geometric) SGS variance term in ClimaAtmos (unitless). $1/12$ is the variance of a linear field over a uniform cell."
 
 [sgs_variance_horizontal_scale_factor]
-value = 3.0
+value = 1.0
 type = "float"
 description = "Multiplier $c_{\\Delta x}$ on the horizontal grid scale $\\Delta x_h$ in the geometric SGS variance term (unitless)."
+
+[sgs_variance_vertical_scale_factor]
+value = 1.0
+type = "float"
+description = "Multiplier $c_{\\Delta z}$ on the vertical grid scale $\\Delta z$ in the geometric SGS variance term (unitless)."
 
 [sgs_variance_max_rel_std]
 value = 0.5

@@ -3,6 +3,15 @@ ClimaParams.jl Release Notes
 main
 -------
 
+v1.3.0
+-------
+- Add `sgs_variance_vertical_scale_factor` (default `1.0`): multiplier
+  `c_Δz` on the vertical grid scale `Δz` in the resolved vertical-gradient
+  SGS variance term in ClimaAtmos, `variance += c_g (c_Δz Δz)² (∂_z ψ)²`.
+- Change the default of `sgs_variance_horizontal_scale_factor` from `3.0`
+  to `1.0`, so the horizontal effective coefficient is `c_g · c_Δx² = 1/12`
+  — the uniform-box exact value, matching the new vertical factor.
+
 v1.2.1
 -------
 - Restore the parameters removed or renamed in v1.1.17 and v1.2.0, which broke
