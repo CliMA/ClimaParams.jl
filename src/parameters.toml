@@ -363,6 +363,43 @@ value = 0.4
 type = "float"
 description = "The von Kármán constant ($\\kappa$) describing the logarithmic velocity profile near a boundary (unitless)."
 
+# Raupach (1994) Canopy Roughness
+
+[raupach_element_drag_coefficient]
+value = 0.3
+type = "float"
+description = "Drag coefficient $C_R$ of an isolated roughness element in the Raupach canopy roughness model (unitless). Source: Raupach (1994), DOI: 10.1007/BF00709229."
+
+[raupach_substrate_drag_coefficient]
+value = 0.003
+type = "float"
+description = "Drag coefficient $C_S$ of the substrate surface in the absence of roughness elements, referenced to the wind speed at the canopy height $h$, in the Raupach canopy roughness model (unitless). Source: Raupach (1994), DOI: 10.1007/BF00709229."
+
+[raupach_displacement_coefficient]
+value = 7.5
+type = "float"
+description = "Coefficient $c_{d1}$ of the zero-plane displacement height $d/h = 1 - (1 - e^{-\\sqrt{c_{d1} \\Lambda}}) / \\sqrt{c_{d1} \\Lambda}$ in the Raupach canopy roughness model, with $\\Lambda$ the plant area index (unitless). Source: Raupach (1994), DOI: 10.1007/BF00709229."
+
+[raupach_frontal_area_ratio]
+value = 0.5
+type = "float"
+description = "Ratio of the frontal area index $\\lambda$ to the plant area index $\\Lambda$ in the Raupach canopy roughness model, 0.5 for isotropically oriented canopy elements (unitless). Source: Raupach (1994), DOI: 10.1007/BF00709229."
+
+[raupach_minimum_frontal_area_index]
+value = 0.0
+type = "float"
+description = "Floor on the frontal area index $\\lambda$ in the Raupach canopy roughness model (unitless). Zero applies no floor; a positive value stands in for stems and branches when the input is a leaf area index alone."
+
+[raupach_max_ustar_to_canopy_wind_ratio]
+value = 0.3
+type = "float"
+description = "Maximum ratio $(u_* / U_h)_{max}$ of the friction velocity to the wind speed at the canopy top, the sheltering limit in the Raupach canopy roughness model (unitless). Source: Raupach (1994), DOI: 10.1007/BF00709229."
+
+[raupach_roughness_sublayer_depth_ratio]
+value = 2.0
+type = "float"
+description = "Ratio $c_w = (z_w - d) / (h - d)$ of the heights of the roughness-sublayer top $z_w$ and the canopy top $h$ above the zero-plane displacement height $d$ in the Raupach canopy roughness model (unitless). It sets the roughness-sublayer influence function at the canopy top, $\\Psi_h = \\ln c_w - 1 + c_w^{-1}$, which is 0.193 for $c_w = 2$. Source: Raupach (1994), DOI: 10.1007/BF00709229."
+
 # Businger
 
 [prandtl_number_0_businger]

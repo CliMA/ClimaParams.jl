@@ -3,6 +3,19 @@ ClimaParams.jl Release Notes
 main
 -------
 
+v1.3.1
+-------
+- Add the parameters of the Raupach (1994) canopy roughness model in
+  SurfaceFluxes.jl (`RaupachRoughnessParams`), with the defaults of the paper:
+  `raupach_element_drag_coefficient` (`C_R`, 0.3),
+  `raupach_substrate_drag_coefficient` (`C_S`, 0.003),
+  `raupach_displacement_coefficient` (`c_d1`, 7.5),
+  `raupach_frontal_area_ratio` (frontal per plant area index, 0.5),
+  `raupach_minimum_frontal_area_index` (`λ_min`, 0.0),
+  `raupach_max_ustar_to_canopy_wind_ratio` (`(u★/U_h)_max`, 0.3), and
+  `raupach_roughness_sublayer_depth_ratio` (`c_w`, 2.0), which sets the
+  roughness-sublayer influence function `Ψ_h = ln c_w - 1 + 1/c_w`.
+
 v1.3.0
 -------
 - Add `sgs_variance_vertical_scale_factor` (default `1.0`): multiplier
