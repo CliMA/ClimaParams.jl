@@ -2,6 +2,29 @@ ClimaParams.jl Release Notes
 ========================
 main
 -------
+- Breaking: remove unused parameters (#304):
+  - `optics_lookup_temperature_min`, `optics_lookup_temperature_max`
+  - `mixing_length_diss_coeff`, `entr_detr_limit_inv_tau`,
+    `EDMF_interface_entr_efficiency`
+  - `mixing_length_alpha`, `mixing_length_l_0`, `mixing_length_tke_max`,
+    `mixing_length_min` (deprecated in v1.2.1)
+  - `rain_autoconversion_timescale_stratiform`,
+    `cloud_liquid_water_specific_humidity_autoconversion_threshold_stratiform`
+    (deprecated in v1.2.1)
+  - Holtslag, Cheng and Beljaars universal function parameters
+    (`coefficient_*`, `most_stability_*` and `prandtl_number_0_*`)
+  - `EDMF_thermodynamics_covariance_model`,
+    `EDMF_thermodynamics_diagnostic_covar_limiter`,
+    `EDMF_thermodynamics_moisture_model`,
+    `EDMF_thermodynamics_quadrature_order`,
+    `EDMF_thermodynamics_quadrature_type`, `EDMF_thermodynamics_sgs`
+  - `entrainment_area_limiter_power`, `entrainment_area_limiter_scale`,
+    `entrainment_factor`, `entrainment_scale`, `entrainment_smin_tke_coeff`,
+    `entrainment_sorting_power`
+  - `detr_ramp_steepness_factor`, `detr_ramp_z_start`, `detr_buoy_inv_tau_max`
+  - `mixing_length_l_max`, `mixing_length_l_min`, `mixing_length_param_vec`,
+    `pressure_normalmode_param_vec`
+  - `N_factor_Vcmax25`, `nogw_beres_z_bot_Q_threshold`
 
 v1.3.1
 -------
