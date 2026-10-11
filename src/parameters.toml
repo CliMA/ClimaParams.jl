@@ -2480,10 +2480,25 @@ value = 0.1
 type = "float"
 description = "Maximum vertical Courant number allowed for the explicit gravitational settling and turbulent dry-deposition sinks of sea salt aerosol (unitless)."
 
-[ssa_collection_efficiency]
-value = [5.2e-4, 5.2e-4, 0.42, 0.42, 0.94]
+[slinn_brownian_coefficients]
+value = [0.4, 0.16]
 type = "float"
-description = "Per-bin raindrop collection efficiency ($E$) of sea salt aerosol for below-cloud washout at the swept-volume collection rate of the model rain size distribution, on the `ssa_size_bin_divisions` bins (unitless). Slinn-type values for the accumulation (Greenfield gap), coarse-a, and coarse-b modes of Feng (2007). Source: Feng (2007), DOI: 10.1016/j.atmosenv.2007.04.046."
+description = "Coefficients ($C_1$, $C_2$) of the Brownian-diffusion term $E_\\mathrm{Br} = 4/(\\mathrm{Re}\\,\\mathrm{Sc}) (1 + C_1 \\mathrm{Re}^{1/2} \\mathrm{Sc}^{1/3} + C_2 \\mathrm{Re}^{1/2} \\mathrm{Sc}^{1/2})$ of the Slinn (1984) raindrop-aerosol collection efficiency, with the radius-based drop Reynolds number (unitless). Source: Slinn (1984) as reproduced in Feng (2007), DOI: 10.1016/j.atmosenv.2007.04.046."
+
+[slinn_critical_stokes_coefficients]
+value = [1.2, 0.08333]
+type = "float"
+description = "Coefficients ($a$, $b$) of the critical Stokes number $S^* = (a + b \\ln(1 + \\mathrm{Re})) / (1 + \\ln(1 + \\mathrm{Re}))$ below which inertial impaction of aerosol on a raindrop vanishes in the Slinn (1984) collection efficiency; $b = 1/12$ (unitless). Source: Slinn (1984) as reproduced in Feng (2007), DOI: 10.1016/j.atmosenv.2007.04.046."
+
+[slinn_impaction_exponent]
+value = 1.5
+type = "float"
+description = "Exponent of the inertial-impaction term $E_\\mathrm{imp} = ((\\mathrm{St} - S^*) / (\\mathrm{St} - S^* + 2/3))^{3/2} (\\rho_w / \\rho_p)^{1/2}$ of the Slinn (1984) raindrop-aerosol collection efficiency (unitless). Source: Slinn (1984) as reproduced in Feng (2007), DOI: 10.1016/j.atmosenv.2007.04.046."
+
+[liquid_water_dynamic_viscosity]
+value = 1.0e-3
+type = "float"
+description = "Dynamic viscosity of liquid water ($\\mu_w$) at about 20 °C (kg m⁻¹ s⁻¹; 1.002e-3 Pa s at 20 °C), the drop-side viscosity in the water-to-air viscosity ratio $\\omega = \\mu_w / \\mu_a$ of the interception term of the Slinn (1984) raindrop-aerosol collection efficiency as reproduced in Feng (2007). Source: CRC Handbook of Chemistry and Physics, viscosity of water table."
 
 [ssa_washout_prefactor]
 value = [2.75e-7, 2.75e-7, 2.22e-4, 2.22e-4, 5.03e-4]
