@@ -1136,6 +1136,36 @@ value = 1000
 type = "float"
 description = "Precipitation formation timescale for the 0-moment microphysics scheme (s)."
 
+[precipitation_timescale_updraft_ratio]
+value = 1.0
+type = "float"
+description = "Ratio of the 0-moment precipitation timescale for EDMF updraft condensate to precipitation_timescale (unitless)."
+
+[precipitation_evaporation_coefficient]
+value = 0.0
+type = "float"
+description = "Coefficient k_E of the below-cloud evaporation of the 0-moment precipitation flux, following Kessler (1969) as used in the IFS (Tiedtke 1993); 0 disables evaporation (IFS value 5.44e-4) (s^-1)."
+
+[precipitation_evaporation_rh_crit]
+value = 0.9
+type = "float"
+description = "Critical relative humidity RH_c above which the 0-moment precipitation flux does not evaporate (unitless)."
+
+[precipitation_evaporation_area_fraction]
+value = 0.3
+type = "float"
+description = "Precipitating area fraction a_p used in the 0-moment precipitation evaporation (unitless)."
+
+[precipitation_evaporation_flux_scale]
+value = 5.09e-3
+type = "float"
+description = "Flux scale alpha_2 in the 0-moment precipitation evaporation, (P / (a_p alpha_2))^alpha_3 (kg m^-2 s^-1)."
+
+[precipitation_evaporation_exponent]
+value = 0.5777
+type = "float"
+description = "Exponent alpha_3 in the 0-moment precipitation evaporation, (P / (a_p alpha_2))^alpha_3 (unitless)."
+
 [specific_humidity_precipitation_threshold]
 value = 5e-6
 type = "float"

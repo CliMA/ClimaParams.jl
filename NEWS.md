@@ -3,6 +3,21 @@ ClimaParams.jl Release Notes
 main
 -------
 
+v1.3.2
+-------
+- Add `precipitation_timescale_updraft_ratio` (default `1.0`, unitless): the
+  0-moment precipitation formation timescale for EDMF updraft condensate in
+  ClimaAtmos is this ratio times `precipitation_timescale`. A ratio (rather than
+  a second absolute timescale) keeps the two timescales tied by default and is
+  easier to calibrate.
+- Add parameters for the Kessler (1969) / IFS (Tiedtke 1993) below-cloud evaporation
+  of the 0-moment precipitation flux (CloudMicrophysics `Evaporation0M`):
+  `precipitation_evaporation_coefficient` (`k_E`, `0.0` = off; IFS uses 5.44e-4 s^-1),
+  `precipitation_evaporation_rh_crit` (`RH_c`, 0.9),
+  `precipitation_evaporation_area_fraction` (`a_p`, 0.3),
+  `precipitation_evaporation_flux_scale` (`α₂`, 5.09e-3 kg m^-2 s^-1), and
+  `precipitation_evaporation_exponent` (`α₃`, 0.5777).
+
 v1.3.1
 -------
 - Add the parameters of the Raupach (1994) canopy roughness model in
