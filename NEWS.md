@@ -3,6 +3,17 @@ ClimaParams.jl Release Notes
 main
 -------
 
+v1.3.3
+-------
+- Normalize the dimensional inputs of the Khairoutdinov and Kogan (2000)
+  warm-rain rates: add `KK2000_reference_cloud_droplet_number_concentration`
+  (`N_ref`, 1e6 m⁻³, i.e. 1 cm⁻³, the unit of the original fit) and
+  `KK2000_reference_air_density` (`ρ_ref`, 1 kg m⁻³), so that the rates read
+  `A q_lcl^a (N_d/N_ref)^b (ρ/ρ_ref)^c` and `A (q_lcl q_rai)^a (ρ/ρ_ref)^b`
+  with `A` in s⁻¹. The default of `KK2000_autoconversion_coeff_A` changes
+  from `7.42e13` (the coefficient for `N_d` in m⁻³) to the published `1350`;
+  the two agree to 0.02 %, the rounding of that unit conversion.
+
 v1.3.2
 -------
 - Add `precipitation_timescale_updraft_ratio` (default `1.0`, unitless): the
