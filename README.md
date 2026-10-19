@@ -23,8 +23,8 @@ ClimaParams.jl is the single source of truth for the physical constants, planeta
 [docs-dev-img]: https://img.shields.io/badge/docs-dev-blue.svg
 [docs-dev-url]: https://CliMA.github.io/ClimaParams.jl/dev/
 
-[version-img]: https://juliahub.com/docs/General/ClimaParams/stable/version.svg
-[version-url]: https://juliahub.com/ui/Packages/General/ClimaParams
+[version-img]: https://img.shields.io/github/v/release/CliMA/ClimaParams.jl
+[version-url]: https://github.com/CliMA/ClimaParams.jl/releases
 
 [license-img]: https://img.shields.io/badge/license-Apache%202.0-blue.svg
 [license-url]: https://github.com/CliMA/ClimaParams.jl/blob/main/LICENSE
