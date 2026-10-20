@@ -2,6 +2,10 @@ ClimaParams.jl Release Notes
 ========================
 main
 -------
+- Remove `Frostenberg2023_a_coefficient`. In the Frostenberg et al. (2023)
+  mean log(INPC), `9 ln(-b T / 10) - ln(a) = 9 ln(-T / 10) + 9 ln(b) - ln(a)`,
+  so `-ln(a)` is a constant shift degenerate with `9 ln(b)`. CloudMicrophysics
+  no longer reads `a` ([CloudMicrophysics.jl#824](https://github.com/CliMA/CloudMicrophysics.jl/pull/824)).
 
 v1.3.3
 -------
