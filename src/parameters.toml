@@ -2214,6 +2214,11 @@ value = 1
 type = "float"
 description = "Coefficient $b$ for the ice-nucleating particle concentration (°C⁻¹). Source: Frostenberg et al. (2023), Eq. (1), DOI: 10.5194/acp-23-10883-2023."
 
+[Frostenberg2023_deposition_relaxation_timescale]
+value = 300
+type = "float"
+description = "Timescale of the relaxation of deposition nucleation toward the Frostenberg et al. (2023) target concentration, and of the immersion freezing budget of cloud droplets (s). Experimental (may change at any time)."
+
 # Water-Activity-Based Homogeneous Freezing
 
 [Koop2000_min_delta_aw]
@@ -2461,6 +2466,11 @@ description = "Rime mass fraction at and above which ice self-collection in the 
 value = 100
 type = "float"
 description = "Timescale for the ice number-concentration adjustment toward the bounds on mean ice particle mass in the P3 scheme (s). Independent of Horn2012_number_concentration_adjustment_timescale, the equivalent warm-phase key. Experimental (may change at any time)."
+
+[P3_ice_largest_mean_particle_mass]
+value = 1e-4
+type = "float"
+description = "Largest mean ice particle mass of the P3 size distribution (kg), the mass of a solid-ice sphere of about 5.9 mm. The P3 state bounds the ice number from below so that the mean particle mass does not exceed it. Experimental (may change at any time)."
 
 # Fixed Terminal Velocities
 
