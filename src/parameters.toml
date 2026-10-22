@@ -2204,11 +2204,6 @@ value = 1.37
 type = "float"
 description = "Standard deviation of the log of the ice-nucleating particle concentration (unitless). Source: Frostenberg et al. (2023), Eq. (1), DOI: 10.5194/acp-23-10883-2023."
 
-[Frostenberg2023_a_coefficient]
-value = 1
-type = "float"
-description = "Coefficient $a$ for the ice-nucleating particle concentration (m³). Source: Frostenberg et al. (2023), Eq. (1), DOI: 10.5194/acp-23-10883-2023."
-
 [Frostenberg2023_b_coefficient]
 value = 1
 type = "float"
