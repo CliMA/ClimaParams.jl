@@ -1,66 +1,42 @@
 # Used in test_tags.jl
-[prandtl_number_0_beljaars]
-value = 1.0
+[prandtl_number_0_businger]
+value = 0.74
 type = "float"
-description = "Pr_0 for Beljaars universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
-tag = ["Beljaars"]
+description = "The turbulent Prandtl number in neutral conditions ($Pr_0$) for the Businger universal functions (unitless). Source: Businger et al. (1971), DOI: 10.1175/1520-0469(1971)028<0181:FPRITA>2.0.CO;2."
+tag = ["Businger"]
 
-[coefficient_a_m_beljaars]
-value = 1.0
+[coefficient_a_m_businger]
+value = 4.7
 type = "float"
-description = "a_m for Beljaars momentum universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
-tag = ["Beljaars"]
+description = "Coefficient $a_m$ for the Businger momentum universal function (unitless). Source: Businger et al. (1971), DOI: 10.1175/1520-0469(1971)028<0181:FPRITA>2.0.CO;2."
+tag = ["Businger"]
 
-[coefficient_a_h_beljaars]
-value = 1.0
+[coefficient_b_m_businger]
+value = 15.0
 type = "float"
-description = "a_h for Beljaars heat universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
-tag = ["Beljaars"]
+description = "Coefficient $b_m$ for the Businger momentum universal function (unitless). Source: Businger et al. (1971), DOI: 10.1175/1520-0469(1971)028<0181:FPRITA>2.0.CO;2."
+tag = ["Businger"]
 
-[coefficient_b_m_beljaars]
-value = 0.667
+[coefficient_a_h_businger]
+value = 4.7
 type = "float"
-description = "b_m for Beljaars momentum universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
-tag = ["Beljaars"]
+description = "Coefficient $a_h$ for the Businger heat universal function (unitless). Source: Businger et al. (1971), DOI: 10.1175/1520-0469(1971)028<0181:FPRITA>2.0.CO;2."
+tag = ["Businger"]
 
-[coefficient_b_h_beljaars]
-value = 0.667
+[coefficient_b_h_businger]
+value = 9.0
 type = "float"
-description = "b_h for Beljaars heat universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
-tag = ["Beljaars"]
+description = "Coefficient $b_h$ for the Businger heat universal function (unitless). Source: Businger et al. (1971), DOI: 10.1175/1520-0469(1971)028<0181:FPRITA>2.0.CO;2."
+tag = ["Businger"]
 
-[coefficient_c_m_beljaars]
-value = 5.0
+[most_stability_parameter_businger]
+value = 2.5
 type = "float"
-description = "c_m for Beljaars momentum universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
-tag = ["Beljaars"]
+description = "The MOST stability parameter ($\\zeta_a$) for the Businger universal functions (unitless). Source: Businger et al. (1971), DOI: 10.1175/1520-0469(1971)028<0181:FPRITA>2.0.CO;2."
+tag = ["Businger"]
 
-[coefficient_c_h_beljaars]
-value = 5.0
+[most_stability_exponent_businger]
+value = 4.42
 type = "float"
-description = "c_h for Beljaars heat universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
-tag = ["Beljaars"]
-
-[coefficient_d_m_beljaars]
-value = 0.35
-type = "float"
-description = "d_m for Beljaars momentum universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
-tag = ["Beljaars"]
-
-[coefficient_d_h_beljaars]
-value = 0.35
-type = "float"
-description = "d_h for Beljaars heat universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
-tag = ["Beljaars"]
-
-[most_stability_parameter_beljaars]
-value = 3.4
-type = "float"
-description = "ζ_a for Beljaars universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
-tag = ["Beljaars"]
-
-[most_stability_exponent_beljaars]
-value = 2.04
-type = "float"
-description = "γ for Beljaars universal functions. From Beljaars et al, 1991. DOI: 10.1175/1520-0450(1991)030<0327:FPOLSF>2.0.CO;2"
-tag = ["Beljaars"]
+description = "The MOST stability exponent ($\\gamma$) for the Businger universal functions (unitless). Source: Businger et al. (1971), DOI: 10.1175/1520-0469(1971)028<0181:FPRITA>2.0.CO;2."
+tag = ["Businger"]
