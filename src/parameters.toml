@@ -2219,6 +2219,11 @@ value = 300
 type = "float"
 description = "Timescale of the relaxation of deposition nucleation toward the Frostenberg et al. (2023) target concentration, and of the immersion freezing budget of cloud droplets (s). Experimental (may change at any time)."
 
+[dendritic_freezing_velocity]
+value = 0.5
+type = "float"
+description = "Speed at which the dendritic freezing front crosses a supercooled drop after an ice embryo nucleates in it (m s⁻¹). Measured dendrite tip velocities level off at 0.1 to 1 m s⁻¹ at large supercooling. Experimental (may change at any time)."
+
 # Water-Activity-Based Homogeneous Freezing
 
 [Koop2000_min_delta_aw]
