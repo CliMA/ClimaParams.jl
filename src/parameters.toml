@@ -1981,6 +1981,16 @@ value = 0.000625
 type = "float"
 description = "Cutoff diameter between small and large ice particles in the Chen et al. (2022) parameterization (m). Source: Chen et al. (2022), DOI: 10.1016/j.atmosres.2022.106171."
 
+[Chen2022_rain_terminal_velocity_max]
+value = 10.0
+type = "float"
+description = "Asymptotic hydrodynamic breakup bound on 1-moment rain mass-weighted terminal velocity (m s⁻¹). Source: Gunn and Kinzer (1949), DOI: 10.1175/1520-0469(1949)006<0243:TTVOFF>2.0.CO;2."
+
+[Chen2022_large_ice_terminal_velocity_max]
+value = 3.0
+type = "float"
+description = "Asymptotic breakup bound on 1-moment snow/large-ice mass-weighted terminal velocity (m s⁻¹)."
+
 # Ice Deposition on Dust (Möhler et al., 2006)
 
 [Mohler2006_maximum_allowed_Si]

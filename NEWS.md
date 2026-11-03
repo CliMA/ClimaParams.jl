@@ -3,6 +3,11 @@ ClimaParams.jl Release Notes
 main
 -------
 
+v1.3.6
+-------
+- Add max snow and rain sedimentation velocity for Chen 2022 precipitation
+  sedimentation scheme
+
 v1.3.3
 -------
 - Normalize the dimensional inputs of the Khairoutdinov and Kogan (2000)
