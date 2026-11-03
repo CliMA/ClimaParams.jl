@@ -7,6 +7,9 @@ v1.3.6
 -------
 - Add max snow and rain sedimentation velocity for Chen 2022 precipitation
   sedimentation scheme
+- Change the default of `ogw_smoothing_scale_fraction` from `0.15` to `1.0`.
+- Change the default of `precipitation_evaporation_coefficient` from `0.0` to
+  `1.36e-4` s⁻¹.
 
 v1.3.3
 -------

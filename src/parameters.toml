@@ -1142,9 +1142,9 @@ type = "float"
 description = "Ratio of the 0-moment precipitation timescale for EDMF updraft condensate to precipitation_timescale (unitless)."
 
 [precipitation_evaporation_coefficient]
-value = 0.0
+value = 1.36e-4
 type = "float"
-description = "Coefficient k_E of the below-cloud evaporation of the 0-moment precipitation flux, following Kessler (1969) as used in the IFS (Tiedtke 1993); 0 disables evaporation (IFS value 5.44e-4) (s^-1)."
+description = "Coefficient k_E of the below-cloud evaporation of the 0-moment precipitation flux, following Kessler (1969) as used in the IFS (Tiedtke 1993) (s^-1)."
 
 [precipitation_evaporation_rh_crit]
 value = 0.9
@@ -3068,7 +3068,7 @@ type = "float"
 description = "Critical Froude number $Fr_\\text{crit}$, computed from the critical height threshold (unitless). Source: Garner (2005), DOI: 10.1175/JAS3496.1."
 
 [ogw_smoothing_scale_fraction]
-value = 0.15
+value = 1.0
 type = "float"
 description = "Orographic gravity wave (raw_topo) preprocessing smoothing scale as a fraction of grid spacing: L = α·Δx. Sets the neighborhood over which subgrid mountain statistics (hmax and velocity potential χ / orographic tensor) are computed from raw topography, following Garner (2005) / GFDL topo_drag. α≈1 places L near the grid scale."
 
