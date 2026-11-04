@@ -3082,6 +3082,11 @@ value = 1.0
 type = "float"
 description = "Orographic gravity wave (raw_topo) preprocessing smoothing scale as a fraction of grid spacing: L = α·Δx. Sets the neighborhood over which subgrid mountain statistics (hmax and velocity potential χ / orographic tensor) are computed from raw topography, following Garner (2005) / GFDL topo_drag. α≈1 places L near the grid scale."
 
+[ogw_tofd_coefficient]
+value = 1.0
+type = "float"
+description = "Amplitude $a_\\text{tofd}$ (unitless) of the turbulent orographic form drag (TOFD) of Beljaars et al. (2004) in the orographic gravity wave scheme, relative to the IFS: the drag coefficient is $C_d(z) = a_\\text{tofd}\\, \\alpha \\beta C_\\text{md} C_\\text{corr}\\, 2.109\\, e^{-(z/1500)^{1.5}} a_2 z^{-1.2}$ with the IFS constants ($\\alpha = 35$), where $a_2 \\propto \\sigma_\\text{flt}^2$ and $\\sigma_\\text{flt}$ is the standard deviation of the band-pass-filtered (about 3 to 22 km) orography. $a_\\text{tofd} = 1$ reproduces the IFS; $0$ disables TOFD. Source: Beljaars, Brown and Wood (2004), DOI: 10.1256/qj.03.73; IFS Documentation CY47R1, Part IV, Section 3.4."
+
 # Non-Orographic (NOGW)
 
 [nogw_source_pressure]

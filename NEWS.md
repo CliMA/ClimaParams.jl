@@ -3,6 +3,12 @@ ClimaParams.jl Release Notes
 main
 -------
 
+v1.3.8
+-------
+- Add `ogw_tofd_coefficient` (default `1.0`), the amplitude of the Beljaars et al. (2004)
+  turbulent orographic form drag in the ClimaAtmos orographic gravity wave scheme relative to
+  the IFS (`1` reproduces the IFS, `0` disables it).
+
 v1.3.7
 -------
 - Add `temperature_cloud_ice_deposition_max` and `temperature_cloud_ice_vapor_nucleation`, the
