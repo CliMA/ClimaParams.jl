@@ -1420,6 +1420,16 @@ value = 1.0e7
 type = "float"
 description = "Upper bound on the temperature-dependent cloud ice number concentration (m⁻³). Meyers et.al. 1992 doi.org/10.1175/1520-0450(1992)031⟨0708:Npinpi⟩2.0.Co;2."
 
+[temperature_cloud_ice_deposition_max]
+value = 273.15
+type = "float"
+description = "Temperature above which vapor does not deposit onto cloud ice with the temperature-dependent cloud ice number concentration (TemperatureDependentIceNumber) of the 1-moment scheme (K)."
+
+[temperature_cloud_ice_vapor_nucleation]
+value = 273.15
+type = "float"
+description = "Temperature below which vapor deposits onto cloud ice also where there is no cloud liquid, with the temperature-dependent cloud ice number concentration (TemperatureDependentIceNumber) of the 1-moment scheme (K)."
+
 [microphysics_max_latent_heating_rate]
 value = 0.03333333333333333
 type = "float"

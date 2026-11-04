@@ -3,6 +3,12 @@ ClimaParams.jl Release Notes
 main
 -------
 
+v1.3.7
+-------
+- Add `temperature_cloud_ice_deposition_max` and `temperature_cloud_ice_vapor_nucleation`, the
+  temperature limits of vapor deposition onto cloud ice for the TemperatureDependentIceNumber cloud ice
+  formation of the CloudMicrophysics 1-moment scheme.
+
 v1.3.6
 -------
 - Add max snow and rain sedimentation velocity for Chen 2022 precipitation
