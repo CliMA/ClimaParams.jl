@@ -3,6 +3,12 @@ ClimaParams.jl Release Notes
 main
 -------
 
+v1.3.10
+-------
+- Add `temperature_rain_collision_snow` (233 K) and `temperature_rain_collision_rain` (273.15 K), the
+  temperatures between which the liquid fraction of the products of rain collisions with cloud ice and
+  snow ramps from 0 to 1 in the LiquidFractionRamp option of the CloudMicrophysics 1-moment scheme.
+
 v1.3.8
 -------
 - Add `ogw_tofd_coefficient` (default `1.0`), the amplitude of the Beljaars et al. (2004)
