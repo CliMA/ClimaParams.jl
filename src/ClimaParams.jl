@@ -25,7 +25,7 @@ params.gravitational_acceleration
 """
 module ClimaParams
 
-using TOML
+using TOML, Preferences
 import Dates: DateTime
 
 export ParamDict
@@ -38,7 +38,8 @@ export float_type,
     merge_toml_files,
     get_tagged_parameter_values,
     get_tagged_parameter_names,
-    fuzzy_match
+    fuzzy_match,
+    @params
 
 const NAMESTYPE =
     Union{AbstractVector{S}, NTuple{N, S} where {N}} where {S <: AbstractString}
@@ -844,5 +845,137 @@ get_tagged_parameter_values(
     tags::Vector{S},
 ) where {S <: AbstractString} =
     merge(map(x -> get_tagged_parameter_values(pd, x), tags)...)
+
+const CLIMA_PARAMS_MODE = @load_preference("CLIMA_PARAMS_MODE", "type")
+@static if !(CLIMA_PARAMS_MODE in ("bits", "type"))
+    error("`CLIMA_PARAMS_MODE` preference must be either \"bits\" or \"type\"")
+end
+
+"""
+    @params struct ... end
+
+Modify a struct definition based on the `CLIMA_PARAMS_MODE` preference value
+(see [`Preferences.jl`](https://github.com/JuliaPackaging/Preferences.jl)):
+ - With `CLIMA_PARAMS_MODE` set to "bits", `@params` is equivalent to `@kwdef`.
+ - With `CLIMA_PARAMS_MODE` set to "type" (default), `@params` sets every struct
+   field to `nothing`, moving the actual field values into a new `Tuple` type
+   parameter. It also defines the same constructors as `@kwdef`, and it modifies
+   `getproperty` to extract values from the struct's type instead of its fields.
+
+From a user perspective, the resulting struct can be constructed, accessed, and
+used for method dispatch the same way with either value of `CLIMA_PARAMS_MODE`.
+The main difference between the two modes has to do with `Core` functions like
+`getfield`/`fieldtype`, which return actual field values/types in "bits" mode,
+but always return `nothing`/`Nothing` in "type" mode. So, although `fieldnames`
+and `propertynames` return the same names in both "bits" mode and "type" mode,
+only `getproperty` can be used to obtain the same field values in either mode,
+and only `typeof(getproperty(...))` can be used to get the same field types.
+
+The default value of `CLIMA_PARAMS_MODE` is "type", which turns the struct into
+a singleton whose field values are stored in instruction memory instead of
+registers. This lowers the register usage of GPU kernels, and it also lowers the
+latency of code that uses one set of field values, which get constant-folded
+during compilation. For applications that construct many sets of field values,
+such as calibration runs, setting `CLIMA_PARAMS_MODE` to "bits" keeps the struct
+as a non-singleton, so that its fields can be updated without any recompilation.
+
+To switch from "type" mode to "bits" mode, add this to the local `Project.toml`:
+```
+[preferences.ClimaParams]
+CLIMA_PARAMS_MODE = "bits"
+```
+If `ClimaParams.jl` is not an explicit dependency, the following is also needed:
+```
+[extras]
+ClimaParams = "5c42b081-d73a-476f-9059-fd94b934656c"
+```
+Alternatively, `Preferences.@set_preferences!` can be used to enable "bits" mode
+from a Julia script. Since `CLIMA_PARAMS_MODE` must be known during compilation,
+changing its value requires restarting Julia (it is not tracked by `Revise.jl`).
+"""
+macro params(expr)
+    kwdef_expr = macroexpand(__module__, :(@kwdef $expr))
+    CLIMA_PARAMS_MODE == "bits" && return esc(kwdef_expr)
+
+    expr_with_new_param(x, param) =
+        x isa Symbol ? :($x{$param}) :
+        Meta.isexpr(x, :curly) ? (push!(x.args, param); x) :
+        (x.args[1] = expr_with_new_param(x.args[1], param); x)
+    expr_without_supertype(x) = Meta.isexpr(x, :curly) ? x : x.args[1]
+
+    value_expr(x) = x isa Symbol ? x : x.args[1]
+    inferred_constraint_expr(x) = x isa Symbol ? :Any : x.args[2]
+    converted_value_expr(x) =
+        x isa Symbol ? x : :(convert($(x.args[2]), $(x.args[1])))
+
+    is_inferred_from_expr(param, x) =
+        Meta.isexpr(x, :curly) ? is_inferred(param, x.args) : param == x
+    is_inferred(param, inferred_constraint_exprs) =
+        any(Base.Fix1(is_inferred_from_expr, param), inferred_constraint_exprs)
+
+    # Add a new type parameter and set every field's type to Nothing. Record the
+    # original parameter and field expressions, and also the typename Symbol T.
+    struct_expr = kwdef_expr.args[2].args[2]
+    struct_expr.args[1] && error("Mutable structs are not supported by @params")
+    struct_expr.args[2] = expr_with_new_param(struct_expr.args[2], gensym())
+    (T, param_exprs..., _) = expr_without_supertype(struct_expr.args[2]).args
+    field_exprs = Any[]
+    for (index, inner_expr) in enumerate(struct_expr.args[3].args)
+        (Meta.isexpr(inner_expr, :function) || Meta.isexpr(inner_expr, :(=))) &&
+            error("Inner constructors are not supported by @params")
+        inner_expr isa Symbol || Meta.isexpr(inner_expr, :(::)) || continue
+        struct_expr.args[3].args[index] = :($(value_expr(inner_expr))::Nothing)
+        push!(field_exprs, inner_expr)
+    end
+
+    # Modify the two default constructors generated in "bits" mode (one without
+    # field type conversion, and another with conversion) to store field values
+    # in the new type parameter as a Tuple. If the other type parameters cannot
+    # all be inferred, or if none of the fields have constraints that require
+    # conversion, only one of the default constructors needs to be generated.
+    fields = Iterators.map(value_expr, field_exprs)
+    nothing_fields = Iterators.map(Returns(:nothing), field_exprs)
+    constraints = Iterators.map(inferred_constraint_expr, field_exprs)
+    other_params = Iterators.map(value_expr, param_exprs)
+    all_inferred = all(Base.Fix2(is_inferred, constraints), other_params)
+    check_isbits = :(
+        isbits(values) || error("Only isbits values are supported by @params")
+    )
+    if all_inferred
+        new_param = :(values = ($(fields...),); $check_isbits; values)
+        non_converting_constructor =
+            isempty(param_exprs) ?
+            :($T($(field_exprs...)) = $T{$new_param}($(nothing_fields...))) :
+            :(
+                $T($(field_exprs...)) where {$(param_exprs...)} =
+                    $T{$(other_params...), $new_param}($(nothing_fields...))
+            )
+        push!(kwdef_expr.args, non_converting_constructor)
+    end
+    if !all_inferred || any(!=(:Any), constraints)
+        converted_fields = Iterators.map(converted_value_expr, field_exprs)
+        new_param = :(values = ($(converted_fields...),); $check_isbits; values)
+        converting_constructor =
+            isempty(param_exprs) ?
+            :($T($(fields...)) = $T{$new_param}($(nothing_fields...))) :
+            :(
+                $T{$(other_params...)}($(fields...)) where {$(param_exprs...)} =
+                    $T{$(other_params...), $new_param}($(nothing_fields...))
+            )
+        push!(kwdef_expr.args, converting_constructor)
+    end
+
+    # Modify getproperty to extract field values from the new type parameter.
+    any_params = Iterators.map(Returns(:(<:Any)), param_exprs)
+    T_with_any_params = :($T{$(any_params...), values})
+    field_names = Iterators.map(QuoteNode, fields)
+    getproperty_method = :(
+        Base.getproperty(::$T_with_any_params, name::Symbol) where {values} =
+            getfield(NamedTuple{($(field_names...),)}(values), name)
+    )
+    push!(kwdef_expr.args, getproperty_method)
+
+    return esc(kwdef_expr)
+end
 
 end # module

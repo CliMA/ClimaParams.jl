@@ -8,6 +8,7 @@ This page documents the functions and types available in ClimaParams.jl. The API
 
 ```@docs
 ClimaParams
+@params
 ```
 
 ## 1. Core Data Structures
