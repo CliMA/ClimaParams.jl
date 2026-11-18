@@ -1431,9 +1431,9 @@ type = "float"
 description = "Temperature below which vapor deposits onto cloud ice also where there is no cloud liquid, with the temperature-dependent cloud ice number concentration (TemperatureDependentIceNumber) of the 1-moment scheme (K)."
 
 [temperature_rain_collision_snow]
-value = 260.0
+value = 272.15
 type = "float"
-description = "Temperature at and below which the cloud ice, rain and snow collected in collisions with rain become snow. Between T_freeze and this temperature we assume a linear liquid-fraction ramp of the rain collision products of the 1-moment scheme (K)."
+description = "Temperature at and below which all the rain collected by cloud ice and snow freezes into snow in the 1-moment scheme; from this temperature to freezing the liquid fraction of the collected rain rises linearly to one (K)."
 
 [microphysics_max_latent_heating_rate]
 value = 0.03333333333333333

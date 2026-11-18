@@ -3,6 +3,10 @@ ClimaParams.jl Release Notes
 main
 -------
 
+v1.3.13
+-------
+- Change the default `temperature_rain_collision_snow` to 272.15 K (1 K below freezing).
+
 v1.3.12
 -------
 - Change the default `temperature_rain_collision_snow` to 260K.
