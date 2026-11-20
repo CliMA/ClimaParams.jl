@@ -1435,6 +1435,11 @@ value = 272.15
 type = "float"
 description = "Temperature at and below which all the rain collected by cloud ice and snow freezes into snow in the 1-moment scheme; from this temperature to freezing the liquid fraction of the collected rain rises linearly to one (K)."
 
+[temperature_graupel_removal]
+value = 263.15
+type = "float"
+description = "Temperature at and below which all the snow made by collisions of rain with cloud ice and snow is removed as graupel in the 1-moment scheme with graupel removal; from freezing to this temperature the removed fraction rises linearly from zero to one (K)."
+
 [microphysics_max_latent_heating_rate]
 value = 0.03333333333333333
 type = "float"
