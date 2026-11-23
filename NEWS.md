@@ -5,6 +5,8 @@ main
 
 v1.3.14
 -------
+- Add `Chen2022_small_ice_terminal_velocity_max` (default 1.5 m/s), the asymptotic bound on the
+  cloud ice terminal velocity in the CloudMicrophysics 1-moment scheme.
 - Add `temperature_graupel_removal` (263.15 K) for the graupel removal of the 1-moment scheme.
 
 v1.3.13
