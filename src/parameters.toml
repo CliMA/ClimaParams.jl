@@ -2011,6 +2011,11 @@ value = 3.0
 type = "float"
 description = "Asymptotic breakup bound on 1-moment snow/large-ice mass-weighted terminal velocity (m s⁻¹)."
 
+[Chen2022_small_ice_terminal_velocity_max]
+value = 1.5
+type = "float"
+description = "Asymptotic bound on 1-moment cloud-ice/small-ice terminal velocity at the mean volume diameter (m s⁻¹)."
+
 # Ice Deposition on Dust (Möhler et al., 2006)
 
 [Mohler2006_maximum_allowed_Si]
