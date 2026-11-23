@@ -3,6 +3,10 @@ ClimaParams.jl Release Notes
 main
 -------
 
+v1.3.14
+-------
+- Add `temperature_graupel_removal` (263.15 K) for the graupel removal of the 1-moment scheme.
+
 v1.3.13
 -------
 - Change the default `temperature_rain_collision_snow` to 272.15 K (1 K below freezing).
